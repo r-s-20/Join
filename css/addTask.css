@@ -1,8 +1,90 @@
-body {
-    align-items: flex-start;
+.redFont {
+    color: #FF8190;
 }
 
-.outerContainer {
-    flex: 1;
+.addTask button {
+    border: none;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 1rem 0.8rem;
+    background-color: white;
+    font-size: 1rem;
 }
 
+button.darkColored {
+    background-color: var(--mainDarkColor);
+    color: white;
+}
+
+.outerContent {
+  padding-left: 4rem;
+  padding-top: 4rem;
+}
+
+.innerContent {
+  justify-content: space-evenly;
+  flex: 1;
+  width: 90%;
+}
+
+.formContent {
+  justify-content: flex-start;
+}
+
+.lowerContainer {
+    margin: 3rem 0;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.leftColumn {
+  gap: 2rem;
+  width: 40%;
+}
+
+.rightColumn {
+  width: 40%;
+  flex: 1;
+}
+
+.inputElement {
+  gap: 0.5rem;
+  width: 100%;
+  min-width: 260px;
+  margin-top: 1rem;
+}
+
+.formInput {
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  padding: 12px 21px;
+  min-height: 2rem;
+  font-family: sans-serif;
+  font-size: 1rem;
+  background-color: white;
+}
+
+.addTask input {
+  min-height: 1.5rem;
+  padding: 12px 21px;
+}
+
+.prioContainer {
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.prioContainer .button {
+    min-width: 4rem;
+    width: 30%;
+}
+
+.prioContainer .button:hover {
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+}
+
+.separator {
+  border-left: 1px solid #d1d1d1;
+  margin: 1rem 2rem;
+  min-height: 300px;
+}

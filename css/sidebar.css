@@ -1,5 +1,4 @@
 .sidebar {
-    /* width: 232px; */
     flex: 1;
 }
 .logoContainer {
@@ -13,10 +12,9 @@
 }
 
 .sidebar-inner {
-    min-width: 100px;
-    min-height: 200px;
     flex: 1;
     justify-content: space-between;
+    color: #cdcdcd;
 }
 
 .sidebar nav {
@@ -26,12 +24,11 @@
 
 .legalContainer {
     padding: 64px;
-    gap: 1rem;
+    color: #a8a8a8;
 }
 
-nav a {
+.nav a {
     width: 120px;
-    color: #cdcdcd;
     display: flex;
     gap: 0.5rem;
     align-items: center;

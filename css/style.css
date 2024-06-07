@@ -55,6 +55,10 @@ a {
     color: unset;
 }
 
+.outerContainer {
+    flex: 1;
+}
+
 .leftContainer {
     background-color: green;
 }
