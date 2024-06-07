@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body onload="includeHTML()">
-    <div w3-include-html="templates/header.html"></div>
-    <div w3-include-html="templates/sidebar.html"></div>
-</body>
+    <script defer src="./js/script.js"></script>
+    <script defer src="./js/board.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/board.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/addTask.css" />
+  </head>
+  <body onload="includeHTML()" class="flex-col">
+    <div class="outerContainer flex-start width100">
+      <div class="leftContainer flex-col">
+        <div w3-include-html="templates/sidebar.html" class="sidebar flex-col"></div>
+      </div>
+
+      <div class="rightContainer flex-col">
+        <div w3-include-html="templates/header.html" class=""></div>
+        <section class="outerContent width100 greyBackground ">
+      
+            <div class="boardTop">  
+                <h1>Board</h1>
+                
+                <form>
+                    <input type="text" name="" id="" placeholder="Find Task" required>
+                    <button class="mainDarkBlue">Add task <img src="./img/add.svg" alt=""></button>
+                </form>
+          
+            </div>
+            <div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </section>
+        
+      </div>
+    </div>
+
+  </body>
 </html>
