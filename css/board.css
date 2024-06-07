@@ -1,5 +1,8 @@
+
+
 section{
-    
+    max-width: 1208px;
+
 }
 
 
@@ -10,15 +13,14 @@ h1{
 }
 
 .boardTop{
-    max-width: 1056;
-    height: 73px;
+    max-width: 1056px;
+    height: 232px;
     margin-top: 79.5px;
     margin-left: 64px;
     margin-right: 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
 
 }
 
@@ -43,6 +45,7 @@ form button{
 form button img{
     width: 32px;
     height: 32px;
+    padding-right: 5px;
 }
 
 input{
@@ -59,3 +62,134 @@ input{
 
 }
 
+.progressHeadline{
+    margin-left: 64px;
+    margin-right: 64px;
+    gap: 24px;
+    display: flex;
+}
+
+.progressHeadline div{
+    width: 246px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.progressHeadline span{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.progressHeadline img{
+    height: 24px;
+}
+
+
+.boardProgress{
+    display: flex;
+    margin-left: 64px;
+    margin-right: 64px;
+    gap: 24px;
+}
+
+.singleBoardProgress{
+    width: 246px;
+    height: 688px;
+    border-radius: 24px;
+    border: unset;
+}
+
+.noProgess{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 246px;
+    height: 48px;
+    color: #A8A8A8;
+    font-weight: 400;
+    background-color: #E7E7E7;
+    border: 1px dashed #A8A8A8;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.card{
+    background-color: white;
+    width: 252px;
+    max-height: 263px;
+    border-radius: 24px;
+    padding: 16px;
+    gap: 10px;
+}
+
+.cardCategory{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: blue;
+    width: 113px;
+    height: 34px;
+    border-radius: 8px;
+    gap: 10px;
+    font-weight: 400;
+
+}
+
+.cardHeadline{
+    margin-top: 20px;
+    width: 220px;
+    max-height: 38px;
+    font-weight: 700;
+    color: #2A3647;
+}
+
+.cardDescription{
+    margin-top: 15px;
+    width: 220px;
+    max-height: 38px;
+    font-weight: 400;
+    color: #A8A8A8;
+}
+
+.cardSubtasks{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 220px;
+    height: 16px;
+    font-size: 14px;
+    font-weight: 400;
+
+}
+
+.subtasksBar{
+    width: 128px;
+    height: 8px;
+    background-color: #F4F4F4;
+    gap: 10px;
+    border-radius: 8px;
+
+
+
+}
+
+.subtasksBarProgress{
+    background-color: #4589FF;
+    height: 8px;
+    border-radius: 16px;
+    width: 50%;
+  
+}
+
+.cardWorkers{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 220px;
+    height: 32px;
+}

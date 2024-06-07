@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./css/sidebar.css" />
     <link rel="stylesheet" href="./css/addTask.css" />
   </head>
-  <body onload="includeHTML()" class="flex-col">
+  <body onload="includeHTML()" class="flex-col greyBackground">
     <div class="outerContainer flex-start width100">
       <div class="leftContainer flex-col">
         <div w3-include-html="templates/sidebar.html" class="sidebar flex-col"></div>
@@ -20,33 +20,69 @@
 
       <div class="rightContainer flex-col">
         <div w3-include-html="templates/header.html" class=""></div>
-        <section class="outerContent width100 greyBackground ">
-      
-            <div class="boardTop">  
-                <h1>Board</h1>
-                
-                <form>
-                    <input type="text" name="" id="" placeholder="Find Task" required>
-                    <button class="mainDarkBlue">Add task <img src="./img/add.svg" alt=""></button>
-                </form>
-          
+        <section class="outerContent width100 greyBackground">
+          <div class="boardTop">
+            <h1>Board</h1>
+
+            <form>
+              <input type="text" name="" id="" placeholder="Find Task" required />
+              <button class="mainDarkBlue">Add task <img src="./img/add.svg" alt="" /></button>
+            </form>
+          </div>
+          <div class="progressHeadline">
+            <div>
+              <span>To do</span>
+              <img src="./img/plus_button.svg" alt="">
             </div>
             <div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+              <span>In progress</span>
+              <img src="./img/plus_button.svg" alt="">
             </div>
             <div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+              <span>Await feedback</span>
+              <img src="./img/plus_button.svg" alt="">
             </div>
+            <div>
+              <span>Done</span>
+            
+            </div>
+          </div>
+          <div class="boardProgress">
+            <div class="singleBoardProgress" id="toDo">
+                <div class="noProgess">No task To do</div>
+            </div>
+            <div class="singleBoardProgress" id="inProgress">
+                <div class="noProgess">No In Progress</div>
+                <div class="card">
+                    <div class="cardCategory">User Story</div>
+                    <div class="cardHeadline">Kochwelt</div>
+                    <div class="cardDescription">Build Starts</div>
+                    <div class="cardSubtasks">
+                        <div class="subtasksBar">
+                            <div class="subtasksBarProgress"></div>
+                        </div> <span>1/2</span>Subtasks
+                    </div>
+                    <div class="cardWorkers"><div>345 </div><img src="./img/small_burger_menu.svg" alt=""></div>
+                 
+
+                </div>
+            </div>
+            <div class="singleBoardProgress" id="awaitFeedback">
+                <div class="noProgess">No Await feedback</div>
+            </div>
+            <div class="singleBoardProgress" id="done">
+                <div class="noProgess">No Done</div>
+            </div>
+          </div>
         </section>
-        
       </div>
     </div>
-
   </body>
 </html>
+
+
+<div class="cardCategory">User Story<div>
+    <div class="cardHeadline"></div>
+    <div class="cardDescription"></div>
+    <div class="cardSubtasks"></div>
+    <div class="cardWorkers"></div>
