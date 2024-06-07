@@ -20,11 +20,27 @@
 }
 
 .sidebar nav {
-    gap: 15px;
+    gap: 0.5rem;
     font-size: 19px;
 }
 
 .legalContainer {
     padding: 64px;
-    gap: 15px;
+    gap: 1rem;
+}
+
+nav a {
+    width: 120px;
+    color: #cdcdcd;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+}
+
+nav .icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
 }
