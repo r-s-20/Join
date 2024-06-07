@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Join - Add Task</title>
     <script defer src="./js/script.js"></script>
+    <link rel="shortcut icon" href="./img/faviconLogo.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/sidebar.css" />
@@ -21,9 +22,12 @@
         <div class="outerContent width100 greyBackground addTask">
           <h1>Add Task</h1>
           <div class="innerContent flex-col width100">
-            <form action="" onsubmit="event.preventDefault()" class="flex-center formContent width100">
+            <form
+              action=""
+              onsubmit="event.preventDefault()"
+              class="flex-center formContent width100"
+            >
               <div class="leftColumn flex-col">
-                <!-- <form action="" onsubmit="event.preventDefault()" class="flex-col"> -->
                 <div class="inputElement flex-col">
                   <label for="inputTitle">Title<span class="redFont">*</span></label>
                   <input
@@ -57,20 +61,37 @@
               <div class="rightColumn flex-col">
                 <div class="inputElement flex-col">
                   <label>Due date<span class="redFont">*</span> </label>
-                  <input type="date" name="" id="" class="formInput" placeholder="dd/mm/yyyy">
+                  <input
+                    type="date"
+                    name=""
+                    id=""
+                    class="formInput"
+                    placeholder="dd/mm/yyyy"
+                  />
                 </div>
                 <div class="inputElement flex-col">
                   <label>Prio</label>
                   <div class="prioContainer flex-center width100">
-                    <button class="button prioButton flex-center">Urgent <img src="./img/prioUrgent.png" alt=""></button>
-                    <button class="button prioButton flex-center">Medium <img src="./img/prioMedium.png" alt=""></button>
-                    <button class="button prioButton flex-center">Low <img src="./img/prioLow.png" alt=""></button>
+                    <button class="button prioButton flex-center">
+                      Urgent<img src="./img/prioUrgent.png" alt="" />
+                    </button>
+                    <button class="button prioButton flex-center">
+                      Medium<img src="./img/prioMedium.png" alt="" />
+                    </button>
+                    <button class="button prioButton flex-center">
+                      Low<img src="./img/prioLow.png" alt="" />
+                    </button>
                   </div>
                 </div>
                 <div class="inputElement flex-col">
                   <label>Category<span class="redFont">*</span> </label>
-                  <select name="" id="inputCategory" class="formInput" placeholder="Select category">
-                    <option value="" >Management</option>
+                  <select
+                    name=""
+                    id="inputCategory"
+                    class="formInput"
+                    placeholder="Select category"
+                  >
+                    <option value="">Management</option>
                     <option value="">Coffeebreak</option>
                   </select>
                 </div>
