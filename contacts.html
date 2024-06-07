@@ -1,12 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacts</title>
-</head>
-<body onload="includeHTML()">
-    <div w3-include-html="templates/header.html"></div>
-    <div w3-include-html="templates/sidebar.html"></div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer src="./js/script.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/contacts.css" />
+  </head>
+  <body onload="includeHTML()" class="flex-col">
+    <div class="outerContainer flex-start width100">
+      <div class="leftContainer flex-col">
+        <div
+          w3-include-html="templates/sidebar.html"
+          class="sidebar flex-col"
+        ></div>
+      </div>
+
+      <div class="rightContainer flex-col">
+        <div w3-include-html="templates/header.html" class=""></div>
+        <div class="outerContent width100 greyBackground">
+          <div class="contactsMain">
+            <div class="contactListsContainer">
+              <button>
+                Add new contact
+                <img src="img/person_add.png" alt="add person image" />
+              </button>
+              <div class="contactLists" id="contactLists">
+                
+                  <div class="contactListsNameHead">
+                    <div class="contactListsNameBadge">
+                      <h1>AM</h1>
+                    </div>
+                    <div class="contactListsName">
+                      <h1>Anton Mayer</h1>
+                      <h3>anton@gmail.com</h3>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="contactsContent">
+              <div class="contactsHeader">
+                <h1>Contacts</h1>
+                <div class="seperateLine"></div>
+                <h4>Better with a team</h4>
+              </div>
+              <div class="contactCardMain">
+                <div class="contentCardHeader">
+                  <div class="cardHeaderLogo">
+                    <h1>AM</h1>
+                  </div>
+                  <div class="cardHeaderNameDetails">
+                    <h1>Anton Mayer</h1>
+                    <div class="cardHeaderNameEditDelete">
+                      <div class="cardHeaderNameEdit">
+                        <img src="img/edit.png" alt="edit Contact Name" />Edit
+                      </div>
+                      <div class="cardHeaderNameDelete">
+                        <img
+                          src="img/delete.png"
+                          alt="delete Contact Name"
+                        />Delete
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="contactCardInfo">
+                  <h4>Contact Information</h4>
+                </div>
+                <div class="contactCardDetails">
+                  <div class="cardDetailEmailMain">
+                    <div class="cardDetailEmailHead">Email</div>
+                    <div class="cardDetailEmailName">anton@gmail.com</div>
+                  </div>
+                  <div class="CardDetailPhoneMain">
+                    <div class="CardDetailPhoneHead">Phone</div>
+                    <div class="CardDetailPhoneNumber">+49 1111 111 11 1</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
