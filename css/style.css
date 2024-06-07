@@ -18,7 +18,7 @@ body {
 }
 
 .greyBackground {
-    background-color: lightgray;
+    background-color: #f6f7f8;
 }
 
 .flex-col {
@@ -45,8 +45,6 @@ a {
     color: unset;
 }
 
-
-
 .outerContainer {
     background-color: antiquewhite;
 }
@@ -56,5 +54,9 @@ a {
 }
 
 .rightContainer {
+    flex: 1;
+}
+
+.outerContent {
     flex: 1;
 }
