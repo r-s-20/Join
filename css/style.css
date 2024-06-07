@@ -2,11 +2,16 @@
     box-sizing: border-box;
 }
 
+:root {
+    --mainDarkColor: #2A3647;
+}
+
 body {
     margin: 0;
     color: black;
     min-height: 100vh;
     font-family: sans-serif;
+    font-size: 16px;
 }
 
 .whiteBackground {
@@ -39,6 +44,10 @@ body {
 
 .width100 {
     width: 100%;
+}
+
+.button:hover {
+    cursor: pointer;
 }
 
 a {

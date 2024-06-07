@@ -1,6 +1,36 @@
+:root {
+  --customBlue: #29abe2;
+}
+
 header {
   height: 96px;
   font-size: 20px;
-  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 8px;
+}
+
+header h2 {
+  margin-left: 64px;
+}
+
+.header {
+  justify-content: space-between;
+}
+
+.infoBox {
+  gap: 15px;
+  width: 20%;
+}
+
+.helpIcon {
+  border: 1px solid lightgrey;
+  /* padding: 0.5rem; */
+  border-radius: 100%;
+}
+
+.userLogo {
+  color: var(--customBlue);
+  border: 3px solid var(--mainDarkColor);
+  padding: 1rem;
+  border-radius: 100%;
 }
