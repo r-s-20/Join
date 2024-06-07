@@ -1,0 +1,7 @@
+body {
+    align-items: flex-start;
+}
+
+.outerContainer {
+    flex: 1;
+}
