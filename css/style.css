@@ -72,6 +72,7 @@ a {
 
 .leftContainer {
     background-color: green;
+    width: clamp(200px, 100%, 248px);
 }
 
 .rightContainer {
