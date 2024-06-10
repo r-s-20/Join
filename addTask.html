@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join - Add Task</title>
-    <link rel="shortcut icon" href="./img/faviconLogo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./img/faviconLogo.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/sidebar.css" />
@@ -20,93 +20,114 @@
 
       <div class="rightContainer flex-col">
         <div w3-include-html="templates/header.html" class="greyBackground"></div>
-        <div class="outerContent width100 greyBackground addTask">
-          <h1>Add Task</h1>
-          <div class="innerContent flex-col width100">
-            <form
-              action=""
-              onsubmit="event.preventDefault()"
-              class="flex-center formContent width100"
-            >
-              <div class="leftColumn flex-col">
-                <div class="inputElement flex-col">
-                  <label for="inputTitle">Title<span class="redFont">*</span></label>
-                  <input
-                    type="text"
-                    id="inputTitle"
-                    class="formInput"
-                    placeholder="Enter a title"
-                  />
-                </div>
-                <div class="inputElement flex-col">
-                  <label for="inputDescription">Description</label>
-                  <textarea
-                    name=""
-                    id="inputDescription"
-                    class="formInput"
-                    placeholder="Enter a description"
-                  ></textarea>
-                </div>
-                <div class="inputElement flex-col">
-                  <label for="inputAssigned">Assigned to</label>
-                  <select name="" id="inputAssigned" class="formInput">
-                    select contacts to assign
-                    <option value="Maria S">Maria S</option>
-                    <option value="Anne M">Anne M</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="separator"></div>
-
-              <div class="rightColumn flex-col">
-                <div class="inputElement flex-col">
-                  <label>Due date<span class="redFont">*</span> </label>
-                  <input
-                    type="date"
-                    name=""
-                    id="inputDueDate"
-                    class="formInput"
-                    placeholder="dd/mm/yyyy"
-                  />
-                </div>
-                <div class="inputElement flex-col">
-                  <label>Prio</label>
-                  <div class="prioContainer flex-center width100">
-                    <button onclick="selectPrio('btnUrgent')" class="button prioButton flex-center" id="btnUrgent"> 
-                      Urgent<img src="./img/prioUrgent.png" alt="" />
-                    </button>
-                    <button onclick="selectPrio('btnMedium')" class="button prioButton flex-center prioSelected" id="btnMedium">
-                      Medium<img src="./img/prioMedium.png" alt="" />
-                    </button>
-                    <button onclick="selectPrio('btnLow')" class="button prioButton flex-center" id="btnLow">
-                      Low<img src="./img/prioLow.png" alt="" />
-                    </button>
+        <div class="outerContent width100 greyBackground">
+          <div class="addTask width100 flex-col">
+            <h1>Add Task</h1>
+            <div class="innerContent flex-col width100">
+              <form
+                action=""
+                onsubmit="event.preventDefault()"
+                class="flex-center formContent width100"
+              >
+                <div class="leftColumn flex-col">
+                  <div class="inputElement flex-col">
+                    <label for="inputTitle">Title<span class="redFont">*</span></label>
+                    <input
+                      type="text"
+                      id="inputTitle"
+                      class="formInput"
+                      placeholder="Enter a title"
+                    />
+                  </div>
+                  <div class="inputElement flex-col">
+                    <label for="inputDescription">Description</label>
+                    <textarea
+                      name=""
+                      id="inputDescription"
+                      class="formInput"
+                      placeholder="Enter a description"
+                    ></textarea>
+                  </div>
+                  <div class="inputElement flex-col">
+                    <label for="inputAssigned">Assigned to</label>
+                    <select name="" id="inputAssigned" class="formInput">
+                      select contacts to assign
+                      <option value="Maria S">Maria S</option>
+                      <option value="Anne M">Anne M</option>
+                    </select>
                   </div>
                 </div>
-                <div class="inputElement flex-col">
-                  <label>Category<span class="redFont">*</span> </label>
-                  <select
-                    name=""
-                    id="inputCategory"
-                    class="formInput"
-                    placeholder="Select category"
-                  >
-                    <option value="">Management</option>
-                    <option value="">Coffeebreak</option>
-                  </select>
+
+                <div class="separator"></div>
+
+                <div class="rightColumn flex-col">
+                  <div class="inputElement flex-col">
+                    <label>Due date<span class="redFont">*</span> </label>
+                    <input
+                      type="date"
+                      name=""
+                      id="inputDueDate"
+                      class="formInput"
+                      placeholder="dd/mm/yyyy"
+                    />
+                  </div>
+                  <div class="inputElement flex-col">
+                    <label>Prio</label>
+                    <div class="prioContainer flex-center width100">
+                      <button
+                        onclick="selectPrio('btnUrgent')"
+                        class="button prioButton flex-center"
+                        id="btnUrgent"
+                      >
+                        Urgent<img src="./img/prioUrgent.png" alt="" />
+                      </button>
+                      <button
+                        onclick="selectPrio('btnMedium')"
+                        class="button prioButton flex-center prioSelected"
+                        id="btnMedium"
+                      >
+                        Medium<img src="./img/prioMedium.png" alt="" />
+                      </button>
+                      <button
+                        onclick="selectPrio('btnLow')"
+                        class="button prioButton flex-center"
+                        id="btnLow"
+                      >
+                        Low<img src="./img/prioLow.png" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="inputElement flex-col">
+                    <label>Category<span class="redFont">*</span> </label>
+                    <select
+                      name=""
+                      id="inputCategory"
+                      class="formInput"
+                      placeholder="Select category"
+                    >
+                      <option value="">Management</option>
+                      <option value="">Coffeebreak</option>
+                    </select>
+                  </div>
+                  <div class="inputElement flex-col">
+                    <label>Subtasks</label>
+                    <input
+                      type="text"
+                      id="inputSubtasks"
+                      class="formInput"
+                      placeholder="Add a new subtask"
+                    />
+                  </div>
                 </div>
-                <div class="inputElement flex-col">
-                  <label>Subtasks</label>
-                  <input type="text" id="inputSubtasks" class="formInput" placeholder="Add a new subtask" />
+              </form>
+              <div class="lowerContainer flex-center width100">
+                <span><span class="redFont">*</span> this field is required</span>
+                <div class="buttonContainer">
+                  <button class="button">Clear x</button>
+                  <button onclick="createNewTask()" class="button darkColored">
+                    Create Task
+                  </button>
                 </div>
-              </div>
-            </form>
-            <div class="lowerContainer flex-center width100">
-              <span><span class="redFont">*</span> this field is required</span>
-              <div class="buttonContainer">
-                <button class="button">Clear x</button>
-                <button onclick="createNewTask()" class="button darkColored">Create Task</button>
               </div>
             </div>
           </div>
