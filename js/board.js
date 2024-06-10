@@ -1,5 +1,13 @@
 let currentTimestamp;
 
+const prios = {
+  low: "../img/prioLow.png",
+  medium: "../img/prioMedium.png",
+  high: "../img/prioUrgent.png",
+};
+
+
+
 function updateHTML() {
   let open = tasks.filter((t) => t.status == "toDos");
   let toDo = document.getElementById("toDo");
@@ -61,18 +69,9 @@ function moveTo(status) {
   updateHTML();
 }
 
-const prios = {
-  low: "../img/prioLow.png",
-  medium: "../img/prioMedium.png",
-  high: "../img/prioUrgent.png",
-};
-
-let popupElement;
-
 function generateTodoHTML(element) {
-    popupElement = element;
   return /*html*/ `
-    <div draggable='true' ondragstart='startDragging(${element.timestamp})' class="card" onclick="boardPopup()">
+    <div draggable='true' ondragstart='startDragging(${element.timestamp})' class="card" onclick="boardPopup(${element.timestamp})">
                    <div class="cardCategory">${element.category.name}</div>
                    <div class="cardHeadline">${element.title}</div>
                    <div class="cardDescription">${element.description}</div>
@@ -82,25 +81,27 @@ function generateTodoHTML(element) {
                        </div> <span>1/${element.subtasks.length}</span>Subtasks
                    </div>
                    <div class="cardWorkers"><div>${element.assigned} </div><img src=${prios[element.prio]} alt=""></div>
-                
-
                </div>
    `;
 }
 
-function boardPopup() {
+function boardPopup(timestamp) {
+const popupElement = tasks.find((task) => task.timestamp === timestamp);
+  
   document.getElementById("backgroundPopup").classList.remove("d-none");
-  document.getElementById("popup").innerHTML = /*html*/ `
+  let popup = document.getElementById("popup");
+  popup.innerHTML = '';
+  popup.innerHTML = /*html*/ `
          <div class="popupCategory"> 
             <span>${popupElement.category.name}</span>
-            <div></div>
+            <img src="../img/close.svg" alt="" onclick="closePopup()">
         </div>
         <div class="popupHeadline">${popupElement.title}</div>
         <div class="popupDescription">${popupElement.description}</div>
         <div class="popupDate">Due date: ${popupElement.dueDate} </div>
         <div class="popupPriority">Priority: Medium <img src="${prios[popupElement.prio]}" alt=""></div>
         <div class="popupAssigned">
-            <div>Assigend To:</div>
+            <div>Assigned To:</div>
             <div class="popupPerson">
                 <div></div><img src="" alt=""> <span>${popupElement.assigned}</span></div>
             </div>
@@ -115,4 +116,8 @@ function boardPopup() {
                 <img src="../img/delete.png" alt=""> Delete | <img src="../img/edit.png" alt=""> Edit
         </div>
     `;
+}
+
+function closePopup() {
+  document.getElementById("backgroundPopup").classList.add("d-none");
 }

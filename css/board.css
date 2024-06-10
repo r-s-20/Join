@@ -116,6 +116,10 @@ input {
   gap: 10px;
 }
 
+.card:hover{
+    cursor: pointer;
+}
+
 .cardCategory {
   display: flex;
   align-items: center;
@@ -230,6 +234,17 @@ input {
   font-weight: 400;
 
 }
+
+.popupCategory img {
+    width: 24px;
+    height: 24px;
+  
+  }
+
+  
+.popupCategory img:hover {
+    cursor: pointer;
+  }
 
 .popupHeadline{
     max-height: 219px;
