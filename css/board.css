@@ -67,6 +67,7 @@ input{
     margin-right: 64px;
     gap: 24px;
     display: flex;
+   
 }
 
 .progressHeadline div{
@@ -75,6 +76,7 @@ input{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 }
 
 .progressHeadline span{
@@ -192,4 +194,8 @@ input{
     align-items: center;
     width: 220px;
     height: 32px;
+}
+
+.d-none{
+    display: none;
 }
