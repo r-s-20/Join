@@ -1,5 +1,11 @@
+@font-face {
+    font-family: "inter";
+    src: url(../fonts/Inter/Inter-VariableFont_slnt\,wght.ttf);
+}
+
 * {
     box-sizing: border-box;
+    font-family: inter, Verdana, Geneva, Tahoma, sans-serif;
 }
 
 :root {
@@ -10,8 +16,7 @@ body {
     margin: 0;
     color: black;
     min-height: 100vh;
-    font-family: sans-serif;
-    font-size: 16px;
+    font-size: 16px; 
 }
 
 .whiteBackground {
