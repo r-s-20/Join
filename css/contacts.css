@@ -1,0 +1,268 @@
+/* Main Div*/
+.contactsMain{
+    display: flex;
+}
+/* Contact List  Div (Leftside)*/
+.contactListsContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 456px;
+    height: 928px;
+    top: 96px;
+    left: 232px;
+    background-color: #FFFFFF;
+    border: 1px solid;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 352px;
+        height: 56px;
+        background-color: #2a3647;
+        color: white;
+        border: 1px solid;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 700;
+        gap: 16px;
+
+        img {
+            width: 32px;
+            height: 32px;
+        }
+    }
+}
+
+.contactLists {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid lightblue;
+    border-radius: 10px;
+    margin-top: 54px;
+}
+
+.contactListsNameHead {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 352px;
+    height: 78px;
+    gap: 35px;
+    padding-left: 16px;
+}
+
+.contactListsNameBadge {
+    width: 42px;
+    height: 42px;
+    background-color: #FF7A00;
+    border: 3px solid white;
+    border-radius: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+        h1 {
+            font-size: 12px;
+            font-weight: 400;
+            color: white;
+        }
+}
+
+.contactListsName {
+    width: 140px;
+    height: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+        h1 {
+            font-size: 20px;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #007CEE;
+            margin: 0;
+        }
+}
+
+/* Contact Contant Div (Rightside)*/
+
+.contactsContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: #f6f7f8;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.contactsHeader {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 569px;
+    height: 73px;
+    margin-top: 100px;
+    margin-left: 43px;
+    gap: 24px;
+
+    h1 {
+        font-size: 61px;
+        font-weight: 700;
+        color: #000000;
+    }
+
+    h4 {
+        font-weight: 400;
+        font-size: 27px;
+    }
+}
+
+.seperateLine {
+    height: 50px;
+    width: 2px;
+    color: #29ABE2;
+    background-color: #29ABE2;
+    border: 1px solid;
+    
+}
+
+/*Contact Card*/
+
+.contactCardMain {
+    width: 461px;
+    height: 364px;
+    margin-top: 32px;
+    margin-left: 43px;
+    gap: 21px;
+
+}
+
+.contentCardHeader {
+    display: flex;
+    width: 461px;
+    height: 120px;
+    gap: 54px;
+}
+
+.cardHeaderLogo {
+    width: 120px;
+    height: 120px;
+    background-color: #FF7A00;
+    border: 3px;
+    border-radius: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+        h1 {
+            font-size: 47px;
+            font-weight: 500;
+            color: white;
+        }
+}
+
+.cardHeaderNameDetails {
+    width: 287px;
+    height: 88px;
+    margin: 0;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+    
+
+    h1 {
+        font-size: 47px;
+        font-weight: 500;
+        margin: 8px;
+    }
+}
+
+.cardHeaderNameEditDelete {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 159px;
+    height: 24px;
+    gap: 13px;
+
+    img {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.cardHeaderNameEdit,
+.cardHeaderNameDelete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+} 
+
+.contactCardInfo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 16px;
+    width: 207px;
+    height: 74px;
+
+        h4 {
+            font-size: 20px;
+            font-weight: 400;
+        }
+}
+
+.contactCardDetails {
+    width: 140px;
+    height: 128px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.cardDetailEmailMain {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cardDetailEmailHead {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.cardDetailEmailName {
+    font-size: 16px;
+    font-weight: 400;
+    color: #007CEE;
+}
+
+.CardDetailPhoneMain {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.CardDetailPhoneHead {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.CardDetailPhoneNumber {
+    font-size: 16px;
+    font-weight: 400;
+}
