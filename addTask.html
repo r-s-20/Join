@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join - Add Task</title>
-    <script defer src="./js/script.js"></script>
     <link rel="shortcut icon" href="./img/faviconLogo.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/sidebar.css" />
     <link rel="stylesheet" href="./css/addTask.css" />
+    <script defer src="./js/script.js"></script>
+    <script defer src="./js/addTask.js"></script>
   </head>
   <body onload="includeHTML()" class="flex-col">
     <div class="outerContainer flex-start width100">
@@ -64,7 +65,7 @@
                   <input
                     type="date"
                     name=""
-                    id=""
+                    id="inputDueDate"
                     class="formInput"
                     placeholder="dd/mm/yyyy"
                   />
@@ -97,7 +98,7 @@
                 </div>
                 <div class="inputElement flex-col">
                   <label>Subtasks<span class="redFont">*</span> </label>
-                  <input type="text" class="formInput" placeholder="Add a new subtask" />
+                  <input type="text" id="inputSubtasks" class="formInput" placeholder="Add a new subtask" />
                 </div>
               </div>
             </form>
@@ -105,7 +106,7 @@
               <span><span class="redFont">*</span> this field is required</span>
               <div class="buttonContainer">
                 <button class="button">Clear x</button>
-                <button class="button darkColored">Create Task</button>
+                <button onclick="createNewTask()" class="button darkColored">Create Task</button>
               </div>
             </div>
           </div>
