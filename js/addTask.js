@@ -8,6 +8,7 @@ function createNewTask() {
     prio: getPrio(),
     category: getValueFromInput("inputCategory"),
     subtasks: parseTextInput(getValueFromInput("inputSubtasks")),
+    taskStatus: "toDo",
   };
   console.log(newTask);
   // newTask.title = ;
