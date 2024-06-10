@@ -20,7 +20,10 @@ let tasks = [
     description: "This will be a description",
     dueDate: "2024-06-12",
     prio: "medium",
-    category: "Management",
+    category: {
+      name: "Management",
+      color: "blue"
+    },
     subtasks: ["Project structure"],
     status: "toDo",
   },
@@ -31,7 +34,10 @@ let tasks = [
     description: "Anna did not describe her task",
     dueDate: "2024-06-13",
     prio: "high",
-    category: "Management",
+    category: {
+      name: "Management",
+      color: "blue"
+    },
     subtasks: ["Project structure"],
     status: "inProgress",
   },
@@ -42,7 +48,10 @@ let tasks = [
     description: "No description needed",
     dueDate: "2024-06-15",
     prio: "low",
-    category: "Management",
+    category: {
+      name: "Management",
+      color: "blue"
+    },
     subtasks: ["Project structure"],
     status: "awaitFeedback",
   },
@@ -53,7 +62,10 @@ let tasks = [
     description: "Create a kanban board",
     dueDate: "2024-06-15",
     prio: "low",
-    category: "Scrum",
+    category: {
+      name: "Scrum",
+      color: "pink"
+    },
     subtasks: ["Start project"],
     status: "done",
   },

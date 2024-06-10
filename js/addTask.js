@@ -6,7 +6,10 @@ function createNewTask() {
     description: parseTextInput(getValueFromInput("inputDescription")),
     dueDate: getValueFromInput("inputDueDate"),
     prio: getPrio(),
-    category: getValueFromInput("inputCategory"),
+    category: {
+      name: getValueFromInput("inputCategory"),
+      color: "blue",
+    },
     subtasks: parseTextInput(getValueFromInput("inputSubtasks")),
     status: "toDo",
   };
