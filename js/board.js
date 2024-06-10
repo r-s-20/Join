@@ -1,17 +1,17 @@
-tasks = [
-  {
-    id: 0,
-    category: "User Story",
-    haedline: "Kochwelt",
-    description: "Build Starts",
-    subtask: 2,
-    assigned: "Maria S",
-    status: 'toDos'
-  },
+// tasks = [
+//   {
+//     id: 0,
+//     category: "User Story",
+//     haedline: "Kochwelt",
+//     description: "Build Starts",
+//     subtask: 2,
+//     assigned: "Maria S",
+//     status: 'toDos'
+//   },
 
-];
+// ];
 
-let currentDraggedElement;
+let currentTimestamp;
 
 // function cards() {
 //   let toDo = document.getElementById("toDo");
@@ -69,32 +69,44 @@ function updateHTML(){
     if (feedback.innerHTML == ''){
         feedback.innerHTML = /*html*/`<div class="noProgess">No Await feedback</div>`;
     }
+
+    let dones = tasks.filter(t => t.status == 'done');
+    let done = document.getElementById('done');
+    done.innerHTML = '';
+    for (let i = 0; i < dones.length; i++){
+        const element = dones[i];  
+        done.innerHTML += generateTodoHTML(element);
+    }
+    if (done.innerHTML == ''){
+        done.innerHTML = /*html*/`<div class="noProgess">No Done</div>`;
+    }
 }
 
 function allowDrop(ev){
     ev.preventDefault();
 }
 
-function startDragging(id){
-    currentDraggedElement = id;
+function startDragging(timestamp){
+    currentTimestamp = timestamp;
 }
 
 function moveTo(status){
-    tasks[currentDraggedElement]['status'] = status;
+    const task = tasks.find(task => task.timestamp === currentTimestamp);
+    task.status = status;
     updateHTML();
 
 }
 
 function generateTodoHTML(element){
     return /*html*/ `
-    <div draggable='true' ondragstart='startDragging(${element.id})' class="card">
-                   <div class="cardCategory">${element.category}</div>
-                   <div class="cardHeadline">${element.haedline}</div>
+    <div draggable='true' ondragstart='startDragging(${element.timestamp})' class="card">
+                   <div class="cardCategory">${element.category.name}</div>
+                   <div class="cardHeadline">${element.title}</div>
                    <div class="cardDescription">${element.description}</div>
                    <div class="cardSubtasks">
                        <div class="subtasksBar">
                            <div class="subtasksBarProgress"></div>
-                       </div> <span>1/${element.subtask}</span>Subtasks
+                       </div> <span>1/${element.subtasks.length}</span>Subtasks
                    </div>
                    <div class="cardWorkers"><div>${element.assigned} </div><img src="./img/small_burger_menu.svg" alt=""></div>
                 
