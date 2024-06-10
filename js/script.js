@@ -22,7 +22,7 @@ let tasks = [
     prio: "medium",
     category: "Management",
     subtasks: ["Project structure"],
-    taskStatus: "toDo",
+    status: "toDo",
   },
   {
     title: "Progressing Task",
@@ -33,7 +33,7 @@ let tasks = [
     prio: "high",
     category: "Management",
     subtasks: ["Project structure"],
-    taskStatus: "inProgress",
+    status: "inProgress",
   },
   {
     title: "Await Feedback Task",
@@ -44,7 +44,7 @@ let tasks = [
     prio: "low",
     category: "Management",
     subtasks: ["Project structure"],
-    taskStatus: "awaitFeedback",
+    status: "awaitFeedback",
   },
   {
     title: "Done Task",
@@ -55,7 +55,7 @@ let tasks = [
     prio: "low",
     category: "Scrum",
     subtasks: ["Start project"],
-    taskStatus: "done",
+    status: "done",
   },
 ];
 

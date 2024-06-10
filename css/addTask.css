@@ -1,19 +1,19 @@
 .redFont {
-    color: #FF8190;
+  color: #ff8190;
 }
 
 .addTask button {
-    border: none;
-    box-shadow: 0 0 4px 0 rgba(0,0,0,0.1);
-    border-radius: 10px;
-    padding: 1rem 0.8rem;
-    background-color: white;
-    font-size: 1rem;
+  border: none;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 1rem 0.8rem;
+  background-color: white;
+  font-size: 1rem;
 }
 
 button.darkColored {
-    background-color: var(--mainDarkColor);
-    color: white;
+  background-color: var(--mainDarkColor);
+  color: white;
 }
 
 .outerContent {
@@ -32,9 +32,9 @@ button.darkColored {
 }
 
 .lowerContainer {
-    margin: 3rem 0;
-    justify-content: space-between;
-    align-items: flex-end;
+  margin: 3rem 0;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .leftColumn {
@@ -70,21 +70,45 @@ button.darkColored {
 }
 
 .prioContainer {
-    justify-content: space-between;
-    gap: 0.5rem;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
 
 .prioContainer .button {
-    min-width: 4rem;
-    width: 30%;
+  min-width: 4rem;
+  width: 30%;
 }
 
 .prioContainer .button:hover {
-    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .separator {
   border-left: 1px solid #d1d1d1;
   margin: 1rem 2rem;
   min-height: 300px;
+}
+
+.prioContainer .prioSelected {
+  color: white;
+}
+
+#btnUrgent.prioSelected {
+  background-color: #ff3d00;
+}
+
+#btnMedium.prioSelected {
+  background-color: #ffa800;
+}
+
+#btnLow.prioSelected {
+  background-color: #7AE229;
+}
+
+#btnMedium.prioSelected img {
+  filter: saturate(0);
+}
+
+.prioContainer .prioSelected:hover {
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
 }

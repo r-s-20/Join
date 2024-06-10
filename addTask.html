@@ -73,13 +73,13 @@
                 <div class="inputElement flex-col">
                   <label>Prio</label>
                   <div class="prioContainer flex-center width100">
-                    <button class="button prioButton flex-center">
+                    <button onclick="selectPrio('btnUrgent')" class="button prioButton flex-center" id="btnUrgent"> 
                       Urgent<img src="./img/prioUrgent.png" alt="" />
                     </button>
-                    <button class="button prioButton flex-center">
+                    <button onclick="selectPrio('btnMedium')" class="button prioButton flex-center prioSelected" id="btnMedium">
                       Medium<img src="./img/prioMedium.png" alt="" />
                     </button>
-                    <button class="button prioButton flex-center">
+                    <button onclick="selectPrio('btnLow')" class="button prioButton flex-center" id="btnLow">
                       Low<img src="./img/prioLow.png" alt="" />
                     </button>
                   </div>

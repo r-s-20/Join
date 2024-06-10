@@ -8,12 +8,9 @@ function createNewTask() {
     prio: getPrio(),
     category: getValueFromInput("inputCategory"),
     subtasks: parseTextInput(getValueFromInput("inputSubtasks")),
-    taskStatus: "toDo",
+    status: "toDo",
   };
   console.log(newTask);
-  // newTask.title = ;
-  // newTask.description = ;
-  // newTask.
 }
 
 function addTask() {
@@ -22,10 +19,26 @@ function addTask() {
     tasks.push(newTask);
   }
 }
- function validateTask(task) {
-    return true;
- }
+function validateTask(task) {
+  return true;
+}
 
- function getPrio() {
-  return "medium";
- }
+function selectPrio(btnId) {
+  prioButtons = document.getElementsByClassName("prioButton");
+  selected = document.getElementById(btnId);
+  for (button of prioButtons) {
+    button.classList.remove("prioSelected");
+  }
+  selected.classList.add("prioSelected");
+}
+
+function getPrio() {
+  let prioButtons = document.getElementsByClassName("prioButton");
+  let selection;
+  for (button of prioButtons) {
+    if (button.classList.contains("prioSelected")) {
+      selection = button.id.replace("btn", "").toLowerCase();
+      return selection;
+    }
+  }
+}
