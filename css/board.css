@@ -1,201 +1,343 @@
+section {
+  max-width: 1208px;
+}
 
+h1 {
+  font-size: 61px;
+  font-weight: 700;
+}
 
-section{
-    max-width: 1208px;
+.boardTop {
+  max-width: 1056px;
+  height: 232px;
+  margin-top: 79.5px;
+  margin-left: 64px;
+  margin-right: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+form {
+  display: flex;
+  gap: 32px;
+}
+
+form button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 160px;
+  height: 48px;
+  border: 1px solid #2a3647;
+  border-radius: 10px;
+  font-size: 21px;
+  font-weight: 700;
+  padding: 8px, 16px, 8px, 16px;
+}
+
+form button img {
+  width: 32px;
+  height: 32px;
+  padding-right: 5px;
+}
+
+input {
+  display: flex;
+  justify-content: space-between;
+  width: 312px;
+  height: 48px;
+  border: 1px solid #a8a8a8;
+  border-radius: 10px;
+  gap: 10px;
+  padding: 8px, 16px, 8px, 16px;
+  font-size: 20px;
+  color: #d1d1d1;
+}
+
+.progressHeadline {
+  margin-left: 64px;
+  margin-right: 64px;
+  gap: 24px;
+  display: flex;
+}
+
+.progressHeadline div {
+  width: 246px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progressHeadline span {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.progressHeadline img {
+  height: 24px;
+}
+
+.boardProgress {
+  display: flex;
+  margin-left: 64px;
+  margin-right: 64px;
+  gap: 24px;
+}
+
+.singleBoardProgress {
+  width: 246px;
+  height: 688px;
+  border-radius: 24px;
+  border: unset;
+}
+
+.noProgess {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 246px;
+  height: 48px;
+  color: #a8a8a8;
+  font-weight: 400;
+  background-color: #e7e7e7;
+  border: 1px dashed #a8a8a8;
+  border-radius: 10px;
+  gap: 10px;
+}
+
+.card {
+  background-color: white;
+  width: 252px;
+  max-height: 263px;
+  border-radius: 24px;
+  padding: 16px;
+  gap: 10px;
+}
+
+.card:hover{
+    cursor: pointer;
+}
+
+.cardCategory {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: blue;
+  width: 113px;
+  height: 34px;
+  border-radius: 8px;
+  gap: 10px;
+  font-weight: 400;
+}
+
+.cardHeadline {
+  margin-top: 20px;
+  width: 220px;
+  max-height: 38px;
+  font-weight: 700;
+  color: #2a3647;
+}
+
+.cardDescription {
+  margin-top: 15px;
+  width: 220px;
+  max-height: 38px;
+  font-weight: 400;
+  color: #a8a8a8;
+}
+
+.cardSubtasks {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 220px;
+  height: 16px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.subtasksBar {
+  width: 128px;
+  height: 8px;
+  background-color: #f4f4f4;
+  gap: 10px;
+  border-radius: 8px;
+}
+
+.subtasksBarProgress {
+  background-color: #4589ff;
+  height: 8px;
+  border-radius: 16px;
+  width: 50%;
+}
+
+.cardWorkers {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 220px;
+  height: 32px;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.backgroundPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  max-height: 931px;
+  width: 525px;
+  border-radius: 30px;
+  padding: 48px, 40px, 48px, 40px;
+  gap: 24px;
+}
+
+.popupCategory {
+    margin-top: 50px;
+  height: 36px;
+  width: 445px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popupCategory span {
+  color: white;
+  background-color: blue;
+  height: 36px;
+  width: 160px;
+  padding: 4px, 24px, 4px, 24px;
+  gap: 10px;
+  border-radius: 8px;
+  font-size: 23px;
+  font-weight: 400;
 
 }
 
+.popupCategory img {
+    width: 24px;
+    height: 24px;
+  
+  }
 
-h1{
+  
+.popupCategory img:hover {
+    cursor: pointer;
+  }
+
+.popupHeadline{
+    max-height: 219px;
+    width: 445px;
     font-size: 61px;
     font-weight: 700;
- 
-}
-
-.boardTop{
-    max-width: 1056px;
-    height: 232px;
-    margin-top: 79.5px;
-    margin-left: 64px;
-    margin-right: 64px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-
+    flex-wrap: wrap;
 }
 
-form{
-    display: flex;
-    gap: 32px;
-}
-
-form button{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 160px;
-    height: 48px;
-    border: 1px solid #2A3647;
-    border-radius: 10px;
-    font-size: 21px;
-    font-weight: 700;
-    padding: 8px, 16px, 8px, 16px;
-}
-
-form button img{
-    width: 32px;
-    height: 32px;
-    padding-right: 5px;
-}
-
-input{
-    display: flex;
-    justify-content: space-between;
-    width: 312px;
-    height: 48px;
-    border: 1px solid #A8A8A8;
-    border-radius: 10px;
-    gap: 10px;
-    padding: 8px, 16px, 8px, 16px;
-    font-size: 20px;
-    color: #D1D1D1;
-
-}
-
-.progressHeadline{
-    margin-left: 64px;
-    margin-right: 64px;
-    gap: 24px;
-    display: flex;
-   
-}
-
-.progressHeadline div{
-    width: 246px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
-}
-
-.progressHeadline span{
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.progressHeadline img{
+.popupDescription{  
+    width: 445px;
     height: 24px;
-}
-
-
-.boardProgress{
-    display: flex;
-    margin-left: 64px;
-    margin-right: 64px;
-    gap: 24px;
-}
-
-.singleBoardProgress{
-    width: 246px;
-    height: 688px;
-    border-radius: 24px;
-    border: unset;
-}
-
-.noProgess{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 246px;
-    height: 48px;
-    color: #A8A8A8;
+    font-size: 20px;
     font-weight: 400;
-    background-color: #E7E7E7;
-    border: 1px dashed #A8A8A8;
-    border-radius: 10px;
-    gap: 10px;
 }
 
-.card{
-    background-color: white;
-    width: 252px;
-    max-height: 263px;
-    border-radius: 24px;
-    padding: 16px;
-    gap: 10px;
-}
-
-.cardCategory{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    background-color: blue;
-    width: 113px;
-    height: 34px;
-    border-radius: 8px;
-    gap: 10px;
+.popupDate{
+    width: 445px;
+    height: 24px;
+    gap: 25px;
+    font-size: 20px;
     font-weight: 400;
-
-}
-
-.cardHeadline{
-    margin-top: 20px;
-    width: 220px;
-    max-height: 38px;
-    font-weight: 700;
-    color: #2A3647;
-}
-
-.cardDescription{
-    margin-top: 15px;
-    width: 220px;
-    max-height: 38px;
-    font-weight: 400;
-    color: #A8A8A8;
-}
-
-.cardSubtasks{
-    margin-top: 20px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 220px;
-    height: 16px;
-    font-size: 14px;
-    font-weight: 400;
-
 }
 
-.subtasksBar{
-    width: 128px;
-    height: 8px;
-    background-color: #F4F4F4;
-    gap: 10px;
-    border-radius: 8px;
-
-
-
-}
-
-.subtasksBarProgress{
-    background-color: #4589FF;
-    height: 8px;
-    border-radius: 16px;
-    width: 50%;
-  
-}
-
-.cardWorkers{
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 220px;
+.popupPriority{
+    width: 445px;
     height: 32px;
+    gap: 25px;
+    font-size: 20px;
+    font-weight: 400;
 }
 
-.d-none{
-    display: none;
+.popupAssigned{
+    width: 445px;
+    max-height: 208px;
+    gap: 8px;
+
+}
+
+.popupAssigned div:first-child{
+    height: 24px;
+    font-size: 20px;
+    font-weight: 400;
+
+}
+
+.popupPerson{
+  max-height: 176px;
+  gap: 4px;
+}
+
+.popupPerson span{
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.popupSubtask{
+    width: 445px;
+    max-height: 100px;
+    gap: 8px;
+}
+
+.popupSubtask span{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.popupSingleSubtask{
+    width: 445px;
+    max-height: 68px;
+    gap: 4px;
+}
+
+.popupSingleSubtask div{
+    width: 334px;
+    height: 32px;    
+    padding: 6px, 16px, 6px, 16px;
+    gap: 16px;
+}
+
+.popupDeleteAndEdit{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 159px;
+    height: 24px;
+    line-height: 19.2px;
+    font-weight: 400;
+}
+
+.popupDeleteAndEdit img{
+    width: 24px;
+    height: 24px;
 }

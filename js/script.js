@@ -25,7 +25,7 @@ let tasks = [
       color: "blue"
     },
     subtasks: ["Project structure"],
-    status: "toDo",
+    status: "toDos",
   },
   {
     title: "Progressing Task",

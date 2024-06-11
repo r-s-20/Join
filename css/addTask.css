@@ -4,6 +4,7 @@
 
 .addTask {
   max-width: 1100px;
+  /* font-size: 1.5rem; */
 }
 
 .addTask button {
@@ -28,7 +29,6 @@ button.darkColored {
 .innerContent {
   justify-content: space-evenly;
   flex: 1;
-  width: 90%;
 }
 
 .formContent {
@@ -39,6 +39,12 @@ button.darkColored {
   margin: 3rem 0;
   justify-content: space-between;
   align-items: flex-end;
+  padding-right: 1rem;
+}
+
+.lowerContainer button {
+  height: 56px;
+  padding: 1rem;
 }
 
 .leftColumn {
@@ -48,6 +54,8 @@ button.darkColored {
 
 .rightColumn {
   width: 40%;
+  min-width: 368px;
+  padding-right: 1rem;
   flex: 1;
 }
 
@@ -73,13 +81,23 @@ button.darkColored {
   padding: 12px 21px;
 }
 
+.inputDropdownContainer {
+  position: relative;
+  align-items: center;
+}
+
+.dropdownIcon {
+  position: absolute;
+  right: 10px;
+}
+
 .prioContainer {
   justify-content: space-between;
   gap: 0.5rem;
 }
 
 .prioContainer .button {
-  min-width: 4rem;
+  min-width: 7rem;
   width: 30%;
 }
 
@@ -106,7 +124,7 @@ button.darkColored {
 }
 
 #btnLow.prioSelected {
-  background-color: #7AE229;
+  background-color: #7ae229;
 }
 
 #btnMedium.prioSelected img {
@@ -115,4 +133,39 @@ button.darkColored {
 
 .prioContainer .prioSelected:hover {
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 1000px) {
+  .outerContent {
+    padding: 0;
+  }
+
+  .innerContent {
+    min-width: 450px;
+  }
+
+.addTask h1 {
+  padding: 0 2rem;
+
+}
+
+  .formContent {
+    flex-direction: column;
+  }
+
+  .leftColumn,
+  .rightColumn {
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .lowerContainer {
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    padding: 0 2rem;
+  }
+
+  .separator {
+    display: none;
+  }
 }
