@@ -57,6 +57,7 @@ function createNewTask() {
     subtasks: parseTextInput(getValueFromInput("inputSubtasks")),
     status: "toDo",
   };
+  return newTask;
 }
 
 function addNewTask() {
