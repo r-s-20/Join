@@ -24,112 +24,125 @@
           <div class="addTask width100 flex-col">
             <h1>Add Task</h1>
             <div class="innerContent flex-col width100">
-              <form
-                action=""
-                onsubmit="event.preventDefault()"
-                class="flex-center formContent width100"
-              >
-                <div class="leftColumn flex-col">
-                  <div class="inputElement flex-col">
-                    <label for="inputTitle">Title<span class="redFont">*</span></label>
-                    <input
-                      type="text"
-                      id="inputTitle"
-                      class="formInput"
-                      placeholder="Enter a title"
-                    />
-                  </div>
-                  <div class="inputElement flex-col">
-                    <label for="inputDescription">Description</label>
-                    <textarea
-                      name=""
-                      id="inputDescription"
-                      class="formInput"
-                      placeholder="Enter a description"
-                    ></textarea>
-                  </div>
-                  <div class="inputElement flex-col">
-                    <label for="inputAssigned">Assigned to</label>
-                    <select name="" id="inputAssigned" class="formInput">
-                      select contacts to assign
-                      <option value="Maria S">Maria S</option>
-                      <option value="Anne M">Anne M</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="separator"></div>
-
-                <div class="rightColumn flex-col">
-                  <div class="inputElement flex-col">
-                    <label>Due date<span class="redFont">*</span> </label>
-                    <input
-                      type="date"
-                      name=""
-                      id="inputDueDate"
-                      class="formInput"
-                      placeholder="dd/mm/yyyy"
-                    />
-                  </div>
-                  <div class="inputElement flex-col">
-                    <label>Prio</label>
-                    <div class="prioContainer flex-center width100">
-                      <button
-                        onclick="selectPrio('btnUrgent')"
-                        class="button prioButton flex-center"
-                        id="btnUrgent"
-                      >
-                        Urgent<img src="./img/prioUrgent.png" alt="" />
-                      </button>
-                      <button
-                        onclick="selectPrio('btnMedium')"
-                        class="button prioButton flex-center prioSelected"
-                        id="btnMedium"
-                      >
-                        Medium<img src="./img/prioMedium.png" alt="" />
-                      </button>
-                      <button
-                        onclick="selectPrio('btnLow')"
-                        class="button prioButton flex-center"
-                        id="btnLow"
-                      >
-                        Low<img src="./img/prioLow.png" alt="" />
-                      </button>
+              <form action="" onsubmit="event.preventDefault()" class="width100">
+                <div class="flex-center formContent width100">
+                  <div class="leftColumn flex-col">
+                    <div class="inputElement flex-col">
+                      <label for="inputTitle">Title<span class="redFont">*</span></label>
+                      <input type="text" id="inputTitle" class="formInput" required placeholder="Enter a title" />
+                    </div>
+                    <div class="inputElement flex-col">
+                      <label for="inputDescription">Description</label>
+                      <textarea
+                        name=""
+                        id="inputDescription"
+                        class="formInput"
+                        placeholder="Enter a description"
+                      ></textarea>
+                    </div>
+                    <div class="inputElement flex-col inputDropDown">
+                      <label for="inputAssigned">Assigned to</label>
+                      <div class="inputDropdownContainer width100 flex-start" id="inputAssignedContainer">
+                        <input
+                          type="text"
+                          id="inputAssigned"
+                          class="formInput width100"
+                          value="Select contacts to assign"
+                          placeholder="Select contacts to assign"
+                        />
+                        <img
+                          src="./img/arrow_dropdown_down.svg"
+                          onclick="toggleDropdownMenu('inputAssignedContainer')"
+                          class="button dropdownIcon"
+                          alt="open dropdown-menu"
+                        />
+                        <img
+                          src="./img/arrow_dropdown_up.svg"
+                          onclick="toggleDropdownMenu('inputAssignedContainer')"
+                          class="button dropdownIcon d-none"
+                          alt="close dropdown-menu"
+                        />
+                      </div>
                     </div>
                   </div>
-                  <div class="inputElement flex-col">
-                    <label>Category<span class="redFont">*</span> </label>
-                    <select
-                      name=""
-                      id="inputCategory"
-                      class="formInput"
-                      placeholder="Select category"
-                    >
-                      <option value="">Management</option>
-                      <option value="">Coffeebreak</option>
-                    </select>
+
+                  <div class="separator"></div>
+
+                  <div class="rightColumn flex-col">
+                    <div class="inputElement flex-col">
+                      <label>Due date<span class="redFont">*</span> </label>
+                      <input
+                        type="date"
+                        name=""
+                        id="inputDueDate"
+                        required
+                        class="formInput"
+                        placeholder="dd/mm/yyyy"
+                      />
+                    </div>
+                    <div class="inputElement flex-col">
+                      <label>Prio</label>
+                      <div class="prioContainer flex-center width100">
+                        <button onclick="setPrio('btnUrgent')" class="button prioButton flex-center" id="btnUrgent">
+                          Urgent<img src="./img/prioUrgent.png" alt="" />
+                        </button>
+                        <button
+                          onclick="setPrio('btnMedium')"
+                          class="button prioButton flex-center prioSelected"
+                          id="btnMedium"
+                        >
+                          Medium<img src="./img/prioMedium.png" alt="" />
+                        </button>
+                        <button onclick="setPrio('btnLow')" class="button prioButton flex-center" id="btnLow">
+                          Low<img src="./img/prioLow.png" alt="" />
+                        </button>
+                      </div>
+                    </div>
+                    <div class="inputElement flex-col">
+                      <label for="inputCategory">Category<span class="redFont">*</span> </label>
+                      <div class="inputDropdownContainer width100 flex-start" id="inputCategoryContainer">
+                        <input
+                          type="text"
+                          id="inputCategory"
+                          required
+                          class="formInput width100"
+                          value="Select task category"
+                          placeholder="Select task category"
+                        />
+                        <img
+                          src="./img/arrow_dropdown_down.svg"
+                          onclick="toggleDropdownMenu('inputCategoryContainer')"
+                          class="button dropdownIcon"
+                          alt="open dropdown-menu"
+                        />
+                        <img
+                          src="./img/arrow_dropdown_up.svg"
+                          onclick="toggleDropdownMenu('inputCategoryContainer')"
+                          class="button dropdownIcon d-none"
+                          alt="close dropdown-menu"
+                        />
+                      </div>
+                    </div>
+                    <div class="inputElement flex-col">
+                      <label>Subtasks</label>
+                      <input type="text" id="inputSubtasks" class="formInput" placeholder="Add a new subtask" />
+                    </div>
                   </div>
-                  <div class="inputElement flex-col">
-                    <label>Subtasks</label>
-                    <input
-                      type="text"
-                      id="inputSubtasks"
-                      class="formInput"
-                      placeholder="Add a new subtask"
-                    />
+                  <!-- </form> -->
+                </div>
+                <div class="lowerContainer flex-center width100">
+                  <span><span class="redFont">*</span> this field is required</span>
+                  <div class="buttonContainer flex-center">
+                    <button class="button flex-center" onclick="resetFormInputs()">Clear
+                      <img src="./img/close.svg" alt="">
+                    </button>
+                    <button onclick="addTask()" class="button darkColored flex-center">
+                      Create Task
+                      <img src="./img/checkIcon.svg" alt="" />
+                    </button>
                   </div>
                 </div>
               </form>
-              <div class="lowerContainer flex-center width100">
-                <span><span class="redFont">*</span> this field is required</span>
-                <div class="buttonContainer flex-center">
-                  <button class="button">Clear x</button>
-                  <button onclick="createNewTask()" class="button darkColored flex-center">
-                    Create Task
-                    <img src="./img/checkIcon.svg" alt="">
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>

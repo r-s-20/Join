@@ -4,6 +4,7 @@
 
 .addTask {
   max-width: 1100px;
+  /* font-size: 1.5rem; */
 }
 
 .addTask button {
@@ -41,6 +42,11 @@ button.darkColored {
   padding-right: 1rem;
 }
 
+.lowerContainer button {
+  height: 56px;
+  padding: 1rem;
+}
+
 .leftColumn {
   gap: 2rem;
   width: 40%;
@@ -73,6 +79,16 @@ button.darkColored {
 .addTask input {
   min-height: 1.5rem;
   padding: 12px 21px;
+}
+
+.inputDropdownContainer {
+  position: relative;
+  align-items: center;
+}
+
+.dropdownIcon {
+  position: absolute;
+  right: 10px;
 }
 
 .prioContainer {

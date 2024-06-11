@@ -1,3 +1,42 @@
+let contactDummies = [
+  {
+    firstName: "Maria",
+    lastName: "Müller",
+  },
+  {
+    firstName: "Peter",
+    lastName: "Müller",
+  },
+  {
+    firstName: "Anna",
+    lastName: "Schneider",
+  },
+  {
+    firstName: "Thomas",
+    lastName: "Becher",
+  },
+  {
+    firstName: "Christian",
+    lastName: "König",
+  },
+];
+
+let cateogryDummies = [
+  {
+    name: "Management",
+    color: "blue",
+  },
+  {
+    name: "Coffebreak",
+    color: "yellow",
+  },
+  {
+    name: "Technical task",
+    color: "grey",
+  },
+  { name: "Userstory", color: "pink" },
+];
+
 function createNewTask() {
   let newTask = {
     title: parseTextInput(getValueFromInput("inputTitle")),
@@ -18,15 +57,20 @@ function createNewTask() {
 
 function addTask() {
   let newTask = createNewTask();
+  console.log("validation is", validateTask(newTask));
   if (validateTask(newTask)) {
+    console.log("adding new task to tasks");
     tasks.push(newTask);
   }
-}
-function validateTask(task) {
-  return true;
+  console.log("tasks is now", tasks);
 }
 
-function selectPrio(btnId) {
+function validateTask(task) {
+  return (getValueFromInput("inputTitle") != "" && getValueFromInput("inputDueDate"));
+  // return true;
+}
+
+function setPrio(btnId) {
   prioButtons = document.getElementsByClassName("prioButton");
   selected = document.getElementById(btnId);
   for (button of prioButtons) {
@@ -44,4 +88,21 @@ function getPrio() {
       return selection;
     }
   }
+}
+
+function toggleDropdownMenu(menuId) {
+  let arrowIcons = document.querySelectorAll(`#${menuId} .dropdownIcon`);
+  for (arrow of arrowIcons) {
+    arrow.classList.toggle("d-none");
+  }
+}
+
+function createContactList() {}
+
+function resetFormInputs() {
+  let inputFields = document.getElementsByClassName('formInput');
+  for (inputField of inputFields) {
+    inputField.value = "";
+  }
+  setPrio('btnMedium')
 }
