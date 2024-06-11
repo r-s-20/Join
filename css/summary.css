@@ -1,0 +1,111 @@
+.outerContent {
+  padding-left: 4rem;
+  padding-top: 4rem;
+  /* align-items: flex-start; */
+  /* justify-content: center; */
+}
+
+
+
+.summaryContent {
+    max-width: 1100px;
+    padding-bottom: 2rem;
+}
+
+.innerContent {
+    flex:1;
+}
+
+.summaryHeader {
+  align-items: center;
+  gap: 1rem;
+}
+
+.separator {
+  height: 100%;
+  border-left: 3px solid var(--customBlue);
+  height: 59px;
+  border-radius: 10px;
+}
+
+.summaryHeader h1 {
+  font-size: 4rem;
+}
+
+.summaryHeader span {
+  font-size: 2rem;
+}
+
+.leftColumn, .rightColumn {
+    width: 50%;
+    padding: 2rem;
+}
+
+.leftColumn {
+    gap: 1rem;
+
+}
+
+
+.upperRow, .middleRow, .lowerRow {
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--mainDarkColor);
+}
+
+.taskElement {
+    flex: 1;
+    gap: 1rem;
+    height: 140px;
+    background: white;
+    border-radius: 30px;
+    padding: 1rem;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,0.1);
+}
+
+.taskElement .counter {
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+}
+
+.highlightedTask {
+    gap: 2rem;
+}
+
+.highlightedTask .separator {
+    height: 100px;
+    border-left: 2px solid #d1d1d1;
+}
+
+.urgentDetails {
+    gap: 1rem;
+}
+
+.urgentDate {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.lowerRow > div {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#welcomeMessage {
+    font-size: 3rem;
+    color: var(--mainDarkColor)
+}
+
+#welcomeName {
+    color: var(--customBlue);
+    font-size: 4rem;
+}
+
+@media (max-width: 1000px) {
+    .outerContent {
+        padding: 0;
+    }
+}

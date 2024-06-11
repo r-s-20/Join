@@ -1,88 +1,89 @@
 @font-face {
-    font-family: "inter";
-    src: url(../fonts/Inter/Inter-VariableFont_slnt\,wght.ttf);
+  font-family: "inter";
+  src: url(../fonts/Inter/Inter-VariableFont_slnt\,wght.ttf);
 }
 
 @font-face {
-    font-family: "Open Sans";
-    src: url(../fonts/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf);
+  font-family: "Open Sans";
+  src: url(../fonts/Open_Sans/OpenSans-VariableFont_wdth\wght.ttf);
 }
 
 * {
-    box-sizing: border-box;
-    font-family: inter, Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
+  font-family: inter, Verdana, Geneva, Tahoma, sans-serif;
 }
 
 :root {
-    --mainDarkColor: #2A3647;
+  --customBlue: #29abe2;
+  --mainDarkColor: #2a3647;
 }
 
 body {
-    margin: 0;
-    color: black;
-    min-height: 100vh;
-    font-size: 16px; 
+  margin: 0;
+  color: black;
+  min-height: 100vh;
+  font-size: 16px;
 }
 
 .whiteBackground {
-    background-color: white;
+  background-color: white;
 }
 
 .mainDarkBlue {
-    background-color: #2a3647;
-    color: white;
+  background-color: #2a3647;
+  color: white;
 }
 
 .greyBackground {
-    background-color: #f6f7f8;
+  background-color: #f6f7f8;
 }
 
 .flex-col {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .flex-start {
-    display: flex;
+  display: flex;
 }
 
 .flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .width100 {
-    width: 100%;
+  width: 100%;
 }
 
 .button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 a {
-    text-decoration: none;
-    color: unset;
+  text-decoration: none;
+  color: unset;
 }
 
 .outerContainer {
-    flex: 1;
+  flex: 1;
 }
 
 .leftContainer {
-    background-color: green;
-    width: clamp(200px, 100%, 248px);
+  background-color: green;
+  width: clamp(200px, 100%, 248px);
 }
 
 .rightContainer {
-    flex: 1;
+  flex: 1;
 }
 
 .outerContent {
-    flex: 1;
+  flex: 1;
 }
 
 .d-none {
-    display: none !important;
+  display: none !important;
 }

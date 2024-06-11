@@ -35,18 +35,6 @@ button.darkColored {
   justify-content: flex-start;
 }
 
-.lowerContainer {
-  margin: 3rem 0;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding-right: 1rem;
-}
-
-.lowerContainer button {
-  height: 56px;
-  padding: 1rem;
-}
-
 .leftColumn {
   gap: 2rem;
   width: 40%;
@@ -55,8 +43,20 @@ button.darkColored {
 .rightColumn {
   width: 40%;
   min-width: 368px;
-  padding-right: 1rem;
+  padding-right: 2rem;
   flex: 1;
+}
+
+.lowerContainer {
+  margin: 3rem 0;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-right: 2rem;
+}
+
+.lowerContainer button {
+  height: 56px;
+  padding: 1rem;
 }
 
 .inputElement {
@@ -97,7 +97,7 @@ button.darkColored {
 }
 
 .prioContainer .button {
-  min-width: 7rem;
+  min-width: 6rem;
   width: 30%;
 }
 

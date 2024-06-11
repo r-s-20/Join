@@ -3,9 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./img/faviconLogo.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/summary.css" />
     <script defer src="./js/script.js"></script>
     <title>Summary</title>
   </head>
@@ -17,9 +19,61 @@
 
       <div class="rightContainer flex-col">
         <div w3-include-html="templates/header.html" class="greyBackground"></div>
-        <div class="outerContent width100 greyBackground flex-center">
-            <h1>Summary</h1>
 
+        <div class="outerContent width100 greyBackground flex-center">
+          <div class="summaryContent width100 flex-col">
+            <div class="summaryHeader flex-start width100">
+              <h1>Join 360</h1>
+              <div class="separator"></div>
+              <span>Key metrics at a glance</span>
+            </div>
+            <div class="innerContent flex-center width100">
+              <div class="leftColumn flex-col">
+                <div class="upperRow flex-center width100">
+                  <div class="toDoTasks taskElement flex-center">
+                    <img src="./img/todoTaskIcon.svg" alt="" />
+                    <div class="innerElement flex-col"><span class="counter">1</span><span>To-do</span></div>
+                  </div>
+                  <div class="doneTasks taskElement flex-center">
+                    <img src="./img/doneTaskIcon.svg" alt="" />
+                    <div class="innerElement flex-col"><span class="counter">1</span><span>Done</span></div>
+                  </div>
+                </div>
+                <div class="middleRow flex-center width100">
+                  <div class="highlightedTask taskElement flex-center">
+                    <div class="flex-center urgentSummary">
+                      <img src="./img/urgentTaskIcon.svg" alt="" />
+                      <div class="innerElement flex-col">
+                        <span class="counter">1</span>
+                        <span>Urgent</span>
+                      </div>  
+                    </div>
+                    <div class="separator"></div>
+                    <div class="urgentDetails flex-col">
+                      <span class="urgentDate">October 16, 2022</span>
+                      <span>Upcoming deadline</span></div>
+                  </div>
+                </div>
+                <div class="lowerRow flex-center width100">
+                  <div class="boardTasks taskElement flex-center">
+                    <div class="flex-col"><span class="counter">1</span><span>Tasks in Board</span></div>
+                  </div>
+                  <div class="progressTasks taskElement flex-center">
+                    <div class="flex-col"><span class="counter">1</span><span>Tasks in Progress</span></div>
+                  </div>
+                  <div class="awaitTasks taskElement flex-center">
+                    <div class="flex-col"><span class="counter">1</span><span>Awaiting</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="rightColumn flex-col">
+                <p>
+                  <span id="welcomeMessage">Good morning,</span><br />
+                  <span id="welcomeName">Guest!</span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

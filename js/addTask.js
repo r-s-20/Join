@@ -1,4 +1,4 @@
-let categoryDummies = [
+let categories = [
   {
     name: "Management",
     color: "blue",
@@ -30,11 +30,8 @@ function createNewTask() {
     description: parseTextInput(getValueFromInput("inputDescription")),
     dueDate: getValueFromInput("inputDueDate"),
     prio: getPrio(),
-    category: {
-      name: getValueFromInput("inputCategory"),
-      color: "blue",
-    },
-    subtasks: parseTextInput(getValueFromInput("inputSubtasks")),
+    category: categories[0],
+    subtasks: [parseTextInput(getValueFromInput("inputSubtasks"))],
     status: "toDo",
   };
   return newTask;
