@@ -144,10 +144,9 @@ button.darkColored {
     min-width: 450px;
   }
 
-.addTask h1 {
-  padding: 0 2rem;
-
-}
+  .addTask h1 {
+    padding: 0 2rem;
+  }
 
   .formContent {
     flex-direction: column;

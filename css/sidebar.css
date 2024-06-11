@@ -29,16 +29,33 @@
 }
 
 .nav a {
-    width: 120px;
+    width: 100%;
     display: flex;
     gap: 0.5rem;
     align-items: center;
     font-size: 1rem;
     padding: 0.5rem 0;
+    padding-left: 3.5rem;
 }
 
 nav .icon {
     width: 30px;
     height: 30px;
     object-fit: contain;
+}
+
+.sidebarSummary nav a:nth-child(1) {
+    background-color: #091931;
+}
+
+.sidebarAddTask nav a:nth-child(2) {
+    background-color: #091931;
+}
+
+.sidebarBoard nav a:nth-child(2) {
+    background-color: #091931;
+}
+
+.sidebarContacts nav a:nth-child(3) {
+    background-color: #091931;
 }
