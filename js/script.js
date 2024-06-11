@@ -71,6 +71,44 @@ let tasks = [
   },
 ];
 
+let contacts = [
+  {
+  name: "Anton Mayer",
+  email: "anton@gmail.com",
+  initials: "AM",
+  bagdecolor: "orange",
+  phone: 4911111111
+  },
+  {
+  name: "Anja Schulz",
+  email: "schulz@gmail.com",
+  initials: "AS",
+  bagdecolor: "blue",
+  phone: 4911111111
+  },
+  {
+  name: "Eva Fischer",
+  email: "fischer@gmail.com",
+  initials: "EF",
+  bagdecolor: "yellow",
+  phone: 4911111111
+  },
+  {
+  name: "David Eisenberg",
+  email: "eisenberg@gmail.com",
+  initials: "DE",
+  bagdecolor: "pink",
+  phone: 4911111111
+  },
+  {
+  name: "Benedikt Ziegler",
+  email: "ziegler@gmail.com",
+  initials: "BZ",
+  bagdecolor: "purple",
+  phone: 4911111111
+  }
+];
+
 function getValueFromInput(inputId) {
   let container = document.getElementById(inputId);
   return container.value;

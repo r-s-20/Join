@@ -12,9 +12,9 @@
     height: 928px;
     top: 96px;
     left: 232px;
-    background-color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 1);
     border: 1px solid;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 0 4px rgba(0, 0, 0, 0.8);
     
 
     button {
@@ -55,6 +55,9 @@
     height: 78px;
     gap: 35px;
     padding-left: 16px;
+    background-color: #2a3647;
+    border-radius: 10px;
+    color: white;
 }
 
 .contactListsNameBadge {
