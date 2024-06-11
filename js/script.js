@@ -22,7 +22,7 @@ let tasks = [
     prio: "medium",
     category: {
       name: "Management",
-      color: "blue"
+      color: "blue",
     },
     subtasks: ["Project structure"],
     status: "toDos",
@@ -36,7 +36,7 @@ let tasks = [
     prio: "high",
     category: {
       name: "Management",
-      color: "blue"
+      color: "blue",
     },
     subtasks: ["Project structure"],
     status: "inProgress",
@@ -50,7 +50,7 @@ let tasks = [
     prio: "low",
     category: {
       name: "Management",
-      color: "blue"
+      color: "blue",
     },
     subtasks: ["Project structure"],
     status: "awaitFeedback",
@@ -64,7 +64,7 @@ let tasks = [
     prio: "low",
     category: {
       name: "Scrum",
-      color: "pink"
+      color: "pink",
     },
     subtasks: ["Start project"],
     status: "done",
@@ -77,6 +77,12 @@ function getValueFromInput(inputId) {
 }
 
 function parseTextInput(string) {
-    return string.trim();
+  return string.trim();
 }
 
+function loadTasks() {
+  let tasksAsString = localStorage.getItem("tasks");
+  if (tasksAsString) {
+    tasks = JSON.parse(tasksAsString);
+  }
+}

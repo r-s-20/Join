@@ -37,6 +37,11 @@ let cateogryDummies = [
   { name: "Userstory", color: "pink" },
 ];
 
+function init() {
+  includeHTML();
+  loadTasks();
+}
+
 function createNewTask() {
   let newTask = {
     title: parseTextInput(getValueFromInput("inputTitle")),
@@ -52,21 +57,24 @@ function createNewTask() {
     subtasks: parseTextInput(getValueFromInput("inputSubtasks")),
     status: "toDo",
   };
-  console.log(newTask);
 }
 
-function addTask() {
+function addNewTask() {
   let newTask = createNewTask();
-  console.log("validation is", validateTask(newTask));
   if (validateTask(newTask)) {
-    console.log("adding new task to tasks");
     tasks.push(newTask);
+    saveTasks();
   }
   console.log("tasks is now", tasks);
 }
 
+function saveTasks() {
+  let tasksAsText = JSON.stringify(tasks);
+  localStorage.setItem("tasks", tasksAsText);
+}
+
 function validateTask(task) {
-  return (getValueFromInput("inputTitle") != "" && getValueFromInput("inputDueDate"));
+  return getValueFromInput("inputTitle") != "" && getValueFromInput("inputDueDate");
   // return true;
 }
 
@@ -100,9 +108,9 @@ function toggleDropdownMenu(menuId) {
 function createContactList() {}
 
 function resetFormInputs() {
-  let inputFields = document.getElementsByClassName('formInput');
+  let inputFields = document.getElementsByClassName("formInput");
   for (inputField of inputFields) {
     inputField.value = "";
   }
-  setPrio('btnMedium')
+  setPrio("btnMedium");
 }
