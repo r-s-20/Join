@@ -56,6 +56,7 @@ input {
 }
 
 .progressHeadline {
+  width: 1208px;
   margin-left: 64px;
   margin-right: 64px;
   gap: 24px;
@@ -63,11 +64,12 @@ input {
 }
 
 .progressHeadline div {
-  width: 246px;
+  width: 248px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
 }
 
 .progressHeadline span {
@@ -80,6 +82,7 @@ input {
 }
 
 .boardProgress {
+  width: 1208px;
   display: flex;
   margin-left: 64px;
   margin-right: 64px;
@@ -142,6 +145,8 @@ input {
 }
 
 .cardDescription {
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 15px;
   width: 220px;
   max-height: 38px;
@@ -201,6 +206,8 @@ input {
 }
 
 .popup {
+  position: fixed;
+  top: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -211,6 +218,13 @@ input {
   border-radius: 30px;
   padding: 48px, 40px, 48px, 40px;
   gap: 24px;
+  right: -100%; /* Start outside the visible area on the right */
+  transform: translate(50%, -50%);
+  transition: all 0.125s ease;
+}
+
+#popup.show {
+  right: 50%; /* Move to the center */
 }
 
 .popupCategory {
@@ -218,20 +232,19 @@ input {
   height: 36px;
   width: 445px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 
 .popupCategory span {
   color: white;
-  background-color: blue;
   height: 36px;
-  width: 160px;
-  padding: 4px, 24px, 4px, 24px;
-  gap: 10px;
+  width: fit-content;
   border-radius: 8px;
   font-size: 23px;
   font-weight: 400;
+  padding-top: 4px;
+  padding-left: 24px;
+  padding-right: 24px;
 
 }
 
@@ -277,6 +290,7 @@ input {
     gap: 25px;
     font-size: 20px;
     font-weight: 400;
+    text-transform: capitalize;
 }
 
 .popupAssigned{
@@ -305,7 +319,7 @@ input {
 
 .popupSubtask{
     width: 445px;
-    max-height: 100px;
+    max-height: 500px;
     gap: 8px;
 }
 
@@ -321,23 +335,42 @@ input {
 }
 
 .popupSingleSubtask div{
+    display: flex;
+    align-items: center;
     width: 334px;
     height: 32px;    
     padding: 6px, 16px, 6px, 16px;
     gap: 16px;
 }
 
+.popupSingleSubtask img{
+  width: 24px;
+  height: 24px;
+}
+
+.popupSingleSubtask img:hover{
+  cursor: pointer;
+}
+
 .popupDeleteAndEdit{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 159px;
+    width: 445px;
     height: 24px;
-    line-height: 19.2px;
     font-weight: 400;
+    gap: 8px;
+    margin-bottom: 40px;
+
 }
 
 .popupDeleteAndEdit img{
     width: 24px;
     height: 24px;
+}
+
+.line{
+  width: 1px;
+  height: 24px;
+  background-color: #D1D1D1; 
 }
