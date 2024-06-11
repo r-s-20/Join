@@ -17,12 +17,15 @@ header h2 {
   gap: 1rem;
   width: 128px;
   padding: 1rem;
+  padding-right: 3rem;
 }
 
 .helpIcon {
-  border: 1px solid lightgrey;
-  /* padding: 0.5rem; */
-  border-radius: 100%;
+  transition: all 0.2s ease-in-out;
+}
+
+.helpIcon:hover {
+  scale: 1.2;
 }
 
 .userLogo {
