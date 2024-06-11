@@ -228,7 +228,7 @@ input {
 }
 
 .popupCategory {
-    margin-top: 50px;
+  margin-top: 50px;
   height: 36px;
   width: 445px;
   display: flex;
@@ -308,6 +308,8 @@ input {
 }
 
 .popupPerson{
+  display: flex;
+  flex-direction: column;
   max-height: 176px;
   gap: 4px;
 }

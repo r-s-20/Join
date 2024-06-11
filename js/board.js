@@ -7,7 +7,10 @@ const prios = {
   high: "../img/prioUrgent.png",
 };
 
+let globalIndex = 0;
+
 function updateHTML() {
+  globalIndex = 0
   updateStatusHTML("toDos", "toDo", "No task To do");
   updateStatusHTML("inProgress", "inProgress", "No In Progress");
   updateStatusHTML("awaitFeedback", "awaitFeedback", "No Await feedback");
@@ -20,7 +23,10 @@ function updateStatusHTML(status, elementId, emptyMessage) {
   container.innerHTML = "";
   for (let i = 0; i < filteredTasks.length; i++) {
     const element = filteredTasks[i];
-    container.innerHTML += generateTodoHTML(element);
+    container.innerHTML += generateTodoHTML(element, globalIndex);
+    contactNames(element, globalIndex);
+    document.getElementById(`cardCategory${globalIndex}`).style.backgroundColor = element.category.color;
+    globalIndex++;
   }
 
   if (container.innerHTML == "") {
@@ -42,10 +48,10 @@ function moveTo(status) {
   updateHTML();
 }
 
-function generateTodoHTML(element) {
+function generateTodoHTML(element, index) {
   return /*html*/ `
-    <div draggable='true' ondragstart='startDragging(${element.timestamp})' class="card" onclick="boardPopup(${element.timestamp}, event)">
-      <div class="cardCategory">${element.category.name}</div>
+    <div draggable='true' ondragstart='startDragging(${element.timestamp})' class="card" onclick="boardPopup(${element.timestamp})">
+      <div class="cardCategory" id="cardCategory${index}">${element.category.name}</div>
       <div class="cardHeadline">${element.title}</div>
       <div class="cardDescription">${element.description}</div>
       <div class="cardSubtasks">
@@ -54,19 +60,29 @@ function generateTodoHTML(element) {
       </div> 
         <span>1/${element.subtasks.length}</span>Subtasks
       </div>
-        <div class="cardWorkers"><div>${element.assigned} </div><img src=${prios[element.prio]} alt=""></div>
+        <div class="cardWorkers"><div id="contactNames${index}"></div><img src=${prios[element.prio]} alt=""></div>
     </div>
    `;
 }
 
-function boardPopup(timestamp, event) {
+function contactNames(element, index){
+  let contactNames = document.getElementById(`contactNames${index}`);
+  contactNames.innerHTML = '';
+  for(let i = 0; i < element.assigned.length; i++){
+      let assigned = element.assigned[i];
+      contactNames.innerHTML += assigned.initials;
+  }
+}
+
+function boardPopup(timestamp) {
   popupElement = tasks.find((task) => task.timestamp === timestamp);
   document.getElementById("backgroundPopup").classList.remove("d-none");
   let popup = document.getElementById("popup");
   popup.innerHTML = "";
   popup.innerHTML = boardPopupHTML();
   subtasks();
-  document.getElementById("popupCategory").style.backgroundColor = popupElement.category.color;
+  popupPersons(popupElement)
+  document.getElementById("categoryColor").style.backgroundColor = popupElement.category.color;
 setTimeout(() => {
   popup.classList.add('show'); // Add the class to trigger the animation
 }, 10); // Small delay to ensure the class addition triggers the animation
@@ -78,7 +94,7 @@ setTimeout(() => {
 function boardPopupHTML(){
  return /*html*/ `
  <div class="popupCategory" id="popupCategory"> 
-   <span>${popupElement.category.name}</span>
+   <span id="categoryColor">${popupElement.category.name}</span>
    <img src="../img/close.svg" alt="" onclick="closePopup()">
  </div>
  <div class="popupHeadline">${popupElement.title}</div>
@@ -87,8 +103,8 @@ function boardPopupHTML(){
  <div class="popupPriority">Priority: ${popupElement.prio} <img src="${prios[popupElement.prio]}" alt=""></div>
  <div class="popupAssigned">
    <div>Assigned To:</div>
-   <div class="popupPerson">
-     <div></div><img src="" alt=""> <span>${popupElement.assigned}</span></div>
+   <div class="popupPerson" id="popupPerson">
+    </div>
    </div>
  <div class="popupSubtask">
    <span>Subtasks</span>
@@ -126,4 +142,13 @@ function subtaskOpen(i) {
 function closePopup() {
   document.getElementById("backgroundPopup").classList.add("d-none");
   document.getElementById("popup").classList.remove("show");
+}
+
+function popupPersons(popupElement){
+  let person = document.getElementById(`popupPerson`);
+  person.innerHTML = '';
+  for(let i = 0; i < popupElement.assigned.length; i++){
+    let assigned = popupElement.assigned[i];
+    person.innerHTML += /*html*/`<img src="" alt=""> <span>${assigned.name}</span>`;
+}
 }
