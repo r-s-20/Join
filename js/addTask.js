@@ -1,27 +1,4 @@
-let contactDummies = [
-  {
-    firstName: "Maria",
-    lastName: "Müller",
-  },
-  {
-    firstName: "Peter",
-    lastName: "Müller",
-  },
-  {
-    firstName: "Anna",
-    lastName: "Schneider",
-  },
-  {
-    firstName: "Thomas",
-    lastName: "Becher",
-  },
-  {
-    firstName: "Christian",
-    lastName: "König",
-  },
-];
-
-let cateogryDummies = [
+let categoryDummies = [
   {
     name: "Management",
     color: "blue",
@@ -46,7 +23,10 @@ function createNewTask() {
   let newTask = {
     title: parseTextInput(getValueFromInput("inputTitle")),
     timestamp: new Date().getTime(),
-    assigned: getValueFromInput("inputAssigned"),
+    // assigned: {
+    //   name: getValueFromInput("inputAssigned"),
+    // },
+    assigned: [contacts[0]],
     description: parseTextInput(getValueFromInput("inputDescription")),
     dueDate: getValueFromInput("inputDueDate"),
     prio: getPrio(),

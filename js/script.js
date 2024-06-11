@@ -12,11 +12,49 @@ async function includeHTML() {
   }
 }
 
+let contacts = [
+  {
+    name: "Anton Mayer",
+    email: "anton@gmail.com",
+    initials: "AM",
+    bagdecolor: "orange",
+    phone: 4911111111,
+  },
+  {
+    name: "Anja Schulz",
+    email: "schulz@gmail.com",
+    initials: "AS",
+    bagdecolor: "blue",
+    phone: 4911111111,
+  },
+  {
+    name: "Eva Fischer",
+    email: "fischer@gmail.com",
+    initials: "EF",
+    bagdecolor: "yellow",
+    phone: 4911111111,
+  },
+  {
+    name: "David Eisenberg",
+    email: "eisenberg@gmail.com",
+    initials: "DE",
+    bagdecolor: "pink",
+    phone: 4911111111,
+  },
+  {
+    name: "Benedikt Ziegler",
+    email: "ziegler@gmail.com",
+    initials: "BZ",
+    bagdecolor: "purple",
+    phone: 4911111111,
+  },
+];
+
 let tasks = [
   {
     title: "First test title",
     timestamp: 1717999440032,
-    assigned: ["Maria S."],
+    assigned: [contacts[0], contacts[1]],
     description: "This will be a description",
     dueDate: "2024-06-12",
     prio: "medium",
@@ -30,7 +68,7 @@ let tasks = [
   {
     title: "Progressing Task",
     timestamp: 1717999440023,
-    assigned: ["Anna M."],
+    assigned: [contacts[3]],
     description: "Anna did not describe her task",
     dueDate: "2024-06-13",
     prio: "high",
@@ -44,7 +82,7 @@ let tasks = [
   {
     title: "Await Feedback Task",
     timestamp: 1717999440040,
-    assigned: ["Anna M.", "Peter B."],
+    assigned: [contacts[3], contacts[2]],
     description: "No description needed",
     dueDate: "2024-06-15",
     prio: "low",
@@ -58,7 +96,7 @@ let tasks = [
   {
     title: "Done Task",
     timestamp: 1717999440100,
-    assigned: ["Peter B."],
+    assigned: [contacts[0]],
     description: "Create a kanban board",
     dueDate: "2024-06-15",
     prio: "low",
@@ -69,44 +107,6 @@ let tasks = [
     subtasks: ["Start project"],
     status: "done",
   },
-];
-
-let contacts = [
-  {
-  name: "Anton Mayer",
-  email: "anton@gmail.com",
-  initials: "AM",
-  bagdecolor: "orange",
-  phone: 4911111111
-  },
-  {
-  name: "Anja Schulz",
-  email: "schulz@gmail.com",
-  initials: "AS",
-  bagdecolor: "blue",
-  phone: 4911111111
-  },
-  {
-  name: "Eva Fischer",
-  email: "fischer@gmail.com",
-  initials: "EF",
-  bagdecolor: "yellow",
-  phone: 4911111111
-  },
-  {
-  name: "David Eisenberg",
-  email: "eisenberg@gmail.com",
-  initials: "DE",
-  bagdecolor: "pink",
-  phone: 4911111111
-  },
-  {
-  name: "Benedikt Ziegler",
-  email: "ziegler@gmail.com",
-  initials: "BZ",
-  bagdecolor: "purple",
-  phone: 4911111111
-  }
 ];
 
 function getValueFromInput(inputId) {
