@@ -126,10 +126,6 @@ button.darkColored {
   background-color: #7ae229;
 }
 
-#btnMedium.prioSelected img {
-  filter: saturate(0);
-}
-
 .prioContainer .prioSelected:hover {
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
 }

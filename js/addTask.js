@@ -31,7 +31,8 @@ function createNewTask() {
     dueDate: getValueFromInput("inputDueDate"),
     prio: getPrio(),
     category: categories[0],
-    subtasks: [parseTextInput(getValueFromInput("inputSubtasks"))],
+    // subtasks: [parseTextInput(getValueFromInput("inputSubtasks"))],
+    subtasks: [],
     status: "toDos",
   };
   return newTask;
@@ -61,8 +62,11 @@ function setPrio(btnId) {
   selected = document.getElementById(btnId);
   for (button of prioButtons) {
     button.classList.remove("prioSelected");
+    let imgSrc = `../img/${button.id.replace("btn", "prio")}.png`;
+    button.lastElementChild.src=imgSrc;
   }
   selected.classList.add("prioSelected");
+  selected.lastElementChild.src = selected.lastElementChild.src.replace(".png", "White.png");
 }
 
 function getPrio() {
@@ -83,12 +87,14 @@ function toggleDropdownMenu(menuId) {
   }
 }
 
-function createContactList() {}
-
 function resetFormInputs() {
   let inputFields = document.getElementsByClassName("formInput");
   for (inputField of inputFields) {
     inputField.value = "";
   }
   setPrio("btnMedium");
+}
+
+function useAsEdit() {
+  document.querySelector(".addTask h1").innerHTML = "Edit";
 }
