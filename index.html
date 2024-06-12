@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <link rel="shortcut icon" href="./img/faviconLogo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body class="flex-start greyBackground">
+    <img src="./img/joinLogo.svg" alt="join logo" class="loginScreenLogo" />
+    <div class="loginOuterContainer flex-col width100">
+      <div class="signUpContainer flex-center width100">
+        <span>Not a Join user?</span>
+        <button class="button mainDarkBlue">Sign up</button>
+      </div>
+      <div class="inputFields flex-col">
+        <h2>Log in</h2>
+        <div class="separator"></div>
+        <div class="inputMailContainer flex-start width100">
+          <input type="email" name="" id="inputUsermail" placeholder="Email" />
+          <img src="./img/mailIcon.svg" class="inputIcon" alt="" />
+        </div>
+        <div class="inputPasswordContainer flex-start width100">
+          <input type="password" name="" id="inputPassowrd" placeholder="Password" />
+          <img src="./img/lockIcon.svg" class="inputIcon" alt="" />
+        </div>
+        <div class="rememberContainer width100 flex-start">
+          <img src="./img/check_button.svg" alt="" class="checkIcon" />
+          <span>Remember me</span>
+        </div>
+        <div class="loginButtonContainer flex-center">
+          <a href="./summary.html">
+            <button class="button mainDarkBlue">Log in</button>
+          </a>
+          <a href="./summary.html">
+            <button class="button whiteBackground">Guest log in</button>
+          </a>
+        </div>
+      </div>
+      <div class="loginLegalContainer flex-center">
+        <a class="button">Privacy policy</a>
+        <a class="button">Legal notice</a>
+      </div>
+    </div>
+  </body>
 </html>
