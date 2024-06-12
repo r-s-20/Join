@@ -44,6 +44,7 @@
 .leftColumn {
   gap: 1rem;
   width: 55%;
+  min-width: 460px;
 }
 
 .rightColumn {
@@ -78,10 +79,6 @@
 
 .taskElement:hover .counter {
   color: white;
-}
-
-.taskElement:hover img {
-  filter: invert(1);
 }
 
 .taskElement .counter {

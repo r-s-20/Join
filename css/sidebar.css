@@ -1,74 +1,85 @@
 .sidebar {
-    flex: 1;
+  flex: 1;
+  position: relative;
 }
 .logoContainer {
-    padding: 64px 0;
+  padding: 64px 0;
 }
 
 .sidebar .logo {
-    width: 100px;
-    height: 122px;
-    object-fit: contain;
+  width: 100px;
+  height: 122px;
+  object-fit: contain;
 }
 
 .sidebar-inner {
-    flex: 1;
-    justify-content: space-between;
-    align-items: center;
-    color: #cdcdcd;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  color: #cdcdcd;
+  position: absolute;
+  width: 100%;
+  height:100vh;
 }
 
 .sidebar nav {
-    gap: 0.5rem;
-    font-size: 19px;
+  gap: 0.5rem;
+  font-size: 19px;
 }
 
 .sidebar nav a {
-    transition: all 0.1s ease-in-out 0.05s;
+  transition: all 0.1s ease-in-out 0.05s;
 }
 
 .sidebar nav a:hover {
-    background-color: #2A3D59;
+  background-color: #2a3d59;
 }
 
 .legalContainer {
-    padding: 64px 0;
-    color: #a8a8a8;
+  padding: 64px 0;
+  color: #a8a8a8;
 }
 
 .legalContainer a:hover {
-    color: var(--customBlue);
-    font-weight: bold;
+  color: var(--customBlue);
+  font-weight: bold;
 }
 
 .nav a {
-    width: 100%;
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    font-size: 1rem;
-    padding: 0.5rem 0;
-    padding-left: 3.5rem;
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  padding-left: 25%;
 }
 
 nav .icon {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 .sidebarSummary nav a:nth-child(1) {
-    background-color: #091931;
+  background-color: #091931;
 }
 
 .sidebarAddTask nav a:nth-child(2) {
-    background-color: #091931;
+  background-color: #091931;
 }
 
 .sidebarBoard nav a:nth-child(2) {
-    background-color: #091931;
+  background-color: #091931;
 }
 
 .sidebarContacts nav a:nth-child(3) {
-    background-color: #091931;
+  background-color: #091931;
+}
+
+.sidebarPrivacy .legalContainer a:nth-child(1) {
+  background-color: #091931;
+}
+.sidebarLegal .legalContainer a:nth-child(2) {
+  background-color: #091931;
 }

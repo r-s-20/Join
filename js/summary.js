@@ -39,3 +39,31 @@ function updateWelcomeMessage() {
     container.innerHTML = "Good evening,";
   }
 }
+
+function changeSvgColor(iconId) {
+  circle = document.querySelector(`#${iconId} circle`);
+  path = document.querySelector(`#${iconId} path`);
+  circle.style.fill = "white";
+  path.style.fill = "#2a3647";
+}
+
+function normalSvgColor(iconId) {
+  circle = document.querySelector(`#${iconId} circle`);
+  path = document.querySelector(`#${iconId} path`);
+  circle.style.fill = "#2a3647";
+  path.style.fill = "white";
+}
+
+function changeDoneSvgColor(iconId) {
+  circle = document.querySelector(`#${iconId} circle`);
+  path = document.querySelector(`#${iconId} path`);
+  circle.style.fill = "white";
+  path.style.stroke = "#2a3647";
+}
+
+function normalDoneSvgColor(iconId) {
+  circle = document.querySelector(`#${iconId} circle`);
+  path = document.querySelector(`#${iconId} path`);
+  circle.style.fill = "#2a3647";
+  path.style.stroke = "white";
+}

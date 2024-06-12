@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summary</title>
-</head>
-<body onload="includeHTML()">
-    <div w3-include-html="templates/header.html"></div>
-    <div w3-include-html="templates/sidebar.html"></div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join - Privacy policy</title>
+    <link rel="shortcut icon" href="./img/faviconLogo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/privacyLegal.css" />
+    <script defer src="./js/script.js"></script>
+  </head>
+  <body onload="includeHTML()">
+    <div class="outerContainer flex-start width100">
+      <div class="leftContainer flex-col">
+        <div w3-include-html="templates/sidebar.html" class="sidebar flex-col sidebarPrivacy"></div>
+      </div>
+
+      <div class="rightContainer flex-col">
+        <div w3-include-html="templates/header.html" class="greyBackground"></div>
+
+        <div class="outerContent width100 greyBackground flex-col">
+          <div class="headerContainer width100">
+            <h1>Privacy policy</h1>
+          </div>
+          <div class="legalContent flex-col">
+            ... NOT COMPLETE!
+            <h2>Title 1</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quibusdam debitis ad totam dolor minima
+              eveniet inventore harum, error molestiae explicabo, quas blanditiis nihil ducimus cupiditate, sit commodi
+              illo accusamus.
+            </p>
+            <h2>Title 2</h2>
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quam nostrum sit provident dolores
+              itaque ipsum velit illum fuga, cum deserunt, totam consectetur ducimus dolorum, repellendus id blanditiis
+              illo hic.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

@@ -72,7 +72,7 @@ a {
 }
 
 .leftContainer {
-  background-color: green;
+  background-color: var(--mainDarkColor);
   width: clamp(200px, 100%, 248px);
   min-width: 200px;
 }
