@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="./css/sidebar.css" />
     <link rel="stylesheet" href="./css/summary.css" />
     <script defer src="./js/script.js"></script>
+    <script defer src="./js/summary.js"></script>
     <title>Summary</title>
   </head>
-  <body onload="includeHTML()" class="flex-col greyBackground">
+  <body onload="includeHTML(), init()" class="flex-col greyBackground">
     <div class="outerContainer flex-start width100">
       <div class="leftContainer flex-col">
         <div w3-include-html="templates/sidebar.html" class="sidebar flex-col sidebarSummary"></div>
@@ -30,21 +31,21 @@
             <div class="innerContent flex-center width100">
               <div class="leftColumn flex-col">
                 <div class="upperRow flex-center width100">
-                  <div class="toDoTasks taskElement flex-center">
+                  <a src="./board.html" class="toDoTasks taskElement flex-center">
                     <img src="./img/todoTaskIcon.svg" alt="" />
-                    <div class="innerElement flex-col"><span class="counter">1</span><span>To-do</span></div>
-                  </div>
-                  <div class="doneTasks taskElement flex-center">
+                    <div class="innerElement flex-col"><span id="counterToDo" class="counter">0</span><span>To-do</span></div>
+                  </a>
+                  <a src="./board.html" class="doneTasks taskElement flex-center">
                     <img src="./img/doneTaskIcon.svg" alt="" />
-                    <div class="innerElement flex-col"><span class="counter">1</span><span>Done</span></div>
-                  </div>
+                    <div class="innerElement flex-col"><span id="counterDone" class="counter">0</span><span>Done</span></div>
+                  </a>
                 </div>
                 <div class="middleRow flex-center width100">
-                  <div class="highlightedTask taskElement flex-center">
+                  <a href="./board.html" class="highlightedTask taskElement flex-center">
                     <div class="flex-center urgentSummary">
                       <img src="./img/urgentTaskIcon.svg" alt="" />
                       <div class="innerElement flex-col">
-                        <span class="counter">1</span>
+                        <span id="counterUrgent" class="counter">0</span>
                         <span>Urgent</span>
                       </div>  
                     </div>
@@ -52,18 +53,18 @@
                     <div class="urgentDetails flex-col">
                       <span class="urgentDate">October 16, 2022</span>
                       <span>Upcoming deadline</span></div>
-                  </div>
+                  </a>
                 </div>
                 <div class="lowerRow flex-center width100">
-                  <div class="boardTasks taskElement flex-center">
-                    <div class="flex-col"><span class="counter">1</span><span>Tasks in<br>Board</span></div>
-                  </div>
-                  <div class="progressTasks taskElement flex-center">
-                    <div class="flex-col"><span class="counter">1</span><span>Tasks in<br>Progress</span></div>
-                  </div>
-                  <div class="awaitTasks taskElement flex-center">
-                    <div class="flex-col"><span class="counter">1</span><span>Awaiting<br>Feedback</span></div>
-                  </div>
+                  <a href="./board.html" class="boardTasks taskElement flex-center">
+                    <div class="flex-col"><span id="counterBoard" class="counter">0</span><span>Tasks in Board</span></div>
+                  </a>
+                  <a href="./board.html" class="progressTasks taskElement flex-center">
+                    <div class="flex-col"><span id="counterProgress" class="counter">0</span><span>Tasks in Progress</span></div>
+                  </a>
+                  <a href="./board.html" class="awaitTasks taskElement flex-center">
+                    <div class="flex-col"><span id="counterFeedback" class="counter">0</span><span>Awaiting Feedback</span></div>
+                  </a>
                 </div>
               </div>
               <div class="rightColumn flex-col">

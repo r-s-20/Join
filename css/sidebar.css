@@ -23,9 +23,22 @@
     font-size: 19px;
 }
 
+.sidebar nav a {
+    transition: all 0.1s ease-in-out 0.05s;
+}
+
+.sidebar nav a:hover {
+    background-color: #2A3D59;
+}
+
 .legalContainer {
     padding: 64px 0;
     color: #a8a8a8;
+}
+
+.legalContainer a:hover {
+    color: var(--customBlue);
+    font-weight: bold;
 }
 
 .nav a {

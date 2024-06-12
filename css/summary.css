@@ -65,7 +65,23 @@
   background: white;
   border-radius: 30px;
   padding: 1rem;
+  text-align: center;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.taskElement:hover {
+  cursor: pointer;
+  background-color: var(--mainDarkColor);
+  color: white;
+  scale: 1.05;
+}
+
+.taskElement:hover .counter {
+  color: white;
+}
+
+.taskElement:hover img {
+  filter: invert(1);
 }
 
 .taskElement .counter {

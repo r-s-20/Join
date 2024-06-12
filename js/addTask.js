@@ -32,7 +32,7 @@ function createNewTask() {
     prio: getPrio(),
     category: categories[0],
     subtasks: [parseTextInput(getValueFromInput("inputSubtasks"))],
-    status: "toDo",
+    status: "toDos",
   };
   return newTask;
 }
