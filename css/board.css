@@ -189,6 +189,10 @@ input {
   height: 32px;
 }
 
+.cardWorkers div{
+  display: flex;
+}
+
 .d-none {
   display: none !important;
 }
@@ -218,13 +222,13 @@ input {
   border-radius: 30px;
   padding: 48px, 40px, 48px, 40px;
   gap: 24px;
-  right: -100%; /* Start outside the visible area on the right */
+  right: -100%;
   transform: translate(50%, -50%);
   transition: all 0.125s ease;
 }
 
 #popup.show {
-  right: 50%; /* Move to the center */
+  right: 50%; 
 }
 
 .popupCategory {
@@ -348,6 +352,7 @@ input {
 .popupSingleSubtask img{
   width: 24px;
   height: 24px;
+  cursor: pointer;
 }
 
 .popupSingleSubtask img:hover{
@@ -363,16 +368,37 @@ input {
     font-weight: 400;
     gap: 8px;
     margin-bottom: 40px;
-
 }
 
+
 .popupDeleteAndEdit img{
-    width: 24px;
+    width: fit-content;
     height: 24px;
+}
+
+.popupDeleteAndEdit div{
+  cursor: pointer;
 }
 
 .line{
   width: 1px;
   height: 24px;
   background-color: #D1D1D1; 
+  cursor: default;
+}
+
+.initalsCircle{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  margin-left: -5px;
+}
+
+.initalsCircle:first-child{
+  margin-left: 0;
 }

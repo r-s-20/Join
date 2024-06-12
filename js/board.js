@@ -8,9 +8,10 @@ const prios = {
 };
 
 let globalIndex = 0;
+let j = 0;
 
 function updateHTML() {
-  globalIndex = 0
+  globalIndex = 0;
   updateStatusHTML("toDos", "toDo", "No task To do");
   updateStatusHTML("inProgress", "inProgress", "No In Progress");
   updateStatusHTML("awaitFeedback", "awaitFeedback", "No Await feedback");
@@ -65,13 +66,16 @@ function generateTodoHTML(element, index) {
    `;
 }
 
-function contactNames(element, index){
+function contactNames(element, index) {
   let contactNames = document.getElementById(`contactNames${index}`);
-  contactNames.innerHTML = '';
-  for(let i = 0; i < element.assigned.length; i++){
-      let assigned = element.assigned[i];
-      contactNames.innerHTML += assigned.initials;
+  contactNames.innerHTML = "";
+  for (let i = 0; i < element.assigned.length; i++) {
+    let assigned = element.assigned[i];
+    j = j + i;
+    contactNames.innerHTML += /*html*/ `<span class="initalsCircle" id="initalsCircleColor${j}">${assigned.initials}</span>`;
+    document.getElementById(`initalsCircleColor${j}`).style.backgroundColor = assigned.bagdecolor;
   }
+  j = j + 1;
 }
 
 function boardPopup(timestamp) {
@@ -81,18 +85,18 @@ function boardPopup(timestamp) {
   popup.innerHTML = "";
   popup.innerHTML = boardPopupHTML();
   subtasks();
-  popupPersons(popupElement)
+  popupPersons(popupElement);
   document.getElementById("categoryColor").style.backgroundColor = popupElement.category.color;
-setTimeout(() => {
-  popup.classList.add('show'); // Add the class to trigger the animation
-}, 10); // Small delay to ensure the class addition triggers the animation
- popup.onclick = function (event) {
+  setTimeout(() => {
+    popup.classList.add("show");
+  }, 10);
+  popup.onclick = function (event) {
     event.stopPropagation();
   };
 }
 
-function boardPopupHTML(){
- return /*html*/ `
+function boardPopupHTML() {
+  return /*html*/ `
  <div class="popupCategory" id="popupCategory"> 
    <span id="categoryColor">${popupElement.category.name}</span>
    <img src="../img/close.svg" alt="" onclick="closePopup()">
@@ -110,7 +114,15 @@ function boardPopupHTML(){
    <span>Subtasks</span>
    <div class="popupSingleSubtask" id="popupSingleSubtask"></div>
  <div class="popupDeleteAndEdit">
-   <img src="../img/delete.png" alt=""> Delete <div class="line"></div> <img src="../img/edit.png" alt=""> Edit
+  <div onmouseover="hoverDelete()" onmouseout="leaveDelete()">
+    <img id="deleteBlack" src="../img/delete_black.svg" alt="">
+    <img id="deleteBlue" src="../img/delete_blue.svg" alt="" class="d-none">
+  </div>
+<div class="line"></div>
+  <div onmouseover="hoverEdit()" onmouseout="leaveEdit()">
+    <img id="editBlack" src="../img/edit_black.svg" alt="">
+    <img id="editBlue" src="../img/edit_blue.svg" alt="" class="d-none">
+  </div>
  </div>
 `;
 }
@@ -144,11 +156,39 @@ function closePopup() {
   document.getElementById("popup").classList.remove("show");
 }
 
-function popupPersons(popupElement){
+function popupPersons(popupElement) {
   let person = document.getElementById(`popupPerson`);
-  person.innerHTML = '';
-  for(let i = 0; i < popupElement.assigned.length; i++){
+  person.innerHTML = "";
+  for (let i = 0; i < popupElement.assigned.length; i++) {
     let assigned = popupElement.assigned[i];
-    person.innerHTML += /*html*/`<img src="" alt=""> <span>${assigned.name}</span>`;
+    person.innerHTML += /*html*/ `<img src="" alt=""> <span>${assigned.name}</span>`;
+  }
 }
+
+let deleteHoverTimeout, editHoverTimeout;
+
+function hoverDelete() {
+  clearTimeout(deleteHoverTimeout);
+  document.getElementById('deleteBlack').classList.add('d-none');
+  document.getElementById('deleteBlue').classList.remove('d-none');
+}
+
+function leaveDelete() {
+  deleteHoverTimeout = setTimeout(() => {
+    document.getElementById('deleteBlack').classList.remove('d-none');
+    document.getElementById('deleteBlue').classList.add('d-none');
+  }, 50); // Verzögerung von 200ms
+}
+
+function hoverEdit() {
+  clearTimeout(editHoverTimeout);
+  document.getElementById('editBlack').classList.add('d-none');
+  document.getElementById('editBlue').classList.remove('d-none');
+}
+
+function leaveEdit() {
+  editHoverTimeout = setTimeout(() => {
+    document.getElementById('editBlack').classList.remove('d-none');
+    document.getElementById('editBlue').classList.add('d-none');
+  }, 50); // Verzögerung von 200ms
 }
