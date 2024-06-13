@@ -9,6 +9,10 @@ const prios = {
 
 let globalIndex = 0;
 let j = 0;
+let deleteHoverTimeout, editHoverTimeout;
+let completedSubtask;
+
+
 
 function updateHTML() {
   globalIndex = 0;
@@ -57,9 +61,9 @@ function generateTodoHTML(element, index) {
       <div class="cardDescription">${element.description}</div>
       <div class="cardSubtasks">
         <div class="subtasksBar">
-          <div class="subtasksBarProgress"></div>
-      </div> 
-        <span>1/${element.subtasks.length}</span>Subtasks
+          <div class="subtasksBarProgress" id="subtasksBarProgress"></div>
+      </div > 
+        <span id="subtasksCompleted">${element.subtasks.completed}/${element.subtasks.subtaskList.length}</span>Subtasks
       </div>
         <div class="cardWorkers"><div id="contactNames${index}"></div><img src=${prios[element.prio]} alt=""></div>
     </div>
@@ -78,13 +82,17 @@ function contactNames(element, index) {
   j = j + 1;
 }
 
-function boardPopup(timestamp) {
+function findPopupElement(timestamp){
   popupElement = tasks.find((task) => task.timestamp === timestamp);
+}
+
+function boardPopup(timestamp) {
+  findPopupElement(timestamp);
   document.getElementById("backgroundPopup").classList.remove("d-none");
   let popup = document.getElementById("popup");
   popup.innerHTML = "";
   popup.innerHTML = boardPopupHTML();
-  subtasks();
+  subtasks(timestamp);
   popupPersons(popupElement);
   document.getElementById("categoryColor").style.backgroundColor = popupElement.category.color;
   setTimeout(() => {
@@ -110,7 +118,7 @@ function boardPopupHTML() {
    <div class="popupPerson" id="popupPerson">
     </div>
    </div>
- <div class="popupSubtask">
+ <div class="popupSubtask" id="popupSubtask"> 
    <span>Subtasks</span>
    <div class="popupSingleSubtask" id="popupSingleSubtask"></div>
  <div class="popupDeleteAndEdit">
@@ -127,28 +135,72 @@ function boardPopupHTML() {
 `;
 }
 
-function subtasks() {
+function subtasks(timestamp) {
   let subtasks = document.getElementById("popupSingleSubtask");
   subtasks.innerHTML = "";
-  for (let i = 0; i < popupElement.subtasks.length; i++) {
-    let singleSubtask = popupElement.subtasks[i];
-    subtasks.innerHTML += /*html*/ `
-    <div> 
-      <img id="subtaskOpen${i}" onclick="subtaskDone(${i})" src="../img/check_button.svg" alt="">
-      <img id="subtaskDone${i}" onclick="subtaskOpen(${i})" class="d-none" src="../img/check_button_done.svg" alt="">
-      <span id="singleSubtask">${singleSubtask}</span> 
-    </div>`;
+  completedSubtask = popupElement.subtasks.completed;
+  if (popupElement.subtasks.subtaskList.length > 0){
+  for (let i = 0; i < popupElement.subtasks.subtaskList.length; i++) {
+    let singleSubtask = popupElement.subtasks.subtaskList[i].name;
+    if (!popupElement.subtasks.subtaskList[i].completed){
+      subtasks.innerHTML += /*html*/ `
+      <div> 
+        <img id="subtaskOpen${i}" onclick="subtaskDone(${i}, ${timestamp})" src="../img/check_button.svg" alt="">
+        <img id="subtaskDone${i}" onclick="subtaskOpen(${i}, ${timestamp})" class="d-none" src="../img/check_button_done.svg" alt="">
+        <span id="singleSubtask">${singleSubtask}</span> 
+      </div>`;
+    } else {
+      subtasks.innerHTML += /*html*/ `
+      <div> 
+        <img id="subtaskOpen${i}" onclick="subtaskDone(${i}, ${timestamp})" class="d-none" src="../img/check_button.svg" alt="">
+        <img id="subtaskDone${i}" onclick="subtaskOpen(${i}, ${timestamp})"  src="../img/check_button_done.svg" alt="">
+        <span id="singleSubtask">${singleSubtask}</span> 
+      </div>`;
+      
+    }
+
+
+
+
   }
+} else {
+  document.getElementById('popupSubtask').innerHTML = '';
+}
 }
 
-function subtaskDone(i) {
+
+
+function updateSubtasksProgress(popupElement){
+  document.getElementById('subtasksCompleted').innerHTML = '';
+  document.getElementById('subtasksCompleted').innerHTML = /*html*/ ` 
+      ${popupElement.subtasks.completed}/${popupElement.subtasks.content.length}
+`;
+ 
+}
+
+
+
+
+function subtaskDone(i, timestamp) {
+  findPopupElement(timestamp);
   document.getElementById(`subtaskDone${i}`).classList.remove("d-none");
   document.getElementById(`subtaskOpen${i}`).classList.add("d-none");
+  let completedSubtask = popupElement.subtasks.completed
+  completedSubtask = completedSubtask + 1;
+  popupElement.subtasks.completed = completedSubtask;
+  updateHTML();
 }
 
-function subtaskOpen(i) {
+
+
+function subtaskOpen(i, timestamp) {
+  findPopupElement(timestamp);
   document.getElementById(`subtaskDone${i}`).classList.add("d-none");
   document.getElementById(`subtaskOpen${i}`).classList.remove("d-none");
+  let completedSubtask = popupElement.subtasks.completed
+  completedSubtask = completedSubtask - 1;
+  popupElement.subtasks.completed = completedSubtask;
+  updateHTML();
 }
 
 function closePopup() {
@@ -165,7 +217,7 @@ function popupPersons(popupElement) {
   }
 }
 
-let deleteHoverTimeout, editHoverTimeout;
+
 
 function hoverDelete() {
   clearTimeout(deleteHoverTimeout);
@@ -177,7 +229,7 @@ function leaveDelete() {
   deleteHoverTimeout = setTimeout(() => {
     document.getElementById('deleteBlack').classList.remove('d-none');
     document.getElementById('deleteBlue').classList.add('d-none');
-  }, 50); // Verzögerung von 200ms
+  }, 50);
 }
 
 function hoverEdit() {
@@ -190,5 +242,14 @@ function leaveEdit() {
   editHoverTimeout = setTimeout(() => {
     document.getElementById('editBlack').classList.remove('d-none');
     document.getElementById('editBlue').classList.add('d-none');
-  }, 50); // Verzögerung von 200ms
+  }, 50);
+}
+
+
+function subtaskProgress(timestamp){
+  findPopupElement(timestamp)
+  let progressPercentage = (popupElement.subtasks.completed / popupElement.subtasks.content.length) * 100;
+  progressPercentage = progressPercentage + "%";
+  document.getElementById('subtasksBarProgress').style.width = progressPercentage;
+  updateHTML();
 }
