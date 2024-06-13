@@ -12,7 +12,9 @@ let j = 0;
 let deleteHoverTimeout, editHoverTimeout;
 let completedSubtask;
 
-
+function findPopupElement(timestamp){
+  popupElement = tasks.find((task) => task.timestamp === timestamp);
+}
 
 function updateHTML() {
   globalIndex = 0;
@@ -30,6 +32,7 @@ function updateStatusHTML(status, elementId, emptyMessage) {
     const element = filteredTasks[i];
     container.innerHTML += generateTodoHTML(element, globalIndex);
     contactNames(element, globalIndex);
+    subtaskProgress(element.timestamp, globalIndex);
     document.getElementById(`cardCategory${globalIndex}`).style.backgroundColor = element.category.color;
     globalIndex++;
   }
@@ -61,13 +64,15 @@ function generateTodoHTML(element, index) {
       <div class="cardDescription">${element.description}</div>
       <div class="cardSubtasks">
         <div class="subtasksBar">
-          <div class="subtasksBarProgress" id="subtasksBarProgress"></div>
+          <div class="subtasksBarProgress" id="subtasksBarProgress${index}"></div>
       </div > 
         <span id="subtasksCompleted">${element.subtasks.completed}/${element.subtasks.subtaskList.length}</span>Subtasks
       </div>
         <div class="cardWorkers"><div id="contactNames${index}"></div><img src=${prios[element.prio]} alt=""></div>
     </div>
    `;
+
+   
 }
 
 function contactNames(element, index) {
@@ -82,9 +87,7 @@ function contactNames(element, index) {
   j = j + 1;
 }
 
-function findPopupElement(timestamp){
-  popupElement = tasks.find((task) => task.timestamp === timestamp);
-}
+
 
 function boardPopup(timestamp) {
   findPopupElement(timestamp);
@@ -158,10 +161,6 @@ function subtasks(timestamp) {
       </div>`;
       
     }
-
-
-
-
   }
 } else {
   document.getElementById('popupSubtask').innerHTML = '';
@@ -246,10 +245,9 @@ function leaveEdit() {
 }
 
 
-function subtaskProgress(timestamp){
+function subtaskProgress(timestamp, index){
   findPopupElement(timestamp)
-  let progressPercentage = (popupElement.subtasks.completed / popupElement.subtasks.content.length) * 100;
+  let progressPercentage = (popupElement.subtasks.completed / popupElement.subtasks.subtaskList.length) * 100;
   progressPercentage = progressPercentage + "%";
-  document.getElementById('subtasksBarProgress').style.width = progressPercentage;
-  updateHTML();
+  document.getElementById(`subtasksBarProgress${index}`).style.width = progressPercentage;
 }
