@@ -82,10 +82,35 @@
               alt="close dropdown-menu"
             />
           </div>
+          <div class="dropdownContent dropdownCategory flex-col width100 d-none" id="dropdownCategories">
+            <div class="dropdownCategoryElement dropdownElement">Category1</div>
+            <div class="dropdownCategoryElement dropdownElement">Category2</div>
+            <div class="dropdownCategoryElement dropdownElement">Category3</div>
+
+          </div>
         </div>
         <div class="inputElement flex-col">
           <label>Subtasks</label>
-          <input type="text" id="inputSubtasks" class="formInput" placeholder="Add a new subtask" />
+          <div class="inputDropdownContainer width100 flex-start" id="inputSubtasksContainer">
+            <input type="text" id="inputSubtasks" class="formInput width100" placeholder="Add a new subtask" />
+            <img
+              src="../img/addDarkIcon.svg"
+              class="button dropdownIcon subtasksIcon"
+              alt="open dropdown-menu"
+              onclick="openAddSubtask()";
+              id="addSubtask"
+            />
+            <div class="flex-start editSubtasksContainer d-none" id="editSubtasksContainer">
+              <img src="../img/close.svg" class="button" alt="remove subtask" onclick="closeAddSubtask()" />
+              <div class="separatorSubtasks"></div>
+              <img
+                src="../img/checkDarkIcon.svg"
+                class="button"
+                alt="confirm subtask"
+
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

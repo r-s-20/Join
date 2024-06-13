@@ -62,7 +62,10 @@ let tasks = [
       name: "Management",
       color: "blue",
     },
-    subtasks: ["Project structure"],
+    subtasks: {
+      subtaskList: [{ name: "Project structure", completed: false }],
+      completed: 0,
+    },
     status: "toDos",
   },
   {
@@ -76,7 +79,13 @@ let tasks = [
       name: "Management",
       color: "blue",
     },
-    subtasks: ["Project structure"],
+    subtasks: {
+      subtaskList: [
+        { name: "Coffeebreak", completed: true },
+        { name: "Coffeebreak", completed: false },
+      ],
+      completed: 1,
+    },
     status: "inProgress",
   },
   {
@@ -90,7 +99,10 @@ let tasks = [
       name: "Management",
       color: "blue",
     },
-    subtasks: ["Project structure"],
+    subtasks: {
+      subtaskList: [{ name: "Project structure", completed: false }],
+      completed: 0,
+    },
     status: "awaitFeedback",
   },
   {
@@ -104,7 +116,13 @@ let tasks = [
       name: "Scrum",
       color: "pink",
     },
-    subtasks: ["Start project"],
+    subtasks: {
+      subtaskList: [
+        { name: "Start project", completed: true },
+        { name: "Scrum", completed: true },
+      ],
+      completed: 2,
+    },
     status: "done",
   },
 ];
