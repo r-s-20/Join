@@ -104,16 +104,40 @@ button.darkColored {
   z-index: 10;
   box-shadow: 0 0 14px 3px rgba(0,0,0,0.04);
   padding-top: 2.5rem;
+  max-height: 12rem;
+  overflow: auto;
+  margin-bottom: 2rem;
 }
 
 .dropdownElement {
   padding: 0.8rem 1.5rem;
   border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .dropdownElement:hover {
   cursor: pointer;
   background:#f6f7f8;
+}
+
+.dropdownAssignedElement > div {
+  gap: 1rem;
+}
+
+.userBadge {
+  color: white;
+  border-radius: 100%;
+  border: 1px solid white;
+  width: 2.5rem;
+  height: 2.5rem;
+  text-align: center;
+}
+
+.assignedBadgesContainer {
+  align-items: center;
+  gap: 0.25rem;
+  height: 2rem;
 }
 
 .prioContainer {
@@ -140,7 +164,7 @@ button.darkColored {
   color: white;
 }
 
-#btnUrgent.prioSelected {
+#btnHigh.prioSelected {
   background-color: #ff3d00;
 }
 

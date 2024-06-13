@@ -17,9 +17,11 @@
             <input
               type="text"
               id="inputAssigned"
+              onclick="toggleDropdownMenu('inputAssignedContainer')"
               class="formInput width100"
               value="Select contacts to assign"
               placeholder="Select contacts to assign"
+              readonly
             />
             <img
               src="../img/arrow_dropdown_down.svg"
@@ -34,6 +36,18 @@
               alt="close dropdown-menu"
             />
           </div>
+          <div class="dropdownContent dropdownAssigned flex-col width100 d-none" id="dropdownAssigned">
+            <div class="dropdownElement flex-start">
+              <div class="userBadge flex-center" style="background-color: blue">AM</div>
+              <span>Contact1</span>
+              <img src="../img/check_button.svg" onclick="toggleCheckContact()" class="button checkContactButton" alt="check this contact">
+              <img src="../img/check_button_done.svg" onclick="toggleCheckContact()" class="button checkContactButton d-none" alt="check this contact">
+            </div>
+            <div class="dropdownElement">Contact2</div>
+            <div class="dropdownElement">Contact3</div>
+          </div>
+          <div class="assignedBadgesContainer flex-start" id="assignedBadgesContainer">
+          </div>
         </div>
       </div>
 
@@ -47,8 +61,8 @@
         <div class="inputElement flex-col">
           <label>Prio</label>
           <div class="prioContainer flex-center width100">
-            <button onclick="setPrio('btnUrgent')" class="button prioButton flex-center" id="btnUrgent">
-              Urgent<img src="../img/prioUrgent.png" alt="" />
+            <button onclick="setPrio('btnHigh')" class="button prioButton flex-center" id="btnHigh">
+              Urgent<img src="../img/prioHigh.png" alt="" />
             </button>
             <button onclick="setPrio('btnMedium')" class="button prioButton flex-center prioSelected" id="btnMedium">
               Medium<img src="../img/prioMediumWhite.png" alt="" />
@@ -87,7 +101,6 @@
             <div class="dropdownCategoryElement dropdownElement">Category1</div>
             <div class="dropdownCategoryElement dropdownElement">Category2</div>
             <div class="dropdownCategoryElement dropdownElement">Category3</div>
-
           </div>
         </div>
         <div class="inputElement flex-col">
@@ -98,18 +111,14 @@
               src="../img/addDarkIcon.svg"
               class="button dropdownIcon subtasksIcon"
               alt="open dropdown-menu"
-              onclick="openAddSubtask()";
+              onclick="openAddSubtask()"
+              ;
               id="addSubtask"
             />
             <div class="flex-start editSubtasksContainer d-none" id="editSubtasksContainer">
               <img src="../img/close.svg" class="button" alt="remove subtask" onclick="closeAddSubtask()" />
               <div class="separatorSubtasks"></div>
-              <img
-                src="../img/checkDarkIcon.svg"
-                class="button"
-                alt="confirm subtask"
-
-              />
+              <img src="../img/checkDarkIcon.svg" class="button" alt="confirm subtask" />
             </div>
           </div>
         </div>

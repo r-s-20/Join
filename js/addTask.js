@@ -1,3 +1,4 @@
+let assignedContacts = [];
 let categories = [
   {
     name: "Management",
@@ -28,7 +29,7 @@ function createNewTask() {
     // assigned: {
     //   name: getValueFromInput("inputAssigned"),
     // },
-    assigned: [contacts[0]],
+    assigned: assignedContacts,
     description: parseTextInput(getValueFromInput("inputDescription")),
     dueDate: getValueFromInput("inputDueDate"),
     prio: getPrio(),
@@ -66,7 +67,6 @@ function validateTask(task) {
 }
 
 function getCategory() {
-  let result = { name: "", color: "" };
   let selection = getValueFromInput("inputCategory");
   let categoryElement = categories.filter((e) => e.name == selection)[0];
   if (categoryElement) {
@@ -100,15 +100,20 @@ function getPrio() {
 }
 
 function toggleDropdownMenu(menuId) {
-  let arrowIcons = document.querySelectorAll(`#${menuId} .dropdownIcon`);
   let inputField = document.getElementById(menuId);
   let dropdown = document.getElementById(menuId).nextElementSibling;
-  for (arrow of arrowIcons) {
-    arrow.classList.toggle("d-none");
-  }
+  toggleArrowIcons(menuId);
   dropdown.classList.toggle("d-none");
   adjustZIndex(inputField);
   renderCategories();
+  renderContacts();
+}
+
+function toggleArrowIcons(menuId) {
+  let arrowIcons = document.querySelectorAll(`#${menuId} .dropdownIcon`);
+  for (arrow of arrowIcons) {
+    arrow.classList.toggle("d-none");
+  }
 }
 
 function adjustZIndex(inputField) {
@@ -138,6 +143,8 @@ function resetFormInputs() {
   for (inputField of inputFields) {
     inputField.value = "";
   }
+  assignedContacts = [];
+  renderAssignedBadges();
   setPrio("btnMedium");
 }
 
@@ -165,19 +172,88 @@ function renderCategories() {
   renderDropdown(categories, "dropdownCategories", "name");
 }
 
+function renderContacts() {
+  renderDropdown(contacts, "dropdownAssigned", "name");
+  updateCheckboxes();
+}
+
 function renderDropdown(array, containerId, arrayLevel) {
   let container = document.getElementById(containerId);
   container.innerHTML = "";
   for (let i = 0; i < array.length; i++) {
     const element = array[i];
-    container.innerHTML += `
-      <div class="dropdownCategoryElement dropdownElement" onclick="setCategory('${element.name}')">${element[arrayLevel]}</div>
-    `;
+    if (array == categories) {
+      container.innerHTML += `
+        <div class="dropdownCategoryElement dropdownElement" onclick="setCategory('${element.name}')">${element[arrayLevel]}</div>
+      `;
+    } else if (array == contacts) {
+      container.innerHTML += insertAssignedContactsHTML(element, i);
+    }
   }
 }
 
+function insertAssignedContactsHTML(element, i) {
+  return `
+        <div class="dropdownAssignedElement dropdownElement flex-start">
+          <div class="flex-center">
+            <div class="userBadge flex-center" style="background-color: ${element.badgecolor}">${element.initials}</div>
+            <span>${element.name}</span>
+          </div>
+          <img src="../img/check_button.svg" onclick="addAssignedContact(${i})" class="button checkContactButton" id="checkContactButton${i}" alt="check this contact">
+          <img src="../img/check_button_done.svg" onclick="removeAssignedContact(${i})" class="button checkContactButton d-none" id="checkContactDoneButton${i}" alt="check this contact">
+        </div>
+      `;
+}
+
 function setCategory(category) {
-  let container = document.getElementById('inputCategory');
+  let container = document.getElementById("inputCategory");
   container.value = category;
-  toggleDropdownMenu('inputCategoryContainer');
+  toggleDropdownMenu("inputCategoryContainer");
+}
+
+function checkAssigned(contact) {
+  let container = document.getElementById("inputAssigned");
+  container.value = contact;
+}
+
+function toggleCheckButtons(i) {
+  let checkButton = document.getElementById(`checkContactButton${i}`);
+  let checkDoneButton = document.getElementById(`checkContactDoneButton${i}`);
+  checkButton.classList.toggle("d-none");
+  checkDoneButton.classList.toggle("d-none");
+}
+
+function addAssignedContact(i) {
+  let contact = contacts[i];
+  toggleCheckButtons(i);
+  assignedContacts.push(contact);
+  renderAssignedBadges();
+}
+
+function removeAssignedContact(i) {
+  let index = assignedContacts.indexOf(contacts[i]);
+  toggleCheckButtons(i);
+  assignedContacts.splice(index, 1);
+  renderAssignedBadges();
+}
+
+function renderAssignedBadges() {
+  let container = document.getElementById("assignedBadgesContainer");
+  container.innerHTML = "";
+  if (assignedContacts.length > 0) {
+    for (contact of assignedContacts) {
+      container.innerHTML += `
+        <div class="userBadge flex-center" style="background-color:${contact.badgecolor};">${contact.initials}</div>
+      `;
+    }
+  }
+}
+
+function updateCheckboxes() {
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    if (assignedContacts.includes(contact)) {
+      toggleCheckButtons(i);
+    }
+  }
 }

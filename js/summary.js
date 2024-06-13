@@ -6,7 +6,7 @@ function init() {
 
 function insertCounterValues() {
   document.getElementById("counterBoard").innerHTML = tasks.length;
-  insertValue("counterUrgent", "prio", "urgent");
+  insertValue("counterUrgent", "prio", "high");
   insertValue("counterToDo", "status", "toDos");
   insertValue("counterDone", "status", "done");
   insertValue("counterProgress", "status", "inProgress");
