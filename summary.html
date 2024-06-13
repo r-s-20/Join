@@ -31,39 +31,61 @@
             <div class="innerContent flex-center width100">
               <div class="leftColumn flex-col">
                 <div class="upperRow flex-center width100">
-                  <a src="./board.html" class="toDoTasks taskElement flex-center">
-                    <img src="./img/todoTaskIcon.svg" alt="" />
-                    <div class="innerElement flex-col"><span id="counterToDo" class="counter">0</span><span>To-do</span></div>
+                  <!-- <img src="./img/todoTaskIcon.svg" alt="" /> -->
+                  <a
+                    src="./board.html"
+                    class="toDoTasks taskElement flex-center"
+                    onmouseover="changeSvgColor('toDoTaskIcon')"
+                    onmouseout="normalSvgColor('toDoTaskIcon')"
+                  >
+                    <div w3-include-html="./img/todoTaskIcon.svg" id="toDoTaskIcon"></div>
+                    <div class="innerElement flex-col">
+                      <span id="counterToDo" class="counter">0</span><span>To-do</span>
+                    </div>
                   </a>
-                  <a src="./board.html" class="doneTasks taskElement flex-center">
-                    <img src="./img/doneTaskIcon.svg" alt="" />
-                    <div class="innerElement flex-col"><span id="counterDone" class="counter">0</span><span>Done</span></div>
+                  <a
+                    src="./board.html"
+                    class="doneTasks taskElement flex-center"
+                    onmouseover="changeDoneSvgColor('doneTaskIcon')"
+                    onmouseout="normalDoneSvgColor('doneTaskIcon')"
+                  >
+                    <div w3-include-html="./img/doneTaskIcon.svg" id="doneTaskIcon"></div>
+                    <div class="innerElement flex-col">
+                      <span id="counterDone" class="counter">0</span><span>Done</span>
+                    </div>
                   </a>
                 </div>
                 <div class="middleRow flex-center width100">
                   <a href="./board.html" class="highlightedTask taskElement flex-center">
                     <div class="flex-center urgentSummary">
-                      <img src="./img/urgentTaskIcon.svg" alt="" />
+                      <img src="./img/urgentTaskIcon.svg" alt="" id="urgentTaskIcon" />
                       <div class="innerElement flex-col">
                         <span id="counterUrgent" class="counter">0</span>
                         <span>Urgent</span>
-                      </div>  
+                      </div>
                     </div>
                     <div class="separator"></div>
                     <div class="urgentDetails flex-col">
                       <span class="urgentDate">October 16, 2022</span>
-                      <span>Upcoming deadline</span></div>
+                      <span>Upcoming deadline</span>
+                    </div>
                   </a>
                 </div>
                 <div class="lowerRow flex-center width100">
                   <a href="./board.html" class="boardTasks taskElement flex-center">
-                    <div class="flex-col"><span id="counterBoard" class="counter">0</span><span>Tasks in Board</span></div>
+                    <div class="flex-col">
+                      <span id="counterBoard" class="counter">0</span><span>Tasks in Board</span>
+                    </div>
                   </a>
                   <a href="./board.html" class="progressTasks taskElement flex-center">
-                    <div class="flex-col"><span id="counterProgress" class="counter">0</span><span>Tasks in Progress</span></div>
+                    <div class="flex-col">
+                      <span id="counterProgress" class="counter">0</span><span>Tasks in Progress</span>
+                    </div>
                   </a>
                   <a href="./board.html" class="awaitTasks taskElement flex-center">
-                    <div class="flex-col"><span id="counterFeedback" class="counter">0</span><span>Awaiting Feedback</span></div>
+                    <div class="flex-col">
+                      <span id="counterFeedback" class="counter">0</span><span>Awaiting Feedback</span>
+                    </div>
                   </a>
                 </div>
               </div>

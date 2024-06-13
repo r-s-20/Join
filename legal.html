@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summary</title>
-</head>
-<body onload="includeHTML()">
-    <div w3-include-html="templates/header.html"></div>
-    <div w3-include-html="templates/sidebar.html"></div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join - Legal notice</title>
+    <link rel="shortcut icon" href="./img/faviconLogo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/privacyLegal.css">
+    <script defer src="./js/script.js"></script>
+  </head>
+  <body onload="includeHTML()">
+    <div class="outerContainer flex-start width100">
+      <div class="leftContainer flex-col">
+        <div w3-include-html="templates/sidebar.html" class="sidebar flex-col sidebarLegal"></div>
+      </div>
+
+      <div class="rightContainer flex-col">
+        <div w3-include-html="templates/header.html" class="greyBackground"></div>
+
+        <div class="outerContent width100 greyBackground flex-col">
+            <div class="headerContainer width100 ">
+              <h1>Legal notice</h1>
+            </div>
+            <div class="legalContent flex-col">
+              ... NOT COMPLETE!
+              <h2>Acceptance of terms</h2>
+              <p>
+                By accessing and using Join (Product), you acknowledge and agree to the following terms and conditions,
+                and any policies, guidelines, or amendments thereto that may be presented to you from time to time. We,
+                the listed students, may update or change the terms and conditions from time to time without notice.
+              </p>
+              <h2>Scope and ownership of the product</h2>
+              <p>
+                Join has been developed as part of a student group project in a web development bootcamp at the Developer
+                Akademie GmbH. It has an educational purpose and is not intended for extensive personal & business usage.
+                As such, we cannot guarantee consistent availability, reliability, accuracy, or any other aspect of
+                quality regarding this Product.
+              </p>
+              <p>
+                The design of Join is owned by the Developer Akademie GmbH. Unauthorized use, reproduction, modification,
+                distribution, or replication of the design is strictly prohibited.
+              </p>
+              
+            </div>
+          </div>
+      </div>
+    </div>
+  </body>
 </html>

@@ -64,20 +64,26 @@ button.darkColored {
   width: 100%;
   min-width: 260px;
   margin-top: 1rem;
+  position:relative;
 }
 
 .formInput {
   border: 1px solid #d1d1d1;
   border-radius: 10px;
-  padding: 12px 21px;
+  padding: 0.8rem 1.5rem;
   min-height: 2rem;
   font-size: 1rem;
   background-color: white;
 }
 
+.formInput:focus {
+  outline: none;
+  border: 1px solid var(--customBlue);
+}
+
 .addTask input {
   min-height: 1.5rem;
-  padding: 12px 21px;
+  padding: 0.8rem 1.5rem;
 }
 
 .inputDropdownContainer {
@@ -88,6 +94,26 @@ button.darkColored {
 .dropdownIcon {
   position: absolute;
   right: 10px;
+}
+
+.dropdownContent {
+  background-color: white;
+  border-radius: 10px;
+  position: absolute;
+  top: 2rem;
+  z-index: 10;
+  box-shadow: 0 0 14px 3px rgba(0,0,0,0.04);
+  padding-top: 2.5rem;
+}
+
+.dropdownElement {
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+}
+
+.dropdownElement:hover {
+  cursor: pointer;
+  background:#f6f7f8;
 }
 
 .prioContainer {
@@ -128,6 +154,27 @@ button.darkColored {
 
 .prioContainer .prioSelected:hover {
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.subtasksIcon {
+  border-radius: 100%;
+}
+
+.subtasksIcon:hover {
+  background-color: #eee;
+}
+
+.editSubtasksContainer {
+  position:absolute;
+  right: 1rem;
+  gap: 0.25rem;
+}
+
+.separatorSubtasks {
+  height: 1.5rem;
+  border-left: 1px solid #d1d1d1;
+  margin-left: 0.25rem;
+  /* margin-right: 0.25rem; */
 }
 
 @media (max-width: 1000px) {
