@@ -1,20 +1,6 @@
 /* Main Div*/
 .contactsMain{
     display: flex;
-}
-/* Contact List  Div (Leftside)*/
-.contactListsContainer {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    width: 456px;
-    height: 928px;
-    top: 96px;
-    left: 232px;
-    background-color: rgba(255, 255, 255, 1);
-    border: 1px solid;
-    box-shadow: 0 4px 0 4px rgba(0, 0, 0, 0.8);
     
 
     button {
@@ -37,15 +23,49 @@
         }
     }
 }
+/* Contact List  Div (Leftside)*/
+
+.contactListSide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0px 10px 5px white, 0px -10px 5px white;
+}
+
+.contactUnderline {
+    display: flex;
+    width: 352px;
+    border: 1px solid rgba(209 , 209, 209, 1);
+    gap:10px;
+}
+
+.contactListsContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 456px;
+    height: 928px;
+    top: 96px;
+    left: 232px;
+    background-color: rgba(255, 255, 255, 1);
+}
 
 .contactLists {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid lightblue;
+    flex-direction: column;
+    border: 1px solid;
     border-radius: 10px;
     margin-top: 54px;
+    border-style: none;
 }
+
+/* .contactLists:hover {
+    background-color: #f6f7f8;
+} */
 
 .contactListsNameHead {
     display: flex;
@@ -55,9 +75,10 @@
     height: 78px;
     gap: 35px;
     padding-left: 16px;
-    background-color: #2a3647;
+    background-color: white;
     border-radius: 10px;
     color: white;
+    
 }
 
 .contactListsNameBadge {
@@ -88,6 +109,8 @@
             font-size: 20px;
             font-weight: 400;
             margin: 0;
+            width: max-content;
+            color: black;
         }
 
         h3 {
@@ -106,7 +129,8 @@
     justify-content: flex-start;
     align-items: flex-start;
     background-color: #f6f7f8;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    width: 100%;
+    box-shadow: -5px 1px 4px 0.5px #aaaaaa
 }
 
 .contactsHeader {
@@ -190,6 +214,7 @@
         font-size: 47px;
         font-weight: 500;
         margin: 8px;
+        width: max-content;
     }
 }
 
