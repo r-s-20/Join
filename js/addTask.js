@@ -14,6 +14,8 @@ let categories = [
   { name: "Userstory", color: "pink" },
 ];
 
+let colors = ["blue", "orange", "red", "pink", "purple"];
+
 function init() {
   includeHTML();
   loadTasks();
@@ -30,9 +32,15 @@ function createNewTask() {
     description: parseTextInput(getValueFromInput("inputDescription")),
     dueDate: getValueFromInput("inputDueDate"),
     prio: getPrio(),
-    category: categories[0],
-    // subtasks: [parseTextInput(getValueFromInput("inputSubtasks"))],
-    subtasks: [],
+    category: getCategory(),
+    subtasks: {
+      subtaskList: [],
+      completed: 0,
+    },
+    // subtasks: {
+    //   subtaskList: [{ name: "Project structure", completed: false }],
+    //   completed: 0,
+    // },
     status: "toDos",
   };
   return newTask;
@@ -55,6 +63,17 @@ function saveTasks() {
 function validateTask(task) {
   return getValueFromInput("inputTitle") != "" && getValueFromInput("inputDueDate");
   // return true;
+}
+
+function getCategory() {
+  let result = { name: "", color: "" };
+  let selection = getValueFromInput("inputCategory");
+  let categoryElement = categories.filter((e) => e.name == selection)[0];
+  if (categoryElement) {
+    return categoryElement;
+  } else {
+    console.error("not a valid category");
+  }
 }
 
 function setPrio(btnId) {
@@ -149,9 +168,16 @@ function renderCategories() {
 function renderDropdown(array, containerId, arrayLevel) {
   let container = document.getElementById(containerId);
   container.innerHTML = "";
-  for (element of array) {
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
     container.innerHTML += `
-      <div class="dropdownCategoryElement dropdownElement">${element[arrayLevel]}</div>
+      <div class="dropdownCategoryElement dropdownElement" onclick="setCategory('${element.name}')">${element[arrayLevel]}</div>
     `;
   }
+}
+
+function setCategory(category) {
+  let container = document.getElementById('inputCategory');
+  container.value = category;
+  toggleDropdownMenu('inputCategoryContainer');
 }
