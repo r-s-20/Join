@@ -175,6 +175,7 @@ function subtaskDone(i, timestamp) {
   let completedSubtask = popupElement.subtasks.completed;
   completedSubtask = completedSubtask + 1;
   popupElement.subtasks.completed = completedSubtask;
+  popupElement.subtasks.subtaskList[i].completed = true;
   updateHTML();
 }
 
@@ -185,6 +186,7 @@ function subtaskOpen(i, timestamp) {
   let completedSubtask = popupElement.subtasks.completed;
   completedSubtask = completedSubtask - 1;
   popupElement.subtasks.completed = completedSubtask;
+  popupElement.subtasks.subtaskList[i].completed = false;
   updateHTML();
 }
 
