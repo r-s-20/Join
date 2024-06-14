@@ -1,5 +1,13 @@
 function render() {
   document.getElementById("contactListsContainer").innerHTML = "";
+  contacts.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+  });
   for (let i = 0; i < contacts.length; i++) {
     document.getElementById("contactListsContainer").innerHTML += /*html*/ `
     
@@ -16,14 +24,6 @@ function render() {
               </div>
               <div class="contactUnderline"></div>
     `;
-    contacts.sort((a, b) => {
-      if (a.name < b.name) {
-        return -1;
-      }
-      if (a.name > b.name) {
-        return 1;
-      }
-    });
   }
 }
 

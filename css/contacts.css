@@ -494,6 +494,7 @@ button {
     color: white;
     font-size: 21px;
     font-weight: 700;
+    width: max-content;
 }
 
 .save:hover {
@@ -698,6 +699,12 @@ button {
     color: white;
     font-size: 21px;
     font-weight: 700;
+    width: max-content;
+
+        h1 {
+            font-size: 21px;
+            width: max-content;
+        }
 }
 
 .save:hover {
