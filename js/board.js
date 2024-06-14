@@ -257,15 +257,11 @@ function deleteTask(timestamp) {
 }
 
 function editPopupTask(timestamp){
-  findPopupElement(timestamp);
-  const index = tasks.findIndex((task) => task.timestamp === timestamp);
   let popupEdit = document.getElementById('popup');
-  popupEdit.innerHTML = '12341234';
-  popupEdit.innerHTML += /*html*/`
-  <div w3-include-html="./templates/addTaskInclude.html" class=""></div>
+  popupEdit.innerHTML =  '';
+  popupEdit.innerHTML = /*html*/` 21341234
+  <!-- <div w3-include-html="./templates/addTaskInclude.html" class="" id="editTaskPopup"></div> -->
   `;
-
-
 
 }
 
@@ -274,6 +270,7 @@ function openAddTask() {
     document.getElementById("backgroundPopup").classList.remove("d-none");
 
     document.getElementById('popup').classList.add('d-none');
+    
     let popupAddTask = document.getElementById("popupAddTask");
     popupAddTask.classList.remove("d-none");
     popupAddTask.onclick = function (event) {
