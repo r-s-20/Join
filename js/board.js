@@ -134,7 +134,7 @@ function boardPopupHTML() {
 <div class="line"></div>
   <div onmouseover="hoverEdit()" onmouseout="leaveEdit()">
     <img id="editBlack" src="../img/edit_black.svg" alt="">
-    <img id="editBlue" src="../img/edit_blue.svg" alt="" class="d-none">
+    <img id="editBlue" src="../img/edit_blue.svg" alt="" class="d-none" onclick="editPopupTask(${popupElement.timestamp})">
   </div>
  </div>
 `;
@@ -248,11 +248,25 @@ function subtaskProgress(timestamp, index) {
 }
 
 function deleteTask(timestamp) {
+  document.getElementById("backgroundPopup").classList.add("d-none");
   const index = tasks.findIndex((task) => task.timestamp === timestamp);
   if (index !== -1) {
     tasks.splice(index, 1);
   }
   updateHTML();
+}
+
+function editPopupTask(timestamp){
+  findPopupElement(timestamp);
+  const index = tasks.findIndex((task) => task.timestamp === timestamp);
+  let popupEdit = document.getElementById('popup');
+  popupEdit.innerHTML = '12341234';
+  popupEdit.innerHTML += /*html*/`
+  <div w3-include-html="./templates/addTaskInclude.html" class=""></div>
+  `;
+
+
+
 }
 
 function openAddTask() {

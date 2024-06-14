@@ -464,6 +464,7 @@ cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-left: 30px;
 }
 
 .addTask2{
