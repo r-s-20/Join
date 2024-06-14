@@ -262,7 +262,7 @@ function openAddTask() {
     document.getElementById('popup').classList.add('d-none');
     let popupAddTask = document.getElementById("popupAddTask");
     popupAddTask.classList.remove("d-none");
-    popup.onclick = function (event) {
+    popupAddTask.onclick = function (event) {
       event.stopPropagation();
     };
   }
