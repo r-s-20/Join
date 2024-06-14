@@ -175,7 +175,7 @@ function subtaskDone(i, timestamp) {
   let completedSubtask = popupElement.subtasks.completed;
   completedSubtask = completedSubtask + 1;
   popupElement.subtasks.completed = completedSubtask;
-  popupElement.subtasks.subtaskList[i].completed = true;
+  popupElement.subtasks.subtaskList.completed = true;
   updateHTML();
 }
 
@@ -255,17 +255,14 @@ function deleteTask(timestamp) {
   updateHTML();
 }
 
-function openAddTask(event) {
-   
+function openAddTask() {
+  
     document.getElementById("backgroundPopup").classList.remove("d-none");
 
     document.getElementById('popup').classList.add('d-none');
     let popupAddTask = document.getElementById("popupAddTask");
     popupAddTask.classList.remove("d-none");
- 
-    popupAddTask.onclick = function (event) {
+    popup.onclick = function (event) {
       event.stopPropagation();
     };
-
-
   }

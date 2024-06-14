@@ -34,7 +34,7 @@
               <a href=""> <img src="./img/search.svg" alt=""></a>
              
             </form>
-            <button onclick="openAddTask(event)" id="addTaskButton" class="mainDarkBlue addTaskButton">Add task <img src="./img/add.svg" alt=""/></button>
+            <button onclick="openAddTask()" id="addTaskButton" class="mainDarkBlue addTaskButton">Add task <img src="./img/add.svg" alt=""/></button>
           </div>
         </div>
           <div class="progressHeadline">
@@ -69,7 +69,7 @@
             </div>
           </div>
 
-          <div class="backgroundPopupd d-none"  id="backgroundPopup" onclick="closePopup()">
+          <div class="backgroundPopup d-none"  id="backgroundPopup" onclick="closePopup()">
             <div class="popup" id="popup">  </div>
             <div class="popupAddTask d-none" id="popupAddTask">
               <div w3-include-html="./templates/addTaskInclude.html" class="addTask2"></div>
