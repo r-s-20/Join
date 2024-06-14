@@ -1,4 +1,5 @@
 let assignedContacts = [];
+let subtasks = [];
 let categories = [
   {
     name: "Management",
@@ -44,7 +45,7 @@ function createNewTask() {
     prio: getPrio(),
     category: getCategory(),
     subtasks: {
-      subtaskList: [],
+      subtaskList: subtasks,
       completed: 0,
     },
     // subtasks: {
@@ -93,7 +94,7 @@ function setPrio(btnId) {
 
 /**Checks which priority button is currently checked
  * and returns the priority (high, medium or low) as a string.
- * 
+ *
  * Is based on ID of the buttons, so don't mess with those IDs.
  */
 function getPrio() {
@@ -107,9 +108,9 @@ function getPrio() {
   }
 }
 
-/**Will open or close the categories or assigned-contacts-dropdown menu 
+/**Will open or close the categories or assigned-contacts-dropdown menu
  * based on provided menuId. Will also toggle the arrow Icon in that input field.
- * 
+ *
  * z-Index for input field is increased while dropdown is open, as dropdown element overlaps.
  * @param {string} menuId - ID of the input field to which the dropdown is opening
  */
@@ -133,10 +134,10 @@ function toggleArrowIcons(menuId) {
 
 /**z-Index for the input field belonging to a dropdown menu is increased,
  * as dropdow content would overlap otherwise.
- * 
- * z-Index is decreased again when dropdown closes 
+ *
+ * z-Index is decreased again when dropdown closes
  * to prevent conflicts while using other dropdowns.
- * @param {html-Element} inputField 
+ * @param {html-Element} inputField
  */
 function adjustZIndex(inputField) {
   if (inputField.style.zIndex == 50) {
@@ -182,8 +183,8 @@ function insertAssignedContactsHTML(element, i) {
       `;
 }
 
-/** writes the provided category into the input field of the dropdown
- * and closes the dropdown menu
+/** Writes provided category into input field of the dropdown
+ * and closes the category dropdown menu
  * @param {string} category - name of a category
  */
 function setCategory(category) {
@@ -192,7 +193,7 @@ function setCategory(category) {
   toggleDropdownMenu("inputCategoryContainer");
 }
 
-/**Toggles between check- and check-done-icons for a row in assigned contacts dropdown-menu
+/** Toggles between check- and check-done-icons for a row in assigned contacts dropdown-menu
  * @param {integer} i - index of row
  */
 function toggleCheckButtons(i) {
@@ -202,9 +203,9 @@ function toggleCheckButtons(i) {
   checkDoneButton.classList.toggle("d-none");
 }
 
-/**Adds or removes a contact to/from list of assigned contacts
+/** Adds or removes a contact to/from list of assigned contacts
  * in row "i" of the "assgined to" dropdown menu.
- * 
+ *
  * Also toggles the check icon in that row and updates badges below menu.
  * @param {integer} i - row index
  */
@@ -220,7 +221,7 @@ function toggleAssignedContact(i) {
   renderAssignedBadges();
 }
 
-/** renders userbadges of assigned contacts as circles below the "assigned to" dropdown menu
+/** Renders userbadges of assigned contacts as circles below the "assigned to" dropdown menu
  * using badgecolor and initials of each contact
  */
 function renderAssignedBadges() {
@@ -251,18 +252,69 @@ function openAddSubtask() {
   let addButton = document.getElementById("addSubtask");
   let editContainer = document.getElementById("editSubtasksContainer");
   let input = document.getElementById("inputSubtasks");
-  addButton.classList.toggle("d-none");
-  editContainer.classList.toggle("d-none");
+  addButton.classList.add("d-none");
+  editContainer.classList.remove("d-none");
   input.focus();
 }
 
 function closeAddSubtask() {
   let addButton = document.getElementById("addSubtask");
   let editContainer = document.getElementById("editSubtasksContainer");
-  addButton.classList.toggle("d-none");
+  document.getElementById("inputSubtasks").value = "";
+  addButton.classList.remove("d-none");
+  editContainer.classList.add("d-none");
+}
+
+function addNewSubtask() {
+  let newSubtask = getValueFromInput("inputSubtasks");
+  subtasks.push({
+    name: `${newSubtask}`,
+    completed: false,
+  });
+  console.log(subtasks);
+  renderSubtasks();
+  closeAddSubtask();
+}
+
+function renderSubtasks() {
+  console.log("rendering");
+  let container = document.getElementById("subtaskList");
+  console.log(container);
+  container.innerHTML = "";
+  for (let i = 0; i < subtasks.length; i++) {
+    const subtask = subtasks[i];
+    container.innerHTML += insertSubtaskHTML(subtask, i);
+  }
+}
+
+function insertSubtaskHTML(subtask, i) {
+  return `
+      <li onmouseover="toggleEditSubtask(${i})" onmouseout="toggleEditSubtask(${i})">
+        <div>
+            <span>${subtask.name}</span>
+            <div class="flex-center d-none" id="editSubtaskContainer${i}">
+              <img src="../img/editIcon.svg" class="button" alt="edit subtask" title="edit subtask" />
+              <div class="separatorSubtasks"></div>
+              <img src="../img/deleteIcon.svg" onclick="removeSubtask(${i})" class="button" title="delete Subtask" alt="delete Subtask" />
+            </div>
+        </div>
+      </li>
+    `;
+}
+
+function toggleEditSubtask(i) {
+  let editContainer = document.getElementById(`editSubtaskContainer${i}`);
   editContainer.classList.toggle("d-none");
 }
 
+function removeSubtask(i) {
+  subtasks.splice(i, 1);
+  renderSubtasks();
+}
+
+/**Resets all input fields to default entries and empties arrays for assigned contacts
+ * and subtasks
+ */
 function resetFormInputs() {
   // incomplete! still need to add clean reset for dropdown input fields
   // Subtasks also missing

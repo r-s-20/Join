@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer src="./js/script.js"></script>
+    <script defer src="./js/board.js"></script>
+    <script defer src="./js/addTask.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/board.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/addTask.css" />
+   
+  
+
+  </head>
+  <body onload="includeHTML(); updateHTML();" class="flex-col greyBackground">
+    <div class="outerContainer flex-start width100">
+      <div class="leftContainer flex-col">
+        <div w3-include-html="templates/sidebar.html" class="sidebar flex-col"></div>
+      </div>
+
+      <div class="rightContainer flex-col">
+        <div w3-include-html="templates/header.html" class=""></div>
+        <section class="outerContent width100 greyBackground">
+          <div class="boardTop">
+            <h1>Board</h1>
+            <div class="inputFieldAndButton">
+            <form>
+              <input type="text" name="" id="" placeholder="Find Task" required />
+              <div></div>
+              <a href=""> <img src="./img/search.svg" alt=""></a>
+             
+            </form>
+            <button onclick="openAddTask(event)" id="addTaskButton" class="mainDarkBlue addTaskButton">Add task <img src="./img/add.svg" alt=""/></button>
+          </div>
+        </div>
+          <div class="progressHeadline">
+            <div>
+              <span>To do</span>
+              <a href="#"><img src="./img/plus_button.svg" alt="" /></a> 
+            </div>
+            <div>
+              <span>In progress</span>
+            <a href="#"><img src="./img/plus_button.svg" alt="" /></a>  
+            </div>
+            <div>
+              <span>Await feedback</span>
+              <a href="#"><img src="./img/plus_button.svg" alt="" /></a>
+            </div>
+            <div>
+              <span>Done</span>
+            </div>
+          </div>
+          <div class="boardProgress">
+            <div class="singleBoardProgress" id="toDo" ondrop="moveTo('toDos')" ondragover="allowDrop(event)">
+              <div class="noProgess" >No task To do</div>
+            </div>
+            <div class="singleBoardProgress" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
+              <div class="noProgess">No In Progress</div>
+            </div>
+            <div class="singleBoardProgress" id="awaitFeedback" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">
+              <div class="noProgess">No Await feedback</div>
+            </div>
+            <div class="singleBoardProgress" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)">
+              <div class="noProgess">No Done</div>
+            </div>
+          </div>
+
+          <div class="backgroundPopup" id="backgroundPopup" onclick="closePopup()">
+            <div class="popup" id="popup">  </div>
+            <div class="popupAddTask" id="popupAddTask">
+              
+              <div w3-include-html="./templates/addTaskInclude.html" class="addTask width100 flex-col"></div>
+            </div>
+          </div>
+      
+
+ 
+
+        </section>
+      </div>
+    </div>
+    
+
+
+  </body>
+</html>

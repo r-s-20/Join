@@ -64,7 +64,7 @@ button.darkColored {
   width: 100%;
   min-width: 260px;
   margin-top: 1rem;
-  position:relative;
+  position: relative;
 }
 
 .formInput {
@@ -102,7 +102,7 @@ button.darkColored {
   position: absolute;
   top: 2rem;
   z-index: 10;
-  box-shadow: 0 0 14px 3px rgba(0,0,0,0.04);
+  box-shadow: 0 0 14px 3px rgba(0, 0, 0, 0.04);
   padding-top: 2.5rem;
   max-height: 12rem;
   overflow: auto;
@@ -118,7 +118,7 @@ button.darkColored {
 
 .dropdownElement:hover {
   cursor: pointer;
-  background:#f6f7f8;
+  background: #f6f7f8;
 }
 
 .dropdownAssignedElement > div {
@@ -189,7 +189,7 @@ button.darkColored {
 }
 
 .editSubtasksContainer {
-  position:absolute;
+  position: absolute;
   right: 1rem;
   gap: 0.25rem;
 }
@@ -198,7 +198,18 @@ button.darkColored {
   height: 1.5rem;
   border-left: 1px solid #d1d1d1;
   margin-left: 0.25rem;
-  /* margin-right: 0.25rem; */
+}
+
+.subtaskList > li {
+  width: 100%;
+  margin-top: 4px;
+  padding: 0.25rem 0.5rem;
+  div {
+    min-height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 @media (max-width: 1000px) {

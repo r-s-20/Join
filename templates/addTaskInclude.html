@@ -40,14 +40,23 @@
             <div class="dropdownElement flex-start">
               <div class="userBadge flex-center" style="background-color: blue">AM</div>
               <span>Contact1</span>
-              <img src="../img/check_button.svg" onclick="toggleCheckContact()" class="button checkContactButton" alt="check this contact">
-              <img src="../img/check_button_done.svg" onclick="toggleCheckContact()" class="button checkContactButton d-none" alt="check this contact">
+              <img
+                src="../img/check_button.svg"
+                onclick="toggleCheckContact()"
+                class="button checkContactButton"
+                alt="check this contact"
+              />
+              <img
+                src="../img/check_button_done.svg"
+                onclick="toggleCheckContact()"
+                class="button checkContactButton d-none"
+                alt="check this contact"
+              />
             </div>
             <div class="dropdownElement">Contact2</div>
             <div class="dropdownElement">Contact3</div>
           </div>
-          <div class="assignedBadgesContainer flex-start" id="assignedBadgesContainer">
-          </div>
+          <div class="assignedBadgesContainer flex-start" id="assignedBadgesContainer"></div>
         </div>
       </div>
 
@@ -106,7 +115,13 @@
         <div class="inputElement flex-col">
           <label>Subtasks</label>
           <div class="inputDropdownContainer width100 flex-start" id="inputSubtasksContainer">
-            <input type="text" id="inputSubtasks" class="formInput width100" placeholder="Add a new subtask" />
+            <input
+              type="text"
+              onkeyup="openAddSubtask()"
+              id="inputSubtasks"
+              class="formInput width100"
+              placeholder="Add a new subtask"
+            />
             <img
               src="../img/addDarkIcon.svg"
               class="button dropdownIcon subtasksIcon"
@@ -118,8 +133,24 @@
             <div class="flex-start editSubtasksContainer d-none" id="editSubtasksContainer">
               <img src="../img/close.svg" class="button" alt="remove subtask" onclick="closeAddSubtask()" />
               <div class="separatorSubtasks"></div>
-              <img src="../img/checkDarkIcon.svg" class="button" alt="confirm subtask" />
+              <img src="../img/checkDarkIcon.svg" onclick="addNewSubtask()" class="button" alt="confirm subtask" />
             </div>
+          </div>
+          <div>
+            <ul id="subtaskList" class="subtaskList">
+              <!-- <li>
+                <div>
+                  <span>Testhallo</span>
+                  <div class="flex-center" id="editSubtaski">
+                    <img src="../img/editIcon.svg" class="button" alt="edit subtask" title="edit subtask" />
+                    <div class="separatorSubtasks"></div>
+                    <img src="../img/deleteIcon.svg" class="button" title="delete Subtask" alt="delete Subtask" />
+                  </div>
+                </div>
+              </li>
+              <li>Testhallo2</li>
+              <li>Testhallo3</li> -->
+            </ul>
           </div>
         </div>
       </div>
@@ -133,7 +164,7 @@
         </button>
         <button onclick="addNewTask()" class="button darkColored flex-center">
           Create Task
-          <img src="../img/checkIcon.svg" alt="" />
+          <img src="../img/checkIcon.svg" />
         </button>
       </div>
     </div>
