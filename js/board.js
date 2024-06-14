@@ -12,7 +12,9 @@ let j = 0;
 let deleteHoverTimeout, editHoverTimeout;
 let completedSubtask;
 
-function findPopupElement(timestamp){
+loadTasks();
+
+function findPopupElement(timestamp) {
   popupElement = tasks.find((task) => task.timestamp === timestamp);
 }
 
@@ -62,7 +64,7 @@ function generateTodoHTML(element, index) {
       <div class="cardCategory" id="cardCategory${index}">${element.category.name}</div>
       <div class="cardHeadline">${element.title}</div>
       <div class="cardDescription">${element.description}</div>
-      <div class="cardSubtasks">
+      <div class="cardSubtasks" id="cardSubtasks${index}">
         <div class="subtasksBar">
           <div class="subtasksBarProgress" id="subtasksBarProgress${index}"></div>
       </div > 
@@ -71,8 +73,6 @@ function generateTodoHTML(element, index) {
         <div class="cardWorkers"><div id="contactNames${index}"></div><img src=${prios[element.prio]} alt=""></div>
     </div>
    `;
-
-   
 }
 
 function contactNames(element, index) {
@@ -87,10 +87,10 @@ function contactNames(element, index) {
   j = j + 1;
 }
 
-
-
 function boardPopup(timestamp) {
   findPopupElement(timestamp);
+  document.getElementById('popup').classList.remove('d-none');
+  document.getElementById('popupAddTask').classList.add('d-none');
   document.getElementById("backgroundPopup").classList.remove("d-none");
   let popup = document.getElementById("popup");
   popup.innerHTML = "";
@@ -98,6 +98,7 @@ function boardPopup(timestamp) {
   subtasks(timestamp);
   popupPersons(popupElement);
   document.getElementById("categoryColor").style.backgroundColor = popupElement.category.color;
+  popup.classList.remove("hide");
   setTimeout(() => {
     popup.classList.add("show");
   }, 10);
@@ -124,10 +125,11 @@ function boardPopupHTML() {
  <div class="popupSubtask" id="popupSubtask"> 
    <span>Subtasks</span>
    <div class="popupSingleSubtask" id="popupSingleSubtask"></div>
+   </div>
  <div class="popupDeleteAndEdit">
   <div onmouseover="hoverDelete()" onmouseout="leaveDelete()">
     <img id="deleteBlack" src="../img/delete_black.svg" alt="">
-    <img id="deleteBlue" src="../img/delete_blue.svg" alt="" class="d-none">
+    <img id="deleteBlue" src="../img/delete_blue.svg" alt="" class="d-none" onclick="deleteTask(${popupElement.timestamp})">
   </div>
 <div class="line"></div>
   <div onmouseover="hoverEdit()" onmouseout="leaveEdit()">
@@ -142,69 +144,59 @@ function subtasks(timestamp) {
   let subtasks = document.getElementById("popupSingleSubtask");
   subtasks.innerHTML = "";
   completedSubtask = popupElement.subtasks.completed;
-  if (popupElement.subtasks.subtaskList.length > 0){
-  for (let i = 0; i < popupElement.subtasks.subtaskList.length; i++) {
-    let singleSubtask = popupElement.subtasks.subtaskList[i].name;
-    if (!popupElement.subtasks.subtaskList[i].completed){
-      subtasks.innerHTML += /*html*/ `
+  if (popupElement.subtasks.subtaskList.length > 0) {
+    for (let i = 0; i < popupElement.subtasks.subtaskList.length; i++) {
+      let singleSubtask = popupElement.subtasks.subtaskList[i].name;
+      if (!popupElement.subtasks.subtaskList[i].completed) {
+        subtasks.innerHTML += /*html*/ `
       <div> 
         <img id="subtaskOpen${i}" onclick="subtaskDone(${i}, ${timestamp})" src="../img/check_button.svg" alt="">
         <img id="subtaskDone${i}" onclick="subtaskOpen(${i}, ${timestamp})" class="d-none" src="../img/check_button_done.svg" alt="">
         <span id="singleSubtask">${singleSubtask}</span> 
       </div>`;
-    } else {
-      subtasks.innerHTML += /*html*/ `
+      } else {
+        subtasks.innerHTML += /*html*/ `
       <div> 
         <img id="subtaskOpen${i}" onclick="subtaskDone(${i}, ${timestamp})" class="d-none" src="../img/check_button.svg" alt="">
         <img id="subtaskDone${i}" onclick="subtaskOpen(${i}, ${timestamp})"  src="../img/check_button_done.svg" alt="">
         <span id="singleSubtask">${singleSubtask}</span> 
       </div>`;
-      
+      }
     }
+  } else {
+    document.getElementById("popupSubtask").innerHTML = "";
   }
-} else {
-  document.getElementById('popupSubtask').innerHTML = '';
 }
-}
-
-
-
-function updateSubtasksProgress(popupElement){
-  document.getElementById('subtasksCompleted').innerHTML = '';
-  document.getElementById('subtasksCompleted').innerHTML = /*html*/ ` 
-      ${popupElement.subtasks.completed}/${popupElement.subtasks.content.length}
-`;
- 
-}
-
-
-
 
 function subtaskDone(i, timestamp) {
   findPopupElement(timestamp);
   document.getElementById(`subtaskDone${i}`).classList.remove("d-none");
   document.getElementById(`subtaskOpen${i}`).classList.add("d-none");
-  let completedSubtask = popupElement.subtasks.completed
+  let completedSubtask = popupElement.subtasks.completed;
   completedSubtask = completedSubtask + 1;
   popupElement.subtasks.completed = completedSubtask;
   updateHTML();
 }
 
-
-
 function subtaskOpen(i, timestamp) {
   findPopupElement(timestamp);
   document.getElementById(`subtaskDone${i}`).classList.add("d-none");
   document.getElementById(`subtaskOpen${i}`).classList.remove("d-none");
-  let completedSubtask = popupElement.subtasks.completed
+  let completedSubtask = popupElement.subtasks.completed;
   completedSubtask = completedSubtask - 1;
   popupElement.subtasks.completed = completedSubtask;
   updateHTML();
 }
 
 function closePopup() {
-  document.getElementById("backgroundPopup").classList.add("d-none");
-  document.getElementById("popup").classList.remove("show");
+  let popup = document.getElementById("popup");
+  popup.classList.remove("show");
+  popup.classList.add("hide");
+  setTimeout(() => {
+    popup.classList.remove("hide");
+    document.getElementById("backgroundPopup").classList.add("d-none");
+  }, 125);
+ 
 }
 
 function popupPersons(popupElement) {
@@ -216,38 +208,60 @@ function popupPersons(popupElement) {
   }
 }
 
-
-
 function hoverDelete() {
   clearTimeout(deleteHoverTimeout);
-  document.getElementById('deleteBlack').classList.add('d-none');
-  document.getElementById('deleteBlue').classList.remove('d-none');
+  document.getElementById("deleteBlack").classList.add("d-none");
+  document.getElementById("deleteBlue").classList.remove("d-none");
 }
 
 function leaveDelete() {
   deleteHoverTimeout = setTimeout(() => {
-    document.getElementById('deleteBlack').classList.remove('d-none');
-    document.getElementById('deleteBlue').classList.add('d-none');
+    document.getElementById("deleteBlack").classList.remove("d-none");
+    document.getElementById("deleteBlue").classList.add("d-none");
   }, 50);
 }
 
 function hoverEdit() {
   clearTimeout(editHoverTimeout);
-  document.getElementById('editBlack').classList.add('d-none');
-  document.getElementById('editBlue').classList.remove('d-none');
+  document.getElementById("editBlack").classList.add("d-none");
+  document.getElementById("editBlue").classList.remove("d-none");
 }
 
 function leaveEdit() {
   editHoverTimeout = setTimeout(() => {
-    document.getElementById('editBlack').classList.remove('d-none');
-    document.getElementById('editBlue').classList.add('d-none');
+    document.getElementById("editBlack").classList.remove("d-none");
+    document.getElementById("editBlue").classList.add("d-none");
   }, 50);
 }
 
-
-function subtaskProgress(timestamp, index){
-  findPopupElement(timestamp)
-  let progressPercentage = (popupElement.subtasks.completed / popupElement.subtasks.subtaskList.length) * 100;
-  progressPercentage = progressPercentage + "%";
-  document.getElementById(`subtasksBarProgress${index}`).style.width = progressPercentage;
+function subtaskProgress(timestamp, index) {
+  findPopupElement(timestamp);
+  if (popupElement.subtasks.subtaskList.length != 0) {
+    let progressPercentage = (popupElement.subtasks.completed / popupElement.subtasks.subtaskList.length) * 100;
+    progressPercentage = progressPercentage + "%";
+    document.getElementById(`subtasksBarProgress${index}`).style.width = progressPercentage;
+  } else {
+    document.getElementById(`cardSubtasks${index}`).classList.add("d-none");
+  }
 }
+
+function deleteTask(timestamp) {
+  const index = tasks.findIndex((task) => task.timestamp === timestamp);
+  if (index !== -1) {
+    tasks.splice(index, 1);
+  }
+  updateHTML();
+}
+
+function openAddTask(event) {
+    event.stopPropagation();
+    document.getElementById("backgroundPopup").classList.remove("d-none");
+
+    document.getElementById('popup').classList.add('d-none');
+    let popupAddTask = document.getElementById("popupAddTask");
+    popupAddTask.classList.remove("d-none");
+ 
+ 
+
+
+  }

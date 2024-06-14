@@ -6,11 +6,15 @@
     <title>Document</title>
     <script defer src="./js/script.js"></script>
     <script defer src="./js/board.js"></script>
+    <script defer src="./js/addTask.js"></script>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/board.css" />
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/sidebar.css" />
     <link rel="stylesheet" href="./css/addTask.css" />
+   
+  
+
   </head>
   <body onload="includeHTML(); updateHTML();" class="flex-col greyBackground">
     <div class="outerContainer flex-start width100">
@@ -23,24 +27,28 @@
         <section class="outerContent width100 greyBackground">
           <div class="boardTop">
             <h1>Board</h1>
-
+            <div class="inputFieldAndButton">
             <form>
               <input type="text" name="" id="" placeholder="Find Task" required />
-              <button class="mainDarkBlue">Add task <img src="./img/add.svg" alt="" /></button>
+              <div></div>
+              <a href=""> <img src="./img/search.svg" alt=""></a>
+             
             </form>
+            <button onclick="openAddTask(event)" id="addTaskButton" class="mainDarkBlue addTaskButton">Add task <img src="./img/add.svg" alt=""/></button>
           </div>
+        </div>
           <div class="progressHeadline">
             <div>
               <span>To do</span>
-              <img src="./img/plus_button.svg" alt="" />
+              <a href="#"><img src="./img/plus_button.svg" alt="" /></a> 
             </div>
             <div>
               <span>In progress</span>
-              <img src="./img/plus_button.svg" alt="" />
+            <a href="#"><img src="./img/plus_button.svg" alt="" /></a>  
             </div>
             <div>
               <span>Await feedback</span>
-              <img src="./img/plus_button.svg" alt="" />
+              <a href="#"><img src="./img/plus_button.svg" alt="" /></a>
             </div>
             <div>
               <span>Done</span>
@@ -61,12 +69,15 @@
             </div>
           </div>
 
-          <div class="backgroundPopup d-none" id="backgroundPopup" onclick="closePopup()">
-            <div class="popup" id="popup">
-            
-        </div>
-
+          <div class="backgroundPopup" id="backgroundPopup" onclick="closePopup()">
+            <div class="popup" id="popup">  </div>
+            <div class="popupAddTask " id="popupAddTask">
+              <div w3-include-html="./templates/addTaskInclude.html" class="addTask2"></div>
+            </div>
           </div>
+      
+
+ 
 
         </section>
       </div>
