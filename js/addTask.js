@@ -16,7 +16,7 @@ let categories = [
   { name: "Userstory", color: "pink" },
 ];
 
-let colors = ["blue", "orange", "red", "pink", "purple"];
+// let colors = ["blue", "orange", "red", "pink", "purple"];
 
 function init() {
   includeHTML();

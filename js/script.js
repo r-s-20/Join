@@ -12,40 +12,57 @@ async function includeHTML() {
   }
 }
 
+let colors = [
+  "#FF7A00",
+  "#FF5EB3",
+  "#6E52FF",
+  "#FF745E",
+  "#00BEE8",
+  "#9327FF",
+  "#1FD7C1",
+  "#FFA35E",
+  "#FC71FF",
+  "#FFC701",
+  "#0038FF",
+  "#FF4646",
+  "#FFBB2B",
+  "#462f8a",
+];
+
 let contacts = [
   {
     name: "Anton Mayer",
     email: "anton@gmail.com",
     initials: "AM",
-    badgecolor: "orange",
+    badgecolor: colors[0],
     phone: 4911111111,
   },
   {
     name: "Anja Schulz",
     email: "schulz@gmail.com",
     initials: "AS",
-    badgecolor: "blue",
+    badgecolor: colors[1],
     phone: 4911111111,
   },
   {
     name: "Eva Fischer",
     email: "fischer@gmail.com",
     initials: "EF",
-    badgecolor: "yellow",
+    badgecolor: colors[2],
     phone: 4911111111,
   },
   {
     name: "David Eisenberg",
     email: "eisenberg@gmail.com",
     initials: "DE",
-    badgecolor: "pink",
+    badgecolor: colors[3],
     phone: 4911111111,
   },
   {
     name: "Benedikt Ziegler",
     email: "ziegler@gmail.com",
     initials: "BZ",
-    badgecolor: "purple",
+    badgecolor: colors[4],
     phone: 4911111111,
   },
 ];
