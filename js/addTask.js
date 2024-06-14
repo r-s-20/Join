@@ -1,5 +1,5 @@
 let assignedContacts = [];
-let subtasks = [];
+let currentSubtasks = [];
 let categories = [
   {
     name: "Management",
@@ -45,7 +45,7 @@ function createNewTask() {
     prio: getPrio(),
     category: getCategory(),
     subtasks: {
-      subtaskList: subtasks,
+      subtaskList: currentSubtasks,
       completed: 0,
     },
     // subtasks: {
@@ -267,22 +267,19 @@ function closeAddSubtask() {
 
 function addNewSubtask() {
   let newSubtask = getValueFromInput("inputSubtasks");
-  subtasks.push({
+  currentSubtasks.push({
     name: `${newSubtask}`,
     completed: false,
   });
-  console.log(subtasks);
   renderSubtasks();
   closeAddSubtask();
 }
 
 function renderSubtasks() {
-  console.log("rendering");
   let container = document.getElementById("subtaskList");
-  console.log(container);
   container.innerHTML = "";
-  for (let i = 0; i < subtasks.length; i++) {
-    const subtask = subtasks[i];
+  for (let i = 0; i < currentSubtasks.length; i++) {
+    const subtask = currentSubtasks[i];
     container.innerHTML += insertSubtaskHTML(subtask, i);
   }
 }
@@ -308,7 +305,7 @@ function toggleEditSubtask(i) {
 }
 
 function removeSubtask(i) {
-  subtasks.splice(i, 1);
+  currentSubtasks.splice(i, 1);
   renderSubtasks();
 }
 

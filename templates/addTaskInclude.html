@@ -70,13 +70,13 @@
         <div class="inputElement flex-col">
           <label>Prio</label>
           <div class="prioContainer flex-center width100">
-            <button onclick="setPrio('btnHigh')" class="button prioButton flex-center" id="btnHigh">
+            <button onclick="setPrio('btnHigh')" class="button addTaskPopupBtn prioButton flex-center" id="btnHigh">
               Urgent<img src="../img/prioHigh.png" alt="" />
             </button>
-            <button onclick="setPrio('btnMedium')" class="button prioButton flex-center prioSelected" id="btnMedium">
+            <button onclick="setPrio('btnMedium')" class="button addTaskPopupBtn prioButton flex-center prioSelected" id="btnMedium">
               Medium<img src="../img/prioMediumWhite.png" alt="" />
             </button>
-            <button onclick="setPrio('btnLow')" class="button prioButton flex-center" id="btnLow">
+            <button onclick="setPrio('btnLow')" class="button addTaskPopupBtn prioButton flex-center" id="btnLow">
               Low<img src="../img/prioLow.png" alt="" />
             </button>
           </div>
@@ -138,9 +138,9 @@
           </div>
           <div>
             <ul id="subtaskList" class="subtaskList">
-              <!-- <li>
-                <div>
-                  <span>Testhallo</span>
+              <li>
+                <div style="background: white">
+                  <span contenteditable="true">Testhallo</span>
                   <div class="flex-center" id="editSubtaski">
                     <img src="../img/editIcon.svg" class="button" alt="edit subtask" title="edit subtask" />
                     <div class="separatorSubtasks"></div>
@@ -149,7 +149,7 @@
                 </div>
               </li>
               <li>Testhallo2</li>
-              <li>Testhallo3</li> -->
+              <li>Testhallo3</li>
             </ul>
           </div>
         </div>
@@ -158,11 +158,11 @@
     <div class="lowerContainer flex-center width100">
       <span><span class="redFont">*</span> this field is required</span>
       <div class="buttonContainer flex-center">
-        <button class="button flex-center" onclick="resetFormInputs()">
+        <button class="button addTaskPopupBtn flex-center" onclick="resetFormInputs()">
           Clear
           <img src="../img/close.svg" alt="" />
         </button>
-        <button onclick="addNewTask()" class="button darkColored flex-center">
+        <button onclick="addNewTask()" class="button addTaskPopupBtn darkColored flex-center">
           Create Task
           <img src="../img/checkIcon.svg" />
         </button>
