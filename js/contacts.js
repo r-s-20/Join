@@ -17,22 +17,28 @@ function render() {
               <div class="contactUnderline"></div>
     `;
     contacts.sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-      });
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+    });
   }
 }
 
-
-
 function addContactPopUp() {
-    document.getElementById('showAddContactPopUp').classList.remove('d-none');
+  document.getElementById("showAddContactPopUp").classList.remove("d-none");
 }
 
-function closeContactPopUp() {
-    document.getElementById('showAddContactPopUp').classList.add('d-none');
+function closeAddContactPopUp() {
+  document.getElementById("showAddContactPopUp").classList.add("d-none");
+}
+
+function editContactPopUp() {
+  document.getElementById("showEditContactPopUp").classList.remove("d-none");
+}
+
+function closeEditContactPopUp() {
+  document.getElementById("showEditContactPopUp").classList.add("d-none");
 }
