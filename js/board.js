@@ -60,7 +60,9 @@ function moveTo(status) {
 
 function generateTodoHTML(element, index) {
   return /*html*/ `
-    <div draggable='true' ondragstart='startDragging(${element.timestamp})' class="card" onclick="boardPopup(${element.timestamp})">
+    <div draggable='true' ondragstart='startDragging(${element.timestamp})' class="card" onclick="boardPopup(${
+    element.timestamp
+  })">
       <div class="cardCategory" id="cardCategory${index}">${element.category.name}</div>
       <div class="cardHeadline">${element.title}</div>
       <div class="cardDescription">${element.description}</div>
@@ -89,8 +91,8 @@ function contactNames(element, index) {
 
 function boardPopup(timestamp) {
   findPopupElement(timestamp);
-  document.getElementById('popup').classList.remove('d-none');
-  document.getElementById('popupAddTask').classList.add('d-none');
+  document.getElementById("popup").classList.remove("d-none");
+  document.getElementById("popupAddTask").classList.add("d-none");
   document.getElementById("backgroundPopup").classList.remove("d-none");
   let popup = document.getElementById("popup");
   popup.innerHTML = "";
@@ -129,12 +131,16 @@ function boardPopupHTML() {
  <div class="popupDeleteAndEdit">
   <div onmouseover="hoverDelete()" onmouseout="leaveDelete()">
     <img id="deleteBlack" src="../img/delete_black.svg" alt="">
-    <img id="deleteBlue" src="../img/delete_blue.svg" alt="" class="d-none" onclick="deleteTask(${popupElement.timestamp})">
+    <img id="deleteBlue" src="../img/delete_blue.svg" alt="" class="d-none" onclick="deleteTask(${
+      popupElement.timestamp
+    })">
   </div>
 <div class="line"></div>
   <div onmouseover="hoverEdit()" onmouseout="leaveEdit()">
     <img id="editBlack" src="../img/edit_black.svg" alt="">
-    <img id="editBlue" src="../img/edit_blue.svg" alt="" class="d-none" onclick="editPopupTask(${popupElement.timestamp})">
+    <img id="editBlue" src="../img/edit_blue.svg" alt="" class="d-none" onclick="editPopupTask(${
+      popupElement.timestamp
+    })">
   </div>
  </div>
 `;
@@ -198,7 +204,6 @@ function closePopup() {
     popup.classList.remove("hide");
     document.getElementById("backgroundPopup").classList.add("d-none");
   }, 125);
- 
 }
 
 function popupPersons(popupElement) {
@@ -256,24 +261,23 @@ function deleteTask(timestamp) {
   updateHTML();
 }
 
-function editPopupTask(timestamp){
-  let popupEdit = document.getElementById('popup');
-  popupEdit.innerHTML =  '';
-  popupEdit.innerHTML = /*html*/` 21341234
-  <!-- <div w3-include-html="./templates/addTaskInclude.html" class="" id="editTaskPopup"></div> -->
+function editPopupTask(timestamp) {
+  let popupEdit = document.getElementById("popup");
+  popupEdit.innerHTML = "";
+  popupEdit.innerHTML = /*html*/ `
+    <div w3-include-html="./templates/addTaskInclude.html" class="editPopupContainer" id="editTaskPopup"></div>
   `;
-
+  includeHTML();
 }
 
 function openAddTask() {
-  
-    document.getElementById("backgroundPopup").classList.remove("d-none");
+  document.getElementById("backgroundPopup").classList.remove("d-none");
 
-    document.getElementById('popup').classList.add('d-none');
-    
-    let popupAddTask = document.getElementById("popupAddTask");
-    popupAddTask.classList.remove("d-none");
-    popupAddTask.onclick = function (event) {
-      event.stopPropagation();
-    };
-  }
+  document.getElementById("popup").classList.add("d-none");
+
+  let popupAddTask = document.getElementById("popupAddTask");
+  popupAddTask.classList.remove("d-none");
+  popupAddTask.onclick = function (event) {
+    event.stopPropagation();
+  };
+}
