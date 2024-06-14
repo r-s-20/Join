@@ -22,6 +22,15 @@ function init() {
   loadTasks();
 }
 
+function addNewTask() {
+  let newTask = createNewTask();
+  if (validateTask(newTask)) {
+    tasks.push(newTask);
+    saveTasks();
+  }
+  console.log("tasks is now", tasks);
+}
+
 function createNewTask() {
   let newTask = {
     title: parseTextInput(getValueFromInput("inputTitle")),
@@ -47,23 +56,14 @@ function createNewTask() {
   return newTask;
 }
 
-function addNewTask() {
-  let newTask = createNewTask();
-  if (validateTask(newTask)) {
-    tasks.push(newTask);
-    saveTasks();
-  }
-  console.log("tasks is now", tasks);
-}
-
 function saveTasks() {
   let tasksAsText = JSON.stringify(tasks);
   localStorage.setItem("tasks", tasksAsText);
 }
 
 function validateTask(task) {
+  // incomplete, more checks needed for date input etc
   return getValueFromInput("inputTitle") != "" && getValueFromInput("inputDueDate");
-  // return true;
 }
 
 function getCategory() {
@@ -76,6 +76,9 @@ function getCategory() {
   }
 }
 
+/** will mark a priority button based on provided ID of the button,
+ * remove selection from the other buttons and adjust colors and icons for all of them
+ */
 function setPrio(btnId) {
   prioButtons = document.getElementsByClassName("prioButton");
   selected = document.getElementById(btnId);
@@ -88,6 +91,11 @@ function setPrio(btnId) {
   selected.lastElementChild.src = selected.lastElementChild.src.replace(".png", "White.png");
 }
 
+/**Checks which priority button is currently checked
+ * and returns the priority (high, medium or low) as a string.
+ * 
+ * Is based on ID of the buttons, so don't mess with those IDs.
+ */
 function getPrio() {
   let prioButtons = document.getElementsByClassName("prioButton");
   let selection;
@@ -99,14 +107,21 @@ function getPrio() {
   }
 }
 
+/**Will open or close the categories or assigned-contacts-dropdown menu 
+ * based on provided menuId. Will also toggle the arrow Icon in that input field.
+ * 
+ * z-Index for input field is increased while dropdown is open, as dropdown element overlaps.
+ * @param {string} menuId - ID of the input field to which the dropdown is opening
+ */
 function toggleDropdownMenu(menuId) {
   let inputField = document.getElementById(menuId);
   let dropdown = document.getElementById(menuId).nextElementSibling;
-  toggleArrowIcons(menuId);
+  renderDropdown(categories, "dropdownCategories");
+  renderDropdown(contacts, "dropdownAssigned");
+  updateAssignedCheckboxes();
   dropdown.classList.toggle("d-none");
   adjustZIndex(inputField);
-  renderCategories();
-  renderContacts();
+  toggleArrowIcons(menuId);
 }
 
 function toggleArrowIcons(menuId) {
@@ -116,40 +131,120 @@ function toggleArrowIcons(menuId) {
   }
 }
 
+/**z-Index for the input field belonging to a dropdown menu is increased,
+ * as dropdow content would overlap otherwise.
+ * 
+ * z-Index is decreased again when dropdown closes 
+ * to prevent conflicts while using other dropdowns.
+ * @param {html-Element} inputField 
+ */
 function adjustZIndex(inputField) {
-  if (inputField.style.zIndex == 20) {
+  if (inputField.style.zIndex == 50) {
     inputField.style.zIndex = 0;
   } else {
-    inputField.style.zIndex = 20;
+    inputField.style.zIndex = 50;
   }
 }
 
-function openDropdownMenu(menuId) {
-  let arrowIcons = document.querySelectorAll(`#${menuId} .dropdownIcon`);
-  for (arrow of arrowIcons) {
-    arrow.classList.remove("d-none");
+/** renders dropdown menus for either category or assigned contacts in add task form
+ * @param {json-array} array - categories or contacts array
+ * @param {string} containerId - ID of the div into which the dropdown content should be rendered
+ */
+function renderDropdown(array, containerId) {
+  let container = document.getElementById(containerId);
+  container.innerHTML = "";
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    if (array == categories) {
+      container.innerHTML += insertCategoryHTML(element);
+    } else if (array == contacts) {
+      container.innerHTML += insertAssignedContactsHTML(element, i);
+    }
   }
 }
 
-function closeDropdownMenu(menuId) {
-  let arrowIcons = document.querySelectorAll(`#${menuId} .dropdownIcon`);
-  for (arrow of arrowIcons) {
-    arrow.classList.add("d-none");
-  }
+function insertCategoryHTML(element) {
+  return `
+        <div class="dropdownCategoryElement dropdownElement" onclick="setCategory('${element.name}')">${element.name}</div>
+      `;
 }
 
-function resetFormInputs() {
-  let inputFields = document.getElementsByClassName("formInput");
-  for (inputField of inputFields) {
-    inputField.value = "";
+function insertAssignedContactsHTML(element, i) {
+  return `
+        <div class="dropdownAssignedElement dropdownElement flex-start" onclick="toggleAssignedContact(${i})">
+          <div class="flex-center">
+            <div class="userBadge flex-center" style="background-color: ${element.badgecolor}">${element.initials}</div>
+            <span>${element.name}</span>
+          </div>
+          <img src="../img/check_button.svg" class="button checkContactButton" id="checkContactButton${i}" alt="check this contact">
+          <img src="../img/check_button_done.svg" class="button checkContactButton d-none" id="checkContactDoneButton${i}" alt="check this contact">
+        </div>
+      `;
+}
+
+/** writes the provided category into the input field of the dropdown
+ * and closes the dropdown menu
+ * @param {string} category - name of a category
+ */
+function setCategory(category) {
+  let container = document.getElementById("inputCategory");
+  container.value = category;
+  toggleDropdownMenu("inputCategoryContainer");
+}
+
+/**Toggles between check- and check-done-icons for a row in assigned contacts dropdown-menu
+ * @param {integer} i - index of row
+ */
+function toggleCheckButtons(i) {
+  let checkButton = document.getElementById(`checkContactButton${i}`);
+  let checkDoneButton = document.getElementById(`checkContactDoneButton${i}`);
+  checkButton.classList.toggle("d-none");
+  checkDoneButton.classList.toggle("d-none");
+}
+
+/**Adds or removes a contact to/from list of assigned contacts
+ * in row "i" of the "assgined to" dropdown menu.
+ * 
+ * Also toggles the check icon in that row and updates badges below menu.
+ * @param {integer} i - row index
+ */
+function toggleAssignedContact(i) {
+  let contact = contacts[i];
+  if (assignedContacts.includes(contact)) {
+    let index = assignedContacts.indexOf(contact);
+    assignedContacts.splice(index, 1);
+  } else {
+    assignedContacts.push(contact);
   }
-  assignedContacts = [];
+  toggleCheckButtons(i);
   renderAssignedBadges();
-  setPrio("btnMedium");
 }
 
-function useAsEdit() {
-  document.querySelector(".addTask h1").innerHTML = "Edit";
+/** renders userbadges of assigned contacts as circles below the "assigned to" dropdown menu
+ * using badgecolor and initials of each contact
+ */
+function renderAssignedBadges() {
+  let container = document.getElementById("assignedBadgesContainer");
+  container.innerHTML = "";
+  if (assignedContacts.length > 0) {
+    for (contact of assignedContacts) {
+      container.innerHTML += `
+        <div class="userBadge flex-center" style="background-color:${contact.badgecolor};">${contact.initials}</div>
+      `;
+    }
+  }
+}
+
+/**sets checkbox-icon to "check-done" in rows of dropdown-menu for all contacts
+ * that are already assigned
+ */
+function updateAssignedCheckboxes() {
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    if (assignedContacts.includes(contact)) {
+      toggleCheckButtons(i);
+    }
+  }
 }
 
 function openAddSubtask() {
@@ -168,92 +263,19 @@ function closeAddSubtask() {
   editContainer.classList.toggle("d-none");
 }
 
-function renderCategories() {
-  renderDropdown(categories, "dropdownCategories", "name");
-}
-
-function renderContacts() {
-  renderDropdown(contacts, "dropdownAssigned", "name");
-  updateCheckboxes();
-}
-
-function renderDropdown(array, containerId, arrayLevel) {
-  let container = document.getElementById(containerId);
-  container.innerHTML = "";
-  for (let i = 0; i < array.length; i++) {
-    const element = array[i];
-    if (array == categories) {
-      container.innerHTML += `
-        <div class="dropdownCategoryElement dropdownElement" onclick="setCategory('${element.name}')">${element[arrayLevel]}</div>
-      `;
-    } else if (array == contacts) {
-      container.innerHTML += insertAssignedContactsHTML(element, i);
-    }
+function resetFormInputs() {
+  // incomplete! still need to add clean reset for dropdown input fields
+  // Subtasks also missing
+  let inputFields = document.getElementsByClassName("formInput");
+  for (inputField of inputFields) {
+    inputField.value = "";
   }
-}
-
-function insertAssignedContactsHTML(element, i) {
-  return `
-        <div class="dropdownAssignedElement dropdownElement flex-start">
-          <div class="flex-center">
-            <div class="userBadge flex-center" style="background-color: ${element.badgecolor}">${element.initials}</div>
-            <span>${element.name}</span>
-          </div>
-          <img src="../img/check_button.svg" onclick="addAssignedContact(${i})" class="button checkContactButton" id="checkContactButton${i}" alt="check this contact">
-          <img src="../img/check_button_done.svg" onclick="removeAssignedContact(${i})" class="button checkContactButton d-none" id="checkContactDoneButton${i}" alt="check this contact">
-        </div>
-      `;
-}
-
-function setCategory(category) {
-  let container = document.getElementById("inputCategory");
-  container.value = category;
-  toggleDropdownMenu("inputCategoryContainer");
-}
-
-function checkAssigned(contact) {
-  let container = document.getElementById("inputAssigned");
-  container.value = contact;
-}
-
-function toggleCheckButtons(i) {
-  let checkButton = document.getElementById(`checkContactButton${i}`);
-  let checkDoneButton = document.getElementById(`checkContactDoneButton${i}`);
-  checkButton.classList.toggle("d-none");
-  checkDoneButton.classList.toggle("d-none");
-}
-
-function addAssignedContact(i) {
-  let contact = contacts[i];
-  toggleCheckButtons(i);
-  assignedContacts.push(contact);
+  assignedContacts = [];
   renderAssignedBadges();
+  setPrio("btnMedium");
 }
 
-function removeAssignedContact(i) {
-  let index = assignedContacts.indexOf(contacts[i]);
-  toggleCheckButtons(i);
-  assignedContacts.splice(index, 1);
-  renderAssignedBadges();
-}
-
-function renderAssignedBadges() {
-  let container = document.getElementById("assignedBadgesContainer");
-  container.innerHTML = "";
-  if (assignedContacts.length > 0) {
-    for (contact of assignedContacts) {
-      container.innerHTML += `
-        <div class="userBadge flex-center" style="background-color:${contact.badgecolor};">${contact.initials}</div>
-      `;
-    }
-  }
-}
-
-function updateCheckboxes() {
-  for (let i = 0; i < contacts.length; i++) {
-    const contact = contacts[i];
-    if (assignedContacts.includes(contact)) {
-      toggleCheckButtons(i);
-    }
-  }
+function editTask() {
+  document.querySelector(".addTask h1").innerHTML = "Edit";
+  // WIP: insert values for selected task, change buttons
 }
