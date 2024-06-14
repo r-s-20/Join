@@ -1,7 +1,7 @@
 <h1>Add Task</h1>
 <div class="innerContent flex-col width100">
   <form action="" onsubmit="event.preventDefault()" class="width100">
-    <div class="flex-center formContent width100">
+    <div class="flex-start formContent width100">
       <div class="leftColumn flex-col">
         <div class="inputElement flex-col">
           <label for="inputTitle">Title<span class="redFont">*</span></label>
@@ -121,6 +121,7 @@
               id="inputSubtasks"
               class="formInput width100"
               placeholder="Add a new subtask"
+              onchange="addNewSubtask()"
             />
             <img
               src="../img/addDarkIcon.svg"
@@ -139,8 +140,8 @@
           <div>
             <ul id="subtaskList" class="subtaskList">
               <li>
-                <div style="background: white">
-                  <span contenteditable="true">Testhallo</span>
+                <div>
+                  <span contenteditable="false">Testhallo</span>
                   <div class="flex-center" id="editSubtaski">
                     <img src="../img/editIcon.svg" class="button" alt="edit subtask" title="edit subtask" />
                     <div class="separatorSubtasks"></div>

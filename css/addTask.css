@@ -197,7 +197,6 @@ button.darkColored {
 .separatorSubtasks {
   height: 1.5rem;
   border-left: 1px solid #d1d1d1;
-  margin-left: 0.25rem;
 }
 
 .subtaskList > li {
@@ -209,6 +208,7 @@ button.darkColored {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 0.25rem;
   }
 }
 
