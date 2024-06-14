@@ -256,14 +256,16 @@ function deleteTask(timestamp) {
 }
 
 function openAddTask(event) {
-    event.stopPropagation();
+   
     document.getElementById("backgroundPopup").classList.remove("d-none");
 
     document.getElementById('popup').classList.add('d-none');
     let popupAddTask = document.getElementById("popupAddTask");
     popupAddTask.classList.remove("d-none");
  
- 
+    popupAddTask.onclick = function (event) {
+      event.stopPropagation();
+    };
 
 
   }
