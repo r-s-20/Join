@@ -25,7 +25,7 @@
         <div class="outerContent width100 greyBackground">
           <div class="contactsMain">
             <div class="contactListSide">
-              <button>
+              <button onclick="addContactPopUp()">
                 Add new contact
                 <img src="img/person_add.png" alt="add person image" />
               </button>
@@ -86,7 +86,7 @@
             </div>
           </div>
 
-          <div class="contactsMainOverlayAddContact d-none">
+          <div class="contactsMainOverlayAddContact d-none" id="showAddContactPopUp">
             <div class="overlayAddContactLeftSide">
               <img src="img/joinLogo_dark.png" alt="Logo Edit Contact" />
               <p>Add contact</p>
@@ -95,7 +95,7 @@
             </div>
   
             <div class="overlayAddContactRightSide">
-              <div class="addContactInputFieldClose">
+              <div class="addContactInputFieldClose button" onclick="closeContactPopUp()">
                 <img src="img/Close.png" alt=""/>
               </div>
   
