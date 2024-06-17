@@ -114,27 +114,27 @@
                 <!-- Name Initial -->
 
                 <div class="overlayAddContactRightSideBadge">
-                  <h1><img src="img/addContact.png" alt="" /></h1>
+                  <h1 id="addInitials"><img src="img/addContact.png" alt="" /></h1>
                 </div>
 
                 <!-- InputFields -->
                 <div class="addContactInputField">
                   <div class="addContactInputFieldName">
-                    <input type="text" placeholder="Name" />
+                    <input type="text" placeholder="Name" id="addName" />
                     <div class="addContactInputFieldNameImage">
                       <img src="img/person.png" alt="" />
                     </div>
                   </div>
 
                   <div class="addContactInputFieldName">
-                    <input type="text" placeholder="Email" />
+                    <input type="text" placeholder="Email"  id="addEmail"/>
                     <div class="addContactInputFieldNameImage">
                       <img src="img/mail.png" alt="" />
                     </div>
                   </div>
 
                   <div class="addContactInputFieldName">
-                    <input type="text" placeholder="Phone" />
+                    <input type="text" placeholder="Phone" id="addPhone"/>
                     <div class="addContactInputFieldNameImage">
                       <img src="img/call.png" alt="" />
                     </div>
@@ -142,7 +142,7 @@
 
                   <div class="overlayAddContactRightButton">
                     <button class="delete">Delete</button>
-                    <button class="save">
+                    <button class="save" onclick="addContact()">
                       <h1>Create contact</h1>
                       <img src="img/check.png" alt="Save Button" />
                     </button>

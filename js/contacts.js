@@ -41,3 +41,33 @@ function editContactPopUp() {
 function closeEditContactPopUp() {
   document.getElementById("showEditContactPopUp").classList.add("d-none");
 }
+
+
+function addContact() {
+  let name = document.getElementById('addName').value;
+  let email = document.getElementById('addEmail').value;
+  let phone = document.getElementById('addPhone').value;
+  let badgeColor = document.getElementById('addInitials');
+
+  let names = name.split(' ');
+  let initials ='';
+  if (names.length > 0) {
+    initials += names[0][0].toUpperCase();
+    if (names.length > 1 ) {
+      initials += names[names.length - 1][0].toUpperCase();
+    }
+       
+  }
+ 
+ let newContact = {
+   name: name,
+   email: email,
+   phone: phone,
+   initials: initials,
+   badgeColor: badgeColor
+   
+ };
+ contacts.push(newContact);
+ render();
+ closeAddContactPopUp();
+}

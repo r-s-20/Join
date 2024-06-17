@@ -54,7 +54,7 @@
     top: 96px;
     left: 232px;
     background-color: rgba(255, 255, 255, 1);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .contactLists {
@@ -79,12 +79,17 @@
     background-color: white;
     border-radius: 10px;
     color: white;
+    cursor: pointer;
     
 }
 
+.contactListsNameHead:hover {
+    background-color: #aaaaaa1a;
+}
+
 .contactListsNameBadge {
-    width: 42px;
-    height: 42px;
+    width: 55px;
+    height: 55px;
     background-color: #FF7A00;
     border: 3px solid white;
     border-radius: 45px;
