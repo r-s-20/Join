@@ -56,23 +56,22 @@
             </div>
           </div>
           <div class="boardProgress">
-            <div class="singleBoardProgress" id="toDo" ondrop="moveTo('toDos')" ondragover="allowDrop(event)">
+            <div class="singleBoardProgress" id="toDo" ondrop="moveTo('toDos')" ondragover="allowDrop('toDos', event)">
               <div class="noProgess" >No task To do</div>
             </div>
-            <div class="singleBoardProgress" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
+            <div class="singleBoardProgress" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop('inProgress', event)">
               <div class="noProgess">No In Progress</div>
             </div>
-            <div class="singleBoardProgress" id="awaitFeedback" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">
+            <div class="singleBoardProgress" id="awaitFeedback" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop('awaitFeedback', event)">
               <div class="noProgess">No Await feedback</div>
             </div>
-            <div class="singleBoardProgress" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)">
+            <div class="singleBoardProgress" id="done" ondrop="moveTo('done')" ondragover="allowDrop('done', event)" onmouseout="hidethis('done')">
               <div class="noProgess">No Done</div>
             </div>
           </div>
 
           <div class="backgroundPopup d-none"  id="backgroundPopup" onclick="closePopup()">
             <div class="popup" id="popup">  
-   
             </div>
          
             <div class="popupAddTask d-none" id="popupAddTask">

@@ -11,6 +11,7 @@ let globalIndex = 0;
 let j = 0;
 let deleteHoverTimeout, editHoverTimeout;
 let completedSubtask;
+let allStati = [];
 
 loadTasks();
 
@@ -41,41 +42,37 @@ function updateStatusHTML(status, elementId, emptyMessage) {
 
   if (container.innerHTML == "") {
     container.innerHTML = /*html*/`<div class="noProgess">${emptyMessage}</div>`;
+    container.innerHTML += /*html*/`<div class="possbleToMove d-none" id="possbleToMove${status}"></div>`;
+    
   } else {
-  container.innerHTML += /*html*/`<div class="possbleToMove d-none" id="possbleToMove"></div>`;
-}
-}
-
-function allowDrop(ev) {
-  ev.preventDefault();
-  const currentStatus = ev.target.dataset.status;
-  const draggedStatus = ev.dataTransfer.getData("status");
+  container.innerHTML += /*html*/`<div class="possbleToMove d-none" id="possbleToMove${status}"></div>`;
   
-  if (currentStatus !== draggedStatus) {
-    showPossibleToMove();
-  } else {
-    hidePossibleToMove();
+}
+allStati.push(status);
+}
+
+function allowDrop(status, ev) {
+  ev.preventDefault();
+  allStati.forEach(currentStatus => {
+    if (status == currentStatus){
+      document.getElementById(`possbleToMove${currentStatus}`).classList.remove('d-none')
+    } else {
+      document.getElementById(`possbleToMove${currentStatus}`).classList.remove('d-none')
+    }
   }
-
-}
-
-function showPossibleToMove() {
-  document.getElementById('possbleToMove').classList.remove('d-none');
-}
-
-function hidePossibleToMove() {
-  document.getElementById('possbleToMove').classList.add('d-none');
+);
 }
 
 function startDragging(timestamp) {
   currentTimestamp = timestamp;
-  document.getElementById('possbleToMove').classList.remove('d-none');
+
 }
 
 function moveTo(status) {
   const task = tasks.find((task) => task.timestamp === currentTimestamp);
   task.status = status;
   updateHTML();
+  saveTasks()
 }
 
 function generateTodoHTML(element, index) {
@@ -300,15 +297,16 @@ function deleteTask(timestamp) {
     tasks.splice(index, 1);
   }
   updateHTML();
+  saveTasks()
 }
 
-function editPopupTask(timestamp) {
+async function editPopupTask(timestamp) {
   let popupEdit = document.getElementById("popup");
   popupEdit.innerHTML = "";
   popupEdit.innerHTML = /*html*/ `
     <div w3-include-html="./templates/addTaskInclude.html" class="editPopupContainer" id="editTaskPopup"></div>
   `;
-  includeHTML();
+  await includeHTML();
   loadTaskForEditing(timestamp);
 }
 
