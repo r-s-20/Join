@@ -84,7 +84,7 @@ function contactNames(element, index) {
     let assigned = element.assigned[i];
     j = j + i;
     contactNames.innerHTML += /*html*/ `<span class="initalsCircle" id="initalsCircleColor${j}">${assigned.initials}</span>`;
-    document.getElementById(`initalsCircleColor${j}`).style.backgroundColor = assigned.bagdecolor;
+    document.getElementById(`initalsCircleColor${j}`).style.backgroundColor = assigned.badgecolor;
   }
   j = j + 1;
 }
@@ -204,6 +204,19 @@ function closePopup() {
     popup.classList.remove("hide");
     document.getElementById("backgroundPopup").classList.add("d-none");
   }, 125);
+  closeAddTask();
+}
+
+function closeAddTask() {
+  let popupAddTask = document.getElementById("popupAddTask");
+  popupAddTask.classList.remove("showAddTaskPopup");
+  popupAddTask.classList.add("hideAddTaskPopup");
+
+  setTimeout(() => {
+    popupAddTask.classList.add("d-none");
+    document.getElementById("backgroundPopup").classList.add("d-none");
+    document.getElementById("popup").classList.remove("d-none");
+  }, 125); 
 }
 
 function popupPersons(popupElement) {
@@ -277,7 +290,35 @@ function openAddTask() {
 
   let popupAddTask = document.getElementById("popupAddTask");
   popupAddTask.classList.remove("d-none");
+  popupAddTask.classList.remove("hideAddTaskPopup");
+  popupAddTask.offsetWidth;
+  setTimeout(() => {
+    popupAddTask.classList.add("showAddTaskPopup");
+  }, 10);
   popupAddTask.onclick = function (event) {
     event.stopPropagation();
   };
+}
+
+function searchAndDisplay() {
+  loadTasks();
+  let searchTerm = document.getElementById("searchInput").value.toLowerCase();
+  let matchingTasks = [];
+  tasks.forEach(task => {
+      if(!searchTerm){
+        matchingTasks.push(task);
+      } else {
+
+
+    if (task.title.toLowerCase().includes(searchTerm) || task.description.toLowerCase().includes(searchTerm)) {
+      matchingTasks.push(task);
+    }
+    }
+  });
+  console.log("Ergebnisse Match:", matchingTasks);
+  tasks = matchingTasks;
+  console.log("Ergebnisse Tasks:", tasks);
+
+  updateHTML();
+
 }
