@@ -1,4 +1,4 @@
-let assignedContacts = [];
+let currentAssignedList = [];
 let currentSubtasks = [];
 
 function init() {
@@ -19,7 +19,7 @@ function createNewTask(taskStatus) {
   let newTask = {
     title: parseTextInput(getValueFromInput("inputTitle")),
     timestamp: new Date().getTime(),
-    assigned: assignedContacts,
+    assigned: currentAssignedList,
     description: parseTextInput(getValueFromInput("inputDescription")),
     dueDate: getValueFromInput("inputDueDate"),
     prio: getPrio(),
@@ -50,15 +50,14 @@ function editTask(timestamp) {
 
 function loadTaskForEditing(timestamp) {
   let task = tasks.filter((e) => e.timestamp == timestamp)[0];
-  assignedContacts = task.assigned;
-  console.log(assignedContacts);
-  currentSubtasks = task.subtasks.subtaskList;
+  task.assigned.forEach((e) => currentAssignedList.push(e));
+  task.subtasks.subtaskList.forEach(e => currentSubtasks.push(e));
   // document.querySelector("#editTaskPopup h1").innerHTML = "Edit";
   insertValuesToEditTask(task);
   document.getElementById("inputCategory").parentElement.parentElement.classList.add("d-none");
   document.getElementById("clearTaskBtn").classList.add("d-none");
   document.getElementById("createTaskBtn").setAttribute("onclick", `editTask(${timestamp})`);
-  document.getElementById('createTaskBtn').firstElementChild.innerHTML = "Ok";
+  document.getElementById("createTaskBtn").firstElementChild.innerHTML = "Ok";
 }
 
 function insertValuesToEditTask(task) {
@@ -66,7 +65,7 @@ function insertValuesToEditTask(task) {
   setValueToInput(task.description, "inputDescription");
   renderAssignedBadges();
   setValueToInput(task.dueDate, "inputDueDate");
-  setPrio("btn-"+task.prio);
+  setPrio("btn-" + task.prio);
   setValueToInput(task.category.name, "inputCategory");
   renderSubtasks();
 }
@@ -131,6 +130,7 @@ function getPrio() {
 function toggleDropdownMenu(menuId) {
   let inputField = document.getElementById(menuId);
   let dropdown = document.getElementById(menuId).nextElementSibling;
+  toggleCurtain(menuId);
   renderDropdown(categories, "dropdownCategories");
   renderDropdown(contacts, "dropdownAssigned");
   // updateAssignedCheckboxes();
@@ -144,6 +144,17 @@ function toggleArrowIcons(menuId) {
   for (arrow of arrowIcons) {
     arrow.classList.toggle("d-none");
   }
+}
+
+function toggleCurtain(menuId) {
+  let curtain = document.getElementById("addTaskPopupContainer");
+  curtain.classList.toggle("d-none");
+  curtain.setAttribute("onclick", `toggleDropdownMenu("${menuId}")`);
+}
+
+function closeAddTaskPopup() {
+  let curtain = document.getElementById("addTaskPopupContainer");
+  curtain.classList.add("d-none");
 }
 
 /**z-Index for the input field belonging to a dropdown menu is increased,
@@ -174,7 +185,7 @@ function renderDropdown(array, containerId) {
       container.innerHTML += insertCategoryHTML(element);
     } else if (array == contacts) {
       container.innerHTML += insertAssignedContactsHTML(element, i);
-      if (assignedContacts.filter(assigned => assigned.name == element.name).length > 0) {
+      if (currentAssignedList.filter((assigned) => assigned.name == element.name).length > 0) {
         toggleCheckButtons(i);
       }
     }
@@ -242,11 +253,11 @@ function checkButtonEmpty(i) {
  */
 function toggleAssignedContact(i) {
   let contact = contacts[i];
-  if (assignedContacts.filter(assigned => assigned.name == contact.name).length > 0) {
-    let index = assignedContacts.indexOf(contact);
-    assignedContacts.splice(index, 1);
+  if (currentAssignedList.filter((assigned) => assigned.name == contact.name).length > 0) {
+    let index = currentAssignedList.indexOf(contact);
+    currentAssignedList.splice(index, 1);
   } else {
-    assignedContacts.push(contact);
+    currentAssignedList.push(contact);
   }
   toggleCheckButtons(i);
   renderAssignedBadges();
@@ -258,8 +269,8 @@ function toggleAssignedContact(i) {
 function renderAssignedBadges() {
   let container = document.getElementById("assignedBadgesContainer");
   container.innerHTML = "";
-  if (assignedContacts.length > 0) {
-    for (contact of assignedContacts) {
+  if (currentAssignedList.length > 0) {
+    for (contact of currentAssignedList) {
       container.innerHTML += `
         <div class="userBadge flex-center" style="background-color:${contact.badgecolor};">${contact.initials}</div>
       `;
@@ -273,7 +284,7 @@ function renderAssignedBadges() {
 function updateAssignedCheckboxes() {
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
-    if (assignedContacts.includes(contact)) {
+    if (currentAssignedList.includes(contact)) {
       checkButtonDone(i);
     } else {
       checkButtonEmpty(i);
@@ -352,7 +363,7 @@ function resetFormInputs() {
   for (inputField of inputFields) {
     inputField.value = "";
   }
-  assignedContacts = [];
+  currentAssignedList = [];
   renderAssignedBadges();
   setValueToInput("Select contacts to assign", "inputAssigned");
   setPrio("btn-medium");

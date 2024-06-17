@@ -73,7 +73,11 @@
             <button onclick="setPrio('btn-high')" class="button addTaskPopupBtn prioButton flex-center" id="btn-high">
               Urgent<img src="../img/prio-high.png" alt="" />
             </button>
-            <button onclick="setPrio('btn-medium')" class="button addTaskPopupBtn prioButton flex-center prioSelected" id="btn-medium">
+            <button
+              onclick="setPrio('btn-medium')"
+              class="button addTaskPopupBtn prioButton flex-center prioSelected"
+              id="btn-medium"
+            >
               Medium<img src="../img/prio-mediumWhite.png" alt="" />
             </button>
             <button onclick="setPrio('btn-low')" class="button addTaskPopupBtn prioButton flex-center" id="btn-low">
@@ -170,4 +174,5 @@
       </div>
     </div>
   </form>
+  <div class="addTaskPopupContainer flex-center d-none" id="addTaskPopupContainer" onclick="closeAddTaskPopup()">Hallo</div>
 </div>
