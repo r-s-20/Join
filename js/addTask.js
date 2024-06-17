@@ -50,6 +50,8 @@ function editTask(timestamp) {
 
 function loadTaskForEditing(timestamp) {
   let task = tasks.filter((e) => e.timestamp == timestamp)[0];
+  currentAssignedList = [];
+  currentSubtasks = [];
   task.assigned.forEach((e) => currentAssignedList.push(e));
   task.subtasks.subtaskList.forEach(e => currentSubtasks.push(e));
   // document.querySelector("#editTaskPopup h1").innerHTML = "Edit";
