@@ -53,18 +53,20 @@ allStati.push(status);
 
 function allowDrop(status, ev) {
   ev.preventDefault();
+
   allStati.forEach(currentStatus => {
     if (status == currentStatus){
       document.getElementById(`possbleToMove${currentStatus}`).classList.remove('d-none')
     } else {
-      document.getElementById(`possbleToMove${currentStatus}`).classList.remove('d-none')
+      document.getElementById(`possbleToMove${currentStatus}`).classList.add('d-none')
     }
   }
 );
 }
 
-function startDragging(timestamp) {
+function startDragging(timestamp, index) {
   currentTimestamp = timestamp;
+  document.getElementById(`card${index}`).classList.add('rotate3');
 
 }
 
@@ -72,12 +74,12 @@ function moveTo(status) {
   const task = tasks.find((task) => task.timestamp === currentTimestamp);
   task.status = status;
   updateHTML();
-  saveTasks()
+  saveTasks();
 }
 
 function generateTodoHTML(element, index) {
   return /*html*/ `
-    <div draggable='true' ondragstart='startDragging(${element.timestamp})' class="card" onclick="boardPopup(${
+    <div draggable='true' ondragstart='startDragging(${element.timestamp}, ${index})' class="card" id="card${index}" onclick="boardPopup(${
     element.timestamp
   })">
       <div class="cardCategory" id="cardCategory${index}">${element.category.name}</div>

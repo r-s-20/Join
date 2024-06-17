@@ -126,6 +126,7 @@ h1 {
 }
 
 
+
 .card {
   background-color: white;
   width: 252px;
@@ -535,6 +536,10 @@ h1 {
   .separator {
     display: none;
   }
+}
+
+.rotate3{
+  rotate: 3deg;
 }
 
 
