@@ -40,16 +40,36 @@ function updateStatusHTML(status, elementId, emptyMessage) {
   }
 
   if (container.innerHTML == "") {
-    container.innerHTML = `<div class="noProgess">${emptyMessage}</div>`;
-  }
+    container.innerHTML = /*html*/`<div class="noProgess">${emptyMessage}</div>`;
+  } else {
+  container.innerHTML += /*html*/`<div class="possbleToMove d-none" id="possbleToMove"></div>`;
+}
 }
 
 function allowDrop(ev) {
   ev.preventDefault();
+  const currentStatus = ev.target.dataset.status;
+  const draggedStatus = ev.dataTransfer.getData("status");
+  
+  if (currentStatus !== draggedStatus) {
+    showPossibleToMove();
+  } else {
+    hidePossibleToMove();
+  }
+
+}
+
+function showPossibleToMove() {
+  document.getElementById('possbleToMove').classList.remove('d-none');
+}
+
+function hidePossibleToMove() {
+  document.getElementById('possbleToMove').classList.add('d-none');
 }
 
 function startDragging(timestamp) {
   currentTimestamp = timestamp;
+  document.getElementById('possbleToMove').classList.remove('d-none');
 }
 
 function moveTo(status) {
@@ -117,8 +137,8 @@ function boardPopupHTML() {
  </div>
  <div class="popupHeadline">${popupElement.title}</div>
  <div class="popupDescription">${popupElement.description}</div>
- <div class="popupDate">Due date: ${popupElement.dueDate} </div>
- <div class="popupPriority">Priority: ${popupElement.prio} <img src="${prios[popupElement.prio]}" alt=""></div>
+ <div class="popupDate"><span>Due date:</span> ${popupElement.dueDate} </div>
+ <div class="popupPriority"><span>Priority:</span> ${popupElement.prio} <img src="${prios[popupElement.prio]}" alt=""></div>
  <div class="popupAssigned">
    <div>Assigned To:</div>
    <div class="popupPerson" id="popupPerson">
@@ -181,7 +201,7 @@ function subtaskDone(i, timestamp) {
   let completedSubtask = popupElement.subtasks.completed;
   completedSubtask = completedSubtask + 1;
   popupElement.subtasks.completed = completedSubtask;
-  popupElement.subtasks.subtaskList.completed = true;
+  popupElement.subtasks.subtaskList[i].completed = true;
   updateHTML();
 }
 
@@ -224,7 +244,15 @@ function popupPersons(popupElement) {
   person.innerHTML = "";
   for (let i = 0; i < popupElement.assigned.length; i++) {
     let assigned = popupElement.assigned[i];
-    person.innerHTML += /*html*/ `<img src="" alt=""> <span>${assigned.name}</span>`;
+    person.innerHTML += /*html*/ `
+    <div class="PopupInitialsandContacts">
+    <span class="initalsCircle" id="initalsCircleColorPopup${i}">${assigned.initials} 
+    </span> <span>${assigned.name}</span>
+    </div>
+    `;
+    document.getElementById(`initalsCircleColorPopup${i}`).style.backgroundColor = assigned.badgecolor;
+
+
   }
 }
 
@@ -281,6 +309,7 @@ function editPopupTask(timestamp) {
     <div w3-include-html="./templates/addTaskInclude.html" class="editPopupContainer" id="editTaskPopup"></div>
   `;
   includeHTML();
+  loadTaskForEditing();
 }
 
 function openAddTask() {
