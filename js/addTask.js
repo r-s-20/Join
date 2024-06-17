@@ -26,7 +26,7 @@ function createNewTask(taskStatus) {
     category: getCategory(),
     subtasks: {
       subtaskList: currentSubtasks,
-      completed: 0,
+      completed: currentSubtasks.filter(e => e.completed == true).length,
     },
     status: taskStatus,
   };
