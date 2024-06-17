@@ -1,22 +1,5 @@
 let assignedContacts = [];
 let currentSubtasks = [];
-let categories = [
-  {
-    name: "Management",
-    color: "blue",
-  },
-  {
-    name: "Coffebreak",
-    color: "yellow",
-  },
-  {
-    name: "Technical task",
-    color: "grey",
-  },
-  { name: "Userstory", color: "pink" },
-];
-
-// let colors = ["blue", "orange", "red", "pink", "purple"];
 
 function init() {
   includeHTML();
@@ -59,14 +42,22 @@ function editTask(timestamp) {
   let taskIndex = tasks.indexOf(task);
   console.log("index is", taskIndex);
   tasks.splice(taskIndex, 1, editedTask);
+  saveTasks();
 }
 
 function loadTaskForEditing(timestamp) {
   let task = tasks.filter((e) => e.timestamp == timestamp)[0];
   assignedContacts = task.assigned;
+  // updateAssignedCheckboxes();
   currentSubtasks = task.subtasks.subtaskList;
-  console.log(task);
-  document.querySelector(".addTask h1").innerHTML = "Edit";
+  // document.querySelector("#editTaskPopup h1").innerHTML = "Edit";
+  insertValuesToEditTask(task);
+  document.getElementById("clearTaskBtn").classList.add("d-none");
+  document.getElementById("createTaskBtn").setAttribute("onclick", `editTask(${timestamp})`);
+  document.getElementById('createTaskBtn').firstElementChild.innerHTML = "Ok";
+}
+
+function insertValuesToEditTask(task) {
   setValueToInput(task.title, "inputTitle");
   setValueToInput(task.description, "inputDescription");
   renderAssignedBadges();

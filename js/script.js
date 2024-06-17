@@ -67,6 +67,24 @@ let contacts = [
   },
 ];
 
+let categories = [
+  {
+    name: "Management",
+    color: colors[0],
+  },
+  {
+    name: "Coffebreak",
+    color: colors[1],
+  },
+  {
+    name: "Technical task",
+    color: colors[2],
+  },
+  { name: "Userstory", 
+    color: colors[3],
+  }
+];
+
 let tasks = [
   {
     title: "First test title",
@@ -75,10 +93,7 @@ let tasks = [
     description: "This will be a description",
     dueDate: "2024-06-12",
     prio: "medium",
-    category: {
-      name: "Management",
-      color: "blue",
-    },
+    category: categories[0],
     subtasks: {
       subtaskList: [{ name: "Project structure", completed: false }],
       completed: 0,
@@ -92,10 +107,7 @@ let tasks = [
     description: "Anna did not describe her task",
     dueDate: "2024-06-13",
     prio: "high",
-    category: {
-      name: "Management",
-      color: "blue",
-    },
+    category: categories[1],
     subtasks: {
       subtaskList: [
         { name: "Coffeebreak", completed: true },
@@ -112,10 +124,7 @@ let tasks = [
     description: "No description needed",
     dueDate: "2024-06-15",
     prio: "low",
-    category: {
-      name: "Management",
-      color: "blue",
-    },
+    category: categories[2],
     subtasks: {
       subtaskList: [{ name: "Project structure", completed: false }],
       completed: 0,
@@ -129,10 +138,7 @@ let tasks = [
     description: "Create a kanban board",
     dueDate: "2024-06-15",
     prio: "low",
-    category: {
-      name: "Scrum",
-      color: "pink",
-    },
+    category: categories[3],
     subtasks: {
       subtaskList: [
         { name: "Start project", completed: true },
