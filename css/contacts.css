@@ -54,6 +54,7 @@
     top: 96px;
     left: 232px;
     background-color: rgba(255, 255, 255, 1);
+    overflow-y: scroll;
 }
 
 .contactLists {
@@ -66,10 +67,6 @@
     margin-top: 54px;
     border-style: none;
 }
-
-/* .contactLists:hover {
-    background-color: #f6f7f8;
-} */
 
 .contactListsNameHead {
     display: flex;

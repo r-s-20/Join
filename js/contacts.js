@@ -10,10 +10,9 @@ function render() {
   });
   for (let i = 0; i < contacts.length; i++) {
     document.getElementById("contactListsContainer").innerHTML += /*html*/ `
-    
-        <div class="contactLists" id="contactLists">
+        <div class="contactLists" id="contactLists">  
                   <div class="contactListsNameHead">
-                    <div class="contactListsNameBadge">
+                    <div class="contactListsNameBadge" style="background-color: ${contacts[i].badgecolor}">
                       <h1>${contacts[i].initials}</h1>
                     </div>
                     <div class="contactListsName">
