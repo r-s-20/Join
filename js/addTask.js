@@ -52,6 +52,7 @@ function loadTaskForEditing(timestamp) {
   currentSubtasks = task.subtasks.subtaskList;
   // document.querySelector("#editTaskPopup h1").innerHTML = "Edit";
   insertValuesToEditTask(task);
+  document.getElementById("inputCategory").parentElement.parentElement.classList.add("d-none");
   document.getElementById("clearTaskBtn").classList.add("d-none");
   document.getElementById("createTaskBtn").setAttribute("onclick", `editTask(${timestamp})`);
   document.getElementById('createTaskBtn').firstElementChild.innerHTML = "Ok";
@@ -108,7 +109,7 @@ function setPrio(btnId) {
  * Is based on ID of the buttons, so don't mess with those IDs.
  */
 function getPrio() {
-  let prioButtons = document.getElementsByClassName("prioButton");
+  let prioButtons = document.querySelectorAll(".prioContainer .prioButton");
   let selection;
   for (button of prioButtons) {
     if (button.classList.contains("prioSelected")) {
