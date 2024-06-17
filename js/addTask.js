@@ -43,12 +43,15 @@ function editTask(timestamp) {
   console.log("index is", taskIndex);
   tasks.splice(taskIndex, 1, editedTask);
   saveTasks();
+  alert("edited Task");
+  closePopup();
+  updateHTML();
 }
 
 function loadTaskForEditing(timestamp) {
   let task = tasks.filter((e) => e.timestamp == timestamp)[0];
   assignedContacts = task.assigned;
-  // updateAssignedCheckboxes();
+  console.log(assignedContacts);
   currentSubtasks = task.subtasks.subtaskList;
   // document.querySelector("#editTaskPopup h1").innerHTML = "Edit";
   insertValuesToEditTask(task);
@@ -130,7 +133,7 @@ function toggleDropdownMenu(menuId) {
   let dropdown = document.getElementById(menuId).nextElementSibling;
   renderDropdown(categories, "dropdownCategories");
   renderDropdown(contacts, "dropdownAssigned");
-  updateAssignedCheckboxes();
+  // updateAssignedCheckboxes();
   dropdown.classList.toggle("d-none");
   adjustZIndex(inputField);
   toggleArrowIcons(menuId);
@@ -171,6 +174,9 @@ function renderDropdown(array, containerId) {
       container.innerHTML += insertCategoryHTML(element);
     } else if (array == contacts) {
       container.innerHTML += insertAssignedContactsHTML(element, i);
+      if (assignedContacts.filter(assigned => assigned.name == element.name).length > 0) {
+        toggleCheckButtons(i);
+      }
     }
   }
 }
@@ -214,6 +220,20 @@ function toggleCheckButtons(i) {
   checkDoneButton.classList.toggle("d-none");
 }
 
+function checkButtonDone(i) {
+  let checkButton = document.getElementById(`checkContactButton${i}`);
+  let checkDoneButton = document.getElementById(`checkContactDoneButton${i}`);
+  checkButton.classList.add("d-none");
+  checkDoneButton.classList.remove("d-none");
+}
+
+function checkButtonEmpty(i) {
+  let checkButton = document.getElementById(`checkContactButton${i}`);
+  let checkDoneButton = document.getElementById(`checkContactDoneButton${i}`);
+  checkButton.classList.remove("d-none");
+  checkDoneButton.classList.add("d-none");
+}
+
 /** Adds or removes a contact to/from list of assigned contacts
  * in row "i" of the "assgined to" dropdown menu.
  *
@@ -222,7 +242,7 @@ function toggleCheckButtons(i) {
  */
 function toggleAssignedContact(i) {
   let contact = contacts[i];
-  if (assignedContacts.includes(contact)) {
+  if (assignedContacts.filter(assigned => assigned.name == contact.name).length > 0) {
     let index = assignedContacts.indexOf(contact);
     assignedContacts.splice(index, 1);
   } else {
@@ -254,7 +274,9 @@ function updateAssignedCheckboxes() {
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
     if (assignedContacts.includes(contact)) {
-      toggleCheckButtons(i);
+      checkButtonDone(i);
+    } else {
+      checkButtonEmpty(i);
     }
   }
 }
