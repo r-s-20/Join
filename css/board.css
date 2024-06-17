@@ -383,9 +383,17 @@ h1 {
   align-items: center;
   width: 334px;
   height: 32px;
-  padding: 6px, 16px, 6px, 16px;
   gap: 16px;
   margin-left: 20px;
+}
+
+.popupSingleSubtask div:hover{
+  background-color: rgb(224, 221, 221);
+  border-radius: 10px;
+  width: fit-content;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 0px;
 }
 
 .popupSingleSubtask img {
