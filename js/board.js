@@ -309,7 +309,7 @@ function editPopupTask(timestamp) {
     <div w3-include-html="./templates/addTaskInclude.html" class="editPopupContainer" id="editTaskPopup"></div>
   `;
   includeHTML();
-  loadTaskForEditing();
+  loadTaskForEditing(timestamp);
 }
 
 function openAddTask() {
