@@ -144,6 +144,15 @@ let tasks = [
   },
 ];
 
+/** Writes a given value into the value of an html-input-element
+ * @param {string} value - value to write into the input element
+ * @param {string} inputId - ID of the html-input-element/container
+ */
+function setValueToInput(value, inputId) {
+  let container = document.getElementById(inputId);
+  container.value = value;
+}
+
 function getValueFromInput(inputId) {
   let container = document.getElementById(inputId);
   return container.value;

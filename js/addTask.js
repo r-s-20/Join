@@ -24,7 +24,7 @@ function init() {
 }
 
 function addNewTask() {
-  let newTask = createNewTask();
+  let newTask = createNewTask("toDos");
   if (validateTask(newTask)) {
     tasks.push(newTask);
     saveTasks();
@@ -32,13 +32,10 @@ function addNewTask() {
   console.log("tasks is now", tasks);
 }
 
-function createNewTask() {
+function createNewTask(taskStatus) {
   let newTask = {
     title: parseTextInput(getValueFromInput("inputTitle")),
     timestamp: new Date().getTime(),
-    // assigned: {
-    //   name: getValueFromInput("inputAssigned"),
-    // },
     assigned: assignedContacts,
     description: parseTextInput(getValueFromInput("inputDescription")),
     dueDate: getValueFromInput("inputDueDate"),
@@ -48,13 +45,35 @@ function createNewTask() {
       subtaskList: currentSubtasks,
       completed: 0,
     },
-    // subtasks: {
-    //   subtaskList: [{ name: "Project structure", completed: false }],
-    //   completed: 0,
-    // },
-    status: "toDos",
+    status: taskStatus,
   };
   return newTask;
+}
+
+function editTask(timestamp) {
+  console.log(tasks);
+  let task = tasks.filter((e) => e.timestamp == timestamp)[0];
+  console.log(task);
+  editedTask = createNewTask(task.status);
+  editedTask.timestamp = timestamp;
+  let taskIndex = tasks.indexOf(task);
+  console.log("index is", taskIndex);
+  tasks.splice(taskIndex, 1, editedTask);
+}
+
+function loadTaskForEditing(timestamp) {
+  let task = tasks.filter((e) => e.timestamp == timestamp)[0];
+  assignedContacts = task.assigned;
+  currentSubtasks = task.subtasks.subtaskList;
+  console.log(task);
+  document.querySelector(".addTask h1").innerHTML = "Edit";
+  setValueToInput(task.title, "inputTitle");
+  setValueToInput(task.description, "inputDescription");
+  renderAssignedBadges();
+  setValueToInput(task.dueDate, "inputDueDate");
+  setPrio("btn-"+task.prio);
+  setValueToInput(task.category.name, "inputCategory");
+  renderSubtasks();
 }
 
 function saveTasks() {
@@ -85,7 +104,7 @@ function setPrio(btnId) {
   selected = document.getElementById(btnId);
   for (button of prioButtons) {
     button.classList.remove("prioSelected");
-    let imgSrc = `../img/${button.id.replace("btn", "prio")}.png`;
+    let imgSrc = `../img/${button.id.replace("btn-", "prio-")}.png`;
     button.lastElementChild.src = imgSrc;
   }
   selected.classList.add("prioSelected");
@@ -102,7 +121,7 @@ function getPrio() {
   let selection;
   for (button of prioButtons) {
     if (button.classList.contains("prioSelected")) {
-      selection = button.id.replace("btn", "").toLowerCase();
+      selection = button.id.replace("btn-", "").toLowerCase();
       return selection;
     }
   }
@@ -321,10 +340,10 @@ function resetFormInputs() {
   }
   assignedContacts = [];
   renderAssignedBadges();
-  setPrio("btnMedium");
-}
-
-function editTask() {
-  document.querySelector(".addTask h1").innerHTML = "Edit";
-  // WIP: insert values for selected task, change buttons
+  setValueToInput("Select contacts to assign", "inputAssigned");
+  setPrio("btn-medium");
+  setValueToInput("Select task category", "inputCategory");
+  setValueToInput("Add a new subtask", "inputSubtasks");
+  currentSubtasks = [];
+  renderSubtasks();
 }

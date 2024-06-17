@@ -164,15 +164,15 @@ button.darkColored {
   color: white;
 }
 
-#btnHigh.prioSelected {
+#btn-high.prioSelected {
   background-color: #ff3d00;
 }
 
-#btnMedium.prioSelected {
+#btn-medium.prioSelected {
   background-color: #ffa800;
 }
 
-#btnLow.prioSelected {
+#btn-low.prioSelected {
   background-color: #7ae229;
 }
 
