@@ -227,6 +227,7 @@ button.darkColored {
   right: 0.5rem;
 }
 
+
 .addTaskPopupContainer {
   position: fixed;
   top: 0;
@@ -235,6 +236,23 @@ button.darkColored {
   bottom: 0;
   /* background-color: rgba(0, 0, 0, 0.25); */
   z-index: 10;
+}
+
+.popupMessageContainer {
+  position: fixed;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.25);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.popupMessage {
+  border-radius: 20px;
+  gap: 2rem;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,0.15);
+  padding: 1rem 2rem;
 }
 
 @media (max-width: 1000px) {

@@ -11,16 +11,19 @@ async function init() {
       console.log("enter was pressed");
     }
   });
-  
 }
 
-function addNewTask() {
+async function addNewTask() {
   let newTask = createNewTask("toDos");
   if (validateTask(newTask)) {
     tasks.push(newTask);
     saveTasks();
+    currentAssignedList = [];
+    currentSubtasks = [];
+    await showConfirmationMessage();
+    resetFormInputs();
+    window.location.href="./board.html";
   }
-  console.log("tasks is now", tasks);
 }
 
 function createNewTask(taskStatus) {
@@ -79,6 +82,14 @@ function insertValuesToEditTask(task) {
   setPrio("btn-" + task.prio);
   setValueToInput(task.category.name, "inputCategory");
   renderSubtasks();
+}
+
+function showConfirmationMessage() {
+  let popup = document.getElementById("popupAddTaskMessage");
+  popup.classList.remove("d-none");
+  setTimeout(() => {
+    popup.classList.add("d-none");
+  }, 900);
 }
 
 function saveTasks() {
@@ -404,7 +415,6 @@ function resetFormInputs() {
   setValueToInput("Select contacts to assign", "inputAssigned");
   setPrio("btn-medium");
   setValueToInput("Select task category", "inputCategory");
-  setValueToInput("Add a new subtask", "inputSubtasks");
   currentSubtasks = [];
   renderSubtasks();
 }
