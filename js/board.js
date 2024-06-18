@@ -212,6 +212,8 @@ function closePopup() {
   if(editPopup){
     document.getElementById("editTaskPopup").innerHTML = "";
     editPopup = false;}
+  currentAssignedList = [];
+  currentSubtasks = [];
   let popup = document.getElementById("popup");
   popup.classList.remove("show");
   popup.classList.add("hide");
