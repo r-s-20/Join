@@ -84,3 +84,31 @@ nav .icon {
 .sidebarLegal .legalContainer a:nth-child(2) {
   background-color: #091931;
 }
+
+@media (max-width: 800px) {
+  .sidebar-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    height: 80px;
+    width: 70vw;
+  }
+
+  .legalContainer, .logoContainer {
+    display: none;
+  }
+
+.nav {
+  flex-direction: row;
+  width: 100vw;
+  padding: unset;
+}
+
+.nav a {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 100px;
+  padding: unset;
+}
+
+}

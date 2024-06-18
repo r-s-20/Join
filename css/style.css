@@ -1,6 +1,6 @@
 @font-face {
   font-family: "inter";
-  src: url(../fonts/Inter/Inter-VariableFont_slnt\,wght.ttf);
+  src: url(../fonts/Inter/Inter-VariableFont.ttf);
 }
 
 * {
@@ -76,6 +76,13 @@ a {
   flex: 1;
 }
 
+.footerContainer {
+  background-color: var(--mainDarkColor);
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+}
+
 .outerContent {
   flex: 1;
 }
@@ -91,5 +98,7 @@ a {
 }
 
 @media (min-width: 800px) {
-
+  .footerContainer {
+    display: none;
+  }
 }
