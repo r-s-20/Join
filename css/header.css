@@ -11,13 +11,18 @@ header h2 {
 
 .header {
   justify-content: space-between;
+  padding: 0 3rem 0 1rem;
+}
+
+.headerLogoContainer img {
+  width: 49px;
+  height: 60px;
 }
 
 .infoBox {
   gap: 1rem;
   width: 128px;
   padding: 1rem;
-  padding-right: 3rem;
 }
 
 .helpIcon {
@@ -33,4 +38,28 @@ header h2 {
   border: 3px solid var(--mainDarkColor);
   padding: 1rem;
   border-radius: 100%;
+}
+
+@media (max-width: 1000px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 800px) {
+  h2 {
+    display: none;
+  }
+  
+  .header {
+    padding: 0 1rem 0 1rem;
+  }
+}
+
+@media (min-width: 800px) {
+  
+
+  .headerLogoContainer {
+    display: none;
+  }
 }

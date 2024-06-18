@@ -250,9 +250,22 @@ button.darkColored {
     margin-bottom: 1rem;
     margin-top: 2rem;
     padding: 0 2rem;
+    position: sticky;
+    bottom: 0;
+    background-color: #f6f7f8;
   }
 
   .separator {
     display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .lowerContainer {
+    position: sticky;
+    bottom: 80px;
+    padding: 1rem 2rem;
+    
+
   }
 }
