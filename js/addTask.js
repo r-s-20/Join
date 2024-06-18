@@ -1,9 +1,17 @@
 let currentAssignedList = [];
 let currentSubtasks = [];
 
-function init() {
-  includeHTML();
+async function init() {
+  await includeHTML();
   loadTasks();
+  document.getElementById("addTaskForm").addEventListener("onkeypress", (e) => {
+    let key = e.charCode || e.keyCode || 0;
+    if (key == 13) {
+      e.preventDefault();
+      console.log("enter was pressed");
+    }
+  });
+  
 }
 
 function addNewTask() {
@@ -26,7 +34,7 @@ function createNewTask(taskStatus) {
     category: getCategory(),
     subtasks: {
       subtaskList: currentSubtasks,
-      completed: currentSubtasks.filter(e => e.completed == true).length,
+      completed: currentSubtasks.filter((e) => e.completed == true).length,
     },
     status: taskStatus,
   };
@@ -53,7 +61,7 @@ function loadTaskForEditing(timestamp) {
   currentAssignedList = [];
   currentSubtasks = [];
   task.assigned.forEach((e) => currentAssignedList.push(e));
-  task.subtasks.subtaskList.forEach(e => currentSubtasks.push(e));
+  task.subtasks.subtaskList.forEach((e) => currentSubtasks.push(e));
   // document.querySelector("#editTaskPopup h1").innerHTML = "Edit";
   insertValuesToEditTask(task);
   document.getElementById("inputCategory").parentElement.parentElement.classList.add("d-none");
