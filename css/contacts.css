@@ -184,8 +184,14 @@
 
 .contentCardHeader {
     display: flex;
+    flex-direction: column;
     width: 461px;
     height: 120px;
+}
+
+.contentCardBody {
+    display: flex;
+    align-items: center;
     gap: 54px;
 }
 
@@ -266,7 +272,6 @@
     height: 128px;
     display: flex;
     flex-direction: column;
-    gap: 22px;
 }
 
 .cardDetailEmailMain {
@@ -284,6 +289,12 @@
     font-size: 16px;
     font-weight: 400;
     color: #007CEE;
+
+    h2 {
+        font-size: 16px;
+        font-weight: 700;
+        color: black;
+    }
 }
 
 .CardDetailPhoneMain {
@@ -300,6 +311,11 @@
 .CardDetailPhoneNumber {
     font-size: 16px;
     font-weight: 400;
+    h2 {
+        font-size: 16px;
+        font-weight: 700;
+        color: black;
+    }
 }
 
 
