@@ -54,6 +54,7 @@ function editTask(timestamp) {
   alert("edited Task");
   closePopup();
   updateHTML();
+  document.getElementById("editTaskPopup").innerHTML = "";
 }
 
 function loadTaskForEditing(timestamp) {
