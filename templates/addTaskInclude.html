@@ -135,7 +135,7 @@
               ;
               id="addSubtask"
             />
-            <div class="flex-start editSubtasksContainer d-none" id="editSubtasksContainer">
+            <div class="flex-start editSubtaskButtons d-none" id="editSubtaskButtons">
               <img src="../img/closeSubtasks.svg" class="button" alt="remove subtask" onclick="closeAddSubtask()" />
               <div class="separatorSubtasks"></div>
               <img src="../img/checkDarkIcon.svg" onclick="addNewSubtask()" class="button" alt="confirm subtask" />
@@ -145,15 +145,50 @@
             <ul id="subtaskList" class="subtaskList">
               <!-- <li>
                 <div>
-                  <span contenteditable="false">Testhallo</span>
+                  <span>Testhallo</span>
                   <div class="flex-center" id="editSubtaski">
                     <img src="../img/editIcon.svg" class="button" alt="edit subtask" title="edit subtask" />
                     <div class="separatorSubtasks"></div>
                     <img src="../img/deleteIcon.svg" class="button" title="delete Subtask" alt="delete Subtask" />
                   </div>
+                  <input type="text" class="editSubtaskInput width100" value="Testhallo" id="editSubtaskInput" />
+                  <div class="flex-center editSubtaskButtonContainer" id="editSubtaski">
+                    <img src="../img/deleteIcon.svg" class="button" alt="edit subtask" title="edit subtask" />
+                    <div class="separatorSubtasks"></div>
+                    <img
+                      src="../img/checkDarkIcon.svg"
+                      class="button"
+                      onclick="confirmSubtaskEdit()"
+                      title="delete Subtask"
+                      alt="delete Subtask"
+                    />
+                  </div>
                 </div>
               </li>
-              <li>Testhallo2</li>
+              <li class="width100">
+                <div class="width100">
+                  <span class="">Testhallo</span>
+                  <div class="flex-center" id="editSubtaski">
+                    <img src="../img/editIcon.svg" class="button" alt="edit subtask" title="edit subtask" />
+                    <div class="separatorSubtasks"></div>
+                    <img src="../img/deleteIcon.svg" class="button" title="delete Subtask" alt="delete Subtask" />
+                  </div>
+                  <div id="editSubtaskDetailContainer" class="d-none">
+                    <input type="text" class="editSubtaskInput width100" value="Testhallo" id="editSubtaskInput" />
+                    <div class="flex-center editSubtaskButtonContainer" id="editSubtaski">
+                      <img src="../img/deleteIcon.svg" class="button" alt="edit subtask" title="edit subtask" />
+                      <div class="separatorSubtasks"></div>
+                      <img
+                        src="../img/checkDarkIcon.svg"
+                        class="button"
+                        onclick="confirmSubtaskEdit()"
+                        title="delete Subtask"
+                        alt="delete Subtask"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </li>
               <li>Testhallo3</li> -->
             </ul>
           </div>

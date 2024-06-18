@@ -82,11 +82,6 @@ button.darkColored {
   border: 1px solid var(--customBlue);
 }
 
-.addTask input {
-  min-height: 1.5rem;
-  padding: 0.8rem 1.5rem;
-}
-
 .inputDropdownContainer {
   position: relative;
   align-items: center;
@@ -189,7 +184,7 @@ button.darkColored {
   background-color: #eee;
 }
 
-.editSubtasksContainer {
+.editSubtaskButtons {
   position: absolute;
   right: 1rem;
   gap: 0.25rem;
@@ -198,6 +193,11 @@ button.darkColored {
 .separatorSubtasks {
   height: 1.5rem;
   border-left: 1px solid #d1d1d1;
+}
+
+.subtaskList {
+  max-height: 7rem;
+  overflow: auto;
 }
 
 .subtaskList > li {
@@ -211,6 +211,20 @@ button.darkColored {
     justify-content: space-between;
     gap: 0.25rem;
   }
+}
+
+.editSubtaskInput {
+  position: absolute;
+  left: 0;
+  padding: 0.25rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid var(--customBlue);
+}
+
+.editSubtaskButtonContainer {
+  position: absolute;
+  right: 0.5rem;
 }
 
 .addTaskPopupContainer {
@@ -265,7 +279,7 @@ button.darkColored {
     padding-bottom: 3rem;
     min-width: 300px;
   }
-  
+
   .lowerContainer {
     position: sticky;
     bottom: 80px;

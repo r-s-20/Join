@@ -305,7 +305,7 @@ function updateAssignedCheckboxes() {
 
 function openAddSubtask() {
   let addButton = document.getElementById("addSubtask");
-  let editContainer = document.getElementById("editSubtasksContainer");
+  let editContainer = document.getElementById("editSubtaskButtons");
   let input = document.getElementById("inputSubtasks");
   addButton.classList.add("d-none");
   editContainer.classList.remove("d-none");
@@ -314,7 +314,7 @@ function openAddSubtask() {
 
 function closeAddSubtask() {
   let addButton = document.getElementById("addSubtask");
-  let editContainer = document.getElementById("editSubtasksContainer");
+  let editContainer = document.getElementById("editSubtaskButtons");
   document.getElementById("inputSubtasks").value = "";
   addButton.classList.remove("d-none");
   editContainer.classList.add("d-none");
@@ -345,10 +345,24 @@ function insertSubtaskHTML(subtask, i) {
         <div>
             <span>${subtask.name}</span>
             <div class="flex-center d-none" id="editSubtaskContainer${i}">
-              <img src="../img/editIcon.svg" class="button" alt="edit subtask" title="edit subtask" />
+              <img src="../img/editIcon.svg" onclick="toggleEditSubtaskDetail(${i})" class="button" alt="edit subtask" title="edit subtask" />
               <div class="separatorSubtasks"></div>
               <img src="../img/deleteIcon.svg" onclick="removeSubtask(${i})" class="button" title="delete Subtask" alt="delete Subtask" />
             </div>
+            <div id="editSubtaskDetailContainer${i}" class="d-none">
+                    <input type="text" class="editSubtaskInput width100" onchange="confirmSubtaskEdit(${i})" value="${subtask.name}" id="editSubtaskInput${i}" />
+                    <div class="flex-center editSubtaskButtonContainer">
+                      <img src="../img/deleteIcon.svg" class="button" onclick="removeSubtask(${i})" title="delete Subtask" alt="delete Subtask" />
+                      <div class="separatorSubtasks"></div>
+                      <img
+                        src="../img/checkDarkIcon.svg"
+                        class="button"
+                        onclick="confirmSubtaskEdit(${i})"
+                        title="confirm edits for subtask"
+                        alt="confirm edits for subtask"
+                      />
+                    </div>
+                  </div>
         </div>
       </li>
     `;
@@ -357,6 +371,17 @@ function insertSubtaskHTML(subtask, i) {
 function toggleEditSubtask(i) {
   let editContainer = document.getElementById(`editSubtaskContainer${i}`);
   editContainer.classList.toggle("d-none");
+}
+
+function toggleEditSubtaskDetail(i) {
+  document.getElementById(`editSubtaskDetailContainer${i}`).classList.toggle("d-none");
+  document.getElementById(`editSubtaskInput${i}`).focus();
+}
+
+function confirmSubtaskEdit(i) {
+  result = getValueFromInput(`editSubtaskInput${i}`);
+  currentSubtasks[i].name = result;
+  renderSubtasks();
 }
 
 function removeSubtask(i) {
