@@ -41,15 +41,18 @@
           <div class="progressHeadline">
             <div>
               <span>To do</span>
-              <a href="#"><img src="./img/plus_button.svg" alt="" /></a> 
+              <img id="plusButtondark1"  src="./img/plus_button.svg" alt="" onmouseover="hoverPlusButton('1')"/>
+              <img id="plusButtonblue1" onclick="openAddTask()" class="d-none" src="./img/add_blue.svg" alt="" onmouseout="leavePlusButton('1')">
             </div>
             <div>
               <span>In progress</span>
-            <a href="#"><img src="./img/plus_button.svg" alt="" /></a>  
+            <img id="plusButtondark2"  src="./img/plus_button.svg" alt="" onmouseover="hoverPlusButton('2')"/>
+            <img id="plusButtonblue2" onclick="openAddTask()" class="d-none" src="./img/add_blue.svg" alt="" onmouseout="leavePlusButton('2')">
             </div>
             <div>
               <span>Await feedback</span>
-              <a href="#"><img src="./img/plus_button.svg" alt="" /></a>
+              <img id="plusButtondark3"  src="./img/plus_button.svg" alt="" onmouseover="hoverPlusButton('3')"/>
+              <img id="plusButtonblue3" onclick="openAddTask()" class="d-none" src="./img/add_blue.svg" alt="" onmouseout="leavePlusButton('3')">
             </div>
             <div>
               <span>Done</span>

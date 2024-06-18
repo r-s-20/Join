@@ -41,33 +41,29 @@ function updateStatusHTML(status, elementId, emptyMessage) {
   }
 
   if (container.innerHTML == "") {
-    container.innerHTML = /*html*/`<div class="noProgess">${emptyMessage}</div>`;
-    container.innerHTML += /*html*/`<div class="possbleToMove d-none" id="possbleToMove${status}"></div>`;
-    
+    container.innerHTML = /*html*/ `<div class="noProgess">${emptyMessage}</div>`;
+    container.innerHTML += /*html*/ `<div class="possbleToMove d-none" id="possbleToMove${status}"></div>`;
   } else {
-  container.innerHTML += /*html*/`<div class="possbleToMove d-none" id="possbleToMove${status}"></div>`;
-  
-}
-allStati.push(status);
+    container.innerHTML += /*html*/ `<div class="possbleToMove d-none" id="possbleToMove${status}"></div>`;
+  }
+  allStati.push(status);
 }
 
 function allowDrop(status, ev) {
   ev.preventDefault();
 
-  allStati.forEach(currentStatus => {
-    if (status == currentStatus){
-      document.getElementById(`possbleToMove${currentStatus}`).classList.remove('d-none')
+  allStati.forEach((currentStatus) => {
+    if (status == currentStatus) {
+      document.getElementById(`possbleToMove${currentStatus}`).classList.remove("d-none");
     } else {
-      document.getElementById(`possbleToMove${currentStatus}`).classList.add('d-none')
+      document.getElementById(`possbleToMove${currentStatus}`).classList.add("d-none");
     }
-  }
-);
+  });
 }
 
 function startDragging(timestamp, index) {
   currentTimestamp = timestamp;
-  document.getElementById(`card${index}`).classList.add('rotate3');
-
+  document.getElementById(`card${index}`).classList.add("rotate3");
 }
 
 function moveTo(status) {
@@ -150,16 +146,12 @@ function boardPopupHTML() {
  <div class="popupDeleteAndEdit">
   <div onmouseover="hoverDelete()" onmouseout="leaveDelete()">
     <img id="deleteBlack" src="../img/delete_black.svg" alt="">
-    <img id="deleteBlue" src="../img/delete_blue.svg" alt="" class="d-none" onclick="deleteTask(${
-      popupElement.timestamp
-    })">
+    <img id="deleteBlue" src="../img/delete_blue.svg" alt="" class="d-none" onclick="deleteTask(${popupElement.timestamp})">
   </div>
 <div class="line"></div>
   <div onmouseover="hoverEdit()" onmouseout="leaveEdit()">
     <img id="editBlack" src="../img/edit_black.svg" alt="">
-    <img id="editBlue" src="../img/edit_blue.svg" alt="" class="d-none" onclick="editPopupTask(${
-      popupElement.timestamp
-    })">
+    <img id="editBlue" src="../img/edit_blue.svg" alt="" class="d-none" onclick="editPopupTask(${popupElement.timestamp})">
   </div>
  </div>
 `;
@@ -227,6 +219,9 @@ function closePopup() {
 }
 
 function closeAddTask() {
+  let addTaskButton = document.getElementById('addTaskButton')
+  addTaskButton.style.backgroundColor = "rgb(42,54,71)";
+  addTaskButton.classList.add('mainDarkBlue');
   let popupAddTask = document.getElementById("popupAddTask");
   popupAddTask.classList.remove("showAddTaskPopup");
   popupAddTask.classList.add("hideAddTaskPopup");
@@ -235,7 +230,7 @@ function closeAddTask() {
     popupAddTask.classList.add("d-none");
     document.getElementById("backgroundPopup").classList.add("d-none");
     document.getElementById("popup").classList.remove("d-none");
-  }, 125); 
+  }, 125);
 }
 
 function popupPersons(popupElement) {
@@ -250,8 +245,6 @@ function popupPersons(popupElement) {
     </div>
     `;
     document.getElementById(`initalsCircleColorPopup${i}`).style.backgroundColor = assigned.badgecolor;
-
-
   }
 }
 
@@ -281,6 +274,23 @@ function leaveEdit() {
   }, 50);
 }
 
+function hoverPlusButton(number){
+  clearTimeout(deleteHoverTimeout);
+  document.getElementById(`plusButtondark${number}`).classList.add("d-none");
+  document.getElementById(`plusButtonblue${number}`).classList.remove("d-none");
+}
+
+
+function leavePlusButton(number){
+  deleteHoverTimeout = setTimeout(() => {
+    document.getElementById(`plusButtondark${number}`).classList.remove("d-none");
+    document.getElementById(`plusButtonblue${number}`).classList.add("d-none");
+  }, 50);
+}
+
+
+
+
 function subtaskProgress(timestamp, index) {
   findPopupElement(timestamp);
   if (popupElement.subtasks.subtaskList.length != 0) {
@@ -299,7 +309,7 @@ function deleteTask(timestamp) {
     tasks.splice(index, 1);
   }
   updateHTML();
-  saveTasks()
+  saveTasks();
 }
 
 async function editPopupTask(timestamp) {
@@ -313,10 +323,12 @@ async function editPopupTask(timestamp) {
 }
 
 function openAddTask() {
+  let addTaskButton = document.getElementById('addTaskButton')
+  addTaskButton.classList.remove('mainDarkBlue');
+  addTaskButton.style.backgroundColor = "rgb(41,171,226)";
+  addTaskButton.style.color = "white";
   document.getElementById("backgroundPopup").classList.remove("d-none");
-
   document.getElementById("popup").classList.add("d-none");
-
   let popupAddTask = document.getElementById("popupAddTask");
   popupAddTask.classList.remove("d-none");
   popupAddTask.classList.remove("hideAddTaskPopup");
@@ -333,15 +345,13 @@ function searchAndDisplay() {
   loadTasks();
   let searchTerm = document.getElementById("searchInput").value.toLowerCase();
   let matchingTasks = [];
-  tasks.forEach(task => {
-      if(!searchTerm){
-        matchingTasks.push(task);
-      } else {
-
-
-    if (task.title.toLowerCase().includes(searchTerm) || task.description.toLowerCase().includes(searchTerm)) {
+  tasks.forEach((task) => {
+    if (!searchTerm) {
       matchingTasks.push(task);
-    }
+    } else {
+      if (task.title.toLowerCase().includes(searchTerm) || task.description.toLowerCase().includes(searchTerm)) {
+        matchingTasks.push(task);
+      }
     }
   });
   console.log("Ergebnisse Match:", matchingTasks);
@@ -349,5 +359,4 @@ function searchAndDisplay() {
   console.log("Ergebnisse Tasks:", tasks);
 
   updateHTML();
-
 }
