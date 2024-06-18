@@ -668,6 +668,21 @@ h1 {
   }
 }
 
+@media (max-width: 555px){
+  .popup{
+    scale: 0.8;
+    transform: translate(60%, -50%);
+  }
+}
+
+@media (max-width: 460px){
+  .popup{
+    scale: 0.6;
+    transform: translate(80%, -50%);
+  }
+}
+
+
 @media (max-width: 430px){
 
   .headlineAndButton{
@@ -680,5 +695,17 @@ h1 {
 
   .progressHeadline{
     width: 252px;
+  }
+
+  .popup{
+    transform: translate(82%, -50%);
+  }
+}
+
+@media (max-width: 340px){
+
+  .popup{
+    scale: 0.55;
+    transform: translate(90%, -50%);
   }
 }
