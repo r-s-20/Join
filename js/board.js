@@ -345,23 +345,21 @@ function openAddTask() {
   };
 }
 
-function searchAndDisplay() {
-  loadTasks();
+document.addEventListener('DOMContentLoaded', function() {
+  checkScrollbar();
+});
 
-  let searchTerm = document.getElementById("searchInput").value.toLowerCase();
-  let matchingTasks = [];
-  tasks.forEach((task) => {
-    if (!searchTerm) {
-      matchingTasks.push(task);
-    } else {
-      if (task.title.toLowerCase().includes(searchTerm) || task.description.toLowerCase().includes(searchTerm)) {
-        matchingTasks.push(task);
-      }
-    }
-  });
-  console.log("Ergebnisse Match:", matchingTasks);
-  tasks = matchingTasks;
-  console.log("Ergebnisse Tasks:", tasks);
+window.addEventListener('resize', function() {
+  checkScrollbar();
+});
 
-  updateHTML();
+function checkScrollbar() {
+  const container = document.querySelector('.singleBoardProgress');
+  const hasHorizontalScrollbar = container.scrollWidth > container.clientWidth;
+
+  if (hasHorizontalScrollbar) {
+    container.style.overflowx = 'scroll';
+  } else {
+    container.style.overflowx = 'hidden';
+  }
 }
