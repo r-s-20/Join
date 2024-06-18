@@ -62,11 +62,10 @@ h1 {
 }
 
 .progressHeadline {
-  width: 1208px;
-  margin-left: 64px;
-  margin-right: 64px;
-  gap: 24px;
+  max-width: 252px;
+  margin-bottom: 10px;
   display: flex;
+  justify-content: space-between;
 }
 
 .progressHeadline div {
@@ -86,12 +85,12 @@ h1 {
   height: 24px;
 }
 
-.progressHeadline img:hover{
+.progressHeadline img:hover {
   cursor: pointer;
 }
 
 .boardProgress {
-  width: 1208px;
+  max-width: 1208px;
   display: flex;
   margin-left: 64px;
   margin-right: 64px;
@@ -119,7 +118,7 @@ h1 {
   gap: 10px;
 }
 
-.possbleToMove{
+.possbleToMove {
   width: 252px;
   height: 244px;
   color: #a8a8a8;
@@ -128,8 +127,6 @@ h1 {
   gap: 10px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
 }
-
-
 
 .card {
   background-color: white;
@@ -312,7 +309,6 @@ h1 {
   display: flex;
 }
 
-
 .popupPriority {
   width: 445px;
   height: 32px;
@@ -322,7 +318,7 @@ h1 {
   text-transform: capitalize;
 }
 
-.popupPriority span{
+.popupPriority span {
   margin-right: 39px;
 }
 
@@ -330,14 +326,13 @@ h1 {
   width: 445px;
   max-height: 208px;
   gap: 8px;
-
 }
 
 .popupAssigned div:first-child {
   height: 24px;
 }
 
-.PopupInitialsandContacts{
+.PopupInitialsandContacts {
   display: flex;
   align-items: center;
   gap: 22px;
@@ -345,11 +340,10 @@ h1 {
   margin-left: 20px;
 }
 
-.PopupInitialsandContacts span:first-child{
+.PopupInitialsandContacts span:first-child {
   height: 42px;
   width: 42px;
   font-size: 14px;
-
 }
 
 .popupPerson {
@@ -391,7 +385,7 @@ h1 {
   margin-left: 20px;
 }
 
-.popupSingleSubtask div:hover{
+.popupSingleSubtask div:hover {
   background-color: rgb(224, 221, 221);
   border-radius: 10px;
   width: fit-content;
@@ -498,8 +492,8 @@ h1 {
   padding-left: 74px;
   padding-right: 40px;
   transform: translateY(-50%);
-  transform: translate(-50%, -50%) translateX(100%); 
-  transition: all 0.125s ease; 
+  transform: translate(-50%, -50%) translateX(100%);
+  transition: all 0.125s ease;
 }
 
 #popupAddTask.hideAddTaskPopup {
@@ -507,7 +501,7 @@ h1 {
 }
 
 #popupAddTask.showAddTaskPopup {
-    transform: translate(-50%, -50%) translateX(0);
+  transform: translate(-50%, -50%) translateX(0);
 }
 
 .addTask2 {
@@ -550,8 +544,141 @@ h1 {
   }
 }
 
-.rotate3{
+.rotate3 {
   rotate: 3deg;
 }
 
+.outerContent {
+  padding-left: 0 !important;
+}
 
+.headlineAndButton img {
+  display: none;
+}
+
+@media (max-width: 1455px) {
+  .outerContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .inputFieldAndButton {
+    margin-left: 200px;
+  }
+
+  .boardTop {
+    margin-right: 0;
+  }
+
+  .progressHeadline {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  .boardProgress {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+}
+
+@media (max-width: 1340px) {
+  .headlineAndButton {
+    width: 396px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .headlineAndButton img {
+    display: inline;
+  }
+
+  h1 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+
+  .outerContent {
+    padding: 0 !important;
+  }
+
+  .boardTop {
+    max-width: 396px;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+    margin-top: 0;
+    margin-left: 16px;
+  }
+
+  .boardForm {
+    width: 396px;
+  }
+
+  .inputFieldAndButton {
+    margin-left: 0;
+  }
+
+  .addTaskButton {
+    display: none;
+  }
+
+  .boardProgress {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+    max-width: 100%;
+  }
+
+  .progressHeadline {
+    width: 396px;
+    max-width: 396px;
+  }
+
+  .totalSingleBoardProgress {
+    max-height: 292px;
+    max-width: 100%;
+  }
+
+  .singleBoardProgress {
+    height: fit-content;
+    min-height: 70px;
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow-y: hidden;
+  }
+
+  .singleBoardProgress div:first-child {
+    margin-left: 0;
+  }
+
+  .card {
+    max-height: 244px;
+    margin-left: 16px;
+  }
+
+  .noProgess {
+    width: 396px;
+  }
+}
+
+@media (max-width: 430px){
+
+  .headlineAndButton{
+    width: 252px;
+  }
+
+  .boardForm{
+    width: 252px;
+  }
+
+  .progressHeadline{
+    width: 252px;
+  }
+}

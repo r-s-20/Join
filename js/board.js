@@ -12,6 +12,7 @@ let j = 0;
 let deleteHoverTimeout, editHoverTimeout;
 let completedSubtask;
 let allStati = [];
+let editPopup = false;
 
 loadTasks();
 
@@ -208,6 +209,9 @@ function subtaskOpen(i, timestamp) {
 }
 
 function closePopup() {
+  if(editPopup){
+    document.getElementById("editTaskPopup").innerHTML = "";
+    editPopup = false;}
   let popup = document.getElementById("popup");
   popup.classList.remove("show");
   popup.classList.add("hide");
@@ -219,7 +223,7 @@ function closePopup() {
 }
 
 function closeAddTask() {
-  document.getElementById("editTaskPopup").innerHTML = "";
+
   let addTaskButton = document.getElementById("addTaskButton");
   addTaskButton.style.backgroundColor = "rgb(42,54,71)";
   addTaskButton.classList.add("mainDarkBlue");
@@ -311,6 +315,7 @@ function deleteTask(timestamp) {
 
 async function editPopupTask(timestamp) {
   let popupEdit = document.getElementById("popup");
+  editPopup = true;
   popupEdit.innerHTML = "";
   popupEdit.innerHTML = /*html*/ `
     <div w3-include-html="./templates/addTaskInclude.html" class="editPopupContainer" id="editTaskPopup"></div>
@@ -340,6 +345,7 @@ function openAddTask() {
 
 function searchAndDisplay() {
   loadTasks();
+
   let searchTerm = document.getElementById("searchInput").value.toLowerCase();
   let matchingTasks = [];
   tasks.forEach((task) => {
