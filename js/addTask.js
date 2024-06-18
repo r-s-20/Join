@@ -1,5 +1,6 @@
 let currentAssignedList = [];
 let currentSubtasks = [];
+let contactsSelected = [];
 
 async function init() {
   await includeHTML();
@@ -22,7 +23,7 @@ async function addNewTask() {
     currentSubtasks = [];
     await showConfirmationMessage();
     resetFormInputs();
-    window.location.href="./board.html";
+    window.location.href = "./board.html";
   }
 }
 
@@ -153,10 +154,11 @@ function toggleDropdownMenu(menuId) {
   let inputField = document.getElementById(menuId);
   let dropdown = document.getElementById(menuId).nextElementSibling;
   toggleCurtain(menuId);
-  renderDropdown(categories, "dropdownCategories");
-  renderDropdown(contacts, "dropdownAssigned");
-  // updateAssignedCheckboxes();
+  renderCategoriesDropdown("dropdownCategories");
+  renderAssignedDropdown("dropdownAssigned");
   dropdown.classList.toggle("d-none");
+  document.getElementById("inputAssigned").value = "Select contacts to assign";
+  contactsSelected = [];
   adjustZIndex(inputField);
   toggleArrowIcons(menuId);
 }
@@ -194,23 +196,15 @@ function adjustZIndex(inputField) {
   }
 }
 
-/** renders dropdown menus for either category or assigned contacts in add task form
- * @param {json-array} array - categories or contacts array
+/** renders dropdown menu for categories in add task form
  * @param {string} containerId - ID of the div into which the dropdown content should be rendered
  */
-function renderDropdown(array, containerId) {
+function renderCategoriesDropdown(containerId) {
   let container = document.getElementById(containerId);
   container.innerHTML = "";
-  for (let i = 0; i < array.length; i++) {
-    const element = array[i];
-    if (array == categories) {
-      container.innerHTML += insertCategoryHTML(element);
-    } else if (array == contacts) {
-      container.innerHTML += insertAssignedContactsHTML(element, i);
-      if (currentAssignedList.filter((assigned) => assigned.name == element.name).length > 0) {
-        toggleCheckButtons(i);
-      }
-    }
+  for (let i = 0; i < categories.length; i++) {
+    const category = categories[i];
+    container.innerHTML += insertCategoryHTML(category);
   }
 }
 
@@ -218,6 +212,31 @@ function insertCategoryHTML(element) {
   return `
         <div class="dropdownCategoryElement dropdownElement" onclick="setCategory('${element.name}')">${element.name}</div>
       `;
+}
+
+/** Writes provided category into input field of the dropdown
+ * and closes the category dropdown menu
+ * @param {string} category - name of a category
+ */
+function setCategory(category) {
+  let container = document.getElementById("inputCategory");
+  container.value = category;
+  toggleDropdownMenu("inputCategoryContainer");
+}
+
+/** renders dropdown menu for assigned contacts in add task form
+ * @param {string} containerId - ID of the div into which the dropdown content should be rendered
+ */
+function renderAssignedDropdown(containerId, contactArray = contacts) {
+  let container = document.getElementById(containerId);
+  container.innerHTML = "";
+  for (let i = 0; i < contactArray.length; i++) {
+    const element = contactArray[i];
+    container.innerHTML += insertAssignedContactsHTML(element, i);
+    if (currentAssignedList.filter((assigned) => assigned.name == element.name).length > 0) {
+      toggleCheckButtons(i);
+    }
+  }
 }
 
 function insertAssignedContactsHTML(element, i) {
@@ -233,14 +252,21 @@ function insertAssignedContactsHTML(element, i) {
       `;
 }
 
-/** Writes provided category into input field of the dropdown
- * and closes the category dropdown menu
- * @param {string} category - name of a category
- */
-function setCategory(category) {
-  let container = document.getElementById("inputCategory");
-  container.value = category;
-  toggleDropdownMenu("inputCategoryContainer");
+function startSearchAssigned() {
+  let input = document.getElementById("inputAssigned");
+  if (input.value == "Select contacts to assign") {
+    toggleDropdownMenu('inputAssignedContainer');
+    input.value = "";
+    input.focus();
+  }
+}
+
+function searchContacts() {
+  contactsSelected = [];
+  let input = getValueFromInput("inputAssigned");
+  input = input.toLowerCase();
+  contactsSelected = contacts.filter((e) => e.name.toLowerCase().includes(input));
+  renderAssignedDropdown("dropdownAssigned", contactsSelected);
 }
 
 /** Toggles between check- and check-done-icons for a row in assigned contacts dropdown-menu
@@ -274,7 +300,12 @@ function checkButtonEmpty(i) {
  * @param {integer} i - row index
  */
 function toggleAssignedContact(i) {
-  let contact = contacts[i];
+  let contact;
+  if (contactsSelected.length > 0) {
+    contact = contactsSelected[i];
+  } else {
+    contact = contacts[i];
+  }
   if (currentAssignedList.filter((assigned) => assigned.name == contact.name).length > 0) {
     let index = currentAssignedList.indexOf(contact);
     currentAssignedList.splice(index, 1);
@@ -296,20 +327,6 @@ function renderAssignedBadges() {
       container.innerHTML += `
         <div class="userBadge flex-center" style="background-color:${contact.badgecolor};">${contact.initials}</div>
       `;
-    }
-  }
-}
-
-/**sets checkbox-icon to "check-done" in rows of dropdown-menu for all contacts
- * that are already assigned
- */
-function updateAssignedCheckboxes() {
-  for (let i = 0; i < contacts.length; i++) {
-    const contact = contacts[i];
-    if (currentAssignedList.includes(contact)) {
-      checkButtonDone(i);
-    } else {
-      checkButtonEmpty(i);
     }
   }
 }
