@@ -69,6 +69,7 @@ a {
 .leftContainer {
   background-color: var(--mainDarkColor);
   width: 248px;
+  min-width: 248px;
 }
 
 .rightContainer {
@@ -81,4 +82,14 @@ a {
 
 .d-none {
   display: none !important;
+}
+
+@media (max-width: 800px) {
+  .leftContainer {
+    display: none;
+  }
+}
+
+@media (min-width: 800px) {
+
 }
