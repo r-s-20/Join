@@ -219,9 +219,10 @@ function closePopup() {
 }
 
 function closeAddTask() {
-  let addTaskButton = document.getElementById('addTaskButton')
+  document.getElementById("editTaskPopup").innerHTML = "";
+  let addTaskButton = document.getElementById("addTaskButton");
   addTaskButton.style.backgroundColor = "rgb(42,54,71)";
-  addTaskButton.classList.add('mainDarkBlue');
+  addTaskButton.classList.add("mainDarkBlue");
   let popupAddTask = document.getElementById("popupAddTask");
   popupAddTask.classList.remove("showAddTaskPopup");
   popupAddTask.classList.add("hideAddTaskPopup");
@@ -274,22 +275,18 @@ function leaveEdit() {
   }, 50);
 }
 
-function hoverPlusButton(number){
+function hoverPlusButton(number) {
   clearTimeout(deleteHoverTimeout);
   document.getElementById(`plusButtondark${number}`).classList.add("d-none");
   document.getElementById(`plusButtonblue${number}`).classList.remove("d-none");
 }
 
-
-function leavePlusButton(number){
+function leavePlusButton(number) {
   deleteHoverTimeout = setTimeout(() => {
     document.getElementById(`plusButtondark${number}`).classList.remove("d-none");
     document.getElementById(`plusButtonblue${number}`).classList.add("d-none");
   }, 50);
 }
-
-
-
 
 function subtaskProgress(timestamp, index) {
   findPopupElement(timestamp);
@@ -323,8 +320,8 @@ async function editPopupTask(timestamp) {
 }
 
 function openAddTask() {
-  let addTaskButton = document.getElementById('addTaskButton')
-  addTaskButton.classList.remove('mainDarkBlue');
+  let addTaskButton = document.getElementById("addTaskButton");
+  addTaskButton.classList.remove("mainDarkBlue");
   addTaskButton.style.backgroundColor = "rgb(41,171,226)";
   addTaskButton.style.color = "white";
   document.getElementById("backgroundPopup").classList.remove("d-none");
