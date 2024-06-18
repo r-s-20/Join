@@ -249,7 +249,7 @@ button.darkColored {
   .lowerContainer {
     margin-bottom: 1rem;
     margin-top: 2rem;
-    padding: 0 2rem;
+    padding: 1rem 2rem;
     position: sticky;
     bottom: 0;
     background-color: #f6f7f8;
@@ -261,11 +261,18 @@ button.darkColored {
 }
 
 @media (max-width: 800px) {
+  .rightColumn {
+    padding-bottom: 3rem;
+    min-width: 300px;
+  }
+  
   .lowerContainer {
     position: sticky;
     bottom: 80px;
     padding: 1rem 2rem;
-    
+  }
 
+  .inputElement {
+    min-width: 200px;
   }
 }
