@@ -12,6 +12,19 @@ async function includeHTML() {
   }
 }
 
+let users = [
+  {
+    name: "Anton Mayer",
+    email: "anton@gmail.com",
+    password: "123456",
+  },
+  {
+    name: "Eva Fischer",
+    email: "fischer@gmail.com",
+    password: "7890",
+  },
+]
+
 let colors = [
   "#FF7A00",
   "#FF5EB3",
@@ -35,35 +48,35 @@ let contacts = [
     email: "anton@gmail.com",
     initials: "AM",
     badgecolor: colors[0],
-    phone: 4911111111,
+    phone: 4911134311,
   },
   {
     name: "Anja Schulz",
     email: "schulz@gmail.com",
     initials: "AS",
     badgecolor: colors[1],
-    phone: 4911111111,
+    phone: 49123451111,
   },
   {
     name: "Eva Fischer",
     email: "fischer@gmail.com",
     initials: "EF",
     badgecolor: colors[2],
-    phone: 4911111111,
+    phone: 49111119999,
   },
   {
     name: "David Eisenberg",
     email: "eisenberg@gmail.com",
     initials: "DE",
     badgecolor: colors[3],
-    phone: 4911111111,
+    phone: 49555111111,
   },
   {
     name: "Benedikt Ziegler",
     email: "ziegler@gmail.com",
     initials: "BZ",
     badgecolor: colors[4],
-    phone: 4911111111,
+    phone: 4914441111111,
   },
 ];
 
