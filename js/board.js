@@ -345,21 +345,9 @@ function openAddTask() {
   };
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  checkScrollbar();
-});
+// function setContainerWidth() {
+//   let container = document.getElementById('totalSingleBoardProgress');
+//   container.style.width = window.innerWidth + 'px';
+// }
 
-window.addEventListener('resize', function() {
-  checkScrollbar();
-});
-
-function checkScrollbar() {
-  const container = document.querySelector('.singleBoardProgress');
-  const hasHorizontalScrollbar = container.scrollWidth > container.clientWidth;
-
-  if (hasHorizontalScrollbar) {
-    container.style.overflowx = 'scroll';
-  } else {
-    container.style.overflowx = 'hidden';
-  }
-}
+// window.onresize = setContainerWidth;
