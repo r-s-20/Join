@@ -96,6 +96,7 @@ function showConfirmationMessage() {
 function saveTasks() {
   let tasksAsText = JSON.stringify(tasks);
   localStorage.setItem("tasks", tasksAsText);
+  putData(data = { "tasks": tasksAsText});
 }
 
 function validateTask(task) {
