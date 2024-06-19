@@ -14,7 +14,7 @@ let completedSubtask;
 let allStati = [];
 let editPopup = false;
 let searchTask = tasks;
-
+loadTasks();
 
 function findPopupElement(timestamp) {
   popupElement = tasks.find((task) => task.timestamp === timestamp);
