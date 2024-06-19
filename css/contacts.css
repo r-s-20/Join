@@ -338,17 +338,16 @@
     left: 20%;
 }
 
-.backgroundPopup {
+.overlayBackgroundPopup {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    height: 100vh;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: none; 
+  }
+  
 
 /*Overlay edit contact Left Side*/
 
@@ -640,6 +639,18 @@ button {
     justify-content: center;
     align-items: center;
     background-color: rgba(255, 199, 0, 1);
+
+    h1 {
+    width: 120px;
+    height: 120px;
+    
+    border: 3px;
+    border-radius: 70px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
 }
 
 .overlayEditContactRightSideBadge h1 {

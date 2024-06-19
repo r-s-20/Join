@@ -19,9 +19,10 @@
           class="sidebar flex-col"
         ></div>
       </div>
-
+      
       <div class="rightContainer flex-col">
         <div w3-include-html="templates/header.html" class=""></div>
+        <div id="overlayBackground" class="overlayBackgroundPopup"></div>
         <div class="outerContent width100 greyBackground">
           <div class="contactsMain">
             <div class="contactListSide">
@@ -122,21 +123,21 @@
                 <!-- InputFields -->
                 <div class="addContactInputField">
                   <div class="addContactInputFieldName">
-                    <input type="text" placeholder="Name" id="addName" />
+                    <input type="text" placeholder="Name" id="addName" required />
                     <div class="addContactInputFieldNameImage">
                       <img src="img/person.png" alt="" />
                     </div>
                   </div>
 
                   <div class="addContactInputFieldName">
-                    <input type="text" placeholder="Email" id="addEmail" />
+                    <input type="email" placeholder="Email" id="addEmail"required />
                     <div class="addContactInputFieldNameImage">
                       <img src="img/mail.png" alt="" />
                     </div>
                   </div>
 
                   <div class="addContactInputFieldName">
-                    <input type="text" placeholder="Phone" id="addPhone" />
+                    <input type="tel" placeholder="Phone" id="addPhone" required/>
                     <div class="addContactInputFieldNameImage">
                       <img src="img/call.png" alt="" />
                     </div>
@@ -154,16 +155,13 @@
             </div>
           </div>
 
-          <div
-            class="contactsMainOverlayEditContact d-none"
-            id="showEditContactPopUp"
-          >
+          <div class="contactsMainOverlayEditContact d-none" id="showEditContactPopUp">
             <div class="overlayEditContactLeftSide">
               <img src="img/joinLogo_dark.png" alt="Logo Edit Contact" />
               <p>Edit contact</p>
               <div class="underline"></div>
             </div>
-
+          
             <div class="overlayEditContactRightSide">
               <div
                 class="editContactInputFieldClose button"
@@ -171,42 +169,41 @@
               >
                 <img src="img/Close.png" alt="" />
               </div>
-
-              <!-- <div class="overlayEditContactRightSideInputBadge"> -->
-
+          
               <div class="overlayEditContactRightSideInputFields">
                 <!-- Name Initial -->
-
                 <div class="overlayEditContactRightSideBadge">
-                  <h1>TW</h1>
+                  <h1 id="editInitials">TW</h1>
                 </div>
-
+          
                 <!-- InputFields -->
                 <div class="editContactInputField">
                   <div class="editContactInputFieldName">
-                    <input type="text" placeholder="Name" />
+                    <input type="text" placeholder="Name" id="editName" />
                     <div class="editContactInputFieldNameImage">
                       <img src="img/person.png" alt="" />
                     </div>
                   </div>
-
+          
                   <div class="editContactInputFieldName">
-                    <input type="email" placeholder="Email" />
+                    <input type="email" placeholder="Email" id="editEmail" required/>
                     <div class="editContactInputFieldNameImage">
                       <img src="img/mail.png" alt="" />
                     </div>
                   </div>
-
+          
                   <div class="editContactInputFieldName">
-                    <input type="number" placeholder="Phone" />
+                    <input type="tel" placeholder="Phone" id="editPhone" required />
                     <div class="editContactInputFieldNameImage">
                       <img src="img/call.png" alt="" />
                     </div>
                   </div>
-
+          
                   <div class="overlayEditContactRightButton">
-                    <button class="delete">Delete</button>
-                    <button class="save">
+                    <button class="delete" onclick="deleteContact(currentContactIndex)">
+                      Delete
+                    </button>
+                    <button class="save" id="saveEditButton">
                       Save <img src="img/check.png" alt="Save Button" />
                     </button>
                   </div>
@@ -214,6 +211,8 @@
               </div>
             </div>
           </div>
+          
+          
           <div class="footerContainer width100 flex-center">
             <div w3-include-html="templates/sidebar.html" class="width100 flex-center sidebarSummary"></div>
           </div>
