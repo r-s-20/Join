@@ -16,8 +16,8 @@ async function init() {
   });
 }
 
-async function addNewTask() {
-  let newTask = createNewTask("toDos");
+async function addNewTask(status) {
+  let newTask = createNewTask(status);
   if (validateTask(newTask)) {
     tasks.push(newTask);
     saveTasks();

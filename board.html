@@ -57,7 +57,7 @@
               <div class="progressHeadline">
                 <span>In progress</span>
                 <img id="plusButtondark2" src="./img/plus_button.svg" alt="" onmouseover="hoverPlusButton('2')" />
-                <img id="plusButtonblue2" onclick="openAddTask()" class="d-none" src="./img/add_blue.svg" alt="" onmouseout="leavePlusButton('2')" />
+                <img id="plusButtonblue2" onclick="openAddTask('inProgress')" class="d-none" src="./img/add_blue.svg" alt="" onmouseout="leavePlusButton('2')" />
               </div>
               <div class="singleBoardProgress" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop('inProgress', event)">
                 <div class="noProgess">No In Progress</div>
@@ -68,7 +68,7 @@
               <div class="progressHeadline">
                 <span>Await feedback</span>
                 <img id="plusButtondark3" src="./img/plus_button.svg" alt="" onmouseover="hoverPlusButton('3')" />
-                <img id="plusButtonblue3" onclick="openAddTask()" class="d-none" src="./img/add_blue.svg" alt="" onmouseout="leavePlusButton('3')" />
+                <img id="plusButtonblue3" onclick="openAddTask('awaitFeedback')" class="d-none" src="./img/add_blue.svg" alt="" onmouseout="leavePlusButton('3')" />
               </div>
               <div class="singleBoardProgress" id="awaitFeedback" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop('awaitFeedback', event)">
                 <div class="noProgess">No Await feedback</div>
@@ -93,7 +93,7 @@
           </div>
         </section>
         <div class="footerContainer width100 flex-center">
-          <div w3-include-html="templates/sidebar.html" class="width100 flex-center sidebarSummary"></div>
+          <div w3-include-html="templates/sidebar.html" class="width100 flex-center footerBoard"></div>
         </div>
       </div>
     </div>

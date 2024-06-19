@@ -77,9 +77,9 @@ function moveTo(status) {
 
 function generateTodoHTML(element, index) {
   return /*html*/ `
-    <div draggable='true' ondragstart='startDragging(${element.timestamp}, ${index})' class="card" id="card${index}" onclick="boardPopup(${
-    element.timestamp
-  })">
+    <div draggable='true' ondragstart='startDragging(${
+      element.timestamp
+    }, ${index})' class="card" id="card${index}" onclick="boardPopup(${element.timestamp})">
       <div class="cardCategory" id="cardCategory${index}">${element.category.name}</div>
       <div class="cardHeadline">${element.title}</div>
       <div class="cardDescription" id="cardDescription${index}"></div>
@@ -135,7 +135,9 @@ function boardPopupHTML() {
  <div class="popupHeadline">${popupElement.title}</div>
  <div class="popupDescription">${popupElement.description}</div>
  <div class="popupDate"><span>Due date:</span> ${popupElement.dueDate} </div>
- <div class="popupPriority"><span>Priority:</span> ${popupElement.prio} <img src="${prios[popupElement.prio]}" alt=""></div>
+ <div class="popupPriority"><span>Priority:</span> ${popupElement.prio} <img src="${
+    prios[popupElement.prio]
+  }" alt=""></div>
  <div class="popupAssigned">
    <div>Assigned To:</div>
    <div class="popupPerson" id="popupPerson">
@@ -148,12 +150,16 @@ function boardPopupHTML() {
  <div class="popupDeleteAndEdit">
   <div onmouseover="hoverDelete()" onmouseout="leaveDelete()">
     <img id="deleteBlack" src="../img/delete_black.svg" alt="">
-    <img id="deleteBlue" src="../img/delete_blue.svg" alt="" class="d-none" onclick="deleteTask(${popupElement.timestamp})">
+    <img id="deleteBlue" src="../img/delete_blue.svg" alt="" class="d-none" onclick="deleteTask(${
+      popupElement.timestamp
+    })">
   </div>
 <div class="line"></div>
   <div onmouseover="hoverEdit()" onmouseout="leaveEdit()">
     <img id="editBlack" src="../img/edit_black.svg" alt="">
-    <img id="editBlue" src="../img/edit_blue.svg" alt="" class="d-none" onclick="editPopupTask(${popupElement.timestamp})">
+    <img id="editBlue" src="../img/edit_blue.svg" alt="" class="d-none" onclick="editPopupTask(${
+      popupElement.timestamp
+    })">
   </div>
  </div>
 `;
@@ -327,7 +333,7 @@ async function editPopupTask(timestamp) {
   loadTaskForEditing(timestamp);
 }
 
-function openAddTask() {
+function openAddTask(status = "toDos") {
   let addTaskButton = document.getElementById("addTaskButton");
   addTaskButton.classList.remove("mainDarkBlue");
   addTaskButton.style.backgroundColor = "rgb(41,171,226)";
@@ -344,6 +350,8 @@ function openAddTask() {
   popupAddTask.onclick = function (event) {
     event.stopPropagation();
   };
+  setPrio("btn-medium");
+  document.getElementById("createTaskBtn").setAttribute("onclick", `addNewTask('${status}')`);
 }
 
 function truncateText(description, index) {
@@ -365,18 +373,15 @@ function truncateText(description, index) {
 }
 
 function searchAndDisplay() {
-
   let searchTerm = document.getElementById("searchInput").value.toLowerCase();
   let matchingTasks = [];
-  searchTask.forEach(task => {
-      if(!searchTerm){
-        matchingTasks.push(task);
-      } else {
-
-
-    if (task.title.toLowerCase().includes(searchTerm) || task.description.toLowerCase().includes(searchTerm)) {
+  searchTask.forEach((task) => {
+    if (!searchTerm) {
       matchingTasks.push(task);
-    }
+    } else {
+      if (task.title.toLowerCase().includes(searchTerm) || task.description.toLowerCase().includes(searchTerm)) {
+        matchingTasks.push(task);
+      }
     }
   });
   console.log("Ergebnisse Match:", matchingTasks);
@@ -384,5 +389,4 @@ function searchAndDisplay() {
   console.log("Ergebnisse Tasks:", tasks);
 
   updateHTML();
-
 }
