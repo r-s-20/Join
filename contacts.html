@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./css/contacts.css" />
   </head>
   <body onload="includeHTML(),render()" class="flex-col">
-    <div class="outerContainer flex-start width100">
+    <div class="outerContainer flex-start width100 ">
       <div class="leftContainer flex-col">
         <div
           w3-include-html="templates/sidebar.html"
@@ -191,14 +191,14 @@
                   </div>
 
                   <div class="editContactInputFieldName">
-                    <input type="text" placeholder="Email" />
+                    <input type="email" placeholder="Email" />
                     <div class="editContactInputFieldNameImage">
                       <img src="img/mail.png" alt="" />
                     </div>
                   </div>
 
                   <div class="editContactInputFieldName">
-                    <input type="text" placeholder="Phone" />
+                    <input type="number" placeholder="Phone" />
                     <div class="editContactInputFieldNameImage">
                       <img src="img/call.png" alt="" />
                     </div>
@@ -213,6 +213,9 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="footerContainer width100 flex-center">
+            <div w3-include-html="templates/sidebar.html" class="width100 flex-center sidebarSummary"></div>
           </div>
         </div>
       </div>

@@ -138,3 +138,9 @@ function addContact() {
   render();
   closeAddContactPopUp();
 }
+
+function deleteContact(index) {
+  contacts.splice(index, 1);
+  render();
+  document.getElementById("contactCardMain").classList.add("d-none");
+}
