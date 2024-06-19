@@ -187,3 +187,12 @@ function loadTasks() {
     tasks = JSON.parse(tasksAsString);
   }
 }
+
+async function loadTasksFromAPI() {
+  let tasksRaw = await loadData("joinTasks");
+  let tasksAsString = tasksRaw.tasks;
+  if (tasksAsString) {
+    tasks = JSON.parse(tasksAsString);
+  }
+  console.log("downloaded tasks", tasks);
+}

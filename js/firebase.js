@@ -9,7 +9,7 @@ async function deleteData(path = "userDB") {
     //   console.log(responseJson);
   }
   
-  async function putData(path = "", data = { "tasks": "cooking, washing" }) {
+  async function putData(path = "", data = {}) {
     let response = await fetch(BASE_URL + path + ".json", {
       method: "PUT",
       header: {
@@ -17,7 +17,13 @@ async function deleteData(path = "userDB") {
       },
       body: JSON.stringify(data),
     });
-    console.log(response);
+    return response;
   }
   
-  
+  async function loadData(path = "") {
+    let response = await fetch(BASE_URL + path + ".json");
+    let responseJson = await response.json();
+    return responseJson;
+    // tasksDownloaded = JSON.parse(responseJson.tasks);
+    // console.log(tasksDownloaded);
+  }
