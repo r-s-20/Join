@@ -1,3 +1,5 @@
+const BASE_URL = "https://rs-testproject01-default-rtdb.europe-west1.firebasedatabase.app/";
+
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {
@@ -186,6 +188,35 @@ function loadTasks() {
   if (tasksAsString) {
     tasks = JSON.parse(tasksAsString);
   }
+}
+
+async function deleteData(path = "userDB") {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "DELETE",
+  });
+  console.log("post", response);
+  //   let responseJson = await response.json();
+  //   console.log(responseJson);
+}
+
+async function putData(path = "", data = {}) {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "PUT",
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return response;
+}
+
+async function loadData(path = "") {
+  let response = await fetch(BASE_URL + path + ".json");
+  let responseJson = await response.json();
+  console.log(responseJson);
+  return responseJson;
+  // tasksDownloaded = JSON.parse(responseJson.tasks);
+  // console.log(tasksDownloaded);
 }
 
 async function loadTasksFromAPI() {
