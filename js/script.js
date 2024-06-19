@@ -190,14 +190,14 @@ function loadTasks() {
   }
 }
 
-async function deleteData(path = "userDB") {
-  let response = await fetch(BASE_URL + path + ".json", {
-    method: "DELETE",
-  });
-  console.log("post", response);
+// async function deleteData(path = "") {
+//   let response = await fetch(BASE_URL + path + ".json", {
+//     method: "DELETE",
+//   });
+//   console.log("post", response);
   //   let responseJson = await response.json();
   //   console.log(responseJson);
-}
+// }
 
 async function putData(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {

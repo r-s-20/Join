@@ -46,7 +46,7 @@
   font-weight: bold;
 }
 
-nav a {
+nav a, .legalContainer a {
   width: 100%;
   display: flex;
   gap: 0.5rem;

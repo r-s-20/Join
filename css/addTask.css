@@ -7,8 +7,9 @@
   /* font-size: 1.5rem; */
 }
 
-.addTaskPopupBtn,
-.addTask button {
+/* .addTaskPopupBtn,
+.addTask button { */
+.addTaskPopupBtn {
   border: none;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -227,7 +228,6 @@ button.darkColored {
   right: 0.5rem;
 }
 
-
 .addTaskPopupContainer {
   position: fixed;
   top: 0;
@@ -251,7 +251,7 @@ button.darkColored {
 .popupMessage {
   border-radius: 20px;
   gap: 2rem;
-  box-shadow: 0 0 4px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
   padding: 1rem 2rem;
 }
 
@@ -293,18 +293,51 @@ button.darkColored {
 }
 
 @media (max-width: 800px) {
-  .rightColumn {
-    padding-bottom: 3rem;
-    min-width: 300px;
+  .innerContent {
+    min-width: 250px;
   }
 
+  .leftColumn,
+  .rightColumn {
+    width: 100%;
+    padding: 0 0.5rem;
+    min-width: 100px;
+  }
+
+  .rightColumn {
+    padding-bottom: 3rem;
+  }
+
+  .inputElement {
+    width: 98%;
+  }
+
+  .prioContainer {
+    gap: 0.25rem;
+  }
+
+  .prioButton {
+    padding: 1rem 0.5rem;
+  }
   .lowerContainer {
     position: sticky;
     bottom: 80px;
     padding: 1rem 2rem;
   }
 
-  .inputElement {
-    min-width: 200px;
+  #clearTaskBtn {
+    display: none;
+  }
+}
+
+@media (max-width: 370px) {
+  .prioButton {
+    width: 29%;
+    min-width: unset;
+    height: 3rem;
+  }
+
+  .prioButton span {
+    display: none;
   }
 }

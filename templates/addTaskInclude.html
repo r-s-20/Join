@@ -18,7 +18,8 @@
               type="text"
               id="inputAssigned"
               onclick="startSearchAssigned()"
-              onkeyup="searchContacts()";
+              onkeyup="searchContacts()"
+              ;
               class="formInput width100"
               value="Select contacts to assign"
               placeholder="Select contacts to assign"
@@ -70,18 +71,32 @@
         <div class="inputElement flex-col">
           <label>Prio</label>
           <div class="prioContainer flex-center width100">
-            <button onclick="setPrio('btn-high')" class="button addTaskPopupBtn prioButton flex-center" id="btn-high">
-              Urgent<img src="../img/prio-high.png" alt="" />
+            <button
+              onclick="setPrio('btn-high')"
+              title="urgent"
+              class="button addTaskPopupBtn prioButton flex-center"
+              id="btn-high"
+            >
+              <span>Urgent</span>
+              <img src="../img/prio-high.png" alt="" />
             </button>
             <button
               onclick="setPrio('btn-medium')"
+              title="medium"
               class="button addTaskPopupBtn prioButton flex-center prioSelected"
               id="btn-medium"
             >
-              Medium<img src="../img/prio-mediumWhite.png" alt="" />
+              <span>Medium</span>
+              <img src="../img/prio-mediumWhite.png" alt="" />
             </button>
-            <button onclick="setPrio('btn-low')" class="button addTaskPopupBtn prioButton flex-center" id="btn-low">
-              Low<img src="../img/prio-low.png" alt="" />
+            <button
+              onclick="setPrio('btn-low')"
+              title="low"
+              class="button addTaskPopupBtn prioButton flex-center"
+              id="btn-low"
+            >
+              <span>Low</span>
+              <img src="../img/prio-low.png" alt="" />
             </button>
           </div>
         </div>

@@ -4,9 +4,9 @@ let contactsSelected = [];
 
 async function init() {
   await includeHTML();
-  // loadTasks();
-  console.log("loading from API");
-  loadTasksFromAPI();
+  loadTasks();
+  // console.log("loading from API");
+  // loadTasksFromAPI();
   document.getElementById("addTaskForm").addEventListener("onkeypress", (e) => {
     let key = e.charCode || e.keyCode || 0;
     if (key == 13) {
