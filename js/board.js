@@ -13,8 +13,8 @@ let deleteHoverTimeout, editHoverTimeout;
 let completedSubtask;
 let allStati = [];
 let editPopup = false;
+let searchTask = tasks;
 
-loadTasks();
 
 function findPopupElement(timestamp) {
   popupElement = tasks.find((task) => task.timestamp === timestamp);
@@ -35,6 +35,7 @@ function updateStatusHTML(status, elementId, emptyMessage) {
   for (let i = 0; i < filteredTasks.length; i++) {
     const element = filteredTasks[i];
     container.innerHTML += generateTodoHTML(element, globalIndex);
+    truncateText(element.description, globalIndex);
     contactNames(element, globalIndex);
     subtaskProgress(element.timestamp, globalIndex);
     document.getElementById(`cardCategory${globalIndex}`).style.backgroundColor = element.category.color;
@@ -81,7 +82,7 @@ function generateTodoHTML(element, index) {
   })">
       <div class="cardCategory" id="cardCategory${index}">${element.category.name}</div>
       <div class="cardHeadline">${element.title}</div>
-      <div class="cardDescription">${element.description}</div>
+      <div class="cardDescription" id="cardDescription${index}"></div>
       <div class="cardSubtasks" id="cardSubtasks${index}">
         <div class="subtasksBar">
           <div class="subtasksBarProgress" id="subtasksBarProgress${index}"></div>
@@ -209,9 +210,10 @@ function subtaskOpen(i, timestamp) {
 }
 
 function closePopup() {
-  if(editPopup){
+  if (editPopup) {
     document.getElementById("editTaskPopup").innerHTML = "";
-    editPopup = false;}
+    editPopup = false;
+  }
   currentAssignedList = [];
   currentSubtasks = [];
   let popup = document.getElementById("popup");
@@ -225,7 +227,6 @@ function closePopup() {
 }
 
 function closeAddTask() {
-
   let addTaskButton = document.getElementById("addTaskButton");
   addTaskButton.style.backgroundColor = "rgb(42,54,71)";
   addTaskButton.classList.add("mainDarkBlue");
@@ -345,9 +346,43 @@ function openAddTask() {
   };
 }
 
-// function setContainerWidth() {
-//   let container = document.getElementById('totalSingleBoardProgress');
-//   container.style.width = window.innerWidth + 'px';
-// }
+function truncateText(description, index) {
+  let maxLength = 48;
+  let cardDescription = document.getElementById(`cardDescription${index}`);
+  if (description.length <= maxLength) {
+    cardDescription.innerHTML = description;
+  } else {
+    description = description.slice(0, maxLength);
+    let lastSpaceIndex = description.lastIndexOf(" ");
+    if (lastSpaceIndex === -1) {
+      description = description + "...";
+      cardDescription.innerHTML = description;
+    } else {
+      description = description.slice(0, lastSpaceIndex) + "...";
+      cardDescription.innerHTML = description;
+    }
+  }
+}
 
-// window.onresize = setContainerWidth;
+function searchAndDisplay() {
+
+  let searchTerm = document.getElementById("searchInput").value.toLowerCase();
+  let matchingTasks = [];
+  searchTask.forEach(task => {
+      if(!searchTerm){
+        matchingTasks.push(task);
+      } else {
+
+
+    if (task.title.toLowerCase().includes(searchTerm) || task.description.toLowerCase().includes(searchTerm)) {
+      matchingTasks.push(task);
+    }
+    }
+  });
+  console.log("Ergebnisse Match:", matchingTasks);
+  tasks = matchingTasks;
+  console.log("Ergebnisse Tasks:", tasks);
+
+  updateHTML();
+
+}
