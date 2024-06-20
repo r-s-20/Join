@@ -7,17 +7,21 @@
     <link rel="shortcut icon" href="./img/faviconLogo.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/index.css" />
+    <script src="./js/script.js"></script>
+ 
+  
   </head>
   <body class="flex-start greyBackground">
     <img src="./img/joinLogo.svg" alt="join logo" class="loginScreenLogo" />
     <div class="loginOuterContainer flex-col width100">
       <div class="signUpContainer flex-center width100">
         <span>Not a Join user?</span>
-        <button class="button mainDarkBlue">Sign up</button>
+        <button onclick="loginToSignUp()" class="button mainDarkBlue">Sign up</button>
       </div>
-      <div class="inputFields flex-col">
+      <div class="inputFields flex-col" id="logIn">
         <h2>Log in</h2>
         <div class="separator"></div>
+      
         <div class="inputMailContainer flex-start width100">
           <input type="email" name="" id="inputUsermail" placeholder="Email" />
           <img src="./img/mailIcon.svg" class="inputIcon" alt="" />
@@ -39,10 +43,48 @@
           </a>
         </div>
       </div>
+
+      <section class="signUp flex-col  d-none" id="signUp">  
+        <h2>Sign Up</h2>
+        <div class="separator"></div>
+        <form >
+        <div class="signUpInputs">
+          <div class="signUpName">
+            <input type="text" placeholder="Name" id="signUpName">
+            <img src="./img/person.png" alt="">
+          </div>
+          <div class="signUpEmail">
+            <input type="email" placeholder="Email" id="signUpEmail">
+            <img src="./img/mailIcon.svg" class="" alt="" />
+          </div>
+          <div class="signUpPassword">
+            <input type="password" name="" placeholder="Password" id="signUpPassword">
+            <img src="./img/lockIcon.svg" class="" alt="" />
+          </div>
+          <div class="signUpConfirmPassword">
+            <input type="password" name="" placeholder="Confirm Password" id="signUpConfirmPassword">
+            <img src="./img/lockIcon.svg" class="" alt="" />
+          </div>
+        </div>
+      </form>
+
+        <div class="signUpPrivacyPolicy">
+          <img src="./img/check_button.svg" alt="" onclick=""><img src="./img/check_button_done.svg" class="d-none" alt="">
+          <span>I accept the</span>
+          <span>Privacy policy</span>
+        </div>
+        <div class="singUpButtonContainer">
+          <button onclick="signUp()" id="signUpButton" disabled>Sign Up</button>
+        </div>
+      </section>
+      <div class="backgroundPopup d-none" id="backgroundPopup">
+        
+        
       <div class="loginLegalContainer flex-center">
-        <a class="button">Privacy policy</a>
-        <a class="button">Legal notice</a>
+        <a href="privacy.html" class="button">Privacy policy</a>
+        <a href="legal.html" class="button">Legal notice</a>
       </div>
     </div>
   </body>
+  <script src="./js/login.js" refer></script>
 </html>
