@@ -56,7 +56,7 @@ button.lightColored:hover {
 }
 
 .leftColumn {
-  gap: 2rem;
+  gap: 1.5rem;
   width: 40%;
 }
 
@@ -65,6 +65,7 @@ button.lightColored:hover {
   min-width: 368px;
   padding-right: 2rem;
   flex: 1;
+  gap: 1rem;
 }
 
 .lowerContainer {
@@ -83,7 +84,7 @@ button.lightColored:hover {
   gap: 0.5rem;
   width: 100%;
   min-width: 260px;
-  margin-top: 1rem;
+  margin: 0.5rem 0;
   position: relative;
 }
 
@@ -279,6 +280,13 @@ button.lightColored:hover {
   border: 1px solid var(--errorColor);
 }
 
+.errorMessage {
+  font-size: 12px;
+  color: var(--errorColor, "red");
+  position: absolute;
+  top: 5rem;
+}
+
 @media (max-width: 1000px) {
   .outerContent {
     padding: 0;
@@ -326,6 +334,7 @@ button.lightColored:hover {
     width: 100%;
     padding: 0 0.5rem;
     min-width: 100px;
+    gap: 1.5rem;
   }
 
   .rightColumn {

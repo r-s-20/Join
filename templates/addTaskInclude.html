@@ -1,6 +1,7 @@
 <h1>Add Task</h1>
 <div class="innerContent flex-col width100">
-  <form action="" onsubmit="event.preventDefault()" class="width100" id="addTaskForm">
+  <!-- <form action="" onsubmit="event.preventDefault()" class="width100" id="addTaskForm"> -->
+  <div class="width100" id="addTaskForm">
     <div class="flex-start formContent width100">
       <div class="leftColumn flex-col">
         <div class="inputElement flex-col">
@@ -213,17 +214,24 @@
     <div class="lowerContainer flex-center width100">
       <span><span class="redFont">*</span> this field is required</span>
       <div class="buttonContainer flex-center" id="taskButtonContainer">
-        <button class="button addTaskPopupBtn flex-center lightColored" onmouseover="toggleIconColor()" onmouseout="toggleIconColor()" id="clearTaskBtn" onclick="resetFormInputs()">
+        <button
+          class="button addTaskPopupBtn flex-center lightColored"
+          onmouseover="toggleIconColor()"
+          onmouseout="toggleIconColor()"
+          id="clearTaskBtn"
+          onclick="resetFormInputs()"
+        >
           Clear
           <img src="./img/close_darkblue.svg" alt="" />
         </button>
         <button onclick="addNewTask()" id="createTaskBtn" class="button addTaskPopupBtn darkColored flex-center">
           <span>Create Task</span>
-          <img src="./img/checkIcon.svg"/>
+          <img src="./img/checkIcon.svg" />
         </button>
       </div>
     </div>
-  </form>
+  </div>
+  <!-- </form> -->
   <div class="addTaskPopupContainer flex-center d-none" id="addTaskPopupContainer" onclick="closeAddTaskPopup()"></div>
   <div class="popupMessageContainer flex-center d-none" id="popupAddTaskMessage">
     <div class="button mainDarkBlue flex-center popupMessage">

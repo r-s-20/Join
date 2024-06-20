@@ -18,6 +18,7 @@ async function init() {
 
 async function addNewTask(status) {
   let newTask = createNewTask(status);
+  removeErrors();
   if (validateTask(newTask)) {
     tasks.push(newTask);
     saveTasks();
@@ -69,7 +70,7 @@ function loadTaskForEditing(timestamp) {
   currentSubtasks = [];
   task.assigned.forEach((e) => currentAssignedList.push(e));
   task.subtasks.subtaskList.forEach((e) => currentSubtasks.push(e));
-  // document.querySelector("#editTaskPopup h1").innerHTML = "Edit";
+  document.querySelector("#editTaskPopup h1").innerHTML = "Edit";
   insertValuesToEditTask(task);
   document.getElementById("inputCategory").parentElement.parentElement.classList.add("d-none");
   document.getElementById("clearTaskBtn").classList.add("d-none");
@@ -105,7 +106,6 @@ async function saveTasks() {
 }
 
 function validateTask(task) {
-  // incomplete, more checks needed for date input etc
   if (getValueFromInput("inputTitle") != "" && getValueFromInput("inputDueDate") && task.category) {
     return true;
   } else {
@@ -115,29 +115,49 @@ function validateTask(task) {
 }
 
 function renderErrorMessages(task) {
-  console.log("task not created, there are errors");
   if (!task.category) {
-    renderRequiredError("inputCategory");
+    renderCategoryError();
   }
-  if (task.title=="") {
-    renderRequiredError("inputTitle");
+  if (task.title == "") {
+    renderError("inputTitle");
   }
   if (task.dueDate == "") {
-    renderRequiredError("inputDueDate")
+    renderError("inputDueDate");
   }
 }
 
-function renderRequiredError(inputId) {
+function renderError(inputId) {
   input = document.getElementById(inputId);
   input.classList.add("errorDesign");
-  console.log("input with errors is", input.id);
+  input.parentElement.innerHTML += `
+    <span class="errorMessage">This field is required</span>
+  `;
+}
+
+function renderCategoryError() {
+  input = document.getElementById("inputCategory");
+  input.classList.add("errorDesign");
+  input.parentElement.parentElement.innerHTML += `
+    <span class="errorMessage">This field is required</span>
+  `;
+}
+
+function removeErrors() {
+  removeErrorColors();
+  removeErrorMessages();
+}
+
+function removeErrorColors() {
+  inputs = document.getElementsByClassName("errorDesign");
+  for (let i = inputs.length - 1; i >= 0; i--) {
+    inputs[i].classList.remove("errorDesign");
+  }
 }
 
 function removeErrorMessages() {
-  inputs = document.getElementsByClassName('formInput');
-  for (input of inputs) {
-    console.log("removing for input id", input.id);
-    input.classList.remove("errorDesign");
+  messages = document.getElementsByClassName("errorMessage");
+  for (let i = messages.length - 1; i >= 0; i--) {
+    messages[i].remove();
   }
 }
 
