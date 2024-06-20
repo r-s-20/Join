@@ -287,7 +287,7 @@ button.lightColored:hover {
   top: 5rem;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
   .outerContent {
     padding: 0;
   }
@@ -339,6 +339,10 @@ button.lightColored:hover {
 
   .rightColumn {
     padding-bottom: 3rem;
+  }
+
+  #editTaskPopup.rightColumn {
+    padding-bottom: 0;
   }
 
   .inputElement {

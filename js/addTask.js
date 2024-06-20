@@ -22,12 +22,27 @@ async function addNewTask(status) {
   if (validateTask(newTask)) {
     tasks.push(newTask);
     saveTasks();
-    currentAssignedList = [];
-    currentSubtasks = [];
     await showConfirmationMessage();
     resetFormInputs();
-    // window.location.href = "./board.html";
+    resetAddTask();
+    closeAddingTask();
   }
+}
+
+function closeAddingTask() {
+  if (window.location.href.endsWith("addTask.html")) {
+    window.location.href = "./board.html";
+  } else if (window.location.href.endsWith("board.html")) {
+    updateHTML();
+    closePopup();
+  }
+
+}
+
+function resetAddTask() {
+  currentAssignedList = [];
+  currentSubtasks = [];
+  contactsSelected = [];
 }
 
 function createNewTask(taskStatus) {
@@ -49,19 +64,19 @@ function createNewTask(taskStatus) {
 }
 
 function editTask(timestamp) {
-  console.log(tasks);
+  removeErrors();
   let task = tasks.filter((e) => e.timestamp == timestamp)[0];
-  console.log(task);
   editedTask = createNewTask(task.status);
-  editedTask.timestamp = timestamp;
-  let taskIndex = tasks.indexOf(task);
-  console.log("index is", taskIndex);
-  tasks.splice(taskIndex, 1, editedTask);
-  saveTasks();
-  alert("edited Task");
-  closePopup();
-  updateHTML();
-  document.getElementById("editTaskPopup").innerHTML = "";
+  if (validateTask(editedTask)) {
+    editedTask.timestamp = timestamp;
+    let taskIndex = tasks.indexOf(task);
+    tasks.splice(taskIndex, 1, editedTask);
+    saveTasks();
+    alert("edited Task");
+    closePopup();
+    updateHTML();
+    document.getElementById("editTaskPopup").innerHTML = "";
+  }
 }
 
 function loadTaskForEditing(timestamp) {
@@ -70,7 +85,7 @@ function loadTaskForEditing(timestamp) {
   currentSubtasks = [];
   task.assigned.forEach((e) => currentAssignedList.push(e));
   task.subtasks.subtaskList.forEach((e) => currentSubtasks.push(e));
-  document.querySelector("#editTaskPopup h1").innerHTML = "Edit";
+  document.querySelector("#editTaskPopup h1").innerHTML = "";
   insertValuesToEditTask(task);
   document.getElementById("inputCategory").parentElement.parentElement.classList.add("d-none");
   document.getElementById("clearTaskBtn").classList.add("d-none");
@@ -334,7 +349,6 @@ function toggleCheckDesign(i) {
   let checkButton = document.getElementById(`checkContactButton${i}`);
   let checkDoneButton = document.getElementById(`checkContactDoneButton${i}`);
   let dropdownField = document.getElementsByClassName("dropdownAssignedElement")[i];
-  console.log(dropdownField);
   checkButton.classList.toggle("d-none");
   checkDoneButton.classList.toggle("d-none");
   dropdownField.classList.toggle("mainDarkBlue");

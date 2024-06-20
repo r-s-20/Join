@@ -220,8 +220,7 @@ function closePopup() {
     document.getElementById("editTaskPopup").innerHTML = "";
     editPopup = false;
   }
-  currentAssignedList = [];
-  currentSubtasks = [];
+  resetAddTask();
   let popup = document.getElementById("popup");
   popup.classList.remove("show");
   popup.classList.add("hide");
