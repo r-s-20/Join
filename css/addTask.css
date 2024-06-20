@@ -275,6 +275,10 @@ button.lightColored:hover {
   padding: 1rem 2rem;
 }
 
+.errorDesign {
+  border: 1px solid var(--errorColor);
+}
+
 @media (max-width: 1000px) {
   .outerContent {
     padding: 0;

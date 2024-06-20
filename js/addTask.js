@@ -106,7 +106,39 @@ async function saveTasks() {
 
 function validateTask(task) {
   // incomplete, more checks needed for date input etc
-  return getValueFromInput("inputTitle") != "" && getValueFromInput("inputDueDate");
+  if (getValueFromInput("inputTitle") != "" && getValueFromInput("inputDueDate") && task.category) {
+    return true;
+  } else {
+    renderErrorMessages(task);
+    return false;
+  }
+}
+
+function renderErrorMessages(task) {
+  console.log("task not created, there are errors");
+  if (!task.category) {
+    renderRequiredError("inputCategory");
+  }
+  if (task.title=="") {
+    renderRequiredError("inputTitle");
+  }
+  if (task.dueDate == "") {
+    renderRequiredError("inputDueDate")
+  }
+}
+
+function renderRequiredError(inputId) {
+  input = document.getElementById(inputId);
+  input.classList.add("errorDesign");
+  console.log("input with errors is", input.id);
+}
+
+function removeErrorMessages() {
+  inputs = document.getElementsByClassName('formInput');
+  for (input of inputs) {
+    console.log("removing for input id", input.id);
+    input.classList.remove("errorDesign");
+  }
 }
 
 function getCategory() {
@@ -115,7 +147,7 @@ function getCategory() {
   if (categoryElement) {
     return categoryElement;
   } else {
-    console.error("not a valid category");
+    return false;
   }
 }
 
@@ -261,7 +293,7 @@ function insertAssignedContactsHTML(element, i) {
 function startSearchAssigned() {
   let input = document.getElementById("inputAssigned");
   if (input.value == "Select contacts to assign") {
-    toggleDropdownMenu('inputAssignedContainer');
+    toggleDropdownMenu("inputAssignedContainer");
     input.value = "";
     input.focus();
   }
@@ -282,9 +314,10 @@ function toggleCheckDesign(i) {
   let checkButton = document.getElementById(`checkContactButton${i}`);
   let checkDoneButton = document.getElementById(`checkContactDoneButton${i}`);
   let dropdownField = document.getElementsByClassName("dropdownAssignedElement")[i];
+  console.log(dropdownField);
   checkButton.classList.toggle("d-none");
   checkDoneButton.classList.toggle("d-none");
-  dropdownField.classList.toggle('mainDarkBlue');
+  dropdownField.classList.toggle("mainDarkBlue");
 }
 
 function checkButtonDone(i) {
@@ -448,8 +481,8 @@ function toggleIconColor() {
   let icon = document.querySelector("#clearTaskBtn img");
   src = icon.src;
   if (src.endsWith("close_darkblue.svg")) {
-    icon.src = "./img/close_blue.svg"
-  } else  {
-    icon.src = "./img/close_darkblue.svg"
+    icon.src = "./img/close_blue.svg";
+  } else {
+    icon.src = "./img/close_darkblue.svg";
   }
 }

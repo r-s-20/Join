@@ -11,6 +11,7 @@
 :root {
   --customBlue: #29abe2;
   --mainDarkColor: #2a3647;
+  --errorColor: #FF8190;
 }
 
 body {
