@@ -96,11 +96,11 @@
   position: absolute;
   bottom: 3rem;
   gap: 2rem;
-  color: #A8A8A8;
+  color: #a8a8a8;
 }
 
 .loginLegalContainer button:first-child:hover {
-  color: #29ABE2;
+  color: #29abe2;
   cursor: pointer;
 }
 
@@ -121,9 +121,7 @@
   }
 }
 
-
-
-.signUp{
+.signUp {
   height: 640px;
   width: 598px;
   border-radius: 30px;
@@ -134,28 +132,51 @@
   align-items: center;
 }
 
-.signUp h2{
+.signUp h2 {
   font-size: 61px;
   font-weight: 700;
   margin-block-start: 0;
   margin-block-end: 0;
 }
 
-
-.signUpInputs{
+.signUpInputs {
+  position: relative;
   width: 422px;
   height: 286px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
 }
 
-.signUp input{
+.signUp input {
   height: 48px;
+  width: 100%;
   border-radius: 10px;
-  border: 1px solid #D1D1D1;
+  border: 1px solid #d1d1d1;
   padding: 12px 21px 12px 21px;
   gap: 10px;
   font-size: 20px;
   font-weight: 400;
-  color: #D1D1D1;
+  color: #d1d1d1;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.signUpName input {
+  background-image: url("../img/person.png");
+}
+
+.signUpEmail input {
+  background-image: url("../img/mailIcon.svg");
+}
+
+.signUpPassword input {
+  background-image: url("../img/lockIcon.svg");
+}
+
+.signUpConfirmPassword input {
+  background-image: url("../img/lockIcon.svg");
 }
 
 .signUp .separator {
@@ -164,7 +185,7 @@
   margin-bottom: 1rem;
 }
 
-.singUpButtonContainer button{
+.singUpButtonContainer button {
   height: 55px;
   width: 126px;
   border-radius: 8px;
@@ -174,12 +195,12 @@
   color: white;
 }
 
-.singUpButtonContainer button:hover{
-  background-color: #29ABE2;
+.singUpButtonContainer button:hover {
+  background-color: #29abe2;
   cursor: pointer;
 }
 
-.signUpPrivacyPolicy{
+.signUpPrivacyPolicy {
   width: 100%;
   height: 24px;
   display: flex;
@@ -187,34 +208,33 @@
   justify-content: center;
 }
 
-.signUpPrivacyPolicy img{
+.signUpPrivacyPolicy img {
   width: 24px;
   height: 24px;
   margin-right: 10px;
   cursor: pointer;
 }
 
-.signUpPrivacyPolicy span{
-  color:#A8A8A8;
+.signUpPrivacyPolicy span {
+  color: #a8a8a8;
   gap: 10px;
-
 }
-.signUpPrivacyPolicy span:last-child{
-  color:  #29ABE2;
+.signUpPrivacyPolicy span:last-child {
+  color: #29abe2;
   margin-left: 4px;
 }
 
-.loginLegalContainer a:hover{
+.loginLegalContainer a:hover {
   cursor: pointer;
 }
 
-.loginLegalContainer a:first-child:hover{
-  color: #29ABE2;
+.loginLegalContainer a:first-child:hover {
+  color: #29abe2;
   font-weight: 700;
 }
 
-.loginLegalContainer a:last-child:hover{
-  color: #29ABE2;
+.loginLegalContainer a:last-child:hover {
+  color: #29abe2;
   font-weight: 700;
 }
 
@@ -230,7 +250,7 @@
   align-items: center;
 }
 
-.successfullSignedUp{
+.successfullSignedUp {
   position: fixed;
   left: 50%;
   bottom: -100%;
@@ -242,17 +262,21 @@
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   padding: 0px 25px 0px 25px;
-  background-color: #2A3647;
+  background-color: #2a3647;
   color: white;
   transform: translate(-50%);
   transition: all 0.125s ease;
-
 }
 
-.successfullSignedUp.show{
+.successfullSignedUp.show {
   bottom: 50%;
 }
 
-.successfullSignedUp.hide{
+.successfullSignedUp.hide {
   bottom: -100%;
+}
+
+.signUpIcon {
+  position: absolute;
+  right: 8px;
 }

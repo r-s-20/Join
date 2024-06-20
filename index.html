@@ -14,7 +14,7 @@
   <body class="flex-start greyBackground">
     <img src="./img/joinLogo.svg" alt="join logo" class="loginScreenLogo" />
     <div class="loginOuterContainer flex-col width100">
-      <div class="signUpContainer flex-center width100">
+      <div class="signUpContainer flex-center width100" id="signUpContainer">
         <span>Not a Join user?</span>
         <button onclick="loginToSignUp()" class="button mainDarkBlue">Sign up</button>
       </div>
@@ -39,7 +39,7 @@
             <button class="button mainDarkBlue">Log in</button>
           </a>
           <a href="./summary.html">
-            <button class="button whiteBackground">Guest log in</button>
+            <button typ class="button whiteBackground">Guest log in</button>
           </a>
         </div>
       </div>
@@ -47,35 +47,32 @@
       <section class="signUp flex-col  d-none" id="signUp">  
         <h2>Sign Up</h2>
         <div class="separator"></div>
-        <form >
-        <div class="signUpInputs">
-          <div class="signUpName">
-            <input type="text" placeholder="Name" id="signUpName">
-            <img src="./img/person.png" alt="">
+        <form class="signUpInputs flex-col" onsubmit="return validateForm()">
+          <div class="signUpName width100">
+            <input type="text" placeholder="Name" id="signUpName" required>
+      
           </div>
-          <div class="signUpEmail">
-            <input type="email" placeholder="Email" id="signUpEmail">
-            <img src="./img/mailIcon.svg" class="" alt="" />
+          <div class="signUpEmail width100">
+            <input type="email" placeholder="Email" id="signUpEmail" required>
+    
           </div>
-          <div class="signUpPassword">
-            <input type="password" name="" placeholder="Password" id="signUpPassword">
-            <img src="./img/lockIcon.svg" class="" alt="" />
+          <div class="signUpPassword width100">
+            <input type="password" name="" placeholder="Password" id="signUpPassword" required>
+       
           </div>
-          <div class="signUpConfirmPassword">
-            <input type="password" name="" placeholder="Confirm Password" id="signUpConfirmPassword">
-            <img src="./img/lockIcon.svg" class="" alt="" />
-          </div>
-        </div>
-      </form>
+          <div class="signUpConfirmPassword width100">
+            <input type="password" name="" placeholder="Confirm Password" id="signUpConfirmPassword" required>
 
+          </div>
         <div class="signUpPrivacyPolicy">
           <img src="./img/check_button.svg" alt="" onclick=""><img src="./img/check_button_done.svg" class="d-none" alt="">
           <span>I accept the</span>
           <span>Privacy policy</span>
         </div>
         <div class="singUpButtonContainer">
-          <button onclick="signUp()" id="signUpButton" disabled>Sign Up</button>
+          <button type="submit" onclick="signUp()" id="signUpButton" disabled style="background-color: #808285;"">Sign Up</button>
         </div>
+        </form>
       </section>
       <div class="backgroundPopup d-none" id="backgroundPopup">
         

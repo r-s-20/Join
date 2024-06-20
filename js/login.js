@@ -9,7 +9,7 @@ let signUpConfirmPassword = document.getElementById("signUpConfirmPassword");
 
 
 
-const validateForm = () => {
+function validateForm(){
     let signUpButton = document.getElementById('signUpButton');
     if (signUpName.value.trim() && signUpEmail.value.trim() && signUpPassword.value.trim() && signUpConfirmPassword.value.trim()) {
         signUpButton.disabled = false;
@@ -21,10 +21,6 @@ const validateForm = () => {
     }
 };
 
-signUpName.addEventListener('input', validateForm);
-signUpEmail.addEventListener('input', validateForm);
-signUpPassword.addEventListener('input', validateForm);
-signUpConfirmPassword.addEventListener('input', validateForm);
 
 
 function signUp() {
@@ -86,6 +82,7 @@ function showAndHidePopup() {
   let successfullSignedUp = document.getElementById("successfullSignedUp");
   let logIn = document.getElementById('logIn');
   let signUp = document.getElementById('signUp');
+      let signUpContainer = document.getElementById('signUpContainer')
 
   backgroundPopup.classList.remove("d-none");
   successfullSignedUp.classList.remove("hide");
@@ -101,6 +98,7 @@ function showAndHidePopup() {
       backgroundPopup.classList.add("d-none");
       logIn.classList.remove('d-none')
       signUp.classList.add('d-none')
+      signUpContainer.classList.remove('d-none')
     }, 125);
   }, 2000);
 }
@@ -134,7 +132,8 @@ function loadUsers() {
   function loginToSignUp(){
     let logIn = document.getElementById('logIn');
     let signUp = document.getElementById('signUp');
+    let signUpContainer = document.getElementById('signUpContainer')
     logIn.classList.add('d-none')
     signUp.classList.remove('d-none')
-
+    signUpContainer.classList.add('d-none')
   }
