@@ -240,7 +240,7 @@ function renderAssignedDropdown(containerId, contactArray = contacts) {
     const element = contactArray[i];
     container.innerHTML += insertAssignedContactsHTML(element, i);
     if (currentAssignedList.filter((assigned) => assigned.name == element.name).length > 0) {
-      toggleCheckButtons(i);
+      toggleCheckDesign(i);
     }
   }
 }
@@ -253,7 +253,7 @@ function insertAssignedContactsHTML(element, i) {
             <span>${element.name}</span>
           </div>
           <img src="../img/check_button.svg" class="button checkContactButton" id="checkContactButton${i}" alt="check this contact">
-          <img src="../img/check_button_done.svg" class="button checkContactButton d-none" id="checkContactDoneButton${i}" alt="check this contact">
+          <img src="../img/checkButtonWhite.svg" class="button checkContactButton d-none" id="checkContactDoneButton${i}" alt="check this contact">
         </div>
       `;
 }
@@ -278,11 +278,13 @@ function searchContacts() {
 /** Toggles between check- and check-done-icons for a row in assigned contacts dropdown-menu
  * @param {integer} i - index of row
  */
-function toggleCheckButtons(i) {
+function toggleCheckDesign(i) {
   let checkButton = document.getElementById(`checkContactButton${i}`);
   let checkDoneButton = document.getElementById(`checkContactDoneButton${i}`);
+  let dropdownField = document.getElementsByClassName("dropdownAssignedElement")[i];
   checkButton.classList.toggle("d-none");
   checkDoneButton.classList.toggle("d-none");
+  dropdownField.classList.toggle('mainDarkBlue');
 }
 
 function checkButtonDone(i) {
@@ -318,7 +320,7 @@ function toggleAssignedContact(i) {
   } else {
     currentAssignedList.push(contact);
   }
-  toggleCheckButtons(i);
+  toggleCheckDesign(i);
   renderAssignedBadges();
 }
 
@@ -440,4 +442,14 @@ function resetFormInputs() {
   setValueToInput("Select task category", "inputCategory");
   currentSubtasks = [];
   renderSubtasks();
+}
+
+function toggleIconColor() {
+  let icon = document.querySelector("#clearTaskBtn img");
+  src = icon.src;
+  if (src.endsWith("close_darkblue.svg")) {
+    icon.src = "./img/close_blue.svg"
+  } else  {
+    icon.src = "./img/close_darkblue.svg"
+  }
 }

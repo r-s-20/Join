@@ -7,8 +7,6 @@
   /* font-size: 1.5rem; */
 }
 
-/* .addTaskPopupBtn,
-.addTask button { */
 .addTaskPopupBtn {
   border: none;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
@@ -18,9 +16,29 @@
   font-size: 1rem;
 }
 
+.addTaskPopupBtn:hover {
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
 button.darkColored {
   background-color: var(--mainDarkColor);
   color: white;
+  font-weight: 700;
+}
+
+button.darkColored:hover {
+  background-color: var(--customBlue);
+  color: white;
+}
+
+button.lightColored {
+  border: 1px solid var(--mainDarkColor);
+  color: var(--mainDarkColor);
+}
+
+button.lightColored:hover {
+  border: 1px solid var(--customBlue);
+  color: var(--customBlue);
 }
 
 .outerContent {
@@ -122,6 +140,10 @@ button.darkColored {
   gap: 1rem;
 }
 
+.dropdownAssignedElement.mainDarkBlue:hover {
+  background-color: #091931;
+}
+
 .userBadge {
   color: white;
   border-radius: 100%;
@@ -145,10 +167,6 @@ button.darkColored {
 .prioButton {
   min-width: 6rem;
   width: 30%;
-}
-
-.prioButton:hover {
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .separator {
@@ -227,6 +245,8 @@ button.darkColored {
   position: absolute;
   right: 0.5rem;
 }
+
+
 
 .addTaskPopupContainer {
   position: fixed;
