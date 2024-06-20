@@ -1,5 +1,25 @@
 let currentContactIndex = null;
 
+function loadContacts() {
+  let savedContacts = JSON.parse(localStorage.getItem("contacts"));
+  if (savedContacts) {
+    contacts = savedContacts;
+  }
+  render();
+}
+
+function saveContactsToLocalStorage() {
+  localStorage.setItem("contacts", JSON.stringify(contacts));
+}
+
+function setInitialBadgeColors() {
+  contacts.forEach((contact, index) => {
+    if (!contact.badgecolor) {
+      contact.badgecolor = colors[index % colors.length];
+    }
+  });
+}
+
 function render() {
   document.getElementById("contactListsContainer").innerHTML = "";
 
@@ -24,8 +44,6 @@ function render() {
     groupedContacts[firstLetter].push(contact);
   }
 
-  let contactIndex = 0;
-
   for (let letter in groupedContacts) {
     document.getElementById("contactListsContainer").innerHTML += /*html*/ `
       <div class="contactGroup">
@@ -34,17 +52,11 @@ function render() {
       </div>
     `;
 
-    for (let i = 0; i < groupedContacts[letter].length; i++) {
-      let contact = groupedContacts[letter][i];
-      let colorIndex = contactIndex % colors.length;
-      let badgeColor = colors[colorIndex];
-
-      contact.badgeColor = badgeColor;
-
+    groupedContacts[letter].forEach((contact, contactIndex) => {
       let contactHTML = /*html*/ `
-        <div class="contactLists" data-index="${contactIndex}" onclick="showContactDetails(${contactIndex})">  
+        <div class="contactLists" data-index="${contacts.indexOf(contact)}" onclick="showContactDetails(${contacts.indexOf(contact)})">  
           <div class="contactListsNameHead">
-            <div class="contactListsNameBadge" style="background-color: ${badgeColor}">
+            <div class="contactListsNameBadge" style="background-color: ${contact.badgecolor}">
               <h1>${contact.initials}</h1>
             </div>
             <div class="contactListsName">
@@ -56,8 +68,7 @@ function render() {
       `;
 
       document.getElementById("contactListsContainer").innerHTML += contactHTML;
-      contactIndex++;
-    }
+    });
   }
 }
 
@@ -66,7 +77,7 @@ function showContactDetails(index) {
   let contactDetailsHTML = /*html*/ `
     <div class="contentCardHeader">
       <div class="contentCardBody">
-      <div class="cardHeaderLogo" style="background-color: ${contact.badgeColor}">
+      <div class="cardHeaderLogo" style="background-color: ${contact.badgecolor}">
         <h1>${contact.initials}</h1>
       </div>
 
@@ -124,7 +135,7 @@ function editContactPopUp(index) {
     editPhone.value = contact.phone;
     editInitials.value = contact.initials;
     editBadge.innerText = contact.initials;
-    editBadge.style.backgroundColor = contact.badgeColor;
+    editBadge.style.backgroundColor = contact.badgecolor;
     saveEditButton.onclick = function() {
       saveContact(index);
     };
@@ -138,24 +149,7 @@ function closeEditContactPopUp() {
   document.getElementById("showEditContactPopUp").classList.add("d-none");
 }
 
-function addContact() {
-  let name = document.getElementById("addName").value;
-  let email = document.getElementById("addEmail").value;
-  let phone = document.getElementById("addPhone").value;
-
-  let contactExists = false;
-
-  contacts.forEach(contact => {
-    if (contact.name === name || contact.email === email) {
-      contactExists = true;
-    }
-  });
-
-  if (contactExists) {
-    alert("Ein Kontakt mit diesem Namen oder dieser Email-Adresse existiert bereits.");
-    return;
-  }
-
+function getInitials(name) {
   let names = name.split(" ");
   let initials = "";
   if (names.length > 0) {
@@ -164,18 +158,7 @@ function addContact() {
       initials += names[names.length - 1][0].toUpperCase();
     }
   }
-
-  let newContact = {
-    name: name,
-    email: email,
-    phone: phone,
-    initials: initials,
-    badgeColor: colors[contacts.length % colors.length],
-  };
-
-  contacts.push(newContact);
-  render();
-  closeAddContactPopUp();
+  return initials;
 }
 
 function saveContact(index) {
@@ -183,11 +166,8 @@ function saveContact(index) {
   let email = document.getElementById("editEmail").value;
   let phone = document.getElementById("editPhone").value;
 
-  let contactExists = false;
-  contacts.forEach((contact, j) => {
-    if (j !== index && (contact.name === name || contact.email === email)) {
-      contactExists = true;
-    }
+  let contactExists = contacts.some((contact, j) => {
+    return j !== index && (contact.name === name || contact.email === email);
   });
 
   if (contactExists) {
@@ -195,29 +175,58 @@ function saveContact(index) {
     return;
   }
 
-  let names = name.split(" ");
-  let initials = "";
-  if (names.length > 0) {
-    initials += names[0][0].toUpperCase();
-    if (names.length > 1) {
-      initials += names[names.length - 1][0].toUpperCase();
-    }
-  }
+  let initials = getInitials(name);
 
   contacts[index].name = name;
   contacts[index].email = email;
   contacts[index].phone = phone;
   contacts[index].initials = initials;
 
+  saveContactsToLocalStorage();
   render();
   showContactDetails(index);
-
   closeEditContactPopUp();
+}
+
+function addContact() {
+  let name = document.getElementById("addName").value;
+  let email = document.getElementById("addEmail").value;
+  let phone = document.getElementById("addPhone").value;
+
+  let contactExists = contacts.some(contact => {
+    return contact.name === name || contact.email === email;
+  });
+
+  if (contactExists) {
+    alert("Ein Kontakt mit diesem Namen oder dieser Email-Adresse existiert bereits.");
+    return;
+  }
+
+  let initials = getInitials(name);
+  let badgecolor = colors[contacts.length % colors.length];
+
+  let newContact = {
+    name: name,
+    email: email,
+    phone: phone,
+    initials: initials,
+    badgecolor: badgecolor
+  };
+
+  contacts.push(newContact);
+  saveContactsToLocalStorage();
+  render();
+  closeAddContactPopUp();
 }
 
 function deleteContact(index) {
   contacts.splice(index, 1);
+  saveContactsToLocalStorage();
   render();
   document.getElementById("contactCardMain").classList.add("d-none");
   closeEditContactPopUp();
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  loadContacts();
+});

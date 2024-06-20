@@ -467,8 +467,9 @@
     height: 50px;
     gap: 32px;
     padding: 13px 21px 13px 21px;
-    border: 1px solid #007CEE;
+    border: 1px solid rgba(209, 209, 209, 1);
     border-radius: 10px;
+    cursor: pointer;
 }
 
 input {
@@ -480,7 +481,7 @@ input {
     justify-content: space-between;
     font-size: 20px;
     font-weight: 400;
-
+    cursor: pointer;
 }
 .addContactInputFieldNameImage {
     display: flex;
@@ -509,10 +510,17 @@ button {
     gap: 10px;
 }
 
-.delete{
+.cancel{
     background-color: rgba(255, 255, 255, 1);
-    font-size: 21px;
-    font-weight: 400;
+    
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1 {
+        font-size: 20px;
+        font-weight: 400;
+    }
 }
 
 .save {
@@ -524,14 +532,18 @@ button {
     font-size: 21px;
     font-weight: 700;
     width: max-content;
+    cursor: pointer;
 }
 
 .save:hover {
     background-color: #29ABE2;
 }
-.delete:hover {
+.cancel:hover {
     color: #29ABE2;
     border: 1px solid #29ABE2;;
+    img {
+        color: #29ABE2;
+    }
 }
 
 
