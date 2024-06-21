@@ -78,6 +78,6 @@ function greetingScreen() {
     setInterval(() => {
       container.classList.remove("popupGreeting");
       // container.classList.add("d-none");
-    }, 2000);
+    }, 1200);
   }
 }

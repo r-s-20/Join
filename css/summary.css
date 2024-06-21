@@ -142,6 +142,7 @@
   background-color: white;
   z-index: 50;
   width: 100%;
+  animation: fade-out 0.25s ease-in-out 1s;
 }
 
 @media (max-width: 1080px) {
@@ -173,7 +174,7 @@
   .leftColumn {
     width: 100%;
   }
-  
+
   .innerContent {
     justify-content: flex-start;
   }
@@ -226,5 +227,15 @@
 
   .urgentDate {
     font-size: 1.1rem;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
