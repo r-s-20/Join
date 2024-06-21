@@ -72,7 +72,6 @@ function editTask(timestamp) {
     let taskIndex = tasks.indexOf(task);
     tasks.splice(taskIndex, 1, editedTask);
     saveTasks();
-    alert("edited Task");
     closePopup();
     updateHTML();
     document.getElementById("editTaskPopup").innerHTML = "";
@@ -255,10 +254,8 @@ function closeAddTaskPopup() {
 }
 
 /**z-Index for the input field belonging to a dropdown menu is increased,
- * as dropdow content would overlap otherwise.
  *
- * z-Index is decreased again when dropdown closes
- * to prevent conflicts while using other dropdowns.
+ * z-Index is decreased back to normal when dropdown closes.
  * @param {html-Element} inputField
  */
 function adjustZIndex(inputField) {
