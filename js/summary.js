@@ -1,10 +1,11 @@
 let greetingDone = false;
 
 async function init() {
-  updateWelcomeMessage();
+  renderWelcomeMessage();
   greetingScreen();
   includeHTML();
   loadTasks();
+  renderShortestDeadline();
   insertCounterValues();
 }
 
@@ -30,7 +31,12 @@ function getCount(property, selectedStatus) {
   return selected.length;
 }
 
-function updateWelcomeMessage() {
+function renderWelcomeMessage() {
+  renderGreeting();
+  // renderUsername();
+}
+
+function renderGreeting() {
   container = document.getElementById("welcomeMessage");
   currentTime = new Date().getHours();
   if (currentTime > 2 && currentTime < 12) {
@@ -42,6 +48,50 @@ function updateWelcomeMessage() {
   } else {
     container.innerHTML = "Good evening,";
   }
+}
+
+function renderUsername() {
+  let user = document.getElementById("welcomeName");
+  let currentUser = sessionStorage.getItem(contact);
+  console.log(currentUser);
+  if (currentUser) {
+    // hier später contact.initials auslesen
+    user.innerHTML = "Anna Meier";
+  } else {
+    user.innerHTML = "Guest";
+  }
+}
+
+function greetingScreen() {
+  checkGreeting();
+  if (!greetingDone) {
+    let container = document.getElementsByClassName("rightColumn")[0];
+    if (window.innerWidth <= 1080) {
+      console.log("hello");
+      container.classList.add("popupGreeting");
+      setInterval(() => {
+        container.classList.remove("popupGreeting");
+        // container.classList.add("d-none");
+      }, 1200);
+    }
+    greetingDone = true;
+    sessionStorage.setItem("greetingDone", "true");
+  }
+}
+
+function checkGreeting() {
+  greetingStored = sessionStorage.getItem("greetingDone");
+  if (greetingStored) {
+    greetingDone = greetingStored;
+  }
+}
+
+function renderShortestDeadline() {
+  let dateContainer = document.getElementById("urgentDate");
+  let sortedTasks = tasks.sort((a, b) => a.dueDate > b.dueDate);
+  console.log(sortedTasks);
+  let recentDate = new Date(sortedTasks[0].dueDate);
+  dateContainer.innerHTML = recentDate.toLocaleString("en-US", { month: "long", day: "numeric", year: "numeric" });
 }
 
 function changeSvgColor(iconId) {
@@ -70,28 +120,4 @@ function normalDoneSvgColor(iconId) {
   path = document.querySelector(`#${iconId} path`);
   circle.style.fill = "#2a3647";
   path.style.stroke = "white";
-}
-
-function greetingScreen() {
-  checkGreeting();
-  if (!greetingDone) {
-    let container = document.getElementsByClassName("rightColumn")[0];
-    if (window.innerWidth <= 1080) {
-      console.log("hello");
-      container.classList.add("popupGreeting");
-      setInterval(() => {
-        container.classList.remove("popupGreeting");
-        // container.classList.add("d-none");
-      }, 1200);
-    }
-    greetingDone = true;
-    sessionStorage.setItem("greetingDone", "true")
-  }
-}
-
-function checkGreeting() {
-  greetingStored = sessionStorage.getItem("greetingDone");
-  if (greetingStored) {
-    greetingDone = greetingStored;
-  }
 }
