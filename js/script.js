@@ -15,16 +15,7 @@ async function includeHTML() {
 }
 
 let users = [
-  {
-    name: "Anton Mayer",
-    email: "anton@gmail.com",
-    password: "123456",
-  },
-  {
-    name: "Eva Fischer",
-    email: "fischer@gmail.com",
-    password: "7890",
-  },
+
 ]
 
 let colors = [

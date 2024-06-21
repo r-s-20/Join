@@ -1,4 +1,6 @@
 loadUsers();
+let contact;
+
 
 let signUpName = document.getElementById("signUpName");
 let signUpEmail = document.getElementById("signUpEmail");
@@ -7,13 +9,25 @@ let signUpConfirmPassword = document.getElementById("signUpConfirmPassword");
 
 const validateForm = () => {
   let signUpButton = document.getElementById("signUpButton");
+  const checkDoneButton = document.getElementById('chechDoneButton');
   if (signUpName.value.trim() && signUpEmail.value.trim() && signUpPassword.value.trim() && signUpConfirmPassword.value.trim()) {
+ 
+    if (window.getComputedStyle(checkDoneButton).display !== 'none'){
+   
     signUpButton.disabled = false;
     signUpButton.style.backgroundColor = "rgb(42,54,71)";
   } else {
     signUpButton.disabled = true;
     signUpButton.style.backgroundColor = "#808285";
   }
+
+
+
+  } else {
+    signUpButton.disabled = true;
+    signUpButton.style.backgroundColor = "#808285";
+  }
+
 };
 
 signUpName.addEventListener("input", validateForm);
@@ -22,21 +36,39 @@ signUpPassword.addEventListener("input", validateForm);
 signUpConfirmPassword.addEventListener("input", validateForm);
 
 function signUp() {
+  let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (emailPattern.test(signUpEmail.value)){
+    
+ 
   comparePassword();
   let newUser = {
-    name: signUpName,
-    email: signUpEmail,
+    name: signUpName.value,
+    email: signUpEmail.value,
     password: signUpPassword.value,
   };
-  let backgroundPopup = (document.getElementById("backgroundPopup").innerHTML = /*html*/ `
+  document.getElementById("backgroundPopup").innerHTML = /*html*/ `
     <div class="successfullSignedUp" id="successfullSignedUp">
          <span>You Signed Up successfully</span>
     </div>
-    `);
+    `;
 
   users.push(newUser);
   createContact();
+
+
+
   showAndHidePopup();
+  signUpName.value = "";
+  signUpEmail.value = "";
+  signUpPassword.value = "";
+  signUpConfirmPassword.value = "";
+
+} else {
+  alert("Trage eine E-Mail Adresse ein")
+}
+
+
+
 }
 
 function createContact() {
@@ -135,12 +167,34 @@ function loginToSignUp() {
 function checkDone() {
   document.getElementById("checkButton").classList.add("d-none");
   document.getElementById("chechDoneButton").classList.remove("d-none");
+  validateForm();
 }
 
 function unCheck() {
   document.getElementById("checkButton").classList.remove("d-none");
   document.getElementById("chechDoneButton").classList.add("d-none");
+  validateForm();
 }
+
+
+
+
+
+function checkLocalStorageKey(){
+  if(localStorage.getItem("users") !== null){
+    localStorageToInput();
+  } else {
+    return
+  }
+}
+
+function localStorageToInput(){
+  let inputUsermail = document.getElementById("inputUsermail");
+  let inputPassword = document.getElementById("inputPassword");
+  inputUsermail.value = users[0].email;
+  inputPassword.value = users[0].password;
+}
+
 
 function logIn() {
   let inputUsermail = document.getElementById("inputUsermail");
@@ -162,8 +216,8 @@ function logIn() {
 }
 
 function checkRememberMe(contact) {
-  let checkDoneButton = document.getElementById('chechDoneButton');
-  if (window.getComputedStyle(checkDoneButton).display !== 'none') {
+  let checkDoneButton = document.getElementById("chechDoneButton");
+  if (window.getComputedStyle(checkDoneButton).display !== "none") {
     localStorage.clear();
     saveContactToLocalStorage(contact);
     saveToSessionStorage(contact);
@@ -171,7 +225,6 @@ function checkRememberMe(contact) {
     saveToSessionStorage(contact);
   }
 }
-
 
 function saveContactToLocalStorage(contact) {
   let contactAsText = JSON.stringify(contact);
@@ -188,4 +241,16 @@ function loadFromSessionStorage() {
   if (contactAsString) {
     contact = JSON.parse(contactAsString);
   }
+}
+
+
+
+function checkDone2() {
+  document.getElementById("checkButton2").classList.add("d-none");
+  document.getElementById("chechDoneButton2").classList.remove("d-none");
+}
+
+function unCheck2() {
+  document.getElementById("checkButton2").classList.remove("d-none");
+  document.getElementById("chechDoneButton2").classList.add("d-none");
 }

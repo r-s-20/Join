@@ -11,7 +11,7 @@
  
   
   </head>
-  <body class="flex-start greyBackground">
+  <body class="flex-start greyBackground" onload="checkLocalStorageKey()">
     <img src="./img/joinLogo.svg" alt="join logo" class="loginScreenLogo" />
     <div class="loginOuterContainer flex-col width100">
       <div class="signUpContainer flex-center width100" id="signUpContainer">
@@ -31,7 +31,8 @@
           <img src="./img/lockIcon.svg" class="inputIcon" alt="" />
         </div>
         <div class="rememberContainer width100 flex-start">
-          <img src="./img/check_button.svg" alt="" class="checkIcon" />
+          <img id="checkButton2" src="./img/check_button.svg" alt="" onclick="checkDone2()">
+          <img id="chechDoneButton2" src="./img/check_button_done.svg" onclick="unCheck2()" class="d-none" alt="">
           <span>Remember me</span>
         </div>
         <div class="loginButtonContainer flex-center">
@@ -48,21 +49,21 @@
         <!-- <div class="arrowLeft" id="arrowLeft"><img src="./img/arrow-left-line.svg" alt=""></div> -->
         <h2>Sign Up</h2>
         <div class="separator"></div>
-        <form class="signUpInputs flex-col" onsubmit="return validateForm()">
+        <form class="signUpInputs flex-col" onsubmit="event.preventDefault(); validateForm();">
           <div class="signUpName width100">
-            <input type="text" placeholder="Name" id="signUpName" required>
+            <input type="text" placeholder="Name" id="signUpName">
       
           </div>
           <div class="signUpEmail width100">
-            <input type="email" placeholder="Email" id="signUpEmail" required>
+            <input type="text" placeholder="Email" id="signUpEmail" >
     
           </div>
           <div class="signUpPassword width100">
-            <input type="password" name="" placeholder="Password" id="signUpPassword" required>
+            <input type="password" name="" placeholder="Password" id="signUpPassword" >
        
           </div>
           <div class="signUpConfirmPassword width100">
-            <input type="password" name="" placeholder="Confirm Password" id="signUpConfirmPassword" required>
+            <input type="password" name="" placeholder="Confirm Password" id="signUpConfirmPassword">
 
           </div>
         <div class="signUpPrivacyPolicy">
