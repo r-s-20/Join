@@ -1,30 +1,28 @@
-
 loadUsers();
-
 
 let signUpName = document.getElementById("signUpName");
 let signUpEmail = document.getElementById("signUpEmail");
 let signUpPassword = document.getElementById("signUpPassword");
 let signUpConfirmPassword = document.getElementById("signUpConfirmPassword");
 
-
-
-function validateForm(){
-    let signUpButton = document.getElementById('signUpButton');
-    if (signUpName.value.trim() && signUpEmail.value.trim() && signUpPassword.value.trim() && signUpConfirmPassword.value.trim()) {
-        signUpButton.disabled = false;
-        signUpButton.style.backgroundColor = "rgb(42,54,71)";
-     
-    } else {
-        signUpButton.disabled = true;
-        signUpButton.style.backgroundColor = "#808285";
-    }
+const validateForm = () => {
+  let signUpButton = document.getElementById("signUpButton");
+  if (signUpName.value.trim() && signUpEmail.value.trim() && signUpPassword.value.trim() && signUpConfirmPassword.value.trim()) {
+    signUpButton.disabled = false;
+    signUpButton.style.backgroundColor = "rgb(42,54,71)";
+  } else {
+    signUpButton.disabled = true;
+    signUpButton.style.backgroundColor = "#808285";
+  }
 };
 
-
+signUpName.addEventListener("input", validateForm);
+signUpEmail.addEventListener("input", validateForm);
+signUpPassword.addEventListener("input", validateForm);
+signUpConfirmPassword.addEventListener("input", validateForm);
 
 function signUp() {
-    comparePassword();
+  comparePassword();
   let newUser = {
     name: signUpName,
     email: signUpEmail,
@@ -35,7 +33,6 @@ function signUp() {
          <span>You Signed Up successfully</span>
     </div>
     `);
-  
 
   users.push(newUser);
   createContact();
@@ -43,7 +40,6 @@ function signUp() {
 }
 
 function createContact() {
- 
   let newContact = {
     name: signUpName.value,
     email: signUpEmail.value,
@@ -60,7 +56,7 @@ function createContact() {
 
 function comparePassword() {
   if (signUpPassword.value == signUpConfirmPassword.value) {
-    return
+    return;
   } else {
   }
 }
@@ -80,9 +76,9 @@ function createInitials() {
 function showAndHidePopup() {
   let backgroundPopup = document.getElementById("backgroundPopup");
   let successfullSignedUp = document.getElementById("successfullSignedUp");
-  let logIn = document.getElementById('logIn');
-  let signUp = document.getElementById('signUp');
-      let signUpContainer = document.getElementById('signUpContainer')
+  let logIn = document.getElementById("logIn");
+  let signUp = document.getElementById("signUp");
+  let signUpContainer = document.getElementById("signUpContainer");
 
   backgroundPopup.classList.remove("d-none");
   successfullSignedUp.classList.remove("hide");
@@ -96,44 +92,100 @@ function showAndHidePopup() {
 
     setTimeout(() => {
       backgroundPopup.classList.add("d-none");
-      logIn.classList.remove('d-none')
-      signUp.classList.add('d-none')
-      signUpContainer.classList.remove('d-none')
+      logIn.classList.remove("d-none");
+      signUp.classList.add("d-none");
+      signUpContainer.classList.remove("d-none");
     }, 125);
   }, 2000);
 }
 
-
 function saveUsers() {
-    let usersAsText = JSON.stringify(users);
-    localStorage.setItem("users", usersAsText);
+  let usersAsText = JSON.stringify(users);
+  localStorage.setItem("users", usersAsText);
 }
 
 function saveContacts() {
-    let contactsAsText = JSON.stringify(contacts);
-    localStorage.setItem("contacts", contactsAsText);
+  let contactsAsText = JSON.stringify(contacts);
+  localStorage.setItem("contacts", contactsAsText);
+}
+
+function loadUsers() {
+  let usersAsString = localStorage.getItem("users");
+  if (usersAsString) {
+    users = JSON.parse(usersAsString);
+  }
+}
+
+function loadContacts() {
+  let contactsAsString = localStorage.getItem("contacts");
+  if (contactsAsString) {
+    contacts = JSON.parse(contactsAsString);
+  }
+}
+
+function loginToSignUp() {
+  let logIn = document.getElementById("logIn");
+  let signUp = document.getElementById("signUp");
+  let signUpContainer = document.getElementById("signUpContainer");
+  logIn.classList.add("d-none");
+  signUp.classList.remove("d-none");
+  signUpContainer.classList.add("d-none");
+}
+
+function checkDone() {
+  document.getElementById("checkButton").classList.add("d-none");
+  document.getElementById("chechDoneButton").classList.remove("d-none");
+}
+
+function unCheck() {
+  document.getElementById("checkButton").classList.remove("d-none");
+  document.getElementById("chechDoneButton").classList.add("d-none");
+}
+
+function logIn() {
+  let inputUsermail = document.getElementById("inputUsermail");
+  let inputPassword = document.getElementById("inputPassword");
+  inputUsermail = inputUsermail.value.trim();
+  inputPassword = inputPassword.value.trim();
+  let user = users.find((user) => user.email === inputUsermail);
+  if (user) {
+    if (user.password === inputPassword) {
+      let contact = contacts.find((contact) => contact.email === inputUsermail);
+      checkRememberMe(contact);
+      window.location.href = "/summary.html";
+    } else {
+      alert("E-Mail or Password incorrect");
+    }
+  } else {
+    alert("E-Mail or Password incorrect");
+  }
+}
+
+function checkRememberMe(contact) {
+  let checkDoneButton = document.getElementById('chechDoneButton');
+  if (window.getComputedStyle(checkDoneButton).display !== 'none') {
+    localStorage.clear();
+    saveContactToLocalStorage(contact);
+    saveToSessionStorage(contact);
+  } else {
+    saveToSessionStorage(contact);
+  }
 }
 
 
-function loadUsers() {
-    let usersAsString = localStorage.getItem("users");
-    if (usersAsString) {
-        users = JSON.parse(usersAsString);
-    }
-  }
+function saveContactToLocalStorage(contact) {
+  let contactAsText = JSON.stringify(contact);
+  localStorage.setItem("contact", contactAsText);
+}
 
-  function loadContacts() {
-    let contactsAsString = localStorage.getItem("contacts");
-    if (contactsAsString) {
-        contacts = JSON.parse(contactsAsString);
-    }
-  }
+function saveToSessionStorage(contact) {
+  let contactAsText = JSON.stringify(contact);
+  sessionStorage.setItem("contact", contactAsText);
+}
 
-  function loginToSignUp(){
-    let logIn = document.getElementById('logIn');
-    let signUp = document.getElementById('signUp');
-    let signUpContainer = document.getElementById('signUpContainer')
-    logIn.classList.add('d-none')
-    signUp.classList.remove('d-none')
-    signUpContainer.classList.add('d-none')
+function loadFromSessionStorage() {
+  let contactAsString = sessionStorage.getItem(contact);
+  if (contactAsString) {
+    contact = JSON.parse(contactAsString);
   }
+}
