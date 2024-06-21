@@ -218,3 +218,14 @@ async function loadTasksFromAPI() {
   }
   console.log("downloaded tasks", tasks);
 }
+
+function loadContacts() {
+  let savedContacts = JSON.parse(localStorage.getItem("contacts"));
+  if (savedContacts) {
+    contacts = savedContacts;
+  }
+}
+
+function saveContactsToLocalStorage() {
+  localStorage.setItem("contacts", JSON.stringify(contacts));
+}

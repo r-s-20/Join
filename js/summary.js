@@ -1,6 +1,8 @@
+let greetingDone = false;
+
 async function init() {
   updateWelcomeMessage();
-  await greetingScreen();
+  greetingScreen();
   includeHTML();
   loadTasks();
   insertCounterValues();
@@ -71,13 +73,25 @@ function normalDoneSvgColor(iconId) {
 }
 
 function greetingScreen() {
-  let container = document.getElementsByClassName("rightColumn")[0];
-  if (window.innerWidth <= 1080) {
-    console.log("hello");
-    container.classList.add("popupGreeting");
-    setInterval(() => {
-      container.classList.remove("popupGreeting");
-      // container.classList.add("d-none");
-    }, 2000);
+  checkGreeting();
+  if (!greetingDone) {
+    let container = document.getElementsByClassName("rightColumn")[0];
+    if (window.innerWidth <= 1080) {
+      console.log("hello");
+      container.classList.add("popupGreeting");
+      setInterval(() => {
+        container.classList.remove("popupGreeting");
+        // container.classList.add("d-none");
+      }, 1200);
+    }
+    greetingDone = true;
+    sessionStorage.setItem("greetingDone", "true")
+  }
+}
+
+function checkGreeting() {
+  greetingStored = sessionStorage.getItem("greetingDone");
+  if (greetingStored) {
+    greetingDone = greetingStored;
   }
 }
