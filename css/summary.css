@@ -130,6 +130,20 @@
   font-size: 4rem;
 }
 
+.popupGreeting {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  z-index: 50;
+  width: 100%;
+}
+
 @media (max-width: 1080px) {
   .outerContent {
     padding: 0;
@@ -156,6 +170,10 @@
     display: none;
   }
 
+  .leftColumn {
+    width: 100%;
+  }
+  
   .innerContent {
     justify-content: flex-start;
   }

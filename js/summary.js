@@ -1,7 +1,9 @@
-function init() {
+async function init() {
+  updateWelcomeMessage();
+  await greetingScreen();
+  includeHTML();
   loadTasks();
   insertCounterValues();
-  updateWelcomeMessage();
 }
 
 function insertCounterValues() {
@@ -66,4 +68,16 @@ function normalDoneSvgColor(iconId) {
   path = document.querySelector(`#${iconId} path`);
   circle.style.fill = "#2a3647";
   path.style.stroke = "white";
+}
+
+function greetingScreen() {
+  let container = document.getElementsByClassName("rightColumn")[0];
+  if (window.innerWidth <= 1080) {
+    console.log("hello");
+    container.classList.add("popupGreeting");
+    setInterval(() => {
+      container.classList.remove("popupGreeting");
+      // container.classList.add("d-none");
+    }, 2000);
+  }
 }
