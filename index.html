@@ -27,7 +27,7 @@
           <img src="./img/mailIcon.svg" class="inputIcon" alt="" />
         </div>
         <div class="inputPasswordContainer flex-start width100">
-          <input type="password" name="" id="inputPassowrd" placeholder="Password" />
+          <input type="password" name="" id="inputPassword" placeholder="Password" />
           <img src="./img/lockIcon.svg" class="inputIcon" alt="" />
         </div>
         <div class="rememberContainer width100 flex-start">
@@ -35,9 +35,9 @@
           <span>Remember me</span>
         </div>
         <div class="loginButtonContainer flex-center">
-          <a href="./summary.html">
-            <button class="button mainDarkBlue">Log in</button>
-          </a>
+      
+            <button onclick="logIn()" class="button mainDarkBlue">Log in</button>
+       
           <a href="./summary.html">
             <button typ class="button whiteBackground">Guest log in</button>
           </a>
@@ -45,6 +45,7 @@
       </div>
 
       <section class="signUp flex-col  d-none" id="signUp">  
+        <!-- <div class="arrowLeft" id="arrowLeft"><img src="./img/arrow-left-line.svg" alt=""></div> -->
         <h2>Sign Up</h2>
         <div class="separator"></div>
         <form class="signUpInputs flex-col" onsubmit="return validateForm()">
@@ -65,12 +66,13 @@
 
           </div>
         <div class="signUpPrivacyPolicy">
-          <img src="./img/check_button.svg" alt="" onclick=""><img src="./img/check_button_done.svg" class="d-none" alt="">
+          <img id="checkButton" src="./img/check_button.svg" alt="" onclick="checkDone()">
+          <img id="chechDoneButton" src="./img/check_button_done.svg" onclick="unCheck()" class="d-none" alt="">
           <span>I accept the</span>
           <span>Privacy policy</span>
         </div>
         <div class="singUpButtonContainer">
-          <button type="submit" onclick="signUp()" id="signUpButton" disabled style="background-color: #808285;"">Sign Up</button>
+          <button type="submit" onclick="signUp()" id="signUpButton" disabled style="background-color: #808285;">Sign Up</button>
         </div>
         </form>
       </section>
