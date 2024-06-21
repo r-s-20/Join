@@ -57,6 +57,13 @@
     overflow-y: auto;
 }
 
+.contactGroup {
+    h2 {
+        font-size: 20px;
+        font-weight: 400;
+    }
+}
+
 .contactLists {
     display: flex;
     justify-content: center;
@@ -136,7 +143,6 @@
     align-items: flex-start;
     background-color: #f6f7f8;
     width: 100%;
-    height: 100vh;
     box-shadow: -2px 1px 4px 0.5px #aaaaaa
 }
 
@@ -768,3 +774,213 @@ button {
     border: 1px solid #29ABE2;;
 }
 
+
+
+@media(max-width:1350px) {
+    .outerContent {
+        padding: 0;
+      }
+
+    .contactsHeader {
+        scale: 85%;
+        margin-left: 0;
+        width: 550px;
+
+        h1{
+            font-size: 50px;
+        }
+
+        h4{
+            font-size: 22px;
+        }
+    } 
+
+    .contactListsContainer {
+        width: 400px;
+    }
+
+    .contentCardHeader {
+        scale: 90%;
+        margin-left: -18px;
+    }
+}
+
+@media(max-width:1250px) {
+    .outerContent {
+        padding: 0;
+      }
+
+    .contactsHeader {
+        scale: 85%;
+        margin-left: 0;
+        width: 550px;
+
+        h1{
+            font-size: 50px;
+        }
+
+        h4{
+            font-size: 22px;
+        }
+    } 
+
+    .contactListsContainer {
+        width: 300px;
+    }
+
+    .contentCardHeader {
+        scale: 90%;
+        margin-left: -18px;
+    }
+
+    .contactsMain button {
+        width: 250px;
+    }
+
+    .contactListsNameHead {
+        width: 300px;
+    }
+
+    .contactGroup {
+        width: 85%;
+    }
+
+    .contactUnderline {
+        width: 90%;
+    }
+}
+
+@media(max-width:1120px){
+.contactListsContainer {
+    width: 80%;
+    scale: 85%;
+}
+
+.outerContent {
+    padding: 0;
+  }
+
+.contactCardMain {
+    margin-left: 0;
+}
+.contactsHeader {
+    scale: 80%;
+    margin-left: 0;
+    width: 427px;
+
+    h1{
+        font-size: 45px;
+    }
+
+    h4{
+        font-size: 20px;
+    }
+} 
+
+.contactListsContainer {
+    width: 290px;
+    scale: 98%;
+}
+
+.contentCardHeader {
+    scale: 75%;
+    margin-left: -13px;
+}
+
+.contactsMain button {
+    width: 231px;
+    scale: 90%;
+}
+
+.contactListsNameHead {
+    width: 250px;
+    padding-left: 0;
+    gap: 16px;
+}
+
+.contactGroup {
+    width: 85%;
+}
+
+.contactUnderline {
+    width: 90%;
+}
+
+}
+
+@media(max-width:1020px){
+    .contactListsContainer {
+        width: 80%;
+        scale: 98%;
+    }
+    
+    .outerContent {
+        padding: 0;
+      }
+    
+    .contactCardMain {
+        width: 400px;
+        margin-left: 0;
+    }
+    .contactsHeader {
+        scale: 100%;
+        margin-left: 38px;
+        width: 410px;
+    
+        h1{
+            font-size: 35px;
+        }
+    
+        h4{
+            font-size: 16px;
+        }
+    } 
+    
+    .contactListsContainer {
+        width: 250px;
+    }
+    
+    .contentCardHeader {
+        scale: 75%;
+        margin-left: -13px;
+    }
+    
+    .contactsMain button {
+        width: 240px;
+        scale: 90%;
+    }
+    
+    .contactListsNameHead {
+        width: 235px;
+        gap: 18px;
+        padding-left: 0;
+    }
+    
+    .contactGroup {
+        width: 80%;
+    }
+
+    .contactLists {
+        margin-top: 30px;
+    }
+    
+    .contactUnderline {
+        width: 90%;
+    }
+
+    .contentCardBody {
+        gap: 34px;
+    }
+
+    .cardHeaderLogo {
+        width: 95px;
+        height: 95px;
+    }
+
+    .cardHeaderNameDetails {
+        h1 {
+            font-size: 40px;
+
+        }
+    }
+}
