@@ -352,7 +352,12 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
     display: none; 
+
+    transform: translate(50%, -50%);
+    transition:  all 0.125s ease;
   }
+
+  .overlayBackgroundPopup 
   
 
 /*Overlay edit contact Left Side*/
@@ -983,4 +988,88 @@ button {
 
         }
     }
+}
+
+@media(max-width:965px){
+
+    .contactsHeader {
+        scale: 100%;
+        margin-left: -41px;
+        width: 410px;
+        padding-left: 50px;
+    }
+
+    .contactListsContainer {
+        width: 220px;
+        scale: 106%;
+    }
+
+    .contactListsNameBadge{
+        width: 45px;
+        height: 45px;
+    }
+
+    .contactListsNameHead {
+        gap: 8px;
+        width: 200px;
+    }
+    
+    .contactListsName  {
+        h1 {
+            font-size: 16px;
+        }
+
+        h3 {
+            font-size: 12px;
+        }
+    }
+
+    .contactsMain button {
+        width: 240px;
+        scale: 72%;
+        z-index: 99;
+    }
+
+    .contactGroup {
+        width: 80%;
+        margin-top: 18px;
+    }
+
+
+}
+
+@media(max-width:875px){
+
+    .contactLists {
+        margin-top: 30px;
+        width: 100%;
+    }
+
+    .contactsMain{
+        width: 100%;
+        display: block;
+    }
+
+    .contactListsContainer {
+        width: 100%;
+        scale: 100%;
+    }
+
+    .contactsMain button {
+        scale: 100%;
+    }
+
+    .contactsContent {
+        display: none;
+    }
+
+    .contactGroup {
+        h2 {
+            display: flex;
+            font-size: 20px;
+            font-weight: 400;
+            padding-left: 35px;
+        }
+    }
+
 }
