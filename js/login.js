@@ -1,5 +1,6 @@
 loadUsers();
 let contact;
+let confirmPasswords = true;
 
 
 let signUpName = document.getElementById("signUpName");
@@ -36,11 +37,12 @@ signUpPassword.addEventListener("input", validateForm);
 signUpConfirmPassword.addEventListener("input", validateForm);
 
 function signUp() {
+  comparePassword();
   let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  if (emailPattern.test(signUpEmail.value)){
+  if (emailPattern.test(signUpEmail.value) && confirmPasswords){
     
  
-  comparePassword();
+ 
   let newUser = {
     name: signUpName.value,
     email: signUpEmail.value,
@@ -62,9 +64,15 @@ function signUp() {
   signUpEmail.value = "";
   signUpPassword.value = "";
   signUpConfirmPassword.value = "";
+  unCheck();
+} else {
+  if (emailPattern.test(signUpEmail.value)){
+    alert("Passwörter stimmen nicht überein");
 
 } else {
   alert("Trage eine E-Mail Adresse ein")
+}
+
 }
 
 
@@ -88,8 +96,12 @@ function createContact() {
 
 function comparePassword() {
   if (signUpPassword.value == signUpConfirmPassword.value) {
+    confirmPasswords = true;
     return;
   } else {
+
+    confirmPasswords = false;
+    return;
   }
 }
 
