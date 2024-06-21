@@ -229,3 +229,8 @@ function loadContacts() {
 function saveContactsToLocalStorage() {
   localStorage.setItem("contacts", JSON.stringify(contacts));
 }
+
+function toggleUserMenu() {
+  popup = document.getElementById('header-popup-curtain');
+  popup.classList.toggle("d-none");
+}
