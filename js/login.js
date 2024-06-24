@@ -1,6 +1,7 @@
 loadUsers();
 let contact;
 let confirmPasswords = true;
+let confirmMail = false;
 
 let signUpName = document.getElementById("signUpName");
 let signUpEmail = document.getElementById("signUpEmail");
@@ -16,9 +17,12 @@ function validateEmail() {
 
   if (!emailPattern.test(signUpEmail.value.trim()) && signUpEmail.value !== '') {
     renderError('signUpEmail', "Please add a valid email address.");
+    confirmMail = false;
   } else {
     removeErrors();
+    confirmMail = true;
     validateForm();
+   
   }
 }
 
@@ -46,7 +50,9 @@ const validateForm = () => {
     signUpName.value.trim() &&
     signUpEmail.value.trim() &&
     signUpPassword.value.trim() &&
-    signUpConfirmPassword.value.trim()
+    signUpConfirmPassword.value.trim() &&
+    confirmPasswords == true &&
+    confirmMail == true
   ) {
     if (window.getComputedStyle(checkDoneButton).display !== "none") {
       signUpButton.disabled = false;
@@ -111,7 +117,7 @@ function createContact() {
 function comparePassword() {
   if (signUpPassword.value == signUpConfirmPassword.value) {
     confirmPasswords = true;
-    removeErrors();
+
     return;
   } else {
     confirmPasswords = false;
@@ -323,6 +329,7 @@ function showVisbilityIcons(inputId) {
     lockIcon.classList.add("d-none");
     visOffIcon.classList.remove("d-none");
   } else {
+    hidePassword(inputId);
     lockIcon.classList.remove("d-none");
     visOffIcon.classList.add("d-none");
     visOnIcon.classList.add("d-none");
