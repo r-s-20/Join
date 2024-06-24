@@ -491,7 +491,8 @@ h1 {
   background-color: white;
   height: 90%;
   width: 80%;
-  max-width: 1200px;
+  max-width: 1400px;
+  max-height: 1100px;
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -682,7 +683,6 @@ h1 {
   }
 }
 
-<<<<<<< HEAD
 @media (max-width: 1000px) {
   .addTask2 {
     width: 100%;
@@ -720,9 +720,7 @@ h1 {
     }
   }
 }
-=======
 
->>>>>>> 5f87e4f4e878684e5d211b113c599b770ba70005
 
 @media (max-width: 555px) {
   .popup {
