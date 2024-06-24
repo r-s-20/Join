@@ -352,16 +352,10 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
     display: none; 
-
-    transform: translate(50%, -50%);
-    transition:  all 0.125s ease;
   }
-
-  .overlayBackgroundPopup 
   
 
 /*Overlay edit contact Left Side*/
-
 
 
 .overlayAddContactLeftSide {
@@ -843,22 +837,47 @@ button {
     }
 
     .contactListsNameHead {
-        width: 300px;
+        width: 280px;
+        gap: 20px;
     }
+
 
     .contactGroup {
         width: 85%;
+
+        h2 {
+            padding-left: 15px;
+        }
     }
 
     .contactUnderline {
         width: 90%;
     }
+
+    .contactsMainOverlayAddContact {
+        display: flex;
+        justify-content: flex-start;
+        width: 1212px;
+        align-items: center;
+        height: 592px;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 1);
+        margin-left: 24px;
+        margin-top: 24px;
+        background-color: rgba(255, 255, 255, 1);
+        position: fixed;
+        top: 15%;
+        left: 6%;
+        scale: 65%;
+    }
+
+    
 }
 
 @media(max-width:1120px){
 .contactListsContainer {
-    width: 80%;
-    scale: 85%;
+    width: 290px;
+    scale: 98%;
 }
 
 .outerContent {
@@ -881,11 +900,6 @@ button {
         font-size: 20px;
     }
 } 
-
-.contactListsContainer {
-    width: 290px;
-    scale: 98%;
-}
 
 .contentCardHeader {
     scale: 75%;
@@ -959,6 +973,7 @@ button {
         width: 235px;
         gap: 18px;
         padding-left: 0;
+        scale: 80%;
     }
     
     .contactGroup {
@@ -1001,7 +1016,6 @@ button {
 
     .contactListsContainer {
         width: 220px;
-        scale: 106%;
     }
 
     .contactListsNameBadge{
@@ -1070,6 +1084,12 @@ button {
             font-weight: 400;
             padding-left: 35px;
         }
+    }
+
+    .contactListsNameHead {
+        width: 100%;
+        padding-left: 110px;
+        scale: 120%;
     }
 
 }

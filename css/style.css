@@ -88,6 +88,17 @@ a {
   flex: 1;
 }
 
+.errorDesign {
+  border: 1px solid var(--errorColor) !important;
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: var(--errorColor, "red");
+  position: absolute;
+  top: 5rem;
+}
+
 .d-none {
   display: none !important;
 }

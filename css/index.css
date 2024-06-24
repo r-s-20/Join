@@ -4,6 +4,11 @@
   border: 1px solid var(--mainDarkColor) !important;
 }
 
+input:focus {
+  outline: none;
+  border: var(--customBlue);
+}
+
 .loginOuterContainer {
   align-items: center;
   justify-content: center;
@@ -53,6 +58,7 @@
 
 .inputFields > div {
   position: relative;
+  display: flex;
   align-items: center;
 }
 
@@ -150,6 +156,12 @@
   gap: 24px;
 }
 
+.signUpInputElement {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .signUp input {
   height: 48px;
   width: 100%;
@@ -162,22 +174,6 @@
   color: #d1d1d1;
   background-repeat: no-repeat;
   background-position: right 10px center;
-}
-
-.signUpName input {
-  background-image: url("../img/person.png");
-}
-
-.signUpEmail input {
-  background-image: url("../img/mailIcon.svg");
-}
-
-.signUpPassword input {
-  background-image: url("../img/lockIcon.svg");
-}
-
-.signUpConfirmPassword input {
-  background-image: url("../img/lockIcon.svg");
 }
 
 .signUp .separator {
@@ -282,3 +278,7 @@
   right: 8px;
 }
 
+.errorMessage {
+  top: 3.1rem;
+  z-index: 10;
+}

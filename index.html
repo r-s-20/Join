@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/index.css" />
     <script src="./js/script.js"></script>
- 
-  
   </head>
   <body class="flex-start greyBackground" onload="checkLocalStorageKey()">
     <img src="./img/joinLogo.svg" alt="join logo" class="loginScreenLogo" />
@@ -21,7 +19,7 @@
       <div class="inputFields flex-col" id="logIn">
         <h2>Log in</h2>
         <div class="separator"></div>
-      
+
         <div class="inputMailContainer flex-start width100">
           <input type="email" name="" id="inputUsermail" placeholder="Email" />
           <img src="./img/mailIcon.svg" class="inputIcon" alt="" />
@@ -31,58 +29,62 @@
           <img src="./img/lockIcon.svg" class="inputIcon" alt="" />
         </div>
         <div class="rememberContainer width100 flex-start">
-          <img id="checkButton2" src="./img/check_button.svg" alt="" onclick="checkDone2()">
-          <img id="chechDoneButton2" src="./img/check_button_done.svg" onclick="unCheck2()" class="d-none" alt="">
+          <img id="checkButton2" src="./img/check_button.svg" alt="" onclick="checkDone2()" />
+          <img id="chechDoneButton2" src="./img/check_button_done.svg" onclick="unCheck2()" class="d-none" alt="" />
           <span>Remember me</span>
         </div>
         <div class="loginButtonContainer flex-center">
-      
-            <button onclick="logIn()" class="button mainDarkBlue">Log in</button>
-       
+          <button onclick="logIn()" class="button mainDarkBlue">Log in</button>
+
           <a href="./summary.html">
             <button typ class="button whiteBackground">Guest log in</button>
           </a>
         </div>
       </div>
 
-      <section class="signUp flex-col  d-none" id="signUp">  
+      <section class="signUp flex-col d-none" id="signUp">
         <!-- <div class="arrowLeft" id="arrowLeft"><img src="./img/arrow-left-line.svg" alt=""></div> -->
         <h2>Sign Up</h2>
         <div class="separator"></div>
         <form class="signUpInputs flex-col" onsubmit="event.preventDefault(); validateForm();">
-          <div class="signUpName width100">
-            <input type="text" placeholder="Name" id="signUpName">
-      
+          <div class="signUpName width100 signUpInputElement">
+            <input type="text" placeholder="Name" id="signUpName" />
+            <img class="inputIcon" src="./img/person.png" alt="" />
           </div>
-          <div class="signUpEmail width100">
-            <input type="text" placeholder="Email" id="signUpEmail" >
-    
+          <div class="signUpEmail width100 signUpInputElement">
+            <input type="text" placeholder="Email" id="signUpEmail" />
+            <img class="inputIcon" src="./img/mailIcon.svg" alt="" />
           </div>
-          <div class="signUpPassword width100">
-            <input type="password" name="" placeholder="Password" id="signUpPassword" >
-       
+          <div class="signUpPassword width100 signUpInputElement">
+            <input type="password" name="" placeholder="Password" onkeyup="showVisbilityIcons('signUpPassword')" id="signUpPassword" />
+            <img class="inputIcon lockIcon" src="./img/lockIcon.svg" alt="" />
+            <img class="inputIcon vis-offIcon d-none" src="./img/visibility_off.svg" onclick="showPassword('signUpPassword')" alt="password visibility off">
+            <img class="inputIcon vis-onIcon d-none" src="./img/visibility.svg" onclick="hidePassword('signUpPassword')" alt="password visibility on">
           </div>
-          <div class="signUpConfirmPassword width100">
-            <input type="password" name="" placeholder="Confirm Password" id="signUpConfirmPassword">
-
+          <div class="signUpConfirmPassword width100 signUpInputElement">
+            <input type="password" name="" placeholder="Confirm Password" onkeyup="showVisbilityIcons('signUpConfirmPassword')" id="signUpConfirmPassword" />
+            <img class="inputIcon lockIcon" src="./img/lockIcon.svg" alt=""  />
+            <img class="inputIcon vis-offIcon d-none" src="./img/visibility_off.svg" onclick="showPassword('signUpConfirmPassword')" alt="password visibility off">
+            <img class="inputIcon vis-onIcon d-none" src="./img/visibility.svg" onclick="hidePassword('signUpConfirmPassword')" alt="password visibility on">
           </div>
-        <div class="signUpPrivacyPolicy">
-          <img id="checkButton" src="./img/check_button.svg" alt="" onclick="checkDone()">
-          <img id="chechDoneButton" src="./img/check_button_done.svg" onclick="unCheck()" class="d-none" alt="">
-          <span>I accept the</span>
-          <span>Privacy policy</span>
-        </div>
-        <div class="singUpButtonContainer">
-          <button type="submit" onclick="signUp()" id="signUpButton" disabled style="background-color: #808285;">Sign Up</button>
-        </div>
+          <div class="signUpPrivacyPolicy">
+            <img id="checkButton" src="./img/check_button.svg" alt="" onclick="checkDone()" />
+            <img id="chechDoneButton" src="./img/check_button_done.svg" onclick="unCheck()" class="d-none" alt="" />
+            <span>I accept the</span>
+            <span>Privacy policy</span>
+          </div>
+          <div class="singUpButtonContainer">
+            <button type="submit" onclick="signUp()" id="signUpButton" disabled style="background-color: #808285">
+              Sign Up
+            </button>
+          </div>
         </form>
       </section>
       <div class="backgroundPopup d-none" id="backgroundPopup">
-        
-        
-      <div class="loginLegalContainer flex-center">
-        <a href="privacy.html" class="button">Privacy policy</a>
-        <a href="legal.html" class="button">Legal notice</a>
+        <div class="loginLegalContainer flex-center">
+          <a href="privacy.html" class="button">Privacy policy</a>
+          <a href="legal.html" class="button">Legal notice</a>
+        </div>
       </div>
     </div>
   </body>
