@@ -35,6 +35,7 @@ signUpPassword.addEventListener("input", validateForm);
 signUpConfirmPassword.addEventListener("input", validateForm);
 
 function signUp() {
+  removeErrors();
   comparePassword();
   let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (emailPattern.test(signUpEmail.value) && confirmPasswords) {
@@ -61,11 +62,11 @@ function signUp() {
   } else {
     if (emailPattern.test(signUpEmail.value)) {
       alert("Passwords don't match");
-      // renderError("signUpPassword", "");
-      // renderError("signUpConfirmPassword", "Your Passwords don't match. Try again.");
+      renderError("signUpPassword", "");
+      renderError("signUpConfirmPassword", "Your Passwords don't match. Try again.");
     } else {
       alert("Email not correct");
-      // renderError('signUpEmail', "Please add a valid email address.");
+      renderError('signUpEmail', "Please add a valid email address.");
     }
   }
 }
@@ -253,9 +254,9 @@ function unCheck2() {
 function renderError(inputId, message="This field is required") {
   input = document.getElementById(inputId);
   input.classList.add("errorDesign");
-  input.parentElement.innerHTML += `
-    <span class="errorMessage">${message}</span>
-  `;
+  // input.parentElement.innerHTML += `
+  //   <span class="errorMessage">${message}</span>
+  // `;
 }
 
 function removeErrors() {
