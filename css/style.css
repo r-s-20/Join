@@ -71,9 +71,11 @@ a {
   background-color: var(--mainDarkColor);
   width: 248px;
   min-width: 248px;
+  min-height: 100vh;
 }
 
 .rightContainer {
+  min-height: 100vh;
   flex: 1;
 }
 
