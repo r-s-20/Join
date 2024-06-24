@@ -61,11 +61,11 @@ function signUp() {
     unCheck();
   } else {
     if (emailPattern.test(signUpEmail.value)) {
-      alert("Passwords don't match");
+      // alert("Passwords don't match");
       renderError("signUpPassword", "");
       renderError("signUpConfirmPassword", "Your Passwords don't match. Try again.");
     } else {
-      alert("Email not correct");
+      // alert("Email not correct");
       renderError('signUpEmail', "Please add a valid email address.");
     }
   }
@@ -251,12 +251,22 @@ function unCheck2() {
   document.getElementById("chechDoneButton2").classList.add("d-none");
 }
 
-function renderError(inputId, message="This field is required") {
-  input = document.getElementById(inputId);
+// function renderError(inputId, message="This field is required") {
+//   let input = document.getElementById(inputId);
+//   input.classList.add("errorDesign");
+//   input.parentElement.innerHTML += `
+//   <span class="errorMessage">${message}</span>
+//   `;
+// }
+
+function renderError(inputId, message = "This field is required") {
+  let input = document.getElementById(inputId);
   input.classList.add("errorDesign");
-  // input.parentElement.innerHTML += `
-  //   <span class="errorMessage">${message}</span>
-  // `;
+  let errorSpan = document.createElement('span');
+  errorSpan.className = 'errorMessage';
+  errorSpan.textContent = message;
+  input.parentElement.appendChild(errorSpan);
+
 }
 
 function removeErrors() {
@@ -265,14 +275,14 @@ function removeErrors() {
 }
 
 function removeErrorColors() {
-  inputs = document.getElementsByClassName("errorDesign");
+  let inputs = document.getElementsByClassName("errorDesign");
   for (let i = inputs.length - 1; i >= 0; i--) {
     inputs[i].classList.remove("errorDesign");
   }
 }
 
 function removeErrorMessages() {
-  messages = document.getElementsByClassName("errorMessage");
+  let messages = document.getElementsByClassName("errorMessage");
   for (let i = messages.length - 1; i >= 0; i--) {
     messages[i].remove();
   }
@@ -297,12 +307,14 @@ function showVisbilityIcons(inputId) {
 function showPassword(inputId) {
   let input = document.getElementById(inputId);
   console.log("showing password in", input);
+  input.type = 'text';
   toggleVisibilityIcons(inputId);
 }
 
 function hidePassword(inputId) {
   let input = document.getElementById(inputId);
   console.log("hiding password in", input);
+  input.type = 'password';
   toggleVisibilityIcons(inputId);
 }
 
