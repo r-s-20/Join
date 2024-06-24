@@ -88,8 +88,13 @@ function checkGreeting() {
 
 function renderShortestDeadline() {
   let dateContainer = document.getElementById("urgentDate");
-  let sortedTasks = tasks.sort((a, b) => a.dueDate > b.dueDate);
-  console.log(sortedTasks);
+  let sortedTasks = tasks.sort((a, b) => {
+    if (a.dueDate > b.dueDate) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
   let recentDate = new Date(sortedTasks[0].dueDate);
   dateContainer.innerHTML = recentDate.toLocaleString("en-US", { month: "long", day: "numeric", year: "numeric" });
   // dateContainer.innerHTML = recentDate.toLocaleString("de-DE", { month: "long", day: "numeric", year: "numeric" });
