@@ -60,9 +60,12 @@ function signUp() {
     unCheck();
   } else {
     if (emailPattern.test(signUpEmail.value)) {
-      alert("Passwörter stimmen nicht überein");
+      alert("Passwords don't match");
+      // renderError("signUpPassword", "");
+      // renderError("signUpConfirmPassword", "Your Passwords don't match. Try again.");
     } else {
-      alert("Trage eine E-Mail Adresse ein");
+      alert("Email not correct");
+      // renderError('signUpEmail', "Please add a valid email address.");
     }
   }
 }
@@ -245,6 +248,33 @@ function checkDone2() {
 function unCheck2() {
   document.getElementById("checkButton2").classList.remove("d-none");
   document.getElementById("chechDoneButton2").classList.add("d-none");
+}
+
+function renderError(inputId, message="This field is required") {
+  input = document.getElementById(inputId);
+  input.classList.add("errorDesign");
+  input.parentElement.innerHTML += `
+    <span class="errorMessage">${message}</span>
+  `;
+}
+
+function removeErrors() {
+  removeErrorColors();
+  removeErrorMessages();
+}
+
+function removeErrorColors() {
+  inputs = document.getElementsByClassName("errorDesign");
+  for (let i = inputs.length - 1; i >= 0; i--) {
+    inputs[i].classList.remove("errorDesign");
+  }
+}
+
+function removeErrorMessages() {
+  messages = document.getElementsByClassName("errorMessage");
+  for (let i = messages.length - 1; i >= 0; i--) {
+    messages[i].remove();
+  }
 }
 
 function showVisbilityIcons(inputId) {

@@ -4,6 +4,11 @@
   border: 1px solid var(--mainDarkColor) !important;
 }
 
+input:focus {
+  outline: none;
+  border: var(--customBlue);
+}
+
 .loginOuterContainer {
   align-items: center;
   justify-content: center;
@@ -273,3 +278,7 @@
   right: 8px;
 }
 
+.errorMessage {
+  top: 3.1rem;
+  z-index: 10;
+}
