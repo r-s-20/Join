@@ -5,11 +5,43 @@ let confirmPasswords = true;
 let signUpName = document.getElementById("signUpName");
 let signUpEmail = document.getElementById("signUpEmail");
 let signUpPassword = document.getElementById("signUpPassword");
-let signUpConfirmPassword = document.getElementById("signUpConfirmPassword");
+let signUpConfirmPassword = document.getElementById("signUpConfirmPassword")
+
+signUpEmail.addEventListener('blur', function() {
+  validateEmail();
+});
+
+function validateEmail() {
+  let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (!emailPattern.test(signUpEmail.value.trim()) && signUpEmail.value !== '') {
+    renderError('signUpEmail', "Please add a valid email address.");
+  } else {
+    removeErrors();
+    validateForm();
+  }
+}
+
+signUpPassword.addEventListener('blur', function() {
+  validatePassword();
+});
+
+signUpConfirmPassword.addEventListener('blur', function() {
+  validatePassword();
+});
+
+function validatePassword(){
+  if (signUpPassword.value !== '' && signUpConfirmPassword.value !== '') {
+      comparePassword();
+    }
+    validateForm();
+}
+
 
 const validateForm = () => {
   let signUpButton = document.getElementById("signUpButton");
   const checkDoneButton = document.getElementById("chechDoneButton");
+
   if (
     signUpName.value.trim() &&
     signUpEmail.value.trim() &&
@@ -34,11 +66,13 @@ signUpEmail.addEventListener("input", validateForm);
 signUpPassword.addEventListener("input", validateForm);
 signUpConfirmPassword.addEventListener("input", validateForm);
 
+
+
+
+
+
 function signUp() {
   removeErrors();
-  comparePassword();
-  let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  if (emailPattern.test(signUpEmail.value) && confirmPasswords) {
     let newUser = {
       name: signUpName.value,
       email: signUpEmail.value,
@@ -49,26 +83,14 @@ function signUp() {
          <span>You Signed Up successfully</span>
     </div>
     `;
-
     users.push(newUser);
     createContact();
-
     showAndHidePopup();
     signUpName.value = "";
     signUpEmail.value = "";
     signUpPassword.value = "";
     signUpConfirmPassword.value = "";
     unCheck();
-  } else {
-    if (emailPattern.test(signUpEmail.value)) {
-      // alert("Passwords don't match");
-      renderError("signUpPassword", "");
-      renderError("signUpConfirmPassword", "Your Passwords don't match. Try again.");
-    } else {
-      // alert("Email not correct");
-      renderError('signUpEmail', "Please add a valid email address.");
-    }
-  }
 }
 
 function createContact() {
@@ -89,9 +111,13 @@ function createContact() {
 function comparePassword() {
   if (signUpPassword.value == signUpConfirmPassword.value) {
     confirmPasswords = true;
+    removeErrors();
     return;
   } else {
     confirmPasswords = false;
+    renderError("signUpPassword", "");
+    renderError("signUpConfirmPassword", "Your Passwords don't match. Try again.");
+
     return;
   }
 }
