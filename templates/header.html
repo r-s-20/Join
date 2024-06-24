@@ -1,15 +1,17 @@
 <header class="flex-center width100 header whiteBackground">
   <div class="headerLogoContainer">
-    <img src="./img/joinLogo.svg" alt="">
+    <img src="./img/joinLogo.svg" alt="" />
   </div>
   <h2>Kanban&nbsp;project management&nbsp;tool</h2>
   <div class="infoBox flex-center">
-    <img src="./img/helpIcon.svg" alt="help-icon" class="helpIcon button" title="help" />
+    <a href="./help.html" class="helpIcon button">
+      <img src="./img/helpIcon.svg" alt="help-icon" title="help" />
+    </a>
     <div class="userLogo button" id="userLogo" onclick="toggleUserMenu()">AB</div>
-    
   </div>
   <div class="header-popup-curtain d-none" id="header-popup-curtain" onclick="toggleUserMenu()">
     <div class="header-user-menu mainDarkBlue flex-col">
+      <a href="./help.html" class="help-mobile">Help</a>
       <a href="./legal.html">Legal Notice</a>
       <a href="./privacy.html">Privacy Policy</a>
       <a href="./index.html" onclick="logoutUser()">Log out</a>
