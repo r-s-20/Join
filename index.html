@@ -47,15 +47,14 @@
         </div>
         <div class="loginButtonContainer flex-center">
           <button onclick="logIn()" class="button mainDarkBlue">Log in</button>
-
-          <a href="./summary.html">
-            <button typ class="button whiteBackground">Guest log in</button>
-          </a>
+          <button onclick="guestLogin()" typ class="button whiteBackground">Guest log in</button>
         </div>
+   
       </div>
+      
 
       <section class="signUp flex-col d-none" id="signUp">
-        <!-- <div class="arrowLeft" id="arrowLeft"><img src="./img/arrow-left-line.svg" alt=""></div> -->
+        <div class="arrowLeft" id="arrowLeft"><a href="/index.html"><img src="./img/arrow-left-line.svg" alt=""></a></div>
         <h2>Sign Up</h2>
         <div class="separator"></div>
         <form class="signUpInputs flex-col" onsubmit="event.preventDefault(); validateForm();">
@@ -115,7 +114,7 @@
             <img id="checkButton" src="./img/check_button.svg" alt="" onclick="checkDone()" />
             <img id="chechDoneButton" src="./img/check_button_done.svg" onclick="unCheck()" class="d-none" alt="" />
             <span>I accept the</span>
-            <span>Privacy policy</span>
+            <a href="/privacy.html"><span>Privacy policy</span></a>
           </div>
           <div class="singUpButtonContainer">
             <button type="submit" onclick="signUp()" id="signUpButton" disabled style="background-color: #808285">
@@ -123,14 +122,19 @@
             </button>
           </div>
         </form>
+        
       </section>
-      <div class="backgroundPopup d-none" id="backgroundPopup">
+      
         <div class="loginLegalContainer flex-center">
-          <a href="privacy.html" class="button">Privacy policy</a>
-          <a href="legal.html" class="button">Legal notice</a>
-        </div>
+          <a href="/privacy.html" class="button">Privacy policy</a>
+          <a href="/legal.html" class="button">Legal notice</a>
+      </div>
+      <div class="signUpContainerResponsive flex-center width100" id="signUpContainer">
+        <span>Not a Join user?</span>
+        <button onclick="loginToSignUp()" class="button mainDarkBlue">Sign up</button>
       </div>
     </div>
+
   </body>
   <script src="./js/login.js" refer></script>
 </html>

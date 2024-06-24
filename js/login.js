@@ -1,4 +1,5 @@
 loadUsers();
+loadContacts();
 let contact;
 let confirmPasswords = true;
 let confirmMail = false;
@@ -254,6 +255,20 @@ function checkRememberMe(contact) {
   } else {
     saveToSessionStorage(contact);
   }
+}
+
+function guestLogin(){
+  let guestUser = {
+    name: "Guest",
+    email: "",
+    initials: "G",
+    badgecolor: colors[0],
+    phone: "",
+  };
+  let contact = [];
+  contact.push(guestUser);
+  saveToSessionStorage(contact);
+  window.location.href = "/summary.html";
 }
 
 function saveContactToLocalStorage(contact) {
