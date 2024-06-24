@@ -92,6 +92,7 @@ function renderShortestDeadline() {
   console.log(sortedTasks);
   let recentDate = new Date(sortedTasks[0].dueDate);
   dateContainer.innerHTML = recentDate.toLocaleString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  // dateContainer.innerHTML = recentDate.toLocaleString("de-DE", { month: "long", day: "numeric", year: "numeric" });
 }
 
 function changeSvgColor(iconId) {
