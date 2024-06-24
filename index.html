@@ -56,16 +56,16 @@
             <img class="inputIcon" src="./img/mailIcon.svg" alt="" />
           </div>
           <div class="signUpPassword width100 signUpInputElement">
-            <input type="password" name="" placeholder="Password" id="signUpPassword" />
-            <img class="inputIcon" src="./img/lockIcon.svg" alt="" />
-            <img class="inputIcon d-none" src="./img/visibility_off.svg" alt="password visibility off">
-            <img class="inputIcon d-none" src="./img/visibility.svg" alt="password visibility on">
+            <input type="password" name="" placeholder="Password" onkeyup="showVisbilityIcons('signUpPassword')" id="signUpPassword" />
+            <img class="inputIcon lockIcon" src="./img/lockIcon.svg" alt="" />
+            <img class="inputIcon vis-offIcon d-none" src="./img/visibility_off.svg" onclick="showPassword('signUpPassword')" alt="password visibility off">
+            <img class="inputIcon vis-onIcon d-none" src="./img/visibility.svg" onclick="hidePassword('signUpPassword')" alt="password visibility on">
           </div>
           <div class="signUpConfirmPassword width100 signUpInputElement">
-            <input type="password" name="" placeholder="Confirm Password" id="signUpConfirmPassword" />
-            <img class="inputIcon" src="./img/lockIcon.svg" alt="" />
-            <img class="inputIcon d-none" src="./img/visibility_off.svg" alt="password visibility off">
-            <img class="inputIcon d-none" src="./img/visibility.svg" alt="password visibility on">
+            <input type="password" name="" placeholder="Confirm Password" onkeyup="showVisbilityIcons('signUpConfirmPassword')" id="signUpConfirmPassword" />
+            <img class="inputIcon lockIcon" src="./img/lockIcon.svg" alt=""  />
+            <img class="inputIcon vis-offIcon d-none" src="./img/visibility_off.svg" onclick="showPassword('signUpConfirmPassword')" alt="password visibility off">
+            <img class="inputIcon vis-onIcon d-none" src="./img/visibility.svg" onclick="hidePassword('signUpConfirmPassword')" alt="password visibility on">
           </div>
           <div class="signUpPrivacyPolicy">
             <img id="checkButton" src="./img/check_button.svg" alt="" onclick="checkDone()" />

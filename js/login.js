@@ -2,7 +2,6 @@ loadUsers();
 let contact;
 let confirmPasswords = true;
 
-
 let signUpName = document.getElementById("signUpName");
 let signUpEmail = document.getElementById("signUpEmail");
 let signUpPassword = document.getElementById("signUpPassword");
@@ -10,25 +9,24 @@ let signUpConfirmPassword = document.getElementById("signUpConfirmPassword");
 
 const validateForm = () => {
   let signUpButton = document.getElementById("signUpButton");
-  const checkDoneButton = document.getElementById('chechDoneButton');
-  if (signUpName.value.trim() && signUpEmail.value.trim() && signUpPassword.value.trim() && signUpConfirmPassword.value.trim()) {
- 
-    if (window.getComputedStyle(checkDoneButton).display !== 'none'){
-   
-    signUpButton.disabled = false;
-    signUpButton.style.backgroundColor = "rgb(42,54,71)";
+  const checkDoneButton = document.getElementById("chechDoneButton");
+  if (
+    signUpName.value.trim() &&
+    signUpEmail.value.trim() &&
+    signUpPassword.value.trim() &&
+    signUpConfirmPassword.value.trim()
+  ) {
+    if (window.getComputedStyle(checkDoneButton).display !== "none") {
+      signUpButton.disabled = false;
+      signUpButton.style.backgroundColor = "rgb(42,54,71)";
+    } else {
+      signUpButton.disabled = true;
+      signUpButton.style.backgroundColor = "#808285";
+    }
   } else {
     signUpButton.disabled = true;
     signUpButton.style.backgroundColor = "#808285";
   }
-
-
-
-  } else {
-    signUpButton.disabled = true;
-    signUpButton.style.backgroundColor = "#808285";
-  }
-
 };
 
 signUpName.addEventListener("input", validateForm);
@@ -39,44 +37,34 @@ signUpConfirmPassword.addEventListener("input", validateForm);
 function signUp() {
   comparePassword();
   let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  if (emailPattern.test(signUpEmail.value) && confirmPasswords){
-    
- 
- 
-  let newUser = {
-    name: signUpName.value,
-    email: signUpEmail.value,
-    password: signUpPassword.value,
-  };
-  document.getElementById("backgroundPopup").innerHTML = /*html*/ `
+  if (emailPattern.test(signUpEmail.value) && confirmPasswords) {
+    let newUser = {
+      name: signUpName.value,
+      email: signUpEmail.value,
+      password: signUpPassword.value,
+    };
+    document.getElementById("backgroundPopup").innerHTML = /*html*/ `
     <div class="successfullSignedUp" id="successfullSignedUp">
          <span>You Signed Up successfully</span>
     </div>
     `;
 
-  users.push(newUser);
-  createContact();
+    users.push(newUser);
+    createContact();
 
-
-
-  showAndHidePopup();
-  signUpName.value = "";
-  signUpEmail.value = "";
-  signUpPassword.value = "";
-  signUpConfirmPassword.value = "";
-  unCheck();
-} else {
-  if (emailPattern.test(signUpEmail.value)){
-    alert("Passwörter stimmen nicht überein");
-
-} else {
-  alert("Trage eine E-Mail Adresse ein")
-}
-
-}
-
-
-
+    showAndHidePopup();
+    signUpName.value = "";
+    signUpEmail.value = "";
+    signUpPassword.value = "";
+    signUpConfirmPassword.value = "";
+    unCheck();
+  } else {
+    if (emailPattern.test(signUpEmail.value)) {
+      alert("Passwörter stimmen nicht überein");
+    } else {
+      alert("Trage eine E-Mail Adresse ein");
+    }
+  }
 }
 
 function createContact() {
@@ -99,7 +87,6 @@ function comparePassword() {
     confirmPasswords = true;
     return;
   } else {
-
     confirmPasswords = false;
     return;
   }
@@ -188,25 +175,20 @@ function unCheck() {
   validateForm();
 }
 
-
-
-
-
-function checkLocalStorageKey(){
-  if(localStorage.getItem("users") !== null){
+function checkLocalStorageKey() {
+  if (localStorage.getItem("users") !== null) {
     localStorageToInput();
   } else {
-    return
+    return;
   }
 }
 
-function localStorageToInput(){
+function localStorageToInput() {
   let inputUsermail = document.getElementById("inputUsermail");
   let inputPassword = document.getElementById("inputPassword");
   inputUsermail.value = users[0].email;
   inputPassword.value = users[0].password;
 }
-
 
 function logIn() {
   let inputUsermail = document.getElementById("inputUsermail");
@@ -255,8 +237,6 @@ function loadFromSessionStorage() {
   }
 }
 
-
-
 function checkDone2() {
   document.getElementById("checkButton2").classList.add("d-none");
   document.getElementById("chechDoneButton2").classList.remove("d-none");
@@ -265,4 +245,39 @@ function checkDone2() {
 function unCheck2() {
   document.getElementById("checkButton2").classList.remove("d-none");
   document.getElementById("chechDoneButton2").classList.add("d-none");
+}
+
+function showVisbilityIcons(inputId) {
+  let input = document.getElementById(inputId);
+  let lockIcon = document.querySelector(`.${inputId} .lockIcon`);
+  let visOffIcon = document.querySelector(`.${inputId} .vis-offIcon`);
+  let visOnIcon = document.querySelector(`.${inputId} .vis-onIcon`);
+  if (input.value != "") {
+    lockIcon.classList.add("d-none");
+    visOffIcon.classList.remove("d-none");
+  } else {
+    lockIcon.classList.remove("d-none");
+    visOffIcon.classList.add("d-none");
+    visOnIcon.classList.add("d-none");
+  }
+
+}
+
+function showPassword(inputId) {
+  let input = document.getElementById(inputId);
+  console.log("showing password in", input);
+  toggleVisibilityIcons(inputId);
+}
+
+function hidePassword(inputId) {
+  let input = document.getElementById(inputId);
+  console.log("hiding password in", input);
+  toggleVisibilityIcons(inputId);
+}
+
+function toggleVisibilityIcons(inputId) {
+  let visOffIcon = document.querySelector(`.${inputId} .vis-offIcon`);
+  let visOnIcon = document.querySelector(`.${inputId} .vis-onIcon`);
+  visOffIcon.classList.toggle("d-none");
+  visOnIcon.classList.toggle("d-none");
 }
