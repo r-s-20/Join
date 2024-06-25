@@ -280,12 +280,13 @@ function logoutUser() {
 }
 
 function renderUserlogo() {
-  userLogo = document.getElementById("userLogo");
-  currentUser = sessionStorage.getItem("contact");
+  let userLogo = document.getElementById("userLogo");
+  let currentUser = sessionStorage.getItem("contact");
+  currentUser = JSON.parse(currentUser);
   userLogo.innerHTML = "G";
   if (currentUser) {
     if (currentUser.initials) {
-      userLogo.innerHTML = currentUser.intials;
+      userLogo.innerHTML = currentUser.initials;
     }
   }
 }

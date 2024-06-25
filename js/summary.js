@@ -34,7 +34,7 @@ function getCount(property, selectedStatus) {
 
 function renderWelcomeMessage() {
   renderGreeting();
-  // renderUsername();
+  renderUsername();
 }
 
 function renderGreeting() {
@@ -53,12 +53,12 @@ function renderGreeting() {
 
 function renderUsername() {
   let user = document.getElementById("welcomeName");
-  let currentUser = sessionStorage.getItem(contact);
+  let currentUser = sessionStorage.getItem("contact");
+  user.innerHTML = "Guest";
   if (currentUser) {
-    // hier später contact.initials auslesen
-    user.innerHTML = "Anna Meier";
-  } else {
-    user.innerHTML = "Guest";
+    currentUser = JSON.parse(currentUser);
+    if (currentUser.name)
+    user.innerHTML = currentUser.name;
   }
 }
 
