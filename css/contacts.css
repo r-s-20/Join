@@ -11,11 +11,13 @@
         height: 56px;
         background-color: #2a3647;
         color: white;
-        border: 1px solid;
         border-radius: 10px;
+        
+        h1 {
         font-size: 16px;
         font-weight: 700;
         gap: 16px;
+        }
 
         img {
             width: 32px;
@@ -84,7 +86,6 @@
     height: 78px;
     gap: 35px;
     padding-left: 16px;
-    background-color: white;
     border-radius: 10px;
     color: white;
     cursor: pointer;
@@ -414,7 +415,6 @@
     width: 759px;
     height: 594px;
     gap: 32px;
-    border: 1px solid rgba(255, 255, 255, 1);
     border-radius: 30px;
 }
 
@@ -834,7 +834,7 @@ button {
     }
 
     .contactsMain button {
-        width: 250px;
+        width: 230px;
     }
 
     .contactListsNameHead {
@@ -1009,8 +1009,6 @@ button {
     gap: 4px;
 }
 
-
-
 /* responsive */
 
 @media(max-width:1120px){
@@ -1033,8 +1031,7 @@ button {
     }
 
 .contactListsContainer {
-    width: 290px;
-    scale: 98%;
+    width: 300px;
 }
 
 .outerContent {
@@ -1064,8 +1061,7 @@ button {
 }
 
 .contactsMain button {
-    width: 231px;
-    scale: 90%;
+    width: 225px;
 }
 
 .contactListsNameHead {
@@ -1104,8 +1100,7 @@ button {
  }
 
     .contactListsContainer {
-        width: 80%;
-        scale: 98%;
+        width: 285px;
     }
     
     .outerContent {
@@ -1140,16 +1135,11 @@ button {
         margin-left: -13px;
     }
     
-    .contactsMain button {
-        width: 240px;
-        scale: 90%;
-    }
-    
     .contactListsNameHead {
         width: 235px;
         gap: 18px;
         padding-left: 0;
-        scale: 80%;
+        
     }
     
     .contactGroup {
@@ -1208,7 +1198,7 @@ button {
     }
 
     .contactListsContainer {
-        width: 240px;
+        width: 250px;
     }
 
     .contactListsNameBadge{
@@ -1232,8 +1222,7 @@ button {
     }
 
     .contactsMain button {
-        width: 240px;
-        scale: 72%;
+        width: 225px;
         z-index: 99;
     }
 
@@ -1276,15 +1265,10 @@ button {
 
     .contactListsContainer {
         width: 100%;
-        scale: 100%;
         overflow-y: hidden;
         overflow-x: hidden;
         margin-bottom: 1rem;
-        height: 87vh;
-    }
-
-    .contactsMain button {
-        scale: 100%;
+        height: auto;
     }
 
     .contactsContent {
@@ -1304,7 +1288,6 @@ button {
     .contactListsNameHead {
         width: 100%;
         padding-left: 110px;
-        scale: 120%;
     }
 
 }
@@ -1312,7 +1295,8 @@ button {
 @media(max-width:800px){
 
     .contactsMainOverlayAddContact {
-        display: flex;
+       display: flex;
+        flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         height: 592px;
@@ -1323,10 +1307,49 @@ button {
         background-color: rgba(255, 255, 255, 1);
         position: fixed;
         top: 15%;
-        left: -15%;
-        scale: 43%;
-        width: 1212px;
+        left: 8%;
+        scale: 48%;
+        width: 396px;
          }
+
+         .overlayAddContactLeftSide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            background-color: rgba(42, 54, 71, 1);
+            width: 396px;
+            height: 352px;
+            padding: 66px 46px 66px 46px;
+            gap: 12px;
+            border-radius: 30px 30px 0 0;
+
+            img {
+                display: none;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+        }
+
+        .overlayAddContactLeftSide p {
+            font-size: 47px;
+        }
+
+        .overlayAddContactRightSideInputFields {
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .addContactInputField {
+            margin-top: 0;
+        }
+
+        .overlayAddContactRightSideBadge {
+            margin-top: 0;
+            margin-left: 0;
+        }
 
 
     .contactListsContainer {
