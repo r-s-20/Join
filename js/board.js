@@ -85,7 +85,18 @@ function generateTodoHTML(element, index) {
     <div draggable='true' ondragstart='startDragging(${
       element.timestamp
     }, ${index})' class="card" id="card${index}" onclick="boardPopup(${element.timestamp})">
+    <div class="categoryAndDropDown">
       <div class="cardCategory" id="cardCategory${index}">${element.category.name}</div>
+      <div id="dropdownMenu" class="dropdownMenu dropdown-container">
+      <span id="dropdownImage" onclick="toggleDropdown(event)">...</span>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="">To do</a>
+            <a href="">in Progress</a>
+            <a href="">Await feedback</a>
+            <a href="">Done</a>
+        </div>
+      </div>
+    </div>
       <div class="cardHeadline">${element.title}</div>
       <div class="cardDescription" id="cardDescription${index}"></div>
       <div class="cardSubtasks" id="cardSubtasks${index}">
@@ -98,6 +109,20 @@ function generateTodoHTML(element, index) {
     </div>
    `;
 }
+
+function toggleDropdown(event) {
+  event.stopPropagation();
+  const dropdown = event.currentTarget.closest('.dropdown-container');
+  dropdown.classList.toggle('active');
+}
+
+document.addEventListener('click', function() {
+  const dropdowns = document.querySelectorAll('.dropdown-container');
+  dropdowns.forEach(dropdown => {
+      dropdown.classList.remove('active');
+  });
+});
+
 
 function contactNames(element, index) {
   let contactNames = document.getElementById(`contactNames${index}`);
@@ -222,9 +247,11 @@ function subtaskOpen(i, timestamp) {
 
 function closePopup() {
   if (editPopup) {
-    document.getElementById("editTaskPopup").innerHTML = "";
     editPopup = false;
   }
+  let closeCross = document.getElementById('closeCross');
+  closeCross.classList.add('d-none');
+  closeCross.classList.remove('closeCross');
   resetAddTask();
   resetFormInputs();
   let popup = document.getElementById("popup");
@@ -250,6 +277,18 @@ function closeAddTask() {
     document.getElementById("backgroundPopup").classList.add("d-none");
     document.getElementById("popup").classList.remove("d-none");
   }, 125);
+}
+
+function closeAddTaskAboutButton(){
+  let closeCross = document.getElementById('closeCross');
+  closeCross.classList.add('d-none');
+  closeCross.classList.remove('closeCross');
+  document.getElementById('popupAddTask').classList.add('d-none');
+  document.getElementById("backgroundPopup").classList.add("d-none");
+  let addTaskButton = document.getElementById("addTaskButton");
+  addTaskButton.style.backgroundColor = "rgb(42,54,71)";
+  addTaskButton.classList.add("mainDarkBlue");
+
 }
 
 function popupPersons(popupElement) {
@@ -328,6 +367,10 @@ function deleteTask(timestamp) {
 }
 
 async function editPopupTask(timestamp) {
+
+  let closeCross = document.getElementById('closeCross');
+  closeCross.classList.remove('d-none');
+  closeCross.classList.add('closeCross');
   let popupEdit = document.getElementById("popup");
   editPopup = true;
   popupEdit.innerHTML = "";
@@ -339,6 +382,9 @@ async function editPopupTask(timestamp) {
 }
 
 function openAddTask(status = "toDos") {
+  let closeCross = document.getElementById('closeCross');
+  closeCross.classList.add('closeCross2');
+  closeCross.classList.remove('d-none');
   let addTaskButton = document.getElementById("addTaskButton");
   addTaskButton.classList.remove("mainDarkBlue");
   addTaskButton.style.backgroundColor = "rgb(41,171,226)";

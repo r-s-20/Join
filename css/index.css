@@ -328,6 +328,16 @@ input:focus {
   width: 100%;
   position: relative;
   left: -40px;
+  
+}
+
+.arrowLeft img:hover{
+  width: 32px;
+  height: 32px;
+  background-color: #e4e0e0;
+  border-radius: 50%;
+  scale: 1.1;
+
 }
 
 .signUpContainerResponsive {
@@ -471,8 +481,10 @@ input:focus {
   }
 
   .signUpContainerResponsive button:hover{
-    color: white;
+    color: white !important;
   }
+
+  .signUpContainerResponsive button
 
   .rememberContainer {
     padding-left: 10px;

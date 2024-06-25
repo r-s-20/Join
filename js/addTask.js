@@ -36,7 +36,7 @@ function closeAddingTask() {
     window.location.href = "./board.html";
   } else if (window.location.href.endsWith("board.html")) {
     updateHTML();
-    closePopup();
+    closeAddTaskAboutButton();
   }
 
 }
@@ -69,14 +69,17 @@ function editTask(timestamp) {
   removeErrors();
   let task = tasks.filter((e) => e.timestamp == timestamp)[0];
   editedTask = createNewTask(task.status);
+  let closeCross = document.getElementById('closeCross');
+  closeCross.classList.add('d-none');
+  closeCross.classList.remove('closeCross');
   if (validateTask(editedTask)) {
     editedTask.timestamp = timestamp;
     let taskIndex = tasks.indexOf(task);
     tasks.splice(taskIndex, 1, editedTask);
     saveTasks();
-    closePopup();
+    boardPopup(timestamp);
     updateHTML();
-    document.getElementById("editTaskPopup").innerHTML = "";
+
   }
 }
 
@@ -92,6 +95,9 @@ function loadTaskForEditing(timestamp) {
   document.getElementById("clearTaskBtn").classList.add("d-none");
   document.getElementById("createTaskBtn").setAttribute("onclick", `editTask(${timestamp})`);
   document.getElementById("createTaskBtn").firstElementChild.innerHTML = "Ok";
+  let closeCross = document.getElementById('closeCross');
+  closeCross.classList.add('closeCross');
+  closeCross.classList.remove('d-none');
 }
 
 function insertValuesToEditTask(task) {
@@ -99,7 +105,7 @@ function insertValuesToEditTask(task) {
   setValueToInput(task.description, "inputDescription");
   renderAssignedBadges();
   setValueToInput(task.dueDate, "inputDueDate");
-  setPrio("btn-" + task.prio);
+  setPrio("btn-" + task.prio);addNewTask
   setValueToInput(task.category.name, "inputCategory");
   renderSubtasks();
 }

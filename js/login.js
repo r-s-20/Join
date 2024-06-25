@@ -1,6 +1,6 @@
 
-loadContacts();
-loadUsersFromAPI()
+loadContactsFromAPI();
+loadUsersFromAPI();
 let contact;
 let confirmPasswords = true;
 let confirmMail = false;
@@ -21,7 +21,7 @@ function validateEmail() {
     renderError("signUpEmail", "Please add a valid email address.");
     confirmMail = false;
   } else {
-    removeErrors();
+    removeErrorForInput("signUpEmail")
     confirmMail = true;
     validateForm();
   }
@@ -39,10 +39,30 @@ function validatePassword() {
   if (signUpPassword.value !== "" && signUpConfirmPassword.value !== "") {
     comparePassword();
   }
+  
   validateForm();
 }
 
+signUpName.addEventListener("blur", function () {
+  validateName();
+});
+
+function validateName(){
+
+  let user = users.find((users) => users.name === signUpName.value );
+
+  if (user) {
+    renderError("signUpName", "Name is already taken.");
+
+  } else { 
+  removeErrorForInput("signUpName")
+  validateForm();
+}
+}
+
+
 const validateForm = () => {
+
   let signUpButton = document.getElementById("signUpButton");
   const checkDoneButton = document.getElementById("chechDoneButton");
 
@@ -73,7 +93,7 @@ signUpPassword.addEventListener("input", validateForm);
 signUpConfirmPassword.addEventListener("input", validateForm);
 
 function signUp() {
-  removeErrors();
+
   let newUser = {
     name: signUpName.value,
     email: signUpEmail.value,
@@ -107,14 +127,14 @@ function createContact() {
 
 
   saveUsersToAPI();
-  saveContacts();
   saveContactsToAPI();
 }
 
 function comparePassword() {
   if (signUpPassword.value == signUpConfirmPassword.value) {
     confirmPasswords = true;
-
+    removeErrorForInput("signUpPassword")
+    removeErrorForInput("signUpConfirmPassword")
     return;
   } else {
     confirmPasswords = false;
@@ -313,22 +333,37 @@ function renderError(inputId, message = "This field is required") {
   input.parentElement.appendChild(errorSpan);
 }
 
-function removeErrors() {
-  removeErrorColors();
-  removeErrorMessages();
-}
+// function removeErrors() {
+//   removeErrorColors();
+//   removeErrorMessages();
+// }
 
-function removeErrorColors() {
-  let inputs = document.getElementsByClassName("errorDesign");
-  for (let i = inputs.length - 1; i >= 0; i--) {
-    inputs[i].classList.remove("errorDesign");
-  }
-}
+// function removeErrorColors() {
+//   let inputs = document.getElementsByClassName("errorDesign");
+//   for (let i = inputs.length - 1; i >= 0; i--) {
+//     inputs[i].classList.remove("errorDesign");
+//   }
+// }
 
-function removeErrorMessages() {
-  let messages = document.getElementsByClassName("errorMessage");
-  for (let i = messages.length - 1; i >= 0; i--) {
-    messages[i].remove();
+// function removeErrorMessages() {
+//   let messages = document.getElementsByClassName("errorMessage");
+//   for (let i = messages.length - 1; i >= 0; i--) {
+//     messages[i].remove();
+//   }
+// }
+
+function removeErrorForInput(inputId) {
+  let input = document.getElementById(inputId);
+  
+  if (input) {
+    // Entferne die Fehlerfarbe
+    input.classList.remove("errorDesign");
+    
+    // Entferne die Fehlermeldung, falls vorhanden
+    let errorMessage = input.parentElement.querySelector(".errorMessage");
+    if (errorMessage) {
+      errorMessage.remove();
+    }
   }
 }
 

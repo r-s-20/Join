@@ -46,10 +46,38 @@ button.lightColored:hover {
   padding-top: 4rem;
 }
 
+
+
 .innerContent {
   justify-content: space-evenly;
   flex: 1;
 }
+
+.closeCross{
+  width: 430px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeCross2{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeCross2:hover{
+  cursor: pointer;
+}
+
+.closeCross img{
+  height: 16px;
+  width: 24px;
+}
+
+.closeCross img:hover{
+ cursor: pointer;
+}
+
 
 .formContent {
   justify-content: flex-start;
