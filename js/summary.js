@@ -3,7 +3,8 @@ let greetingDone = false;
 async function init() {
   renderWelcomeMessage();
   greetingScreen();
-  includeHTML();
+  await includeHTML();
+  renderUserlogo();
   loadTasks();
   renderShortestDeadline();
   insertCounterValues();
@@ -53,7 +54,6 @@ function renderGreeting() {
 function renderUsername() {
   let user = document.getElementById("welcomeName");
   let currentUser = sessionStorage.getItem(contact);
-  console.log(currentUser);
   if (currentUser) {
     // hier später contact.initials auslesen
     user.innerHTML = "Anna Meier";
@@ -67,7 +67,6 @@ function greetingScreen() {
   if (!greetingDone) {
     let container = document.getElementsByClassName("rightColumn")[0];
     if (window.innerWidth <= 1080) {
-      console.log("hello");
       container.classList.add("popupGreeting");
       setInterval(() => {
         container.classList.remove("popupGreeting");

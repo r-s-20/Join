@@ -21,7 +21,6 @@ header h2 {
 
 .infoBox {
   gap: 1rem;
-  width: 128px;
   padding: 1rem;
 }
 
@@ -37,8 +36,14 @@ header h2 {
   color: var(--customBlue);
   border: 3px solid var(--mainDarkColor);
   padding: 0.8rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 100%;
   font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .userLogo:hover {

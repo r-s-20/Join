@@ -209,6 +209,31 @@ async function loadData(path = "") {
   // console.log(tasksDownloaded);
 }
 
+
+async function saveTasksToAPI() {
+  let tasksAsText = JSON.stringify(tasks);
+  uploadStatus = await putData("/joinTasks", data={"tasks": tasksAsText});
+  if (uploadStatus.ok) {
+    console.log("task was saved to firebase");
+  }
+}  
+
+async function saveUsersToAPI() {
+  let usersAsText = JSON.stringify(users);
+  uploadStatus = await putData("/joinUsers", data={"users": usersAsText});
+  if (uploadStatus.ok) {
+    console.log("user array saved to firebase");
+  }
+}  
+
+async function saveContactsToAPI() {
+  let contactsAsText = JSON.stringify(contacts);
+  uploadStatus = await putData("/joinContacts", data={"contacts": contactsAsText});
+  if (uploadStatus.ok) {
+    console.log("contacts array saved to firebase");
+  }
+}  
+
 async function loadTasksFromAPI() {
   let tasksRaw = await loadData("joinTasks");
   let tasksAsString = tasksRaw.tasks;
@@ -216,6 +241,24 @@ async function loadTasksFromAPI() {
     tasks = JSON.parse(tasksAsString);
   }
   console.log("downloaded tasks", tasks);
+}
+
+async function loadUsersFromAPI() {
+  let usersRaw = await loadData("joinUsers");
+  let arrayAsString = usersRaw.users;
+  if (arrayAsString) {
+    users = JSON.parse(arrayAsString);
+  }
+  console.log("downloaded users", users);
+}
+
+async function loadContactsFromAPI() {
+  let contactsRaw = await loadData("joinContacts");
+  let arrayAsString = contactsRaw.contacts;
+  if (arrayAsString) {
+    contacts = JSON.parse(arrayAsString);
+  }
+  console.log("downloaded contacts", contacts);
 }
 
 function loadContacts() {
@@ -233,3 +276,18 @@ function toggleUserMenu() {
   popup = document.getElementById("header-popup-curtain");
   popup.classList.toggle("d-none");
 }
+
+function logoutUser() {
+  console.log("logging out");
+  sessionStorage.clear();
+}
+
+function renderUserlogo() {
+    userLogo = document.getElementById("userLogo");
+    currentUser = sessionStorage.getItem("contact");
+    if (currentUser.initials) {
+      userLogo.innerHTML = currentUser.intials;
+    } else {
+      userLogo.innerHTML = "G";
+    }
+  }

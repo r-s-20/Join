@@ -5,6 +5,7 @@ let contactsSelected = [];
 async function init() {
   await includeHTML();
   loadTasks();
+  renderUserlogo();
   // console.log("loading from API");
   // loadTasksFromAPI();
   document.getElementById("addTaskForm").addEventListener("onkeypress", (e) => {
@@ -113,10 +114,6 @@ function showConfirmationMessage() {
 async function saveTasks() {
   let tasksAsText = JSON.stringify(tasks);
   localStorage.setItem("tasks", tasksAsText);
-  // uploadStatus = await putData("/joinTasks", data={"tasks": tasksAsText});
-  // if (uploadStatus.ok) {
-  //   console.log("task was saved to firebase");
-  // }
 }
 
 function validateTask(task) {
