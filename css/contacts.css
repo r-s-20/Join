@@ -1301,7 +1301,7 @@ button {
         align-items: center;
         height: 592px;
         border-radius: 30px;
-        border: 1px solid;
+        border: none;
         margin-left: 24px;
         margin-top: 24px;
         background-color: rgba(255, 255, 255, 1);
@@ -1310,6 +1310,7 @@ button {
         left: 8%;
         scale: 48%;
         width: 396px;
+        padding: 0;
          }
 
          .overlayAddContactLeftSide {
@@ -1320,9 +1321,10 @@ button {
             background-color: rgba(42, 54, 71, 1);
             width: 396px;
             height: 352px;
-            padding: 66px 46px 66px 46px;
             gap: 12px;
             border-radius: 30px 30px 0 0;
+            padding: 0;
+            padding-left: 25px;
 
             img {
                 display: none;
@@ -1340,15 +1342,31 @@ button {
         .overlayAddContactRightSideInputFields {
             flex-direction: column;
             gap: 0;
+            margin-top: 0;
+            width: 364px;
         }
 
         .addContactInputField {
             margin-top: 0;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .addContactInputFieldName {
+            width: 364px;
         }
 
         .overlayAddContactRightSideBadge {
-            margin-top: 0;
+            margin-top: -30px;
             margin-left: 0;
+        }
+
+        .overlayAddContactRightButton  {
+            margin-top: 0;
+        }
+
+        .cancel {
+            display: none;
         }
 
 
