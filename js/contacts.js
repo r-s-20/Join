@@ -117,7 +117,10 @@ function showContactDetails(index) {
   contactDetailsContainer.innerHTML = contactDetailsHTML;
   contactDetailsContainer.classList.remove("d-none");
 
-  // switchToContactDetails();
+  if (window.innerWidth <= 875) {
+    document.querySelector('.contactsContent').classList.add("show");
+    document.querySelector('.contactListSide').classList.add("d-none");
+  }
 }
 
 function selectContact(index) {
@@ -126,6 +129,7 @@ function selectContact(index) {
   if (contact.classList.contains("selectedContact")) {
     contact.classList.remove("selectedContact");
     contactDetailsContainer.innerHTML = "";
+    document.querySelector('.contactsContent').classList.remove("show");
   } else {
     unselectAllContacts();
     contact.classList.add("selectedContact");
@@ -140,6 +144,7 @@ function unselectAllContacts() {
     cards.classList.remove("selectedContact");
   }
   contactDetailsContainer.innerHTML = "";
+  document.querySelector('.contactsContent').classList.remove("show");
 }
 
 function addContactPopUp() {
@@ -271,107 +276,6 @@ function removeContactFromTasks(contactIndex) {
     }
   }
 }
-
-// function addContactMobilePopUp() {
-//   document.getElementById("addInitialsMobile").classList.remove("d-none");
-//   document.getElementById("overlayBackground").classList.remove("d-none");
-// }
-
-// function closeAddContactMobilePopUp() {
-//   document.getElementById("addInitialsMobile").classList.add("d-none");
-//   document.getElementById("overlayBackground").classList.add("d-none");
-// }
-
-// function closeEditContactPopUp() {
-//   document.getElementById("editInitialsMobile").classList.add("d-none");
-//   document.getElementById("overlayBackground").classList.add("d-none");
-// }
-
-// function closeEditContactPopUpMobile() {
-//   document.getElementById("showEditContactPopUpMobile").classList.add("d-none");
-//   document.getElementById("overlayBackground").classList.add("d-none");
-// }
-
-// function mobileContactsCard() {
-//   document.getElementById("contactCardMain").classList.remove("d-none");
-//   document.getElementById("overlayBackground").classList.remove("d-none");
-// }
-
-// function addContactMobile() {
-//   let name = document.getElementById("addNameMobile").value;
-//   let email = document.getElementById("addEmailMobile").value;
-//   let phone = document.getElementById("addphoneMobile").value;
-
-//   let contactExists = contacts.some(contact => {
-//     return contact.name === name || contact.email === email;
-//   });
-
-//   if (contactExists) {
-//     alert("Ein Kontakt mit diesem Namen oder dieser Email-Adresse existiert bereits.");
-//     return;
-//   }
-
-//   let initials = getInitials(name);
-//   let badgecolor = colors[contacts.length % colors.length];
-
-//   let newContact = {
-//     name: name,
-//     email: email,
-//     phone: phone,
-//     initials: initials,
-//     badgecolor: badgecolor
-//   };
-
-//   contacts.push(newContact);
-//   saveContactsToLocalStorage();
-//   render();
-//   closeEditContactPopUpMobile();
-// }
-
-// function editContactPopUp(index) {
-//   let contact = contacts[index];
-//   currentContactIndex = index;
-//   let editName = document.getElementById("editNameMobile");
-//   let editEmail = document.getElementById("editEmailMobile");
-//   let editPhone = document.getElementById("editphoneMobile");
-//   let editInitials = document.getElementById("editInitials");
-//   let saveEditButton = document.getElementById("saveEditButtonMobile");
-//   let editBadge = document.querySelector(".overlayEditContactRightSideBadge h1");
-
-//   if (editName && editEmail && editPhone && editInitials && editBadge) {
-//     editNameMobile.value = contact.name;
-//     editEmailMobile.value = contact.email;
-//     editphoneMobile.value = contact.phone;
-//     editInitials.value = contact.initials;
-//     editBadge.innerText = contact.initials;
-//     editBadge.style.backgroundColor = contact.badgecolor;
-//     saveEditButton.onclick = function() {
-//       saveContact(index);
-//     };
-//     document.getElementById("overlayBackground").style.display = "block";
-//     document.getElementById("showEditContactPopUp").classList.remove("d-none");
-//   }
-// }
-
-// function switchToContactDetails() {
-//   document.getElementById("contactListsContainer").classList.add("d-none");
-//   document.getElementById("contactCardMain").classList.remove("d-none");
-//   document.getElementById("contactsContent").classList.remove("d-none");
-//   document.getElementById("overlayBackground").classList.remove("d-none");
-// }
-
-// function switchToContactList() {
-//   document.getElementById("contactListsContainer").classList.remove("d-none");
-//   document.getElementById("contactCardMain").classList.add("d-none");
-//   document.getElementById("overlayBackground").classList.add("d-none");
-// }
-
-// function closeContactDetails() {
-//   document.getElementById("contactCardMain").classList.add("d-none");
-//   document.getElementById("overlayBackground").classList.add("d-none");
-
-//   switchToContactList();
-// }
 
 document.addEventListener("DOMContentLoaded", function () {
   loadContacts();
