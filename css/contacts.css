@@ -1236,7 +1236,7 @@ button {
 
   .contactLists {
     margin-top: 30px;
-    width: 100%;
+    width: 90%;
   }
 
   .contactsMain {
@@ -1253,7 +1253,7 @@ button {
   }
 
   .contactsContent {
-    /* display: none; */
+    display: none;
     box-shadow: none;
   }
 
@@ -1268,7 +1268,7 @@ button {
 
   .contactListsNameHead {
     width: 100%;
-    padding-left: 110px;
+    padding-left: 55px;
   }
 }
 
@@ -1356,6 +1356,7 @@ button {
 
   .contactListsContainer {
     margin-bottom: 1rem;
+    height: auto;
   }
 
   .contactLists {
@@ -1441,6 +1442,10 @@ button {
   .overlayEditContactRightSideBadge {
     margin-top: -30px;
     margin-left: 0;
+
+    h1 {
+    border: 3px solid white;
+    }
   }
 
   .editContactInputFieldName {
@@ -1449,22 +1454,26 @@ button {
 
   .overlayEditContactRightButton {
     display: flex;
-    width: 154px;
+    width: 201px;
     height: 51px;
-    gap: 4px;
+    gap: 20px;
     margin-top: 17px;
     justify-content: center;
+  }
+
+  .delete {
+    padding: 6px;
   }
 
 
 
 @media (max-width: 500px) {
   .contactListsContainer {
-    height: 83vh;
+    height: auto;
   }
   .contactLists {
     padding-left: 0;
-    width: 107%;
+    width: 90%;
     margin-bottom: 0;
   }
 
@@ -1490,8 +1499,9 @@ button {
     justify-content: center;
     align-items: center;
     margin-left: 300px;
-    position: absolute;
-    top: 89%;
+    position: fixed;
+    top: 84%;
+    left: 2px;
   }
 
   .mobileAddBtn img {
@@ -1501,7 +1511,7 @@ button {
   }
 
   .contactListsContainer {
-    height: 85vh;
+    height: auto;
   }
 
   .contactLists {
@@ -1546,7 +1556,7 @@ button {
   }
 
   .contactLists {
-    width: 106%;
+    width: 90%;
     margin-bottom: 0;
   }
 
