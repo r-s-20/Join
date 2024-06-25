@@ -45,3 +45,12 @@ ol li::before {
   margin-right: 1rem;
   margin-top: 1rem;
 }
+
+.noHelpIcon {
+  .helpIcon {
+    display: none;
+  }
+  .help-mobile {
+    display: none;
+  }
+}
