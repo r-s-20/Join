@@ -17,6 +17,9 @@ let searchTask = tasks;
 loadTasks();
 
 async function init() {
+  if (!checkUserLoginStatus()) {
+    window.location.href = "./index.html";
+  }
   await includeHTML();
   renderUserlogo();
 }

@@ -574,7 +574,7 @@ h1 {
 }
 
 .dropdownMenu{
-  display: none;
+  display: none !important;
 }
 
 
@@ -609,6 +609,7 @@ h1 {
 } */
 
 .categoryAndDropDown{
+ 
   display: flex;
   justify-content: space-between;
 }
@@ -791,7 +792,8 @@ h1 {
 
 @media (max-width: 800px) {
   .dropdownMenu{
-    display: inline;}
+    display: inline !important;
+  }
   
 
   .popup {

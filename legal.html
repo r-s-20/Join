@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="./css/sidebar.css" />
     <link rel="stylesheet" href="./css/privacyLegal.css" />
     <script defer src="./js/script.js"></script>
+    <script defer src="./js/help.js"></script>
   </head>
-  <body onload="includeHTML()">
+  <body onload="includeHTML(), checkLoginStatus()">
     <div class="outerContainer flex-start width100">
       <div class="leftContainer flex-col">
-        <div w3-include-html="templates/sidebar.html" class="sidebar flex-col sidebarLegal"></div>
+        <div w3-include-html="templates/sidebar.html" class="sidebar flex-col sidebarLegal" id="sidebarPrivacyLegal"></div>
       </div>
 
       <div class="rightContainer flex-col">
