@@ -15,8 +15,9 @@ async function includeHTML() {
 }
 
 let users = [
-
-]
+  { name: "Anton Mayer", email: "anton@gmail.com", password: "123456" },
+  { name: "Eva Fischer", email: "fischer@gmail.com", password: "7890" },
+];
 
 let colors = [
   "#FF7A00",
@@ -86,9 +87,7 @@ let categories = [
     name: "Technical task",
     color: colors[2],
   },
-  { name: "Userstory", 
-    color: colors[3],
-  }
+  { name: "Userstory", color: colors[3] },
 ];
 
 let tasks = [
@@ -186,8 +185,8 @@ function loadTasks() {
 //     method: "DELETE",
 //   });
 //   console.log("post", response);
-  //   let responseJson = await response.json();
-  //   console.log(responseJson);
+//   let responseJson = await response.json();
+//   console.log(responseJson);
 // }
 
 async function putData(path = "", data = {}) {
@@ -231,6 +230,6 @@ function saveContactsToLocalStorage() {
 }
 
 function toggleUserMenu() {
-  popup = document.getElementById('header-popup-curtain');
+  popup = document.getElementById("header-popup-curtain");
   popup.classList.toggle("d-none");
 }
