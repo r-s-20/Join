@@ -814,7 +814,8 @@ button {
   }
 
   .contactsMain button {
-    width: 230px;
+    width: 200px;
+    padding: 0;
   }
 
   .contactListsNameHead {
@@ -1051,7 +1052,8 @@ button {
   }
 
   .contactsMain button {
-    width: 225px;
+    width: 200px;
+    padding: 0;
   }
 
   .contactListsNameHead {
@@ -1124,9 +1126,17 @@ button {
   }
 
   .contactListsNameHead {
-    width: 235px;
-    gap: 18px;
+    width: 215px;
+    gap: 10px;
     padding-left: 0;
+
+    h1 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
   }
 
   .contactGroup {
@@ -1183,7 +1193,7 @@ button {
   }
 
   .contactListsContainer {
-    width: 250px;
+    width: 240px;
   }
 
   .contactListsNameBadge {
@@ -1207,7 +1217,8 @@ button {
   }
 
   .contactsMain button {
-    width: 225px;
+    width: 200px;
+    padding: 0;
     z-index: 99;
   }
 
@@ -1267,8 +1278,8 @@ button {
   }
 
   .contactListsNameHead {
-    width: 100%;
-    padding-left: 55px;
+    width: 90%;
+    padding-left: 25px;
   }
 }
 
@@ -1355,12 +1366,12 @@ button {
   }
 
   .contactListsContainer {
-    margin-bottom: 1rem;
+    margin-bottom: 5rem;
     height: auto;
   }
 
   .contactLists {
-    padding-left: 2.5rem;
+   
   }
 
   .save {
@@ -1484,7 +1495,7 @@ button {
   .contactGroup {
     h2 {
       margin-top: 5px;
-      padding-left: 60px;
+      padding-left: 40px;
     }
   }
 }
@@ -1498,10 +1509,9 @@ button {
     display: flex !important;
     justify-content: center;
     align-items: center;
-    margin-left: 300px;
     position: fixed;
-    top: 84%;
-    left: 2px;
+    top: 82%;
+    right: 14px;
   }
 
   .mobileAddBtn img {
@@ -1539,7 +1549,7 @@ button {
   }
 
   .contactListsNameHead {
-    padding-left: 75px;
+    padding-left: 15px;
   }
 
   .contactGroup {
