@@ -14,7 +14,7 @@
     <div class="loginOuterContainer flex-col width100">
       <div class="signUpContainer flex-center width100" id="signUpContainer">
         <span>Not a Join user?</span>
-        <button onclick="loginToSignUp()" class="button mainDarkBlue">Sign up</button>
+        <button onclick="loginToSignUp()" class="topSignUpButton button mainDarkBlue">Sign up</button>
       </div>
       <div class="inputFields flex-col" id="logIn">
         <h2>Log in</h2>
@@ -57,7 +57,7 @@
         <div class="arrowLeft" id="arrowLeft"><a href="/index.html"><img src="./img/arrow-left-line.svg" alt=""></a></div>
         <h2>Sign Up</h2>
         <div class="separator"></div>
-        <form class="signUpInputs flex-col" onsubmit="event.preventDefault(); validateForm();">
+        <form class="signUpInputs" onsubmit="event.preventDefault(); validateForm();">
           <div class="signUpName width100 signUpInputElement">
             <input type="text" placeholder="Name" id="signUpName" />
             <img class="inputIcon" src="./img/person.png" alt="" />
@@ -66,7 +66,7 @@
             <input type="text" placeholder="Email" id="signUpEmail" />
             <img class="inputIcon" src="./img/mailIcon.svg" alt="" />
           </div>
-          <div class="signUpPassword width100 signUpInputElement">
+          <div class="signUpPassword signUpInputElement">
             <input
               type="password"
               name=""
@@ -117,14 +117,14 @@
             <a href="/privacy.html"><span>Privacy policy</span></a>
           </div>
           <div class="singUpButtonContainer">
-            <button type="submit" onclick="signUp()" id="signUpButton" disabled style="background-color: #808285">
+            <button type="submit" onclick="signUp()" id="signUpButton" class="signUpButton" disabled style="background-color: #808285">
               Sign Up
             </button>
           </div>
         </form>
-        
+        <div class="backgroundPopup d-none" id="backgroundPopup">
       </section>
-      
+
         <div class="loginLegalContainer flex-center">
           <a href="/privacy.html" class="button">Privacy policy</a>
           <a href="/legal.html" class="button">Legal notice</a>

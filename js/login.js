@@ -1,5 +1,6 @@
-loadUsers();
+
 loadContacts();
+loadUsersFromAPI()
 let contact;
 let confirmPasswords = true;
 let confirmMail = false;
@@ -104,8 +105,10 @@ function createContact() {
 
   contacts.push(newContact);
 
-  saveUsers();
+
+  saveUsersToAPI();
   saveContacts();
+  saveContactsToAPI();
 }
 
 function comparePassword() {

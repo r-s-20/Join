@@ -90,6 +90,11 @@ input:focus {
   min-height: 2rem;
   font-size: 1rem;
   width: 100%;
+  color: black;
+}
+
+.inputFields input::placeholder{
+  color: #d1d1d1;
 }
 
 .inputFields img {
@@ -183,6 +188,7 @@ input:focus {
   position: relative;
   display: flex;
   align-items: center;
+  width: 422px;
 }
 
 .signUp input {
@@ -194,13 +200,19 @@ input:focus {
   gap: 10px;
   font-size: 20px;
   font-weight: 400;
+  color: black;
+}
+
+.signUp input::placeholder{
   color: #d1d1d1;
 }
 
+
 .signUp .separator {
   border-top: 3px solid var(--customBlue);
-  width: 40%;
-  margin-bottom: 1rem;
+  width: 160px;
+  margin-bottom: 0;
+  margin-top: -20px;
 }
 
 .singUpButtonContainer button {
@@ -224,6 +236,8 @@ input:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 .signUpPrivacyPolicy img {
@@ -241,6 +255,11 @@ input:focus {
   color: #29abe2;
   margin-left: 4px;
   cursor: pointer;
+}
+
+.signUpPrivacyPolicy span:last-child:hover{
+  text-decoration: underline;
+  font-weight: 500;
 }
 
 .loginLegalContainer a:hover {
@@ -315,13 +334,20 @@ input:focus {
   display: none;
 }
 
+.topSignUpButton:hover{
+  background-color: #29abe2;
+  color: white !important;
+}
+
 @media (max-width: 630px) {
+
+
   .loginScreenLogo {
     width: 64px;
   }
 
   .signUp {
-    width: 100%;
+    max-width: 95%;
   }
 
   .singUpButtonContainer button {
@@ -329,9 +355,10 @@ input:focus {
     height: 51px;
   }
 
-  .signUpInputs {
+  .signUpInputElement{
     width: 100%;
   }
+
 }
 
 @media (max-width: 600px) {
@@ -342,12 +369,30 @@ input:focus {
   .inputFields {
     width: 95%;
   }
+
+  .signUpInputs{
+    max-width: 85vw;
+  }
 }
 
 @media (max-width: 535px) {
-  .loginOuterContainer button{
-    font-size: 16px;
-  }
+
+    .signUp h2{
+      font-size: 47px;
+    }
+
+    .signUp .separator{
+      width: 95px;
+    }
+
+    .signUpPrivacyPolicy{
+      margin-top: 50px;
+    }
+
+    .loginButtonContainer button{
+      font-size: 16px;
+    }
+
 }
 
 @media (max-width: 490px) {
@@ -383,6 +428,7 @@ input:focus {
     height: 123px;
     display: flex;
     flex-direction: column;
+    gap: 20px;
   }
 
   .loginOuterContainer {
@@ -395,9 +441,7 @@ input:focus {
 
   }
 
-  .loginOuterContainer button:last-child {
-    margin-top: -15px;
-  }
+
 
   .signUpContainer {
     display: none;
@@ -426,7 +470,28 @@ input:focus {
     font-size: 14px;
   }
 
+  .signUpContainerResponsive button:hover{
+    color: white;
+  }
+
   .rememberContainer {
     padding-left: 10px;
   }
 }
+
+@media (max-width: 400px) {
+  .arrowLeft{
+    left: -60px;
+  }
+
+  .signUp h2{
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 335px) {
+  .signUp h2{
+    font-size: 32px;
+  }
+}
+
