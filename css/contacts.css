@@ -1058,8 +1058,8 @@
   
     .contactListsNameHead {
       width: 250px;
-      padding-left: 0;
-      gap: 16px;
+      padding-left: 10px;
+      gap: 12px;
     }
   
     .contactGroup {
@@ -1492,6 +1492,45 @@
   }
   
   @media (max-width: 500px) {
+
+    .contactsMainOverlayAddContact {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: 725px;
+        border-radius: 30px;
+        border: none;
+        margin-left: 0px;
+        margin-top: 0px;
+        background-color: rgba(255, 255, 255, 1);
+        position: fixed;
+        top: 8%;
+        left: 0%;
+        scale: 90%;
+        width: 396px;
+        padding: 0;
+    }
+
+    .contactsMainOverlayEditContact {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: 725px;
+        border-radius: 30px;
+        border: none;
+        margin-left: 0px;
+        margin-top: 0px;
+        background-color: rgba(255, 255, 255, 1);
+        position: fixed;
+        top: 8%;
+        left: 0%;
+        scale: 90%;
+        width: 396px;
+        padding: 0;
+    }
+
     .contactListsContainer {
       height: auto;
     }
@@ -1561,6 +1600,24 @@
         order: 1;
         margin: 0;
   }
+
+  .cardHeaderLogo {
+    width: 85px;
+    height: 85px;
+
+    h1 {
+        font-size: 42px;
+    }
+  }
+
+  .overlayAddContactRightSideInputFields {
+    gap: 85px;
+    margin-top: -140px;
+  }
+  .overlayEditContactRightSideInputFields {
+    gap: 85px;
+    margin-top: -140px;
+  }
 }
 
   @media (max-width: 400px) {
@@ -1583,7 +1640,10 @@
     }
   
     .contentCardHeader {
-        width: 380px;
+        width: 385px;
+    }
+    .contentCardBody {
+        gap: 15px;
     }
   }
   
