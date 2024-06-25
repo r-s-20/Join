@@ -7,41 +7,39 @@ let confirmMail = false;
 let signUpName = document.getElementById("signUpName");
 let signUpEmail = document.getElementById("signUpEmail");
 let signUpPassword = document.getElementById("signUpPassword");
-let signUpConfirmPassword = document.getElementById("signUpConfirmPassword")
+let signUpConfirmPassword = document.getElementById("signUpConfirmPassword");
 
-signUpEmail.addEventListener('blur', function() {
+signUpEmail.addEventListener("blur", function () {
   validateEmail();
 });
 
 function validateEmail() {
   let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  if (!emailPattern.test(signUpEmail.value.trim()) && signUpEmail.value !== '') {
-    renderError('signUpEmail', "Please add a valid email address.");
+  if (!emailPattern.test(signUpEmail.value.trim()) && signUpEmail.value !== "") {
+    renderError("signUpEmail", "Please add a valid email address.");
     confirmMail = false;
   } else {
     removeErrors();
     confirmMail = true;
     validateForm();
-   
   }
 }
 
-signUpPassword.addEventListener('blur', function() {
+signUpPassword.addEventListener("blur", function () {
   validatePassword();
 });
 
-signUpConfirmPassword.addEventListener('blur', function() {
+signUpConfirmPassword.addEventListener("blur", function () {
   validatePassword();
 });
 
-function validatePassword(){
-  if (signUpPassword.value !== '' && signUpConfirmPassword.value !== '') {
-      comparePassword();
-    }
-    validateForm();
+function validatePassword() {
+  if (signUpPassword.value !== "" && signUpConfirmPassword.value !== "") {
+    comparePassword();
+  }
+  validateForm();
 }
-
 
 const validateForm = () => {
   let signUpButton = document.getElementById("signUpButton");
@@ -73,31 +71,26 @@ signUpEmail.addEventListener("input", validateForm);
 signUpPassword.addEventListener("input", validateForm);
 signUpConfirmPassword.addEventListener("input", validateForm);
 
-
-
-
-
-
 function signUp() {
   removeErrors();
-    let newUser = {
-      name: signUpName.value,
-      email: signUpEmail.value,
-      password: signUpPassword.value,
-    };
-    document.getElementById("backgroundPopup").innerHTML = /*html*/ `
+  let newUser = {
+    name: signUpName.value,
+    email: signUpEmail.value,
+    password: signUpPassword.value,
+  };
+  document.getElementById("backgroundPopup").innerHTML = /*html*/ `
     <div class="successfullSignedUp" id="successfullSignedUp">
          <span>You Signed Up successfully</span>
     </div>
     `;
-    users.push(newUser);
-    createContact();
-    showAndHidePopup();
-    signUpName.value = "";
-    signUpEmail.value = "";
-    signUpPassword.value = "";
-    signUpConfirmPassword.value = "";
-    unCheck();
+  users.push(newUser);
+  createContact();
+  showAndHidePopup();
+  signUpName.value = "";
+  signUpEmail.value = "";
+  signUpPassword.value = "";
+  signUpConfirmPassword.value = "";
+  unCheck();
 }
 
 function createContact() {
@@ -195,9 +188,11 @@ function loginToSignUp() {
   let logIn = document.getElementById("logIn");
   let signUp = document.getElementById("signUp");
   let signUpContainer = document.getElementById("signUpContainer");
+  let signUpContainerResponsive = document.getElementById("signUpContainerResponsive");
   logIn.classList.add("d-none");
   signUp.classList.remove("d-none");
   signUpContainer.classList.add("d-none");
+  signUpContainerResponsive.classList.add("d-none");
 }
 
 function checkDone() {
@@ -257,7 +252,7 @@ function checkRememberMe(contact) {
   }
 }
 
-function guestLogin(){
+function guestLogin() {
   let guestUser = {
     name: "Guest",
     email: "",
@@ -309,11 +304,10 @@ function unCheck2() {
 function renderError(inputId, message = "This field is required") {
   let input = document.getElementById(inputId);
   input.classList.add("errorDesign");
-  let errorSpan = document.createElement('span');
-  errorSpan.className = 'errorMessage';
+  let errorSpan = document.createElement("span");
+  errorSpan.className = "errorMessage";
   errorSpan.textContent = message;
   input.parentElement.appendChild(errorSpan);
-
 }
 
 function removeErrors() {
@@ -349,20 +343,19 @@ function showVisbilityIcons(inputId) {
     visOffIcon.classList.add("d-none");
     visOnIcon.classList.add("d-none");
   }
-
 }
 
 function showPassword(inputId) {
   let input = document.getElementById(inputId);
   console.log("showing password in", input);
-  input.type = 'text';
+  input.type = "text";
   toggleVisibilityIcons(inputId);
 }
 
 function hidePassword(inputId) {
   let input = document.getElementById(inputId);
   console.log("hiding password in", input);
-  input.type = 'password';
+  input.type = "password";
   toggleVisibilityIcons(inputId);
 }
 
