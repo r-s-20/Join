@@ -61,7 +61,9 @@ function render() {
       let contactHTML = /*html*/ `
         <div class="contactLists" data-index="${contacts.indexOf(
           contact
-        )}" onclick="event.stopPropagation(), selectContact(${contacts.indexOf(contact)})" id="contactCard${contacts.indexOf(contact)}">  
+        )}" onclick="event.stopPropagation(), selectContact(${contacts.indexOf(
+        contact
+      )})" id="contactCard${contacts.indexOf(contact)}">  
           <div class="contactListsNameHead">
             <div class="contactListsNameBadge" style="background-color: ${contact.badgecolor}">
               <h1>${contact.initials}</h1>
@@ -251,11 +253,23 @@ function addContact() {
 }
 
 function deleteContact(index) {
+  contact = contacts[index];
+  removeContactFromTasks(index);
   contacts.splice(index, 1);
   saveContactsToLocalStorage();
   render();
   document.getElementById("contactCardMain").classList.add("d-none");
   closeEditContactPopUp();
+}
+
+function removeContactFromTasks(contactIndex) {
+  let contact = contacts[contactIndex];
+  for (task of tasks) {
+    let assignedIndex = task.assigned.findIndex((e) => e.name == contact.name);
+    if (assignedIndex != -1) {
+      task.assigned.splice(assignedIndex, 1);
+    }
+  }
 }
 
 // function addContactMobilePopUp() {
