@@ -61,7 +61,7 @@ function render() {
       let contactHTML = /*html*/ `
         <div class="contactLists" data-index="${contacts.indexOf(
           contact
-        )}" onclick="showContactDetails(${contacts.indexOf(contact)})">  
+        )}" onclick="showContactDetails(${contacts.indexOf(contact)})" id="contactCard${contacts.indexOf(contact)}">  
           <div class="contactListsNameHead">
             <div class="contactListsNameBadge" style="background-color: ${contact.badgecolor}">
               <h1>${contact.initials}</h1>
@@ -81,6 +81,7 @@ function render() {
 
 function showContactDetails(index) {
   let contact = contacts[index];
+  selectContact(index);
   let contactDetailsHTML = /*html*/ `
     <div class="contentCardHeader">
       <div class="contentCardBody">
@@ -116,6 +117,19 @@ function showContactDetails(index) {
   contactDetailsContainer.classList.remove("d-none");
 
   // switchToContactDetails();
+}
+
+function selectContact(index) {
+  let contact = document.getElementById(`contactCard${index}`);
+  console.log("selected is", contact);
+  contact.classList.add("selectedContact");
+}
+
+function unselectAllContacts() {
+  let contactCards = document.getElementsByClassName("contactLists");
+  for (cards of contactCards) {
+    cards.classList.remove("selectedContact");
+  }
 }
 
 function addContactPopUp() {

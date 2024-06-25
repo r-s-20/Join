@@ -290,3 +290,12 @@ function renderUserlogo() {
     }
   }
 }
+
+function checkUserLoginStatus() {
+  let userAsText = sessionStorage.getItem("contact");
+  if (userAsText) {
+    return true;
+  } else {
+    return false;
+  }
+}

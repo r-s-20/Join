@@ -3,19 +3,15 @@ let currentSubtasks = [];
 let contactsSelected = [];
 
 async function init() {
+  if (!checkUserLoginStatus()) {
+    window.location.href = "./index.html";
+  }
   await includeHTML();
   // loadTasks();
   renderUserlogo();
   console.log("loading from API");
   loadTasksFromAPI();
   loadContactsFromAPI();
-  document.getElementById("addTaskForm").addEventListener("onkeypress", (e) => {
-    let key = e.charCode || e.keyCode || 0;
-    if (key == 13) {
-      e.preventDefault();
-      console.log("enter was pressed");
-    }
-  });
 }
 
 async function addNewTask(status) {

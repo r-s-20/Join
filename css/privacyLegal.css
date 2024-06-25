@@ -60,3 +60,9 @@ ol li::before {
     display: none;
   }
 }
+
+.no-menu {
+  #menuSidebar {
+    display: none;
+  }
+}

@@ -1,6 +1,9 @@
 let greetingDone = false;
 
 async function init() {
+  if (!checkUserLoginStatus()) {
+    window.location.href = "./index.html";
+  }
   renderWelcomeMessage();
   greetingScreen();
   await includeHTML();
@@ -55,10 +58,10 @@ function renderUsername() {
   let user = document.getElementById("welcomeName");
   let currentUser = sessionStorage.getItem("contact");
   user.innerHTML = "Guest";
+  console.log(currentUser);
   if (currentUser) {
     currentUser = JSON.parse(currentUser);
-    if (currentUser.name)
-    user.innerHTML = currentUser.name;
+    if (currentUser.name) user.innerHTML = currentUser.name;
   }
 }
 
