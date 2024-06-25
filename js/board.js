@@ -226,6 +226,7 @@ function closePopup() {
     editPopup = false;
   }
   resetAddTask();
+  resetFormInputs();
   let popup = document.getElementById("popup");
   popup.classList.remove("show");
   popup.classList.add("hide");

@@ -20,6 +20,11 @@ let currentContactIndex = null;
 //   });
 // }
 
+async function init() {
+  await includeHTML();
+  renderUserlogo();
+}
+
 function render() {
   document.getElementById("contactListsContainer").innerHTML = "";
 
@@ -54,7 +59,9 @@ function render() {
 
     groupedContacts[letter].forEach((contact, contactIndex) => {
       let contactHTML = /*html*/ `
-        <div class="contactLists" data-index="${contacts.indexOf(contact)}" onclick="showContactDetails(${contacts.indexOf(contact)})">  
+        <div class="contactLists" data-index="${contacts.indexOf(
+          contact
+        )}" onclick="showContactDetails(${contacts.indexOf(contact)})">  
           <div class="contactListsNameHead">
             <div class="contactListsNameBadge" style="background-color: ${contact.badgecolor}">
               <h1>${contact.initials}</h1>
@@ -138,12 +145,12 @@ function editContactPopUp(index) {
     editInitials.value = contact.initials;
     editBadge.innerText = contact.initials;
     editBadge.style.backgroundColor = contact.badgecolor;
-    saveEditButton.onclick = function() {
+    saveEditButton.onclick = function () {
       saveContact(index);
     };
     document.getElementById("overlayBackground").style.display = "block";
     document.getElementById("showEditContactPopUp").classList.remove("d-none");
-  } 
+  }
 }
 
 function closeEditContactPopUp() {
@@ -195,7 +202,7 @@ function addContact() {
   let email = document.getElementById("addEmail").value;
   let phone = document.getElementById("addPhone").value;
 
-  let contactExists = contacts.some(contact => {
+  let contactExists = contacts.some((contact) => {
     return contact.name === name || contact.email === email;
   });
 
@@ -212,7 +219,7 @@ function addContact() {
     email: email,
     phone: phone,
     initials: initials,
-    badgecolor: badgecolor
+    badgecolor: badgecolor,
   };
 
   contacts.push(newContact);
@@ -307,7 +314,7 @@ function deleteContact(index) {
 //     };
 //     document.getElementById("overlayBackground").style.display = "block";
 //     document.getElementById("showEditContactPopUp").classList.remove("d-none");
-//   } 
+//   }
 // }
 
 // function switchToContactDetails() {
@@ -327,10 +334,9 @@ function deleteContact(index) {
 //   document.getElementById("contactCardMain").classList.add("d-none");
 //   document.getElementById("overlayBackground").classList.add("d-none");
 
-  
 //   switchToContactList();
 // }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   loadContacts();
 });

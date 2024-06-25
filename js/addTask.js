@@ -4,10 +4,11 @@ let contactsSelected = [];
 
 async function init() {
   await includeHTML();
-  loadTasks();
+  // loadTasks();
   renderUserlogo();
-  // console.log("loading from API");
-  // loadTasksFromAPI();
+  console.log("loading from API");
+  loadTasksFromAPI();
+  loadContactsFromAPI();
   document.getElementById("addTaskForm").addEventListener("onkeypress", (e) => {
     let key = e.charCode || e.keyCode || 0;
     if (key == 13) {
@@ -26,7 +27,7 @@ async function addNewTask(status) {
     await showConfirmationMessage();
     resetFormInputs();
     resetAddTask();
-    closeAddingTask();
+    setTimeout (closeAddingTask, 1500);
   }
 }
 
@@ -108,12 +109,13 @@ function showConfirmationMessage() {
   popup.classList.remove("d-none");
   setTimeout(() => {
     popup.classList.add("d-none");
-  }, 900);
+  }, 5000);
 }
 
 async function saveTasks() {
   let tasksAsText = JSON.stringify(tasks);
   localStorage.setItem("tasks", tasksAsText);
+  saveTasksToAPI();
 }
 
 function validateTask(task) {

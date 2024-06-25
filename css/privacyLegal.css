@@ -54,3 +54,9 @@ ol li::before {
     display: none;
   }
 }
+
+.noInfoBox {
+  .infoBox {
+    display: none;
+  }
+}

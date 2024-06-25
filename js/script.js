@@ -203,36 +203,33 @@ async function putData(path = "", data = {}) {
 async function loadData(path = "") {
   let response = await fetch(BASE_URL + path + ".json");
   let responseJson = await response.json();
-  console.log(responseJson);
+  // console.log(responseJson);
   return responseJson;
-  // tasksDownloaded = JSON.parse(responseJson.tasks);
-  // console.log(tasksDownloaded);
 }
-
 
 async function saveTasksToAPI() {
   let tasksAsText = JSON.stringify(tasks);
-  uploadStatus = await putData("/joinTasks", data={"tasks": tasksAsText});
+  uploadStatus = await putData("/joinTasks", (data = { "tasks": tasksAsText }));
   if (uploadStatus.ok) {
     console.log("task was saved to firebase");
   }
-}  
+}
 
 async function saveUsersToAPI() {
   let usersAsText = JSON.stringify(users);
-  uploadStatus = await putData("/joinUsers", data={"users": usersAsText});
+  uploadStatus = await putData("/joinUsers", (data = { "users": usersAsText }));
   if (uploadStatus.ok) {
     console.log("user array saved to firebase");
   }
-}  
+}
 
 async function saveContactsToAPI() {
   let contactsAsText = JSON.stringify(contacts);
-  uploadStatus = await putData("/joinContacts", data={"contacts": contactsAsText});
+  uploadStatus = await putData("/joinContacts", (data = { "contacts": contactsAsText }));
   if (uploadStatus.ok) {
     console.log("contacts array saved to firebase");
   }
-}  
+}
 
 async function loadTasksFromAPI() {
   let tasksRaw = await loadData("joinTasks");
@@ -240,7 +237,7 @@ async function loadTasksFromAPI() {
   if (tasksAsString) {
     tasks = JSON.parse(tasksAsString);
   }
-  console.log("downloaded tasks", tasks);
+  // console.log("downloaded tasks", tasks);
 }
 
 async function loadUsersFromAPI() {
@@ -249,7 +246,7 @@ async function loadUsersFromAPI() {
   if (arrayAsString) {
     users = JSON.parse(arrayAsString);
   }
-  console.log("downloaded users", users);
+  // console.log("downloaded users", users);
 }
 
 async function loadContactsFromAPI() {
@@ -258,7 +255,7 @@ async function loadContactsFromAPI() {
   if (arrayAsString) {
     contacts = JSON.parse(arrayAsString);
   }
-  console.log("downloaded contacts", contacts);
+  // console.log("downloaded contacts", contacts);
 }
 
 function loadContacts() {
@@ -283,11 +280,12 @@ function logoutUser() {
 }
 
 function renderUserlogo() {
-    userLogo = document.getElementById("userLogo");
-    currentUser = sessionStorage.getItem("contact");
+  userLogo = document.getElementById("userLogo");
+  currentUser = sessionStorage.getItem("contact");
+  userLogo.innerHTML = "G";
+  if (currentUser) {
     if (currentUser.initials) {
       userLogo.innerHTML = currentUser.intials;
-    } else {
-      userLogo.innerHTML = "G";
     }
   }
+}
