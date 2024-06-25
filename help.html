@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="./css/sidebar.css" />
     <link rel="stylesheet" href="./css/privacyLegal.css" />
     <script defer src="./js/script.js"></script>
+    <script defer src="./js/help.js"></script>
   </head>
-  <body onload="includeHTML()">
+  <body onload="init()">
     <div class="outerContainer flex-start width100">
       <div class="leftContainer flex-col">
         <div w3-include-html="templates/sidebar.html" class="sidebar flex-col"></div>
@@ -110,7 +111,7 @@
           </div>
         </div>
         <div class="footerContainer width100 flex-center">
-          <div w3-include-html="templates/sidebar.html" class="width100 flex-center sidebarSummary"></div>
+          <div w3-include-html="templates/sidebar.html" class="width100 flex-center"></div>
         </div>
       </div>
     </div>
