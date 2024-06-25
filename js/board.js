@@ -16,6 +16,11 @@ let editPopup = false;
 let searchTask = tasks;
 loadTasks();
 
+async function init() {
+  await includeHTML();
+  renderUserlogo();
+}
+
 function findPopupElement(timestamp) {
   popupElement = tasks.find((task) => task.timestamp === timestamp);
 }
