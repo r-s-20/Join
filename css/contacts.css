@@ -55,6 +55,7 @@
     left: 232px;
     background-color: rgba(255, 255, 255, 1);
     overflow-y: auto;
+    height: 88.5vh;
 }
 
 .contactGroup {
@@ -335,7 +336,7 @@
     align-items: center;
     height: 592px;
     border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 1);
+    border: 1px solid;
     margin-left: 24px;
     margin-top: 24px;
     background-color: rgba(255, 255, 255, 1);
@@ -861,7 +862,7 @@ button {
         align-items: center;
         height: 592px;
         border-radius: 30px;
-        border: 1px solid rgba(255, 255, 255, 1);
+        border: 1px solid;
         margin-left: 24px;
         margin-top: 24px;
         background-color: rgba(255, 255, 255, 1);
@@ -874,7 +875,163 @@ button {
     
 }
 
+.mobileAddBtn {
+    width: 56px;
+    height: 56px;
+    border-radius: 46px;
+    background-color: #2a3647;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 320px;
+}
+
+.mobileAddBtn img{
+    width: 32px;
+    height: 32px;
+    color: white;
+}
+
+.mobileAddBtn {
+    display: none;
+}
+
+/* mobile add contact popup */
+
+.popup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.popup {
+    width: 396px;
+    height: 760px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.popup-header {
+    background-color: #2e3a47;
+    color: #ffffff;
+    text-align: center;
+    padding: 16px;
+    font-size: 24px;
+    height: 351px;
+}
+
+.popup-header .close-button {
+    position: relative;
+    top: -119px;
+    right: -168px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.nameBadgeAddContact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 70%;
+    background-color: #f0ad4e;
+    color: #ffffff;
+    font-size: 32px;
+    margin: -63px auto 24px;
+    border: 4px solid #ffffff;
+}
+
+.form-group {
+    margin-bottom: 16px;
+    padding: 0 24px;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-container img {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    padding: 0 24px;
+    gap: 20px;
+}
+
+.form-actions button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-actions .delete {
+    background-color: white;
+    color: black;
+    border: 1px solid rgba(42, 54, 71, 1);
+    border-radius: 10px;
+}
+
+.form-actions .save {
+    background-color: rgba(42, 54, 71, 1);
+    color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+
+
+/* responsive */
+
 @media(max-width:1120px){
+
+.contactsMainOverlayAddContact {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 592px;
+    border-radius: 30px;
+    border: 1px solid;
+    margin-left: 24px;
+    margin-top: 24px;
+    background-color: rgba(255, 255, 255, 1);
+    position: fixed;
+    top: 15%;
+    left: 0%;
+    scale: 55%;
+    width: 1212px;
+    }
+
 .contactListsContainer {
     width: 290px;
     scale: 98%;
@@ -928,6 +1085,24 @@ button {
 }
 
 @media(max-width:1020px){
+
+.contactsMainOverlayAddContact {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 592px;
+    border-radius: 30px;
+    border: 1px solid;
+    margin-left: 24px;
+    margin-top: 24px;
+    background-color: rgba(255, 255, 255, 1);
+    position: fixed;
+    top: 15%;
+    left: -5%;
+    scale: 55%;
+    width: 1212px;
+ }
+
     .contactListsContainer {
         width: 80%;
         scale: 98%;
@@ -957,6 +1132,7 @@ button {
     
     .contactListsContainer {
         width: 250px;
+        overflow-x: hidden;
     }
     
     .contentCardHeader {
@@ -1007,6 +1183,23 @@ button {
 
 @media(max-width:965px){
 
+.contactsMainOverlayAddContact {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 592px;
+    border-radius: 30px;
+    border: 1px solid;
+    margin-left: 24px;
+    margin-top: 24px;
+    background-color: rgba(255, 255, 255, 1);
+    position: fixed;
+    top: 15%;
+    left: -9%;
+    scale: 50%;
+    width: 1212px;
+     }
+
     .contactsHeader {
         scale: 100%;
         margin-left: -41px;
@@ -1015,7 +1208,7 @@ button {
     }
 
     .contactListsContainer {
-        width: 220px;
+        width: 240px;
     }
 
     .contactListsNameBadge{
@@ -1054,6 +1247,23 @@ button {
 
 @media(max-width:875px){
 
+    .contactsMainOverlayAddContact {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 592px;
+        border-radius: 30px;
+        border: 1px solid;
+        margin-left: 24px;
+        margin-top: 24px;
+        background-color: rgba(255, 255, 255, 1);
+        position: fixed;
+        top: 15%;
+        left: -15%;
+        scale: 43%;
+        width: 1212px;
+         }
+
     .contactLists {
         margin-top: 30px;
         width: 100%;
@@ -1067,6 +1277,10 @@ button {
     .contactListsContainer {
         width: 100%;
         scale: 100%;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        margin-bottom: 1rem;
+        height: 87vh;
     }
 
     .contactsMain button {
@@ -1074,7 +1288,8 @@ button {
     }
 
     .contactsContent {
-        display: none;
+        /* display: none; */
+        box-shadow: none;
     }
 
     .contactGroup {
@@ -1092,4 +1307,139 @@ button {
         scale: 120%;
     }
 
+}
+
+@media(max-width:800px){
+
+    .contactsMainOverlayAddContact {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 592px;
+        border-radius: 30px;
+        border: 1px solid;
+        margin-left: 24px;
+        margin-top: 24px;
+        background-color: rgba(255, 255, 255, 1);
+        position: fixed;
+        top: 15%;
+        left: -15%;
+        scale: 43%;
+        width: 1212px;
+         }
+
+
+    .contactListsContainer {
+        margin-bottom: 1rem;
+    }
+
+    .contactLists {
+        padding-left: 2.5rem;
+    }
+}
+
+@media(max-width:500px){
+
+    .contactListsContainer {
+       height: 83vh;
+    }
+    .contactLists{
+        padding-left: 0;
+        width: 107%;
+        margin-bottom: 0;
+    }
+
+    .contactListSide {
+        margin-bottom: 4rem;
+    }
+
+    .contactGroup {
+
+        h2 {
+            margin-top: 5px;
+            padding-left: 60px;
+        }
+    }
+}
+
+@media(max-width:400px){
+
+  
+    .mobileAddBtn {
+        width: 56px;
+        height: 56px;
+        border-radius: 46px;
+        background-color: #2a3647;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        margin-left: 300px;
+        position: absolute;
+        top: 89%;
+    }
+    
+    .mobileAddBtn img{
+        width: 32px;
+        height: 32px;
+        color: white;
+    }
+
+    .contactListsContainer {
+        height: 85vh;
+     }
+
+    .contactLists {
+        margin-top: 12px;
+        margin-bottom: 0;
+    }
+
+    .contactListSide {
+        margin-bottom: 4rem;
+    }
+
+    .contactListSide button {
+        display: none;
+    }
+}
+
+@media(max-width:350px){
+    .contactLists {
+        margin-top: 12px;
+        margin-bottom: 0;
+    }
+
+    .contactListSide {
+        margin-bottom: 4rem;
+    }
+
+    .contactListsNameHead {
+        padding-left: 75px;
+    }
+
+    .contactGroup {
+
+        h2 {
+            padding-left: 30px;
+        }
+    }
+}
+
+@media(max-width:320px){
+    .contactListsNameHead {
+        scale: 102%;
+        padding-left: 55px;
+    }
+
+    .contactLists {
+        width: 106%;
+        margin-bottom: 0;
+    }
+
+    .contactUnderline {
+        width: 106%;
+    }
+
+    .contactListSide {
+        margin-bottom: 4rem;
+    }
 }
