@@ -1125,7 +1125,7 @@ button {
   }
   .contactsHeader {
     scale: 100%;
-    margin-left: 38px;
+    margin-left: 20px;
     width: 410px;
 
     h1 {
@@ -1209,8 +1209,9 @@ button {
 
   .contactsHeader {
     scale: 100%;
-    width: 370px;
+    width: 350px;
     padding-left: 3px;
+    gap: 24px;
   }
 
   .contactListsContainer {
