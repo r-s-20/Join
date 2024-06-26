@@ -280,3 +280,13 @@ function removeContactFromTasks(contactIndex) {
 document.addEventListener("DOMContentLoaded", function () {
   loadContacts();
 });
+
+function toggleCancelIcons() {
+  let button = document.querySelector(".cancel img");
+  console.log(button);
+  if (button.src.endsWith("cancel_icon.png")) {
+    button.src= "./img/cancel_icon_blue.svg";
+  } else {
+    button.src = "./img/cancel_icon.png";
+  }
+}
