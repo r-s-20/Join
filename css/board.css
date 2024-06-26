@@ -639,7 +639,8 @@ h1 {
 .dropdown-menu {
   display: none;
   position: absolute;
-  background-color: rgb(245, 41, 41);
+  right: 0;
+  background-color: rgb(204, 200, 200);
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   border-radius: 8px;
@@ -651,10 +652,11 @@ h1 {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  color: white;
 }
 
 .dropdown-menu a:hover {
-  background-color: #f08585;
+  background-color: #091931;
 }
 
 .dropdown-menu a:first-child:hover {

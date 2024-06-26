@@ -22,6 +22,7 @@ let searchTask = tasks;
 
 async function loadDataForBoard(){
   await loadTasksFromAPI();
+  console.log(tasks);
   updateHTML();
 }
 
@@ -70,7 +71,7 @@ function updateStatusHTML(status, elementId, emptyMessage) {
     container.innerHTML += /*html*/ `<div class="possbleToMove d-none" id="possbleToMove${status}"></div>`;
   }
   allStati.push(status);
-  saveTasksToAPI();
+
 }
 
 function allowDrop(status, ev) {
@@ -94,8 +95,7 @@ function moveTo(status) {
   const task = tasks.find((task) => task.timestamp === currentTimestamp);
   task.status = status;
  
-  saveTasks();
-  saveTasksToAPI();
+
   updateHTML();
 }
 
@@ -107,12 +107,12 @@ function generateTodoHTML(element, index) {
     <div class="categoryAndDropDown">
       <div class="cardCategory" id="cardCategory${index}">${element.category.name}</div>
       <div id="dropdownMenu" class="dropdownMenu dropdown-container">
-      <span id="dropdownImage" onclick="toggleDropdown(event)">...</span>
+      <span id="dropdownImage" onclick="toggleDropdown(event, ${element.timestamp}, ${index})">...</span>
         <div class="dropdown-menu" id="dropdownMenu${index}">
-            <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'toDos')" id="dropdowntoDos">To do</a>
-            <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'inProgress')">in Progress</a>
-            <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'awaitFeedback')">Await feedback</a>
-            <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'done')">Done</a>
+            <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'toDos', event)" id="dropdowntoDos${index}">To do</a>
+            <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'inProgress', event)" id="dropdowninProgress${index}">in Progress</a>
+            <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'awaitFeedback', event)" id="dropdownawaitFeedback${index}">Await feedback</a>
+            <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'done', event)" id="dropdowndone${index}">Done</a>
         </div>
       </div>
     </div>
@@ -129,10 +129,11 @@ function generateTodoHTML(element, index) {
    `;
 }
 
-function toggleDropdown(event, timestamp) {
-  // const task = tasks.find((task) => task.timestamp === timestamp);
-  // document.getElementById(`dropdown${task.status}`).classList.add('d-none');
+function toggleDropdown(event, timestamp, index) {
+
   event.stopPropagation();
+  const task = tasks.find((task) => task.timestamp === timestamp);
+  document.getElementById(`dropdown${task.status}${index}`).classList.add('d-none');
   const dropdown = event.currentTarget.closest('.dropdown-container');
   dropdown.classList.toggle('active');
 }
@@ -145,11 +146,13 @@ document.addEventListener('click', function() {
 });
 
 
-async function mobileSetStatusTo(timestamp, status){
+async function mobileSetStatusTo(timestamp, status, event){
   const task = tasks.find((task) => task.timestamp === timestamp);
   task.status = status;
+  event.preventDefault();
+  event.stopPropagation();
   await saveTasksToAPI();
-  loadDataForBoard();
+  updateHTML();
 }
 
 
