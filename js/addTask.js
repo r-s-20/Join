@@ -23,7 +23,7 @@ async function addNewTask(status) {
     await showConfirmationMessage();
     resetFormInputs();
     resetAddTask();
-    setTimeout (closeAddingTask, 1500);
+    setTimeout(closeAddingTask, 1500);
   }
 }
 
@@ -34,7 +34,6 @@ function closeAddingTask() {
     updateHTML();
     closeAddTaskAboutButton();
   }
-
 }
 
 function resetAddTask() {
@@ -65,9 +64,9 @@ function editTask(timestamp) {
   removeErrors();
   let task = tasks.filter((e) => e.timestamp == timestamp)[0];
   editedTask = createNewTask(task.status);
-  let closeCross = document.getElementById('closeCross');
-  closeCross.classList.add('d-none');
-  closeCross.classList.remove('closeCross');
+  let closeCross = document.getElementById("closeCross");
+  closeCross.classList.add("d-none");
+  closeCross.classList.remove("closeCross");
   if (validateTask(editedTask)) {
     editedTask.timestamp = timestamp;
     let taskIndex = tasks.indexOf(task);
@@ -75,7 +74,6 @@ function editTask(timestamp) {
     saveTasks();
     boardPopup(timestamp);
     updateHTML();
-
   }
 }
 
@@ -91,9 +89,9 @@ function loadTaskForEditing(timestamp) {
   document.getElementById("clearTaskBtn").classList.add("d-none");
   document.getElementById("createTaskBtn").setAttribute("onclick", `editTask(${timestamp})`);
   document.getElementById("createTaskBtn").firstElementChild.innerHTML = "Ok";
-  let closeCross = document.getElementById('closeCross');
-  closeCross.classList.add('closeCross');
-  closeCross.classList.remove('d-none');
+  let closeCross = document.getElementById("closeCross");
+  closeCross.classList.add("closeCross");
+  closeCross.classList.remove("d-none");
 }
 
 function insertValuesToEditTask(task) {
@@ -101,7 +99,8 @@ function insertValuesToEditTask(task) {
   setValueToInput(task.description, "inputDescription");
   renderAssignedBadges();
   setValueToInput(task.dueDate, "inputDueDate");
-  setPrio("btn-" + task.prio);addNewTask
+  setPrio("btn-" + task.prio);
+  addNewTask;
   setValueToInput(task.category.name, "inputCategory");
   renderSubtasks();
 }
@@ -116,8 +115,6 @@ function showConfirmationMessage() {
   setTimeout(() => {
     popupAddTaskMessage.classList.remove("show");
     popupAddTaskMessage.classList.add("hide");
-
-  
   }, 2000);
 }
 

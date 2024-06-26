@@ -1,7 +1,3 @@
-
-
-
-
 let currentTimestamp;
 let popupElement;
 
@@ -19,24 +15,19 @@ let allStati = [];
 let editPopup = false;
 let searchTask = tasks;
 
-
-async function loadDataForBoard(){
+async function loadDataForBoard() {
   await loadTasksFromAPI();
   console.log(tasks);
   updateHTML();
 }
-
 
 async function init() {
   if (!checkUserLoginStatus()) {
     window.location.href = "./index.html";
   }
   await includeHTML();
-
-
   renderUserlogo();
 }
-
 
 function findPopupElement(timestamp) {
   popupElement = tasks.find((task) => task.timestamp === timestamp);
@@ -51,27 +42,48 @@ function updateHTML() {
 }
 
 function updateStatusHTML(status, elementId, emptyMessage) {
-  let filteredTasks = tasks.filter((t) => t.status == status);
+  let filteredTasks = filterTasksByStatus(status);
   let container = document.getElementById(elementId);
   container.innerHTML = "";
+
+  populateContainerWithTasks(container, filteredTasks);
+  handleEmptyContainer(container, emptyMessage, status);
+  allStati.push(status);
+}
+
+function filterTasksByStatus(status) {
+  return tasks.filter((t) => t.status == status);
+}
+
+function populateContainerWithTasks(container, filteredTasks) {
   for (let i = 0; i < filteredTasks.length; i++) {
     const element = filteredTasks[i];
     container.innerHTML += generateTodoHTML(element, globalIndex);
     truncateText(element.description, globalIndex);
     contactNames(element, globalIndex);
     subtaskProgress(element.timestamp, globalIndex);
-    document.getElementById(`cardCategory${globalIndex}`).style.backgroundColor = element.category.color;
+    setCardCategoryColor(element, globalIndex);
     globalIndex++;
   }
+}
 
-  if (container.innerHTML == "") {
-    container.innerHTML = /*html*/ `<div class="noProgess">${emptyMessage}</div>`;
-    container.innerHTML += /*html*/ `<div class="possbleToMove d-none" id="possbleToMove${status}"></div>`;
-  } else {
-    container.innerHTML += /*html*/ `<div class="possbleToMove d-none" id="possbleToMove${status}"></div>`;
+function setCardCategoryColor(element, index) {
+  document.getElementById(`cardCategory${index}`).style.backgroundColor = element.category.color;
+}
+
+function handleEmptyContainer(container, emptyMessage, status) {
+  if (container.innerHTML === "") {
+    container.innerHTML = generateEmptyMessageHTML(emptyMessage);
   }
-  allStati.push(status);
+  container.innerHTML += generatePossibleToMoveHTML(status);
+}
 
+function generateEmptyMessageHTML(emptyMessage) {
+  return /*html*/ `<div class="noProgess">${emptyMessage}</div>`;
+}
+
+function generatePossibleToMoveHTML(status) {
+  return /*html*/ `<div class="possbleToMove d-none" id="possbleToMove${status}"></div>`;
 }
 
 function allowDrop(status, ev) {
@@ -94,21 +106,20 @@ function startDragging(timestamp, index) {
 function moveTo(status) {
   const task = tasks.find((task) => task.timestamp === currentTimestamp);
   task.status = status;
- 
 
   updateHTML();
 }
 
 function generateTodoHTML(element, index) {
   return /*html*/ `
-    <div draggable='true' ondragstart='startDragging(${
-      element.timestamp
-    }, ${index})' class="card" id="card${index}" onclick="boardPopup(${element.timestamp})">
+    <div draggable='true' ondragstart='startDragging(${element.timestamp}, ${index})' class="card" id="card${index}" onclick="boardPopup(${
+    element.timestamp
+  })">
     <div class="categoryAndDropDown">
       <div class="cardCategory" id="cardCategory${index}">${element.category.name}</div>
       <div id="dropdownMenu" class="dropdownMenu dropdown-container">
-      <span onclick="toggleDropdown(event, ${element.timestamp}, ${index})">...</span>
-        <div class="dropdown-menu" id="dropdownMenu${index}">
+        <span onclick="toggleDropdown(event, ${element.timestamp}, ${index})">...</span>
+          <div class="dropdown-menu" id="dropdownMenu${index}">
             <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'toDos', event)" id="dropdowntoDos${index}">To do</a>
             <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'inProgress', event)" id="dropdowninProgress${index}">in Progress</a>
             <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'awaitFeedback', event)" id="dropdownawaitFeedback${index}">Await feedback</a>
@@ -130,33 +141,47 @@ function generateTodoHTML(element, index) {
 }
 
 function toggleDropdown(event, timestamp, index) {
-
   event.stopPropagation();
   const task = tasks.find((task) => task.timestamp === timestamp);
-  document.getElementById(`dropdown${task.status}${index}`).classList.add('d-none');
-  if (task.status == "toDos"){
-    document.getElementById(`dropdowninProgress${index}`).classList.add('dropdown-menuToDoHide');
-  } else {
-    document.getElementById(`dropdowninProgress${index}`).classList.remove('dropdown-menuToDoHide');
-  }
-  if (task.status == "done"){
-    document.getElementById(`dropdownawaitFeedback${index}`).classList.add('dropdown-menuDoneHide');
-  } else {
-    document.getElementById(`dropdownawaitFeedback${index}`).classList.remove('dropdown-menuDoneHide');
-  }
-  const dropdown = event.currentTarget.closest('.dropdown-container');
-  dropdown.classList.toggle('active');
+  hideDropdown(task.status, index);
+  handleToDoDropdown(task.status, index);
+  handleDoneDropdown(task.status, index);
+  toggleDropdownContainer(event);
 }
 
-document.addEventListener('click', function() {
-  const dropdowns = document.querySelectorAll('.dropdown-container');
-  dropdowns.forEach(dropdown => {
-      dropdown.classList.remove('active');
+function hideDropdown(status, index) {
+  document.getElementById(`dropdown${status}${index}`).classList.add("d-none");
+}
+
+function handleToDoDropdown(status, index) {
+  if (status === "toDos") {
+    document.getElementById(`dropdowninProgress${index}`).classList.add("dropdown-menuToDoHide");
+  } else {
+    document.getElementById(`dropdowninProgress${index}`).classList.remove("dropdown-menuToDoHide");
+  }
+}
+
+function handleDoneDropdown(status, index) {
+  if (status === "done") {
+    document.getElementById(`dropdownawaitFeedback${index}`).classList.add("dropdown-menuDoneHide");
+  } else {
+    document.getElementById(`dropdownawaitFeedback${index}`).classList.remove("dropdown-menuDoneHide");
+  }
+}
+
+function toggleDropdownContainer(event) {
+  const dropdown = event.currentTarget.closest(".dropdown-container");
+  dropdown.classList.toggle("active");
+}
+
+document.addEventListener("click", function () {
+  const dropdowns = document.querySelectorAll(".dropdown-container");
+  dropdowns.forEach((dropdown) => {
+    dropdown.classList.remove("active");
   });
 });
 
-
-async function mobileSetStatusTo(timestamp, status, event){
+async function mobileSetStatusTo(timestamp, status, event) {
   const task = tasks.find((task) => task.timestamp === timestamp);
   task.status = status;
   event.preventDefault();
@@ -164,7 +189,6 @@ async function mobileSetStatusTo(timestamp, status, event){
   await saveTasksToAPI();
   updateHTML();
 }
-
 
 function contactNames(element, index) {
   let contactNames = document.getElementById(`contactNames${index}`);
@@ -180,19 +204,41 @@ function contactNames(element, index) {
 
 function boardPopup(timestamp) {
   findPopupElement(timestamp);
+  showPopupElements();
+  initializePopup();
+  setupPopupContent(timestamp);
+  handlePopupClick();
+}
+
+function showPopupElements() {
   document.getElementById("popup").classList.remove("d-none");
   document.getElementById("popupAddTask").classList.add("d-none");
   document.getElementById("backgroundPopup").classList.remove("d-none");
+}
+
+function initializePopup() {
   let popup = document.getElementById("popup");
   popup.innerHTML = "";
   popup.innerHTML = boardPopupHTML();
+}
+
+function setupPopupContent(timestamp) {
   subtasks(timestamp);
   popupPersons(popupElement);
   document.getElementById("categoryColor").style.backgroundColor = popupElement.category.color;
+  showPopupWithAnimation();
+}
+
+function showPopupWithAnimation() {
+  let popup = document.getElementById("popup");
   popup.classList.remove("hide");
   setTimeout(() => {
     popup.classList.add("show");
   }, 10);
+}
+
+function handlePopupClick() {
+  let popup = document.getElementById("popup");
   popup.onclick = function (event) {
     event.stopPropagation();
   };
@@ -207,9 +253,7 @@ function boardPopupHTML() {
  <div class="popupHeadline">${popupElement.title}</div>
  <div class="popupDescription">${popupElement.description}</div>
  <div class="popupDate"><span>Due date:</span> ${popupElement.dueDate} </div>
- <div class="popupPriority"><span>Priority:</span> ${popupElement.prio} <img src="${
-    prios[popupElement.prio]
-  }" alt=""></div>
+ <div class="popupPriority"><span>Priority:</span> ${popupElement.prio} <img src="${prios[popupElement.prio]}" alt=""></div>
  <div class="popupAssigned">
    <div>Assigned To:</div>
    <div class="popupPerson" id="popupPerson">
@@ -222,47 +266,51 @@ function boardPopupHTML() {
  <div class="popupDeleteAndEdit">
   <div onmouseover="hoverDelete()" onmouseout="leaveDelete()">
     <img id="deleteBlack" src="../img/delete_black.svg" alt="">
-    <img id="deleteBlue" src="../img/delete_blue.svg" alt="" class="d-none" onclick="deleteTask(${
-      popupElement.timestamp
-    })">
+    <img id="deleteBlue" src="../img/delete_blue.svg" alt="" class="d-none" onclick="deleteTask(${popupElement.timestamp})">
   </div>
 <div class="line"></div>
   <div onmouseover="hoverEdit()" onmouseout="leaveEdit()">
     <img id="editBlack" src="../img/edit_black.svg" alt="">
-    <img id="editBlue" src="../img/edit_blue.svg" alt="" class="d-none" onclick="editPopupTask(${
-      popupElement.timestamp
-    })">
+    <img id="editBlue" src="../img/edit_blue.svg" alt="" class="d-none" onclick="editPopupTask(${popupElement.timestamp})">
   </div>
  </div>
 `;
 }
 
 function subtasks(timestamp) {
-  let subtasks = document.getElementById("popupSingleSubtask");
-  subtasks.innerHTML = "";
+  let subtasksContainer = document.getElementById("popupSingleSubtask");
+  subtasksContainer.innerHTML = "";
   completedSubtask = popupElement.subtasks.completed;
+
   if (popupElement.subtasks.subtaskList.length > 0) {
-    for (let i = 0; i < popupElement.subtasks.subtaskList.length; i++) {
-      let singleSubtask = popupElement.subtasks.subtaskList[i].name;
-      if (!popupElement.subtasks.subtaskList[i].completed) {
-        subtasks.innerHTML += /*html*/ `
-      <div> 
-        <img id="subtaskOpen${i}" onclick="subtaskDone(${i}, ${timestamp})" src="../img/check_button.svg" alt="">
-        <img id="subtaskDone${i}" onclick="subtaskOpen(${i}, ${timestamp})" class="d-none" src="../img/check_button_done.svg" alt="">
-        <span id="singleSubtask">${singleSubtask}</span> 
-      </div>`;
-      } else {
-        subtasks.innerHTML += /*html*/ `
-      <div> 
-        <img id="subtaskOpen${i}" onclick="subtaskDone(${i}, ${timestamp})" class="d-none" src="../img/check_button.svg" alt="">
-        <img id="subtaskDone${i}" onclick="subtaskOpen(${i}, ${timestamp})"  src="../img/check_button_done.svg" alt="">
-        <span id="singleSubtask">${singleSubtask}</span> 
-      </div>`;
-      }
-    }
+    renderAllSubtasks(subtasksContainer, timestamp);
   } else {
-    document.getElementById("popupSubtask").innerHTML = "";
+    clearSubtasks();
   }
+}
+
+function renderAllSubtasks(container, timestamp) {
+  for (let i = 0; i < popupElement.subtasks.subtaskList.length; i++) {
+    let subtask = popupElement.subtasks.subtaskList[i];
+    container.innerHTML += generateSubtaskHTML(subtask, i, timestamp);
+  }
+}
+
+function generateSubtaskHTML(subtask, index, timestamp) {
+  let singleSubtask = subtask.name;
+  let subtaskOpenClass = subtask.completed ? "d-none" : "";
+  let subtaskDoneClass = subtask.completed ? "" : "d-none";
+
+  return /*html*/ `
+    <div> 
+      <img id="subtaskOpen${index}" onclick="subtaskDone(${index}, ${timestamp})" class="${subtaskOpenClass}" src="../img/check_button.svg" alt="">
+      <img id="subtaskDone${index}" onclick="subtaskOpen(${index}, ${timestamp})" class="${subtaskDoneClass}" src="../img/check_button_done.svg" alt="">
+      <span id="singleSubtask">${singleSubtask}</span> 
+    </div>`;
+}
+
+function clearSubtasks() {
+  document.getElementById("popupSubtask").innerHTML = "";
 }
 
 function subtaskDone(i, timestamp) {
@@ -287,29 +335,85 @@ function subtaskOpen(i, timestamp) {
   updateHTML();
 }
 
+// function closePopup() {
+//   if (editPopup) {
+//     editPopup = false;
+//   }
+//   let closeCross = document.getElementById("closeCross");
+//   closeCross.classList.add("d-none");
+//   closeCross.classList.remove("closeCross");
+//   resetAddTask();
+//   resetFormInputs();
+//   let popup = document.getElementById("popup");
+//   popup.classList.remove("show");
+//   popup.classList.add("hide");
+//   setTimeout(() => {
+//     popup.classList.remove("hide");
+//     document.getElementById("backgroundPopup").classList.add("d-none");
+//   }, 125);
+//   closeAddTask();
+// }
+
+// function closeAddTask() {
+//   let addTaskButton = document.getElementById("addTaskButton");
+//   addTaskButton.style.backgroundColor = "rgb(42,54,71)";
+//   addTaskButton.classList.add("mainDarkBlue");
+//   let popupAddTask = document.getElementById("popupAddTask");
+//   popupAddTask.classList.remove("showAddTaskPopup");
+//   popupAddTask.classList.add("hideAddTaskPopup");
+
+//   setTimeout(() => {
+//     popupAddTask.classList.add("d-none");
+//     document.getElementById("backgroundPopup").classList.add("d-none");
+//     document.getElementById("popup").classList.remove("d-none");
+//   }, 125);
+// }
+
+
 function closePopup() {
+  handleEditPopup();
+  hideCloseCross();
+  resetAddTask();
+  resetFormInputs();
+  animatePopupClose();
+  closeAddTask();
+}
+
+function handleEditPopup() {
   if (editPopup) {
     editPopup = false;
   }
-  let closeCross = document.getElementById('closeCross');
-  closeCross.classList.add('d-none');
-  closeCross.classList.remove('closeCross');
-  resetAddTask();
-  resetFormInputs();
+}
+
+function hideCloseCross() {
+  let closeCross = document.getElementById("closeCross");
+  closeCross.classList.add("d-none");
+  closeCross.classList.remove("closeCross");
+}
+
+function animatePopupClose() {
   let popup = document.getElementById("popup");
   popup.classList.remove("show");
   popup.classList.add("hide");
+
   setTimeout(() => {
     popup.classList.remove("hide");
     document.getElementById("backgroundPopup").classList.add("d-none");
   }, 125);
-  closeAddTask();
 }
 
 function closeAddTask() {
+  styleAddTaskButton();
+  hideAddTaskPopup();
+}
+
+function styleAddTaskButton() {
   let addTaskButton = document.getElementById("addTaskButton");
   addTaskButton.style.backgroundColor = "rgb(42,54,71)";
   addTaskButton.classList.add("mainDarkBlue");
+}
+
+function hideAddTaskPopup() {
   let popupAddTask = document.getElementById("popupAddTask");
   popupAddTask.classList.remove("showAddTaskPopup");
   popupAddTask.classList.add("hideAddTaskPopup");
@@ -321,32 +425,56 @@ function closeAddTask() {
   }, 125);
 }
 
-function closeAddTaskAboutButton(){
-  let closeCross = document.getElementById('closeCross');
-  closeCross.classList.add('d-none');
-  closeCross.classList.remove('closeCross');
-  document.getElementById('popupAddTask').classList.add('d-none');
+
+
+function closeAddTaskAboutButton() {
+  let closeCross = document.getElementById("closeCross");
+  closeCross.classList.add("d-none");
+  closeCross.classList.remove("closeCross");
+  document.getElementById("popupAddTask").classList.add("d-none");
   document.getElementById("backgroundPopup").classList.add("d-none");
   let addTaskButton = document.getElementById("addTaskButton");
   addTaskButton.style.backgroundColor = "rgb(42,54,71)";
   addTaskButton.classList.add("mainDarkBlue");
-
 }
+
+// function popupPersons(popupElement) {
+//   let person = document.getElementById(`popupPerson`);
+//   person.innerHTML = "";
+//   for (let i = 0; i < popupElement.assigned.length; i++) {
+//     let assigned = popupElement.assigned[i];
+//     person.innerHTML += /*html*/ `
+//     <div class="PopupInitialsandContacts">
+//     <span class="initalsCircle" id="initalsCircleColorPopup${i}">${assigned.initials} 
+//     </span> <span>${assigned.name}</span>
+//     </div>
+//     `;
+//     document.getElementById(`initalsCircleColorPopup${i}`).style.backgroundColor = assigned.badgecolor;
+//   }
+// }
 
 function popupPersons(popupElement) {
-  let person = document.getElementById(`popupPerson`);
+  let person = document.getElementById('popupPerson');
   person.innerHTML = "";
-  for (let i = 0; i < popupElement.assigned.length; i++) {
-    let assigned = popupElement.assigned[i];
-    person.innerHTML += /*html*/ `
-    <div class="PopupInitialsandContacts">
-    <span class="initalsCircle" id="initalsCircleColorPopup${i}">${assigned.initials} 
-    </span> <span>${assigned.name}</span>
-    </div>
-    `;
-    document.getElementById(`initalsCircleColorPopup${i}`).style.backgroundColor = assigned.badgecolor;
-  }
+  popupElement.assigned.forEach((assigned, i) => {
+    person.innerHTML += generatePersonHTML(assigned, i);
+    setPersonBadgeColor(assigned, i);
+  });
 }
+
+function generatePersonHTML(assigned, index) {
+  return /*html*/ `
+    <div class="PopupInitialsandContacts">
+      <span class="initalsCircle" id="initalsCircleColorPopup${index}">${assigned.initials}</span>
+      <span>${assigned.name}</span>
+    </div>
+  `;
+}
+
+function setPersonBadgeColor(assigned, index) {
+  document.getElementById(`initalsCircleColorPopup${index}`).style.backgroundColor = assigned.badgecolor;
+}
+
 
 function hoverDelete() {
   clearTimeout(deleteHoverTimeout);
@@ -410,10 +538,9 @@ function deleteTask(timestamp) {
 }
 
 async function editPopupTask(timestamp) {
-
-  let closeCross = document.getElementById('closeCross');
-  closeCross.classList.remove('d-none');
-  closeCross.classList.add('closeCross');
+  let closeCross = document.getElementById("closeCross");
+  closeCross.classList.remove("d-none");
+  closeCross.classList.add("closeCross");
   let popupEdit = document.getElementById("popup");
   editPopup = true;
   popupEdit.innerHTML = "";
@@ -425,9 +552,9 @@ async function editPopupTask(timestamp) {
 }
 
 function openAddTask(status = "toDos") {
-  let closeCross = document.getElementById('closeCross');
-  closeCross.classList.add('closeCross2');
-  closeCross.classList.remove('d-none');
+  let closeCross = document.getElementById("closeCross");
+  closeCross.classList.add("closeCross2");
+  closeCross.classList.remove("d-none");
   let addTaskButton = document.getElementById("addTaskButton");
   addTaskButton.classList.remove("mainDarkBlue");
   addTaskButton.style.backgroundColor = "rgb(41,171,226)";

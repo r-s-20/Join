@@ -46,38 +46,35 @@ button.lightColored:hover {
   padding-top: 4rem;
 }
 
-
-
 .innerContent {
   justify-content: space-evenly;
   flex: 1;
 }
 
-.closeCross{
+.closeCross {
   width: 430px;
   display: flex;
   justify-content: flex-end;
 }
 
-.closeCross2{
+.closeCross2 {
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
 
-.closeCross2:hover{
+.closeCross2:hover {
   cursor: pointer;
 }
 
-.closeCross img{
+.closeCross img {
   height: 16px;
   width: 24px;
 }
 
-.closeCross img:hover{
- cursor: pointer;
+.closeCross img:hover {
+  cursor: pointer;
 }
-
 
 .formContent {
   justify-content: flex-start;
@@ -274,8 +271,6 @@ button.lightColored:hover {
   position: absolute;
   right: 0.5rem;
 }
-
-
 
 .addTaskPopupContainer {
   position: fixed;
