@@ -11,13 +11,24 @@ input:focus {
 
 .loginOuterContainer {
   align-items: center;
-  justify-content: center;
-  gap: 4rem;
-  animation: blend-in 1s;
+  justify-content: space-evenly;
+  /* gap: 4rem; */
+}
+
+.welcomeBackground {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  animation: blend-out 1s ease-out;
+  opacity: 0;
 }
 
 .loginScreenLogo {
   position: absolute;
+  z-index: 50;
   top: 5vh;
   left: 5vw;
   animation: move-scale 0.6s;
@@ -30,16 +41,15 @@ input:focus {
   padding: 1rem 2rem;
   font-size: 21px;
   font-weight: bold;
-  
 }
 
-.loginOuterContainer button:first-child:hover{
-  background-color: rgb(41, 171, 226) ;
+.loginOuterContainer button:first-child:hover {
+  background-color: rgb(41, 171, 226);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.loginOuterContainer button:last-child:hover{
-  color: rgb(41, 171, 226) ;
+.loginOuterContainer button:last-child:hover {
+  color: rgb(41, 171, 226);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -53,10 +63,13 @@ input:focus {
 
 .inputFields {
   background-color: white;
-  width: 652px;
+  width: 95%;
+  max-width: 652px;
   height: 493px;
   padding: 2rem 5rem;
   border-radius: 30px;
+  margin-top: 120px;
+  margin-bottom: 32px;
   gap: 1rem;
   align-items: center;
   box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
@@ -68,7 +81,6 @@ input:focus {
   margin-bottom: 0;
   margin-block-start: 0;
   margin-top: 15px;
-
 }
 
 .inputFields > div {
@@ -93,7 +105,7 @@ input:focus {
   color: black;
 }
 
-.inputFields input::placeholder{
+.inputFields input::placeholder {
   color: #d1d1d1;
 }
 
@@ -107,7 +119,7 @@ input:focus {
   right: 1rem;
 }
 
-.inputPassword{
+.inputPassword {
   margin-top: 14px;
   margin-bottom: 30px;
 }
@@ -125,8 +137,7 @@ input:focus {
 
 .loginLegalContainer {
   margin-top: 3rem;
-  position: absolute;
-  bottom: 3rem;
+  margin-bottom: 2rem;
   gap: 2rem;
   color: #a8a8a8;
 }
@@ -136,13 +147,17 @@ input:focus {
   cursor: pointer;
 }
 
-
-
 @keyframes move-scale {
   0% {
     scale: 2.7;
-    top: 45vh;
-    left: 45vw;
+    top: 45%;
+    left: 45%;
+  }
+
+  25% {
+    scale: 2.7;
+    top: 45%;
+    left: 45%;
   }
 }
 
@@ -151,6 +166,19 @@ input:focus {
     opacity: 0;
   }
   25% {
+    opacity: 0;
+  }
+}
+
+@keyframes blend-out {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+
+  100% {
     opacity: 0;
   }
 }
@@ -203,10 +231,9 @@ input:focus {
   color: black;
 }
 
-.signUp input::placeholder{
+.signUp input::placeholder {
   color: #d1d1d1;
 }
-
 
 .signUp .separator {
   border-top: 3px solid var(--customBlue);
@@ -257,7 +284,7 @@ input:focus {
   cursor: pointer;
 }
 
-.signUpPrivacyPolicy span:last-child:hover{
+.signUpPrivacyPolicy span:last-child:hover {
   text-decoration: underline;
   font-weight: 500;
 }
@@ -328,30 +355,26 @@ input:focus {
   width: 100%;
   position: relative;
   left: -40px;
-  
 }
 
-.arrowLeft img:hover{
+.arrowLeft img:hover {
   width: 32px;
   height: 32px;
   background-color: #e4e0e0;
   border-radius: 50%;
   scale: 1.1;
-
 }
 
 .signUpContainerResponsive {
   display: none;
 }
 
-.topSignUpButton:hover{
+.topSignUpButton:hover {
   background-color: #29abe2;
   color: white !important;
 }
 
 @media (max-width: 630px) {
-
-
   .loginScreenLogo {
     width: 64px;
   }
@@ -365,10 +388,9 @@ input:focus {
     height: 51px;
   }
 
-  .signUpInputElement{
+  .signUpInputElement {
     width: 100%;
   }
-
 }
 
 @media (max-width: 600px) {
@@ -380,34 +402,36 @@ input:focus {
     width: 95%;
   }
 
-  .signUpInputs{
+  .signUpInputs {
     max-width: 85vw;
   }
 }
 
 @media (max-width: 535px) {
+  .signUp h2 {
+    font-size: 47px;
+  }
 
-    .signUp h2{
-      font-size: 47px;
-    }
+  .signUp .separator {
+    width: 95px;
+  }
 
-    .signUp .separator{
-      width: 95px;
-    }
+  .signUpPrivacyPolicy {
+    margin-top: 50px;
+  }
 
-    .signUpPrivacyPolicy{
-      margin-top: 50px;
-    }
-
-    .loginButtonContainer button{
-      font-size: 16px;
-    }
-
+  .loginButtonContainer button {
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 490px) {
-  body {
+  /* body {
     background-color: #2a3647 !important;
+  } */
+
+  .welcomeBackground {
+    background-color: var(--mainDarkColor);
   }
 
   .loginScreenLogo {
@@ -426,7 +450,7 @@ input:focus {
     font-size: 47px;
   }
 
-  .inputFields .separator{
+  .inputFields .separator {
     width: 95px;
   }
 
@@ -442,16 +466,13 @@ input:focus {
   }
 
   .loginOuterContainer {
-    background-color: #f6f7f8
+    background-color: #f6f7f8;
   }
 
   .loginOuterContainer button {
     width: 180px;
     height: 51px;
-
   }
-
-
 
   .signUpContainer {
     display: none;
@@ -480,30 +501,44 @@ input:focus {
     font-size: 14px;
   }
 
-  .signUpContainerResponsive button:hover{
+  .signUpContainerResponsive button:hover {
     color: white !important;
   }
 
-  .signUpContainerResponsive button
-
-  .rememberContainer {
+  .signUpContainerResponsive button .rememberContainer {
     padding-left: 10px;
+  }
+
+  .hide-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 490px) {
+  .show-mobile {
+    display: none;
   }
 }
 
 @media (max-width: 400px) {
-  .arrowLeft{
+  .arrowLeft {
     left: -60px;
   }
 
-  .signUp h2{
+  .signUp h2 {
     font-size: 36px;
   }
 }
 
 @media (max-width: 335px) {
-  .signUp h2{
+  .signUp h2 {
     font-size: 32px;
   }
 }
 
+.signUpContainer,
+.inputFields,
+.loginLegalContainer,
+.signUpContainerResponsive {
+  animation: blend-in 1s;
+}
