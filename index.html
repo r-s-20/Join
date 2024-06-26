@@ -25,7 +25,13 @@
           <img src="./img/mailIcon.svg" class="inputIcon" alt="" />
         </div>
         <div class="inputPassword flex-start width100">
-          <input type="password" name="" id="inputPassword" placeholder="Password" onkeyup="showVisbilityIcons('inputPassword')" />
+          <input
+            type="password"
+            name=""
+            id="inputPassword"
+            placeholder="Password"
+            onkeyup="showVisbilityIcons('inputPassword')"
+          />
           <img class="inputIcon lockIcon" src="./img/lockIcon.svg" alt="" />
           <img
             class="inputIcon vis-offIcon d-none"
@@ -49,12 +55,12 @@
           <button onclick="logIn()" class="button mainDarkBlue">Log in</button>
           <button onclick="guestLogin()" typ class="button whiteBackground">Guest log in</button>
         </div>
-   
       </div>
-      
 
       <section class="signUp flex-col d-none" id="signUp">
-        <div class="arrowLeft" id="arrowLeft"><a href="/index.html"><img src="./img/arrow-left-line.svg" alt=""></a></div>
+        <div class="arrowLeft" id="arrowLeft">
+          <a href="/index.html"><img src="./img/arrow-left-line.svg" alt="" /></a>
+        </div>
         <h2>Sign Up</h2>
         <div class="separator"></div>
         <form class="signUpInputs" onsubmit="event.preventDefault(); validateForm();">
@@ -117,24 +123,31 @@
             <a href="/privacy.html"><span>Privacy policy</span></a>
           </div>
           <div class="singUpButtonContainer">
-            <button type="submit" onclick="signUp()" id="signUpButton" class="signUpButton" disabled style="background-color: #808285">
+            <button
+              type="submit"
+              onclick="signUp()"
+              id="signUpButton"
+              class="signUpButton"
+              disabled
+              style="background-color: #808285"
+            >
               Sign Up
             </button>
           </div>
         </form>
-        <div class="backgroundPopup d-none" id="backgroundPopup">
+        <div class="backgroundPopup d-none" id="backgroundPopup"></div>
       </section>
 
-        <div class="loginLegalContainer flex-center">
-          <a href="/privacy.html" class="button">Privacy policy</a>
-          <a href="/legal.html" class="button">Legal notice</a>
-      </div>
       <div class="signUpContainerResponsive flex-center width100" id="signUpContainerResponsive">
         <span>Not a Join user?</span>
-        <button onclick="loginToSignUp()" class="button mainDarkBlue ">Sign up</button>
+        <button onclick="loginToSignUp()" class="button mainDarkBlue">Sign up</button>
+      </div>
+
+      <div class="loginLegalContainer flex-center">
+        <a href="/privacy.html" class="button">Privacy policy</a>
+        <a href="/legal.html" class="button">Legal notice</a>
       </div>
     </div>
-
   </body>
   <script src="./js/login.js" refer></script>
 </html>
