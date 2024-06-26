@@ -27,7 +27,7 @@
         <div class="outerContent width100 greyBackground">
           <div class="contactsMain">
             <div class="contactListSide" onclick="unselectAllContacts()">
-              <button onclick="addContactPopUp()">
+              <button onclick="addContactPopUp()" class="dark-button">
                  <h1>Add new contact</h1>
                 <img src="img/person_add.png" alt="add person image" />
               </button>
@@ -148,10 +148,10 @@
                   </div>
 
                   <div class="overlayAddContactRightButton">
-                    <button class="cancel"><h1>Cancel</h1>
+                    <button class="cancel light-button"><h1>Cancel</h1>
                       <img src="img/cancel_icon.png">
                     </button>
-                    <button class="save" onclick="addContact()">
+                    <button class="save dark-button" onclick="addContact()">
                       <h1>Create contact</h1>
                       <img src="img/check.png" alt="Save Button" />
                     </button>
@@ -206,10 +206,10 @@
                   </div>
           
                   <div class="overlayEditContactRightButton">
-                    <button class="delete" onclick="deleteContact(currentContactIndex)">
+                    <button class="delete light-button" onclick="deleteContact(currentContactIndex)">
                       Delete
                     </button>
-                    <button class="save" id="saveEditButton">
+                    <button class="save dark-button" id="saveEditButton">
                       Save <img src="img/check.png" alt="Save Button" />
                     </button>
                   </div>
