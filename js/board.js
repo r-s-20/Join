@@ -145,10 +145,10 @@ document.addEventListener('click', function() {
 });
 
 
-function mobileSetStatusTo(timestamp, status){
+async function mobileSetStatusTo(timestamp, status){
   const task = tasks.find((task) => task.timestamp === timestamp);
   task.status = status;
-  saveTasksToAPI();
+  await saveTasksToAPI();
   loadDataForBoard();
 }
 
