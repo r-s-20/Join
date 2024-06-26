@@ -78,13 +78,7 @@ function handleEmptyContainer(container, emptyMessage, status) {
   container.innerHTML += generatePossibleToMoveHTML(status);
 }
 
-function generateEmptyMessageHTML(emptyMessage) {
-  return /*html*/ `<div class="noProgess">${emptyMessage}</div>`;
-}
 
-function generatePossibleToMoveHTML(status) {
-  return /*html*/ `<div class="possbleToMove d-none" id="possbleToMove${status}"></div>`;
-}
 
 function allowDrop(status, ev) {
   ev.preventDefault();
@@ -110,35 +104,7 @@ function moveTo(status) {
   updateHTML();
 }
 
-function generateTodoHTML(element, index) {
-  return /*html*/ `
-    <div draggable='true' ondragstart='startDragging(${element.timestamp}, ${index})' class="card" id="card${index}" onclick="boardPopup(${
-    element.timestamp
-  })">
-    <div class="categoryAndDropDown">
-      <div class="cardCategory" id="cardCategory${index}">${element.category.name}</div>
-      <div id="dropdownMenu" class="dropdownMenu dropdown-container">
-        <span onclick="toggleDropdown(event, ${element.timestamp}, ${index})">...</span>
-          <div class="dropdown-menu" id="dropdownMenu${index}">
-            <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'toDos', event)" id="dropdowntoDos${index}">To do</a>
-            <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'inProgress', event)" id="dropdowninProgress${index}">in Progress</a>
-            <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'awaitFeedback', event)" id="dropdownawaitFeedback${index}">Await feedback</a>
-            <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'done', event)" id="dropdowndone${index}">Done</a>
-        </div>
-      </div>
-    </div>
-      <div class="cardHeadline">${element.title}</div>
-      <div class="cardDescription" id="cardDescription${index}"></div>
-      <div class="cardSubtasks" id="cardSubtasks${index}">
-        <div class="subtasksBar">
-          <div class="subtasksBarProgress" id="subtasksBarProgress${index}"></div>
-      </div > 
-        <span id="subtasksCompleted">${element.subtasks.completed}/${element.subtasks.subtaskList.length}</span>Subtasks
-      </div>
-        <div class="cardWorkers"><div id="contactNames${index}"></div><img src=${prios[element.prio]} alt=""></div>
-    </div>
-   `;
-}
+
 
 function toggleDropdown(event, timestamp, index) {
   event.stopPropagation();
@@ -244,38 +210,7 @@ function handlePopupClick() {
   };
 }
 
-function boardPopupHTML() {
-  return /*html*/ `
- <div class="popupCategory" id="popupCategory"> 
-   <span id="categoryColor">${popupElement.category.name}</span>
-   <img src="../img/close.svg" alt="" onclick="closePopup()">
- </div>
- <div class="popupHeadline">${popupElement.title}</div>
- <div class="popupDescription">${popupElement.description}</div>
- <div class="popupDate"><span>Due date:</span> ${popupElement.dueDate} </div>
- <div class="popupPriority"><span>Priority:</span> ${popupElement.prio} <img src="${prios[popupElement.prio]}" alt=""></div>
- <div class="popupAssigned">
-   <div>Assigned To:</div>
-   <div class="popupPerson" id="popupPerson">
-    </div>
-   </div>
- <div class="popupSubtask" id="popupSubtask"> 
-   <span>Subtasks</span>
-   <div class="popupSingleSubtask" id="popupSingleSubtask"></div>
-   </div>
- <div class="popupDeleteAndEdit">
-  <div onmouseover="hoverDelete()" onmouseout="leaveDelete()">
-    <img id="deleteBlack" src="../img/delete_black.svg" alt="">
-    <img id="deleteBlue" src="../img/delete_blue.svg" alt="" class="d-none" onclick="deleteTask(${popupElement.timestamp})">
-  </div>
-<div class="line"></div>
-  <div onmouseover="hoverEdit()" onmouseout="leaveEdit()">
-    <img id="editBlack" src="../img/edit_black.svg" alt="">
-    <img id="editBlue" src="../img/edit_blue.svg" alt="" class="d-none" onclick="editPopupTask(${popupElement.timestamp})">
-  </div>
- </div>
-`;
-}
+
 
 function subtasks(timestamp) {
   let subtasksContainer = document.getElementById("popupSingleSubtask");
@@ -369,7 +304,6 @@ function subtaskOpen(i, timestamp) {
 //   }, 125);
 // }
 
-
 function closePopup() {
   handleEditPopup();
   hideCloseCross();
@@ -425,8 +359,6 @@ function hideAddTaskPopup() {
   }, 125);
 }
 
-
-
 function closeAddTaskAboutButton() {
   let closeCross = document.getElementById("closeCross");
   closeCross.classList.add("d-none");
@@ -445,7 +377,7 @@ function closeAddTaskAboutButton() {
 //     let assigned = popupElement.assigned[i];
 //     person.innerHTML += /*html*/ `
 //     <div class="PopupInitialsandContacts">
-//     <span class="initalsCircle" id="initalsCircleColorPopup${i}">${assigned.initials} 
+//     <span class="initalsCircle" id="initalsCircleColorPopup${i}">${assigned.initials}
 //     </span> <span>${assigned.name}</span>
 //     </div>
 //     `;
@@ -454,7 +386,7 @@ function closeAddTaskAboutButton() {
 // }
 
 function popupPersons(popupElement) {
-  let person = document.getElementById('popupPerson');
+  let person = document.getElementById("popupPerson");
   person.innerHTML = "";
   popupElement.assigned.forEach((assigned, i) => {
     person.innerHTML += generatePersonHTML(assigned, i);
@@ -462,19 +394,11 @@ function popupPersons(popupElement) {
   });
 }
 
-function generatePersonHTML(assigned, index) {
-  return /*html*/ `
-    <div class="PopupInitialsandContacts">
-      <span class="initalsCircle" id="initalsCircleColorPopup${index}">${assigned.initials}</span>
-      <span>${assigned.name}</span>
-    </div>
-  `;
-}
+
 
 function setPersonBadgeColor(assigned, index) {
   document.getElementById(`initalsCircleColorPopup${index}`).style.backgroundColor = assigned.badgecolor;
 }
-
 
 function hoverDelete() {
   clearTimeout(deleteHoverTimeout);
@@ -551,28 +475,84 @@ async function editPopupTask(timestamp) {
   loadTaskForEditing(timestamp);
 }
 
+// function openAddTask(status = "toDos") {
+//   let closeCross = document.getElementById("closeCross");
+//   closeCross.classList.add("closeCross2");
+//   closeCross.classList.remove("d-none");
+//   let addTaskButton = document.getElementById("addTaskButton");
+//   addTaskButton.classList.remove("mainDarkBlue");
+//   addTaskButton.style.backgroundColor = "rgb(41,171,226)";
+//   addTaskButton.style.color = "white";
+//   document.getElementById("backgroundPopup").classList.remove("d-none");
+//   document.getElementById("popup").classList.add("d-none");
+//   let popupAddTask = document.getElementById("popupAddTask");
+//   popupAddTask.classList.remove("d-none");
+//   popupAddTask.classList.remove("hideAddTaskPopup");
+//   popupAddTask.offsetWidth;
+//   setTimeout(() => {
+//     popupAddTask.classList.add("showAddTaskPopup");
+//   }, 10);
+//   popupAddTask.onclick = function (event) {
+//     event.stopPropagation();
+//   };
+//   setPrio("btn-medium");
+//   document.getElementById("createTaskBtn").setAttribute("onclick", `addNewTask('${status}')`);
+// }
+
 function openAddTask(status = "toDos") {
+  configureCloseCross();
+  configureAddTaskButton();
+  showBackgroundPopup();
+  hideMainPopup();
+  showAddTaskPopup();
+  setPrio("btn-medium");
+  setCreateTaskButtonOnClick(status);
+}
+
+function configureCloseCross() {
   let closeCross = document.getElementById("closeCross");
   closeCross.classList.add("closeCross2");
   closeCross.classList.remove("d-none");
+}
+
+function configureAddTaskButton() {
   let addTaskButton = document.getElementById("addTaskButton");
   addTaskButton.classList.remove("mainDarkBlue");
   addTaskButton.style.backgroundColor = "rgb(41,171,226)";
   addTaskButton.style.color = "white";
-  document.getElementById("backgroundPopup").classList.remove("d-none");
-  document.getElementById("popup").classList.add("d-none");
+}
+
+function showBackgroundPopup() {
+  let backgroundPopup = document.getElementById("backgroundPopup");
+  backgroundPopup.classList.remove("d-none");
+}
+
+function hideMainPopup() {
+  let popup = document.getElementById("popup");
+  popup.classList.add("d-none");
+}
+
+function showAddTaskPopup() {
   let popupAddTask = document.getElementById("popupAddTask");
   popupAddTask.classList.remove("d-none");
   popupAddTask.classList.remove("hideAddTaskPopup");
-  popupAddTask.offsetWidth;
+  popupAddTask.offsetWidth; // Force reflow to ensure CSS transitions work
   setTimeout(() => {
     popupAddTask.classList.add("showAddTaskPopup");
   }, 10);
   popupAddTask.onclick = function (event) {
     event.stopPropagation();
   };
-  setPrio("btn-medium");
-  document.getElementById("createTaskBtn").setAttribute("onclick", `addNewTask('${status}')`);
+}
+
+function setPrio(className) {
+  let addTaskButton = document.getElementById("addTaskButton");
+  addTaskButton.classList.add(className);
+}
+
+function setCreateTaskButtonOnClick(status) {
+  let createTaskBtn = document.getElementById("createTaskBtn");
+  createTaskBtn.setAttribute("onclick", `addNewTask('${status}')`);
 }
 
 function truncateText(description, index) {
@@ -608,6 +588,5 @@ function searchAndDisplay() {
   console.log("Ergebnisse Match:", matchingTasks);
   tasks = matchingTasks;
   console.log("Ergebnisse Tasks:", tasks);
-
   updateHTML();
 }
