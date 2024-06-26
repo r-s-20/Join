@@ -116,11 +116,8 @@ function showContactDetails(index) {
   let contactDetailsContainer = document.getElementById("contactCardMain");
   contactDetailsContainer.innerHTML = contactDetailsHTML;
   contactDetailsContainer.classList.remove("d-none");
-
-  if (window.innerWidth <= 875) {
-    document.querySelector('.contactsContent').classList.add("show");
-    document.querySelector('.contactListSide').classList.add("d-none");
-  }
+  document.querySelector(".contactsContent").classList.add("show");
+  document.querySelector(".contactListSide").classList.add("hide-mobile");
 }
 
 function selectContact(index) {
@@ -129,7 +126,7 @@ function selectContact(index) {
   if (contact.classList.contains("selectedContact")) {
     contact.classList.remove("selectedContact");
     contactDetailsContainer.innerHTML = "";
-    document.querySelector('.contactsContent').classList.remove("show");
+    document.querySelector(".contactsContent").classList.remove("show");
   } else {
     unselectAllContacts();
     contact.classList.add("selectedContact");
@@ -144,7 +141,7 @@ function unselectAllContacts() {
     cards.classList.remove("selectedContact");
   }
   contactDetailsContainer.innerHTML = "";
-  document.querySelector('.contactsContent').classList.remove("show");
+  document.querySelector(".contactsContent").classList.remove("show");
 }
 
 function addContactPopUp() {
@@ -285,8 +282,16 @@ function toggleCancelIcons() {
   let button = document.querySelector(".cancel img");
   console.log(button);
   if (button.src.endsWith("cancel_icon.png")) {
-    button.src= "./img/cancel_icon_blue.svg";
+    button.src = "./img/cancel_icon_blue.svg";
   } else {
     button.src = "./img/cancel_icon.png";
   }
+}
+
+function closeContactContentMobile() {
+  content = document.querySelector(".contactsContent");
+  console.log(content);
+  content.classList.remove("show");
+  document.querySelector(".contactListSide").classList.remove("hide-mobile");
+  unselectAllContacts();
 }
