@@ -1,4 +1,3 @@
-
 loadContactsFromAPI();
 loadUsersFromAPI();
 let contact;
@@ -14,6 +13,13 @@ signUpEmail.addEventListener("blur", function () {
   validateEmail();
 });
 
+function welcomeScreen() {
+  let welcomeBackground = document.querySelector(".welcomeBackground");
+  setTimeout(() => {
+    welcomeBackground.classList.add("d-none");
+  }, 900);
+}
+
 function validateEmail() {
   let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -21,7 +27,7 @@ function validateEmail() {
     renderError("signUpEmail", "Please add a valid email address.");
     confirmMail = false;
   } else {
-    removeErrorForInput("signUpEmail")
+    removeErrorForInput("signUpEmail");
     confirmMail = true;
     validateForm();
   }
@@ -39,7 +45,7 @@ function validatePassword() {
   if (signUpPassword.value !== "" && signUpConfirmPassword.value !== "") {
     comparePassword();
   }
-  
+
   validateForm();
 }
 
@@ -47,22 +53,18 @@ signUpName.addEventListener("blur", function () {
   validateName();
 });
 
-function validateName(){
-
-  let user = users.find((users) => users.name === signUpName.value );
+function validateName() {
+  let user = users.find((users) => users.name === signUpName.value);
 
   if (user) {
     renderError("signUpName", "Name is already taken.");
-
-  } else { 
-  removeErrorForInput("signUpName")
-  validateForm();
+  } else {
+    removeErrorForInput("signUpName");
+    validateForm();
+  }
 }
-}
-
 
 const validateForm = () => {
-
   let signUpButton = document.getElementById("signUpButton");
   const checkDoneButton = document.getElementById("chechDoneButton");
 
@@ -93,7 +95,6 @@ signUpPassword.addEventListener("input", validateForm);
 signUpConfirmPassword.addEventListener("input", validateForm);
 
 function signUp() {
-
   let newUser = {
     name: signUpName.value,
     email: signUpEmail.value,
@@ -125,7 +126,6 @@ function createContact() {
 
   contacts.push(newContact);
 
-
   saveUsersToAPI();
   saveContactsToAPI();
 }
@@ -133,8 +133,8 @@ function createContact() {
 function comparePassword() {
   if (signUpPassword.value == signUpConfirmPassword.value) {
     confirmPasswords = true;
-    removeErrorForInput("signUpPassword")
-    removeErrorForInput("signUpConfirmPassword")
+    removeErrorForInput("signUpPassword");
+    removeErrorForInput("signUpConfirmPassword");
     return;
   } else {
     confirmPasswords = false;
@@ -354,11 +354,11 @@ function renderError(inputId, message = "This field is required") {
 
 function removeErrorForInput(inputId) {
   let input = document.getElementById(inputId);
-  
+
   if (input) {
     // Entferne die Fehlerfarbe
     input.classList.remove("errorDesign");
-    
+
     // Entferne die Fehlermeldung, falls vorhanden
     let errorMessage = input.parentElement.querySelector(".errorMessage");
     if (errorMessage) {
