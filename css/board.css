@@ -615,15 +615,21 @@ h1 {
 }
 
 .categoryAndDropDown span{
-  width: 50px;
-  height: 50px;
+  display: flex;
+  min-width: 20px;
+  min-height: 20px;
+  justify-content: center;
+  align-items: center;
+
+
 }
 
 .categoryAndDropDown span:hover{
   font-size: 18px;
   font-weight: bold;
-
+  background-color: rgb(227, 231, 222);
   border-radius: 50%;
+  
 }
 
 
@@ -660,15 +666,24 @@ h1 {
 }
 
 .dropdown-menu a:first-child:hover {
+
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
+.dropdown-menuToDoHide{
+border-top-left-radius: 8px;
+border-top-right-radius: 8px;
+}
 
 .dropdown-menu a:last-child:hover {
-  background-color: #f08585;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
+
+.dropdown-menuDoneHide{
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  }
 
 .dropdown-container.active .dropdown-menu {
   display: block;

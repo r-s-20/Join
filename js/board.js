@@ -107,7 +107,7 @@ function generateTodoHTML(element, index) {
     <div class="categoryAndDropDown">
       <div class="cardCategory" id="cardCategory${index}">${element.category.name}</div>
       <div id="dropdownMenu" class="dropdownMenu dropdown-container">
-      <span id="dropdownImage" onclick="toggleDropdown(event, ${element.timestamp}, ${index})">...</span>
+      <span onclick="toggleDropdown(event, ${element.timestamp}, ${index})">...</span>
         <div class="dropdown-menu" id="dropdownMenu${index}">
             <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'toDos', event)" id="dropdowntoDos${index}">To do</a>
             <a href="" onclick="mobileSetStatusTo(${element.timestamp}, 'inProgress', event)" id="dropdowninProgress${index}">in Progress</a>
@@ -134,6 +134,16 @@ function toggleDropdown(event, timestamp, index) {
   event.stopPropagation();
   const task = tasks.find((task) => task.timestamp === timestamp);
   document.getElementById(`dropdown${task.status}${index}`).classList.add('d-none');
+  if (task.status == "toDos"){
+    document.getElementById(`dropdowninProgress${index}`).classList.add('dropdown-menuToDoHide');
+  } else {
+    document.getElementById(`dropdowninProgress${index}`).classList.remove('dropdown-menuToDoHide');
+  }
+  if (task.status == "done"){
+    document.getElementById(`dropdownawaitFeedback${index}`).classList.add('dropdown-menuDoneHide');
+  } else {
+    document.getElementById(`dropdownawaitFeedback${index}`).classList.remove('dropdown-menuDoneHide');
+  }
   const dropdown = event.currentTarget.closest('.dropdown-container');
   dropdown.classList.toggle('active');
 }

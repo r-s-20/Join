@@ -107,11 +107,18 @@ function insertValuesToEditTask(task) {
 }
 
 function showConfirmationMessage() {
+  let popupAddTaskMessage = document.getElementById("popupAddTaskMessage");
   let popup = document.getElementById("popupAddTaskMessage");
   popup.classList.remove("d-none");
   setTimeout(() => {
-    popup.classList.add("d-none");
-  }, 5000);
+    popupAddTaskMessage.classList.add("show");
+  }, 10);
+  setTimeout(() => {
+    popupAddTaskMessage.classList.remove("show");
+    popupAddTaskMessage.classList.add("hide");
+
+  
+  }, 2000);
 }
 
 async function saveTasks() {
