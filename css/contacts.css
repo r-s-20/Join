@@ -1308,7 +1308,21 @@ button {
     display: flex;
     height: 80vh;
   }
+
+  #leftLine {
+    position: fixed;
+    top: 140px;
+    right: 32px;
 }
+
+}
+
+@media (min-width:875px) {
+  #leftLine {
+    display: none;
+}
+  }
+
 
 @media (max-width: 800px) {
   .contactsContent {
