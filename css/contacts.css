@@ -705,7 +705,7 @@ button {
   display: flex;
   width: 422px;
   height: 50px;
-  gap: 32px;
+  gap: 20px;
   padding: 13px 21px 13px 21px;
   border: 1px solid rgba(209, 209, 209, 1);
   border-radius: 10px;
