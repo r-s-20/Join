@@ -1,3 +1,4 @@
+
 button:hover {
   cursor: pointer;
 }
@@ -147,7 +148,7 @@ button:hover {
   align-items: center;
 
   h1 {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     color: white;
   }
@@ -169,7 +170,7 @@ button:hover {
   }
 
   h3 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     color: #007cee;
     margin: 0;
@@ -186,6 +187,8 @@ button:hover {
   background-color: #f6f7f8;
   width: 100%;
   box-shadow: -2px 1px 4px 0.5px #aaaaaa;
+  padding-left: 2rem;
+  gap: 32px;
 }
 
 .contactsHeader {
@@ -194,14 +197,13 @@ button:hover {
   align-items: center;
   height: 73px;
   margin-top: 100px;
-  margin-left: 43px;
+  margin-bottom: 16px;
   gap: 24px;
 
   h1 {
     font-size: 61px;
     font-weight: 700;
     color: #000000;
-    margin-left: 2rem;
   }
 
   h4 {
@@ -220,16 +222,12 @@ button:hover {
 
 /*Contact Card*/
 
-.contactCardMain {
-  margin-top: 32px;
-  margin-left: 43px;
-  gap: 21px;
-}
+
 
 .contentCardHeader {
   display: flex;
   flex-direction: column;
-  width: 461px;
+  width: 100%;
   height: 120px;
 }
 
@@ -301,11 +299,10 @@ button:hover {
   justify-content: flex-start;
   align-items: center;
   margin-top: 16px;
-  width: 207px;
   height: 74px;
 
   h4 {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 400;
   }
 }
@@ -610,8 +607,7 @@ input {
     padding: 0;
   }
 
-  .contactsHeader {
-    margin-left: 0;
+  /* .contactsHeader {
     h1 {
       font-size: 50px;
     }
@@ -619,15 +615,10 @@ input {
     h4 {
       font-size: 22px;
     }
-  }
+  } */
 
   .contactListsContainer {
     width: 400px;
-  }
-
-  .contentCardHeader {
-    scale: 90%;
-    margin-left: -18px;
   }
 
   .contactsMainOverlay {
@@ -653,9 +644,7 @@ input {
     width: 90%;
   }
 
-  .contactsHeader {
-    margin-left: 0;
-
+  /* .contactsHeader {
     h1 {
       font-size: 50px;
     }
@@ -663,23 +652,18 @@ input {
     h4 {
       font-size: 22px;
     }
-  }
+  } */
 
   .contactListsNameHead {
     width: 100%;
     gap: 16px;
-    h1 {
+    /* h1 {
       font-size: 1rem;
-    }
+    } */
   }
 
   .contactListsContainer {
     width: 100%;
-  }
-
-  .contentCardHeader {
-    scale: 90%;
-    margin-left: -18px;
   }
 
   .contactsMain button {
@@ -832,8 +816,7 @@ input {
     .contactCardMain {
       margin-left: 0;
     }
-    .contactsHeader {
-      scale: 80%;
+    /* .contactsHeader {
       margin-left: 0;
 
       h1 {
@@ -843,12 +826,7 @@ input {
       h4 {
         font-size: 20px;
       }
-    }
-
-    .contentCardHeader {
-      scale: 75%;
-      margin-left: -13px;
-    }
+    } */
 
     .contactsMain button {
       width: 200px;
@@ -887,8 +865,7 @@ input {
       margin-top: 18px;
     }
 
-    .contactsHeader {
-      scale: 100%;
+    /* .contactsHeader {
       margin-left: 20px;
 
       h1 {
@@ -898,7 +875,7 @@ input {
       h4 {
         font-size: 16px;
       }
-    }
+    } */
 
     .contactGroup {
       width: 100%;
@@ -920,13 +897,10 @@ input {
     }
 
     .cardHeaderLogo {
-      width: 95px;
-      height: 95px;
-    }
-
-    .cardHeaderNameDetails {
+      width: 70px;
+      height: 70px;
       h1 {
-        font-size: 40px;
+        font-size: 28px;
       }
     }
   }
@@ -1000,26 +974,10 @@ input {
       justify-content: center;
     }
 
-    .contactsHeader {
-      scale: 100%;
+    /* .contactsHeader {
       padding-left: 3px;
       gap: 24px;
-    }
-
-    .contactListsNameBadge {
-      width: 45px;
-      height: 45px;
-    }
-
-    .contactListsName {
-      h1 {
-        font-size: 16px;
-      }
-
-      h3 {
-        font-size: 12px;
-      }
-    }
+    } */
 
     .contactsMain button {
       width: 200px;
@@ -1142,7 +1100,18 @@ input {
 }
 
 @media (max-width: 500px) {
-  .contactsMainOverlay {
+
+  /* .contactsHeader {
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 0;
+    margin-bottom: 32px;
+
+    .seperateLine {
+      display: none;
+    }
+  } */
+  /* .contactsMainOverlay {
     width: 95%;
   }
 
@@ -1222,7 +1191,7 @@ input {
     h1 {
       font-size: 42px;
     }
-  }
+  } */
 }
 
 @media (max-width: 400px) {
@@ -1246,13 +1215,6 @@ input {
     margin-bottom: 4rem;
   }
 
-  .contactCardMain {
-    width: 320px;
-  }
-
-  .contentCardHeader {
-    width: 385px;
-  }
   .contentCardBody {
     gap: 15px;
   }

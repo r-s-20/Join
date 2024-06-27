@@ -291,7 +291,6 @@ function toggleCancelIcons() {
 
 function closeContactContentMobile() {
   content = document.querySelector(".contactsContent");
-  console.log(content);
   content.classList.remove("show");
   document.querySelector(".contactListSide").classList.remove("hide-mobile");
   unselectAllContacts();
