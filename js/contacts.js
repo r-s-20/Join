@@ -28,9 +28,7 @@ let currentContactIndex = null;
 async function init() {
   await includeHTML();
   renderUserlogo();
-  // loadContacts();
   await loadTasksFromAPI();
-  console.log("loading contacts");
   await loadContactsFromAPI();
   render();
 }
@@ -210,7 +208,6 @@ function showPopupWithAnimation(popID) {
 
 function closeAddContactPopUp() {
   let showAddContactPopUp = document.getElementById("showAddContactPopUp");
-
   showAddContactPopUp.classList.remove("showAddContact");
   showAddContactPopUp.classList.add("hideAddContact");
   setTimeout(() => {
@@ -218,6 +215,13 @@ function closeAddContactPopUp() {
     document.getElementById("showAddContactPopUp").classList.add("d-none");
 
   }, 125);
+  clearAddContactInputFields();
+}
+
+function clearAddContactInputFields(){
+  setValueToInput("", "addName");
+  setValueToInput("", "addEmail");
+  setValueToInput("", "addPhone");
 }
 
 /**
