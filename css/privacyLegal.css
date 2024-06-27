@@ -9,6 +9,9 @@ h3 {
 p {
   margin: 0;
   margin-bottom: 1rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+   text-align: justify;
 }
 
 span {
@@ -81,8 +84,6 @@ ol li::before {
   p {
     line-height: 1.6;
     font-weight: 400;
-    word-break: break-word;
-    overflow-wrap: break-word;
   }
 
   .goBackBtn {

@@ -123,7 +123,7 @@ let categories = [
     color: colors[0],
   },
   {
-    name: "Requirements Analysis",
+    name: "Marketing",
     color: colors[1],
   },
   {
@@ -131,7 +131,7 @@ let categories = [
     color: colors[2],
   },
   { 
-    name: "Budget Planning and Monitoring", 
+    name: "Budget", 
     color: colors[3], 
   },
   { name: "Userstory", color: colors[3] },
