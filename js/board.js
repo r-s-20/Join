@@ -297,6 +297,8 @@ function contactNames(element, index) {
  * @function
  */
 function boardPopup(timestamp) {
+  let body = document.querySelector('body');
+  body.classList.add('popup-open');
   findPopupElement(timestamp);
   showPopupElements();
   initializePopup();

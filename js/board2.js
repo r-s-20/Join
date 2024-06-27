@@ -62,6 +62,8 @@ function generateSubtaskHTML(subtask, index, timestamp) {
   }
   
   function closePopup() {
+    let body = document.querySelector('body');
+    body.classList.remove('popup-open');
     handleEditPopup();
     hideCloseCross();
     resetAddTask();
@@ -274,13 +276,41 @@ function generateSubtaskHTML(subtask, index, timestamp) {
    * @param {string} [status="toDos"] The status of the task to be added.
    */
   function openAddTask(status = "toDos") {
-    configureCloseCross();
+    let body = document.querySelector('body');
+    body.classList.add('popup-open');
+
+ 
     configureAddTaskButton();
     showBackgroundPopup();
     hideMainPopup();
     showAddTaskPopup();
     setPrio("btn-medium");
     setCreateTaskButtonOnClick(status);
+    insertCloseCross();
+  }
+
+  function insertCloseCross() {
+    // Erstelle ein neues div-Element für das Schließen-Symbol
+    let closeDiv = document.createElement('div');
+    closeDiv.id = 'closeCross';
+  
+    // Erstelle das Bild-Element für das Schließen-Symbol
+    let img = document.createElement('img');
+    img.src = '../img/close.svg';
+    img.alt = '';
+    img.onclick = closePopup; // Füge die Funktion closePopup als Klick-Event hinzu
+  
+    // Füge das Bild-Element zum div hinzu
+    closeDiv.appendChild(img);
+  
+    // Finde das übergeordnete div mit der Klasse innerContent flex-col width100
+    let innerContentDiv = document.querySelector('.innerContent.flex-col.width100');
+  
+    // Füge das erstellte div mit dem Schließen-Symbol direkt ein
+    if (innerContentDiv) {
+      innerContentDiv.insertBefore(closeDiv, innerContentDiv.firstChild);
+    }
+    configureCloseCross()
   }
   
   function configureCloseCross() {
