@@ -1,7 +1,7 @@
 
 loadContactsFromAPI();
 loadUsersFromAPI();
-let contact;
+
 
 
 function logIn() {

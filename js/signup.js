@@ -13,6 +13,13 @@ signUpEmail.addEventListener("blur", function () {
   validateEmail();
 });
 
+function welcomeScreen() {
+    let welcomeBackground = document.querySelector(".welcomeBackground");
+    setTimeout(() => {
+      welcomeBackground.classList.add("d-none");
+    }, 900);
+  }
+
 function validateEmail() {
   let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
