@@ -7,11 +7,9 @@ async function init() {
     window.location.href = "./index.html";
   }
   await includeHTML();
-  // loadTasks();
   renderUserlogo();
-  console.log("loading from API");
-  loadTasksFromAPI();
-  loadContactsFromAPI();
+  await loadTasksFromAPI();
+  await loadContactsFromAPI();
 }
 
 async function addNewTask(status) {
@@ -19,8 +17,7 @@ async function addNewTask(status) {
   removeErrors();
   if (validateTask(newTask)) {
     tasks.push(newTask);
-    saveTasksToAPI();
-    // saveTasks();
+    await saveTasksToAPI();
     await showConfirmationMessage();
     resetFormInputs();
     resetAddTask();
@@ -61,52 +58,6 @@ function createNewTask(taskStatus) {
   return newTask;
 }
 
-function editTask(timestamp) {
-  removeErrors();
-  let task = tasks.filter((e) => e.timestamp == timestamp)[0];
-  editedTask = createNewTask(task.status);
-  let closeCross = document.getElementById("closeCross");
-  closeCross.classList.add("d-none");
-  closeCross.classList.remove("closeCross");
-  if (validateTask(editedTask)) {
-    editedTask.timestamp = timestamp;
-    let taskIndex = tasks.indexOf(task);
-    tasks.splice(taskIndex, 1, editedTask);
-    // saveTasks();
-    saveTasksToAPI();
-    boardPopup(timestamp);
-    updateHTML();
-  }
-}
-
-function loadTaskForEditing(timestamp) {
-  let task = tasks.filter((e) => e.timestamp == timestamp)[0];
-  currentAssignedList = [];
-  currentSubtasks = [];
-  task.assigned.forEach((e) => currentAssignedList.push(e));
-  task.subtasks.subtaskList.forEach((e) => currentSubtasks.push(e));
-  document.querySelector("#editTaskPopup h1").innerHTML = "";
-  insertValuesToEditTask(task);
-  document.getElementById("inputCategory").parentElement.parentElement.classList.add("d-none");
-  document.getElementById("clearTaskBtn").classList.add("d-none");
-  document.getElementById("createTaskBtn").setAttribute("onclick", `editTask(${timestamp})`);
-  document.getElementById("createTaskBtn").firstElementChild.innerHTML = "Ok";
-  let closeCross = document.getElementById("closeCross");
-  closeCross.classList.add("closeCross");
-  closeCross.classList.remove("d-none");
-}
-
-function insertValuesToEditTask(task) {
-  setValueToInput(task.title, "inputTitle");
-  setValueToInput(task.description, "inputDescription");
-  renderAssignedBadges();
-  setValueToInput(task.dueDate, "inputDueDate");
-  setPrio("btn-" + task.prio);
-  addNewTask;
-  setValueToInput(task.category.name, "inputCategory");
-  renderSubtasks();
-}
-
 function showConfirmationMessage() {
   let popupAddTaskMessage = document.getElementById("popupAddTaskMessage");
   let popup = document.getElementById("popupAddTaskMessage");
@@ -118,12 +69,6 @@ function showConfirmationMessage() {
     popupAddTaskMessage.classList.remove("show");
     popupAddTaskMessage.classList.add("hide");
   }, 2000);
-}
-
-async function saveTasks() {
-  let tasksAsText = JSON.stringify(tasks);
-  localStorage.setItem("tasks", tasksAsText);
-  saveTasksToAPI();
 }
 
 function validateTask(task) {
@@ -182,6 +127,7 @@ function removeErrorMessages() {
   }
 }
 
+/**reads selected category from form input field and stores  */
 function getCategory() {
   let selection = getValueFromInput("inputCategory");
   let categoryElement = categories.filter((e) => e.name == selection)[0];

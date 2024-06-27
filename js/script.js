@@ -327,7 +327,7 @@ function logoutUser() {
 }
 
 function renderUserlogo() {
-  let userLogo = document.getElementById("userLogo");
+  let userLogo = document.getElementById("userLogoHeader");
   let currentUser = sessionStorage.getItem("contact");
   currentUser = JSON.parse(currentUser);
   userLogo.innerHTML = "G";

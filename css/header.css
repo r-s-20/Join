@@ -32,7 +32,7 @@ header h2 {
   scale: 1.2;
 }
 
-.userLogo {
+.userLogoHeader {
   color: var(--customBlue);
   border: 3px solid var(--mainDarkColor);
   padding: 0.8rem;
@@ -46,7 +46,7 @@ header h2 {
   text-align: center;
 }
 
-.userLogo:hover {
+.userLogoHeader:hover {
   background-color: rgba(12, 46, 98, 0.12);
 }
 

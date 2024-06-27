@@ -265,6 +265,7 @@ function generateSubtaskHTML(subtask, index, timestamp) {
       <div w3-include-html="./templates/addTaskInclude.html" class="editPopupContainer" id="editTaskPopup"></div>
     `;
     await includeHTML();
+    renderUserlogo();
     loadTaskForEditing(timestamp);
   }
   
