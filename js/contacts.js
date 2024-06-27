@@ -374,8 +374,9 @@ async function deleteContact(index) {
   // saveContactsToLocalStorage();
   await saveContactsToAPI();
   render();
-
+  
   document.getElementById("contactCardMain").classList.add("d-none");
+  closeContactContentMobile();
   closeEditContactPopUp();
 }
 
