@@ -51,7 +51,7 @@ function validateUser(user, inputPassword, inputUsermail){
  * @param {Object} contact - The contact object to be saved.
  */
 function checkRememberMe(contact) {
-  let checkDoneButton = document.getElementById("chechDoneButton");
+  let checkDoneButton = document.getElementById("checkDoneButton");
   if (window.getComputedStyle(checkDoneButton).display !== "none") {
     localStorage.clear();
     saveContactToLocalStorage(contact);
