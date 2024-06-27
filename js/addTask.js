@@ -68,6 +68,7 @@ function showConfirmationMessage() {
   setTimeout(() => {
     popupAddTaskMessage.classList.remove("show");
     popupAddTaskMessage.classList.add("hide");
+    popup.classList.add("d-none");
   }, 2000);
 }
 
@@ -144,7 +145,7 @@ function setPrio(btnId) {
   selected = document.getElementById(btnId);
   for (button of prioButtons) {
     button.classList.remove("prioSelected");
-    let imgSrc = `../img/${button.id.replace("btn-", "prio-")}.png`;
+    let imgSrc = `./img/${button.id.replace("btn-", "prio-")}.png`;
     button.lastElementChild.src = imgSrc;
   }
   selected.classList.add("prioSelected");

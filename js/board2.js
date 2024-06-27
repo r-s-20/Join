@@ -236,7 +236,7 @@ function subtaskProgress(timestamp, index) {
  *
  * @param {number} timestamp The timestamp of the task to delete.
  */
-function deleteTask(timestamp) {
+async function deleteTask(timestamp) {
   let body = document.querySelector("body");
   body.classList.remove("popup-open");
   document.getElementById("backgroundPopup").classList.add("d-none");
@@ -245,8 +245,7 @@ function deleteTask(timestamp) {
     tasks.splice(index, 1);
   }
   updateHTML();
-  saveTasks();
-  saveTasksToAPI();
+  await saveTasksToAPI();
 }
 
 /**
