@@ -67,7 +67,7 @@ ol li::before {
   }
 }
 
-@media (max-width:1200px) {
+@media (max-width:1400px) {
   .outerContent {
     padding-left: 4rem;
     padding-right: 4rem;
@@ -79,8 +79,10 @@ ol li::before {
   }
 
   p {
-    line-height: 1.5rem;
+    line-height: 1.6;
     font-weight: 400;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .goBackBtn {
