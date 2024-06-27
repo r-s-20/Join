@@ -3,7 +3,7 @@
 <h1>Add Task</h1>
 <div class="innerContent flex-col width100">
   <div class="d-none" id="closeCross">
-  <img src="../img/close.svg" alt="" onclick="closePopup()">
+  <img src="./img/close.svg" alt="" onclick="closePopup()">
 </div>
   <!-- <form action="" onsubmit="event.preventDefault()" class="width100" id="addTaskForm"> -->
   <div class="width100" id="addTaskForm">
@@ -31,13 +31,13 @@
               placeholder="Select contacts to assign"
             />
             <img
-              src="../img/arrow_dropdown_down.svg"
+              src="./img/arrow_dropdown_down.svg"
               onclick="toggleDropdownMenu('inputAssignedContainer')"
               class="button dropdownIcon"
               alt="open dropdown-menu"
             />
             <img
-              src="../img/arrow_dropdown_up.svg"
+              src="./img/arrow_dropdown_up.svg"
               onclick="toggleDropdownMenu('inputAssignedContainer')"
               class="button dropdownIcon d-none"
               alt="close dropdown-menu"
@@ -48,13 +48,13 @@
               <div class="userBadge flex-center" style="background-color: blue">AM</div>
               <span>Contact1</span>
               <img
-                src="../img/check_button.svg"
+                src="./img/check_button.svg"
                 onclick="toggleCheckContact()"
                 class="button checkContactButton"
                 alt="check this contact"
               />
               <img
-                src="../img/check_button_done.svg"
+                src="./img/check_button_done.svg"
                 onclick="toggleCheckContact()"
                 class="button checkContactButton d-none"
                 alt="check this contact"
@@ -84,7 +84,7 @@
               id="btn-high"
             >
               <span>Urgent</span>
-              <img src="../img/prio-high.png" alt="" />
+              <img src="./img/prio-high.png" alt="" />
             </button>
             <button
               onclick="setPrio('btn-medium')"
@@ -93,7 +93,7 @@
               id="btn-medium"
             >
               <span>Medium</span>
-              <img src="../img/prio-mediumWhite.png" alt="" />
+              <img src="./img/prio-mediumWhite.png" alt="" />
             </button>
             <button
               onclick="setPrio('btn-low')"
@@ -102,7 +102,7 @@
               id="btn-low"
             >
               <span>Low</span>
-              <img src="../img/prio-low.png" alt="" />
+              <img src="./img/prio-low.png" alt="" />
             </button>
           </div>
         </div>
@@ -119,13 +119,13 @@
               readonly
             />
             <img
-              src="../img/arrow_dropdown_down.svg"
+              src="./img/arrow_dropdown_down.svg"
               onclick="toggleDropdownMenu('inputCategoryContainer')"
               class="button dropdownIcon"
               alt="open dropdown-menu"
             />
             <img
-              src="../img/arrow_dropdown_up.svg"
+              src="./img/arrow_dropdown_up.svg"
               onclick="toggleDropdownMenu('inputCategoryContainer')"
               class="button dropdownIcon d-none"
               alt="close dropdown-menu"
@@ -149,7 +149,7 @@
               onchange="addNewSubtask()"
             />
             <img
-              src="../img/addDarkIcon.svg"
+              src="./img/addDarkIcon.svg"
               class="button dropdownIcon subtasksIcon"
               alt="open dropdown-menu"
               onclick="openAddSubtask()"
@@ -157,9 +157,9 @@
               id="addSubtask"
             />
             <div class="flex-start editSubtaskButtons d-none" id="editSubtaskButtons">
-              <img src="../img/closeSubtasks.svg" class="button" alt="remove subtask" onclick="closeAddSubtask()" />
+              <img src="./img/closeSubtasks.svg" class="button" alt="remove subtask" onclick="closeAddSubtask()" />
               <div class="separatorSubtasks"></div>
-              <img src="../img/checkDarkIcon.svg" onclick="addNewSubtask()" class="button" alt="confirm subtask" />
+              <img src="./img/checkDarkIcon.svg" onclick="addNewSubtask()" class="button" alt="confirm subtask" />
             </div>
           </div>
           <div>
@@ -168,16 +168,16 @@
                 <div>
                   <span>Testhallo</span>
                   <div class="flex-center" id="editSubtaski">
-                    <img src="../img/editIcon.svg" class="button" alt="edit subtask" title="edit subtask" />
+                    <img src="./img/editIcon.svg" class="button" alt="edit subtask" title="edit subtask" />
                     <div class="separatorSubtasks"></div>
-                    <img src="../img/deleteIcon.svg" class="button" title="delete Subtask" alt="delete Subtask" />
+                    <img src="./img/deleteIcon.svg" class="button" title="delete Subtask" alt="delete Subtask" />
                   </div>
                   <input type="text" class="editSubtaskInput width100" value="Testhallo" id="editSubtaskInput" />
                   <div class="flex-center editSubtaskButtonContainer" id="editSubtaski">
-                    <img src="../img/deleteIcon.svg" class="button" alt="edit subtask" title="edit subtask" />
+                    <img src="./img/deleteIcon.svg" class="button" alt="edit subtask" title="edit subtask" />
                     <div class="separatorSubtasks"></div>
                     <img
-                      src="../img/checkDarkIcon.svg"
+                      src="./img/checkDarkIcon.svg"
                       class="button"
                       onclick="confirmSubtaskEdit()"
                       title="delete Subtask"
@@ -217,7 +217,7 @@
   <div class="popupMessageContainer flex-center d-none" id="popupAddTaskMessage">
     <div class="button mainDarkBlue flex-center popupMessage">
       <span>Task added to board</span>
-      <img src="../img/boardIcon.png" alt="" />
+      <img src="./img/boardIcon.png" alt="" />
     </div>
   </div>
 </div>

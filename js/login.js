@@ -33,7 +33,7 @@ function validateUser(user, inputPassword, inputUsermail){
     if (user.password === inputPassword) {
       let contact = contacts.find((contact) => contact.email === inputUsermail);
       checkRememberMe(contact);
-      window.location.href = "/summary.html";
+      window.location.href = "./summary.html";
     } else {
       renderError("inputPassword", "E-Mail or Password incorrect");
       renderError("inputUsermail", "");
@@ -72,7 +72,7 @@ function guestLogin() {
   let contact = [];
   contact.push(guestUser);
   saveToSessionStorage(contact);
-  window.location.href = "/summary.html";
+  window.location.href = "./summary.html";
 }
 
 /**
