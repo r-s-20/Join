@@ -188,7 +188,6 @@ function resetIcons(lockIcon, visOffIcon, visOnIcon){
  */
 function showPassword(inputId) {
   let input = document.getElementById(inputId);
-  console.log("showing password in", input);
   input.type = "text";
   toggleVisibilityIcons(inputId);
 }

@@ -412,7 +412,6 @@ function searchAndDisplay() {
     }
   });
 
-  console.log("Matching results:", matchingTasks);
   tasks = matchingTasks; // Update tasks array with filtered tasks
   updateHTML(); // Update HTML to reflect filtered tasks
 }

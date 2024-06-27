@@ -23,7 +23,6 @@ let searchTask = tasks;
  */
 async function loadDataForBoard() {
   await loadTasksFromAPI();
-  console.log(tasks);
   updateHTML();
 }
 

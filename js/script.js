@@ -247,25 +247,16 @@ async function loadData(path = "") {
 async function saveTasksToAPI() {
   let tasksAsText = JSON.stringify(tasks);
   uploadStatus = await putData("/joinTasks", (data = { "tasks": tasksAsText }));
-  // if (uploadStatus.ok) {
-  //   console.log("task was saved to firebase");
-  // }
 }
 
 async function saveUsersToAPI() {
   let usersAsText = JSON.stringify(users);
   uploadStatus = await putData("/joinUsers", (data = { "users": usersAsText }));
-  // if (uploadStatus.ok) {
-  //   console.log("user array saved to firebase");
-  // }
 }
 
 async function saveContactsToAPI() {
   let contactsAsText = JSON.stringify(contacts);
   uploadStatus = await putData("/joinContacts", (data = { "contacts": contactsAsText }));
-  // if (uploadStatus.ok) {
-  //   console.log("contacts array saved to firebase");
-  // }
 }
 
 async function loadTasksFromAPI() {
@@ -311,7 +302,6 @@ function toggleUserMenu() {
 }
 
 function logoutUser() {
-  console.log("logging out");
   sessionStorage.clear();
 }
 
