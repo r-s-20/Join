@@ -285,12 +285,6 @@ function renderCategoriesDropdown(containerId) {
   }
 }
 
-function insertCategoryHTML(element) {
-  return `
-        <div class="dropdownCategoryElement dropdownElement" onclick="setCategory('${element.name}')">${element.name}</div>
-      `;
-}
-
 /** Writes provided category into input field of the dropdown
  * and closes the category dropdown menu
  * @param {string} category - name of a category
@@ -314,19 +308,6 @@ function renderAssignedDropdown(containerId, contactArray = contacts) {
       toggleCheckDesign(i);
     }
   }
-}
-
-function insertAssignedContactsHTML(element, i) {
-  return `
-        <div class="dropdownAssignedElement dropdownElement flex-start" onclick="toggleAssignedContact(${i})">
-          <div class="flex-center">
-            <div class="userBadge flex-center" style="background-color: ${element.badgecolor}">${element.initials}</div>
-            <span>${element.name}</span>
-          </div>
-          <img src="../img/check_button.svg" class="button checkContactButton" id="checkContactButton${i}" alt="check this contact">
-          <img src="../img/checkButtonWhite.svg" class="button checkContactButton d-none" id="checkContactDoneButton${i}" alt="check this contact">
-        </div>
-      `;
 }
 
 function startSearchAssigned() {
@@ -446,35 +427,6 @@ function renderSubtasks() {
   }
 }
 
-function insertSubtaskHTML(subtask, i) {
-  return `
-      <li onmouseover="toggleEditSubtask(${i})" onmouseout="toggleEditSubtask(${i})">
-        <div>
-            <span>${subtask.name}</span>
-            <div class="flex-center d-none" id="editSubtaskContainer${i}">
-              <img src="../img/editIcon.svg" onclick="toggleEditSubtaskDetail(${i})" class="button" alt="edit subtask" title="edit subtask" />
-              <div class="separatorSubtasks"></div>
-              <img src="../img/deleteIcon.svg" onclick="removeSubtask(${i})" class="button" title="delete Subtask" alt="delete Subtask" />
-            </div>
-            <div id="editSubtaskDetailContainer${i}" class="d-none">
-                    <input type="text" class="editSubtaskInput width100" onchange="confirmSubtaskEdit(${i})" value="${subtask.name}" id="editSubtaskInput${i}" />
-                    <div class="flex-center editSubtaskButtonContainer">
-                      <img src="../img/deleteIcon.svg" class="button" onclick="removeSubtask(${i})" title="delete Subtask" alt="delete Subtask" />
-                      <div class="separatorSubtasks"></div>
-                      <img
-                        src="../img/checkDarkIcon.svg"
-                        class="button"
-                        onclick="confirmSubtaskEdit(${i})"
-                        title="confirm edits for subtask"
-                        alt="confirm edits for subtask"
-                      />
-                    </div>
-                  </div>
-        </div>
-      </li>
-    `;
-}
-
 function toggleEditSubtask(i) {
   let editContainer = document.getElementById(`editSubtaskContainer${i}`);
   editContainer.classList.toggle("d-none");
@@ -500,8 +452,6 @@ function removeSubtask(i) {
  * and subtasks
  */
 function resetFormInputs() {
-  // incomplete! still need to add clean reset for dropdown input fields
-  // Subtasks also missing
   let inputFields = document.getElementsByClassName("formInput");
   for (inputField of inputFields) {
     inputField.value = "";
