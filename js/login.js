@@ -8,7 +8,7 @@ function logIn() {
   let inputUsermail = getInputValue("inputUsermail");
   let inputPassword = getInputValue("inputPassword");
   let user = users.find((user) => user.email === inputUsermail);
-  (user, inputPassword, inputUsermail);
+  validateUser(user, inputPassword, inputUsermail);
 }
 
 /**
@@ -35,10 +35,14 @@ function validateUser(user, inputPassword, inputUsermail){
       checkRememberMe(contact);
       window.location.href = "/summary.html";
     } else {
-      alert("E-Mail or Password incorrect");
+      // alert("E-Mail or Password incorrect");
+      renderError("inputPassword", "E-Mail or Password incorrect");
+      renderError("inputUsermail", "");
     }
   } else {
-    alert("E-Mail or Password incorrect");
+    renderError("inputPassword", "E-Mail or Password incorrect");
+    renderError("inputUsermail", "");
+    // alert("E-Mail or Password incorrect");
   }
 }
 
