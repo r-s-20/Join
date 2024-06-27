@@ -85,10 +85,14 @@
               </div>
             </div>
           </div>
-          <div class="popupCurtain flex-center d-none" onclick="closeAddContactPopUp()">
-            <div class="contactsMainOverlayAddContact d-none" id="showAddContactPopUp" onclick="event.stopPropagation()">
-              <div class="overlayAddContactLeftSide">
-                <div class="addContactInputFieldClose-mobile button" onclick="closeAddContactPopUp()">
+          <div class="popupCurtain flex-center d-none" onclick="closeAddContactPopUp(), closeEditContactPopUp()">
+            <div
+              class="contactsMainOverlayAddContact contactsMainOverlay d-none"
+              id="showAddContactPopUp"
+              onclick="event.stopPropagation()"
+            >
+              <div class="overlayAddContactLeftSide overlayLeftSide">
+                <div class="contactInputFieldClose-mobile button" onclick="closeAddContactPopUp()">
                   <img src="img/close-white.svg" alt="Close popup" />
                 </div>
                 <img src="img/joinLogo_dark.png" class="popupLogo" alt="Logo Edit Contact" />
@@ -97,57 +101,57 @@
                 <div class="underline"></div>
               </div>
 
-              <div class="overlayAddContactRightSide">
-                <div class="addContactInputFieldClose button" onclick="closeAddContactPopUp()">
+              <div class="overlayAddContactRightSide overlayRightSide">
+                <div class="contactInputFieldClose button" onclick="closeAddContactPopUp()">
                   <img src="img/Close.png" class="button" alt="" />
                 </div>
 
                 <!-- <div class="overlayEditContactRightSideInputBadge"> -->
 
-                <div class="overlayAddContactRightSideInputFields">
+                <div class="overlayAddContactRightSideInputFields overlayRightSideInputFields">
                   <!-- Name Initial -->
 
-                  <div class="overlayAddContactRightSideBadge">
+                  <div class="overlayAddContactRightSideBadge overlayBadge">
                     <h1 id="addInitials">
                       <img src="img/addContact.png" alt="" />
                     </h1>
                   </div>
 
                   <!-- InputFields -->
-                  <div class="addContactInputField">
-                    <div class="addContactInputFieldName">
+                  <div class="addContactInputField contactInputField">
+                    <div class="addContactInputFieldName contactInputFieldName">
                       <input type="text" placeholder="Name" id="addName" required />
                       <div class="addContactInputFieldNameImage">
                         <img src="img/person.png" alt="" />
                       </div>
                     </div>
 
-                    <div class="addContactInputFieldName">
+                    <div class="addContactInputFieldName contactInputFieldName">
                       <input type="email" placeholder="Email" id="addEmail" required />
                       <div class="addContactInputFieldNameImage">
                         <img src="img/mail.png" alt="" />
                       </div>
                     </div>
 
-                    <div class="addContactInputFieldName">
+                    <div class="addContactInputFieldName contactInputFieldName">
                       <input type="tel" placeholder="Phone" id="addPhone" required />
                       <div class="addContactInputFieldNameImage">
                         <img src="img/call.png" alt="" />
                       </div>
                     </div>
 
-                    <div class="overlayAddContactRightButton">
+                    <div class="overlayAddContactRightButton overlayRightButton">
                       <button
                         class="cancel light-button"
                         onmouseover="toggleCancelIcons()"
                         onmouseout="toggleCancelIcons()"
                         onclick="closeAddContactPopUp()"
                       >
-                        <h1>Cancel</h1>
+                        Cancel
                         <img src="img/cancel_icon.png" />
                       </button>
-                      <button class="save dark-button" onclick="addContact()">
-                        <h1>Create contact</h1>
+                      <button class="dark-button" onclick="addContact()">
+                        Create contact
                         <img src="img/check.png" alt="Save Button" />
                       </button>
                     </div>
@@ -155,53 +159,61 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="contactsMainOverlayEditContact d-none" id="showEditContactPopUp">
-            <div class="overlayEditContactLeftSide">
-              <img src="img/joinLogo_dark.png" alt="Logo Edit Contact" />
-              <p>Edit contact</p>
-              <div class="underline"></div>
-            </div>
 
-            <div class="overlayEditContactRightSide">
-              <div class="editContactInputFieldClose button" onclick="closeEditContactPopUp()">
-                <img src="img/Close.png" alt="" />
+            <div
+              class="contactsMainOverlayEditContact contactsMainOverlay d-none"
+              id="showEditContactPopUp"
+              onclick="event.stopPropagation()"
+            >
+              <div class="overlayEditContactLeftSide overlayLeftSide">
+                <div class="contactInputFieldClose-mobile button" onclick="closeAddContactPopUp()">
+                  <img src="img/close-white.svg" alt="Close popup" />
+                </div>
+                <img src="img/joinLogo_dark.png" class="popupLogo" alt="Logo Edit Contact" />
+                <p>Edit contact</p>
+                <div class="underline"></div>
               </div>
 
-              <div class="overlayEditContactRightSideInputFields">
-                <!-- Name Initial -->
-                <div class="overlayEditContactRightSideBadge">
-                  <h1 id="editInitials">TW</h1>
+              <div class="overlayEditContactRightSide overlayRightSide">
+                <div class="contactInputFieldClose button" onclick="closeEditContactPopUp()">
+                  <img src="img/Close.png" alt="" />
                 </div>
 
-                <!-- InputFields -->
-                <div class="editContactInputField">
-                  <div class="editContactInputFieldName">
-                    <input type="text" placeholder="Name" id="editName" />
-                    <div class="editContactInputFieldNameImage">
-                      <img src="img/person.png" alt="" />
-                    </div>
+                <div class="overlayEditContactRightSideInputFields overlayRightSideInputFields">
+                  <!-- Name Initial -->
+                  <div class="overlayEditContactRightSideBadge overlayBadge">
+                    <h1 id="editInitials">TW</h1>
                   </div>
 
-                  <div class="editContactInputFieldName">
-                    <input type="email" placeholder="Email" id="editEmail" required />
-                    <div class="editContactInputFieldNameImage">
-                      <img src="img/mail.png" alt="" />
+                  <!-- InputFields -->
+                  <div class="editContactInputField contactInputField">
+                    <div class="editContactInputFieldName contactInputFieldName">
+                      <input type="text" placeholder="Name" id="editName" />
+                      <div class="editContactInputFieldNameImage">
+                        <img src="img/person.png" alt="" />
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="editContactInputFieldName">
-                    <input type="tel" placeholder="Phone" id="editPhone" required />
-                    <div class="editContactInputFieldNameImage">
-                      <img src="img/call.png" alt="" />
+                    <div class="editContactInputFieldName contactInputFieldName">
+                      <input type="email" placeholder="Email" id="editEmail" required />
+                      <div class="editContactInputFieldNameImage">
+                        <img src="img/mail.png" alt="" />
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="overlayEditContactRightButton">
-                    <button class="delete light-button" onclick="deleteContact(currentContactIndex)">Delete</button>
-                    <button class="save dark-button" id="saveEditButton">
-                      Save <img src="img/check.png" alt="Save Button" />
-                    </button>
+                    <div class="editContactInputFieldName contactInputFieldName">
+                      <input type="tel" placeholder="Phone" id="editPhone" required />
+                      <div class="editContactInputFieldNameImage">
+                        <img src="img/call.png" alt="" />
+                      </div>
+                    </div>
+
+                    <div class="overlayEditContactRightButton overlayRightButton">
+                      <button class="delete light-button" onclick="deleteContact(currentContactIndex)">Delete</button>
+                      <button class="save dark-button" id="saveEditButton">
+                        Save <img src="img/check.png" alt="Save Button" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

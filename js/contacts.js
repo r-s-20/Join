@@ -174,14 +174,14 @@ function editContactPopUp(index) {
     saveEditButton.onclick = function () {
       saveContact(index);
     };
-    document.getElementById("overlayBackground").style.display = "block";
+    document.querySelector(".popupCurtain").classList.remove("d-none");
     document.getElementById("showEditContactPopUp").classList.remove("d-none");
   }
 }
 
 function closeEditContactPopUp() {
-  document.getElementById("overlayBackground").style.display = "none";
   document.getElementById("showEditContactPopUp").classList.add("d-none");
+  document.querySelector(".popupCurtain").classList.add("d-none");
 }
 
 function getInitials(name) {
@@ -280,7 +280,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function toggleCancelIcons() {
   let button = document.querySelector(".cancel img");
-  console.log(button);
   if (button.src.endsWith("cancel_icon.png")) {
     button.src = "./img/cancel_icon_blue.svg";
   } else {
