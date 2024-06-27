@@ -28,6 +28,8 @@ input:focus {
 
 .loginScreenLogo {
   position: absolute;
+  height: 10%;
+  min-height: 64px;
   z-index: 50;
   top: 5vh;
   left: 5vw;
