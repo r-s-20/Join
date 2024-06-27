@@ -154,7 +154,7 @@ function clearForm(){
   signUpConfirmPassword.value = "";
 }
 
-function createContact() {
+async function createContact() {
   let newContact = {
     name: signUpName.value,
     email: signUpEmail.value,
@@ -165,8 +165,8 @@ function createContact() {
 
   contacts.push(newContact);
 
-  saveUsersToAPI();
-  saveContactsToAPI();
+  await saveUsersToAPI();
+  await saveContactsToAPI();
 }
 
 function comparePassword() {

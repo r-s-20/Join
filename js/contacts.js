@@ -25,6 +25,9 @@ async function init() {
   renderUserlogo();
   // loadContacts();
   await loadTasksFromAPI();
+  console.log("loading contacts");
+  await loadContactsFromAPI();
+  render();
 }
 
 function render() {
