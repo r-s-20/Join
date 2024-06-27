@@ -75,7 +75,6 @@ button:hover {
   flex-direction: column;
   align-items: center;
   background-color: white;
-  /* min-width: 300px; */
   box-shadow: 0px 10px 5px white, 0px -10px 5px white;
 }
 
@@ -96,8 +95,9 @@ button:hover {
   height: 928px;
   top: 96px;
   left: 232px;
-  background-color: rgba(255, 255, 255, 1);
   overflow-y: auto;
+  overflow-x: hidden;
+  background-color: rgba(255, 255, 255, 1);
   height: 88.5vh;
 }
 
@@ -201,6 +201,7 @@ button:hover {
     font-size: 61px;
     font-weight: 700;
     color: #000000;
+    margin-left: 2rem;
   }
 
   h4 {
@@ -220,8 +221,6 @@ button:hover {
 /*Contact Card*/
 
 .contactCardMain {
-  width: 461px;
-  height: 364px;
   margin-top: 32px;
   margin-left: 43px;
   gap: 21px;
@@ -612,7 +611,6 @@ input {
   }
 
   .contactsHeader {
-    scale: 85%;
     margin-left: 0;
     h1 {
       font-size: 50px;
@@ -647,8 +645,15 @@ input {
 }
 
 @media (max-width: 1250px) {
+  .contactListSide {
+    width: 100%;
+  }
+
+  .contactLists {
+    width: 90%;
+  }
+
   .contactsHeader {
-    scale: 85%;
     margin-left: 0;
 
     h1 {
@@ -660,8 +665,16 @@ input {
     }
   }
 
+  .contactListsNameHead {
+    width: 100%;
+    gap: 16px;
+    h1 {
+      font-size: 1rem;
+    }
+  }
+
   .contactListsContainer {
-    width: 300px;
+    width: 100%;
   }
 
   .contentCardHeader {
@@ -674,13 +687,8 @@ input {
     padding: 0;
   }
 
-  .contactListsNameHead {
-    width: 280px;
-    gap: 20px;
-  }
-
   .contactGroup {
-    width: 85%;
+    width: 100%;
 
     h2 {
       padding-left: 15px;
@@ -795,37 +803,6 @@ input {
   box-sizing: border-box;
 }
 
-/* .form-actions {
-  display: flex;
-  justify-content: center;
-  margin-top: 24px;
-  padding: 0 24px;
-  gap: 20px;
-}
-
-.form-actions button {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.form-actions .delete {
-  background-color: white;
-  color: black;
-  border: 1px solid rgba(42, 54, 71, 1);
-  border-radius: 10px;
-}
-
-.form-actions .save {
-  background-color: rgba(42, 54, 71, 1);
-  color: #ffffff;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-} */
-
 .selectedContact {
   .contactListsNameHead {
     background-color: var(--mainDarkColor);
@@ -850,10 +827,6 @@ input {
 
     .contactListsContainer {
       width: 300px;
-    }
-
-    .outerContent {
-      padding: 0;
     }
 
     .contactCardMain {
@@ -883,13 +856,12 @@ input {
     }
 
     .contactListsNameHead {
-      width: 250px;
       padding-left: 10px;
       gap: 12px;
     }
 
     .contactGroup {
-      width: 85%;
+      width: 100%;
     }
 
     .contactUnderline {
@@ -897,19 +869,24 @@ input {
     }
   }
 
-  @media (max-width: 1020px) {
+  @media (max-width: 1050px) {
+    .contactsContent {
+      display: none;
+    }
+
+    .contactListSide {
+      width: 100%;
+    }
+
     .contactListsContainer {
-      width: 285px;
+      width: 70%;
     }
 
-    .outerContent {
-      padding: 0;
+    .contactGroup {
+      width: 100%;
+      margin-top: 18px;
     }
 
-    .contactCardMain {
-      width: 400px;
-      margin-left: 0;
-    }
     .contactsHeader {
       scale: 100%;
       margin-left: 20px;
@@ -923,22 +900,15 @@ input {
       }
     }
 
-    .contactListsContainer {
-      width: 250px;
-      overflow-x: hidden;
-    }
-
-    .contentCardHeader {
-      scale: 75%;
-      margin-left: -13px;
-    }
-
     .contactGroup {
-      width: 80%;
+      width: 100%;
     }
 
     .contactLists {
+      width: 80%;
       margin-top: 30px;
+      display: flex;
+      align-items: center;
     }
 
     .contactUnderline {
@@ -1036,10 +1006,6 @@ input {
       gap: 24px;
     }
 
-    .contactListsContainer {
-      width: 240px;
-    }
-
     .contactListsNameBadge {
       width: 45px;
       height: 45px;
@@ -1085,8 +1051,6 @@ input {
 
     .contactListsContainer {
       width: 100%;
-      overflow-y: hidden;
-      overflow-x: hidden;
       margin-bottom: 1rem;
       height: auto;
     }
@@ -1211,8 +1175,8 @@ input {
     justify-content: center;
     align-items: center;
     position: fixed;
-    top: 82%;
-    right: 14px;
+    bottom: 15%;
+    right: 1.5rem;
     margin-left: 0;
   }
 
@@ -1326,7 +1290,6 @@ input {
 
 @media (max-width: 320px) {
   .contactListsNameHead {
-    scale: 102%;
     padding-left: 55px;
   }
 

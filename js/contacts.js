@@ -127,6 +127,7 @@ function selectContact(index) {
     contact.classList.remove("selectedContact");
     contactDetailsContainer.innerHTML = "";
     document.querySelector(".contactsContent").classList.remove("show");
+    document.querySelector(".contactListSide").classList.remove("hide-mobile");
   } else {
     unselectAllContacts();
     contact.classList.add("selectedContact");
@@ -142,6 +143,7 @@ function unselectAllContacts() {
   }
   contactDetailsContainer.innerHTML = "";
   document.querySelector(".contactsContent").classList.remove("show");
+  document.querySelector(".contactListSide").classList.remove("hide-mobile");
 }
 
 function addContactPopUp() {
