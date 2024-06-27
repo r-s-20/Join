@@ -8,10 +8,11 @@ async function init() {
   greetingScreen();
   await includeHTML();
   renderUserlogo();
-  loadTasks();
   renderShortestDeadline();
+  await  loadTasksFromAPI();
   insertCounterValues();
 }
+
 
 function insertCounterValues() {
   document.getElementById("counterBoard").innerHTML = tasks.length;

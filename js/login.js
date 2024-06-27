@@ -1,256 +1,34 @@
 
+
 loadContactsFromAPI();
 loadUsersFromAPI();
 let contact;
-let confirmPasswords = true;
-let confirmMail = false;
-
-let signUpName = document.getElementById("signUpName");
-let signUpEmail = document.getElementById("signUpEmail");
-let signUpPassword = document.getElementById("signUpPassword");
-let signUpConfirmPassword = document.getElementById("signUpConfirmPassword");
-
-signUpEmail.addEventListener("blur", function () {
-  validateEmail();
-});
-
-function validateEmail() {
-  let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-  if (!emailPattern.test(signUpEmail.value.trim()) && signUpEmail.value !== "") {
-    renderError("signUpEmail", "Please add a valid email address.");
-    confirmMail = false;
-  } else {
-    removeErrorForInput("signUpEmail")
-    confirmMail = true;
-    validateForm();
-  }
-}
-
-signUpPassword.addEventListener("blur", function () {
-  validatePassword();
-});
-
-signUpConfirmPassword.addEventListener("blur", function () {
-  validatePassword();
-});
-
-function validatePassword() {
-  if (signUpPassword.value !== "" && signUpConfirmPassword.value !== "") {
-    comparePassword();
-  }
-  
-  validateForm();
-}
-
-signUpName.addEventListener("blur", function () {
-  validateName();
-});
-
-function validateName(){
-
-  let user = users.find((users) => users.name === signUpName.value );
-
-  if (user) {
-    renderError("signUpName", "Name is already taken.");
-
-  } else { 
-  removeErrorForInput("signUpName")
-  validateForm();
-}
-}
-
-
-const validateForm = () => {
-
-  let signUpButton = document.getElementById("signUpButton");
-  const checkDoneButton = document.getElementById("chechDoneButton");
-
-  if (
-    signUpName.value.trim() &&
-    signUpEmail.value.trim() &&
-    signUpPassword.value.trim() &&
-    signUpConfirmPassword.value.trim() &&
-    confirmPasswords == true &&
-    confirmMail == true
-  ) {
-    if (window.getComputedStyle(checkDoneButton).display !== "none") {
-      signUpButton.disabled = false;
-      signUpButton.style.backgroundColor = "rgb(42,54,71)";
-    } else {
-      signUpButton.disabled = true;
-      signUpButton.style.backgroundColor = "#808285";
-    }
-  } else {
-    signUpButton.disabled = true;
-    signUpButton.style.backgroundColor = "#808285";
-  }
-};
-
-signUpName.addEventListener("input", validateForm);
-signUpEmail.addEventListener("input", validateForm);
-signUpPassword.addEventListener("input", validateForm);
-signUpConfirmPassword.addEventListener("input", validateForm);
-
-function signUp() {
-
-  let newUser = {
-    name: signUpName.value,
-    email: signUpEmail.value,
-    password: signUpPassword.value,
-  };
-  document.getElementById("backgroundPopup").innerHTML = /*html*/ `
-    <div class="successfullSignedUp" id="successfullSignedUp">
-         <span>You Signed Up successfully</span>
-    </div>
-    `;
-  users.push(newUser);
-  createContact();
-  showAndHidePopup();
-  signUpName.value = "";
-  signUpEmail.value = "";
-  signUpPassword.value = "";
-  signUpConfirmPassword.value = "";
-  unCheck();
-}
-
-function createContact() {
-  let newContact = {
-    name: signUpName.value,
-    email: signUpEmail.value,
-    initials: createInitials(),
-    badgecolor: colors[contacts.length % colors.length],
-    phone: "",
-  };
-
-  contacts.push(newContact);
-
-
-  saveUsersToAPI();
-  saveContactsToAPI();
-}
-
-function comparePassword() {
-  if (signUpPassword.value == signUpConfirmPassword.value) {
-    confirmPasswords = true;
-    removeErrorForInput("signUpPassword")
-    removeErrorForInput("signUpConfirmPassword")
-    return;
-  } else {
-    confirmPasswords = false;
-    renderError("signUpPassword", "");
-    renderError("signUpConfirmPassword", "Your Passwords don't match. Try again.");
-
-    return;
-  }
-}
-
-function createInitials() {
-  let names = signUpName.value.split(" ");
-  let initials = "";
-  if (names.length > 0) {
-    initials += names[0][0].toUpperCase();
-    if (names.length > 1) {
-      initials += names[names.length - 1][0].toUpperCase();
-    }
-  }
-  return initials;
-}
-
-function showAndHidePopup() {
-  let backgroundPopup = document.getElementById("backgroundPopup");
-  let successfullSignedUp = document.getElementById("successfullSignedUp");
-  let logIn = document.getElementById("logIn");
-  let signUp = document.getElementById("signUp");
-  let signUpContainer = document.getElementById("signUpContainer");
-
-  backgroundPopup.classList.remove("d-none");
-  successfullSignedUp.classList.remove("hide");
-
-  setTimeout(() => {
-    successfullSignedUp.classList.add("show");
-  }, 10);
-  setTimeout(() => {
-    successfullSignedUp.classList.remove("show");
-    successfullSignedUp.classList.add("hide");
-
-    setTimeout(() => {
-      backgroundPopup.classList.add("d-none");
-      logIn.classList.remove("d-none");
-      signUp.classList.add("d-none");
-      signUpContainer.classList.remove("d-none");
-    }, 125);
-  }, 2000);
-}
-
-function saveUsers() {
-  let usersAsText = JSON.stringify(users);
-  localStorage.setItem("users", usersAsText);
-}
-
-function saveContacts() {
-  let contactsAsText = JSON.stringify(contacts);
-  localStorage.setItem("contacts", contactsAsText);
-}
-
-function loadUsers() {
-  let usersAsString = localStorage.getItem("users");
-  if (usersAsString) {
-    users = JSON.parse(usersAsString);
-  }
-}
-
-function loadContacts() {
-  let contactsAsString = localStorage.getItem("contacts");
-  if (contactsAsString) {
-    contacts = JSON.parse(contactsAsString);
-  }
-}
-
-function loginToSignUp() {
-  let logIn = document.getElementById("logIn");
-  let signUp = document.getElementById("signUp");
-  let signUpContainer = document.getElementById("signUpContainer");
-  let signUpContainerResponsive = document.getElementById("signUpContainerResponsive");
-  logIn.classList.add("d-none");
-  signUp.classList.remove("d-none");
-  signUpContainer.classList.add("d-none");
-  signUpContainerResponsive.classList.add("d-none");
-}
-
-function checkDone() {
-  document.getElementById("checkButton").classList.add("d-none");
-  document.getElementById("chechDoneButton").classList.remove("d-none");
-  validateForm();
-}
-
-function unCheck() {
-  document.getElementById("checkButton").classList.remove("d-none");
-  document.getElementById("chechDoneButton").classList.add("d-none");
-  validateForm();
-}
-
-function checkLocalStorageKey() {
-  if (localStorage.getItem("users") !== null) {
-    localStorageToInput();
-  } else {
-    return;
-  }
-}
-
-function localStorageToInput() {
-  let inputUsermail = document.getElementById("inputUsermail");
-  let inputPassword = document.getElementById("inputPassword");
-  inputUsermail.value = users[0].email;
-  inputPassword.value = users[0].password;
-}
 
 function logIn() {
-  let inputUsermail = document.getElementById("inputUsermail");
-  let inputPassword = document.getElementById("inputPassword");
-  inputUsermail = inputUsermail.value.trim();
-  inputPassword = inputPassword.value.trim();
+  let inputUsermail = getInputValue("inputUsermail");
+  let inputPassword = getInputValue("inputPassword");
   let user = users.find((user) => user.email === inputUsermail);
+  (user, inputPassword, inputUsermail);
+}
+
+/**
+ * Retrieves the trimmed value of an input element by its ID.
+ * @param {string} inputValue - The ID of the input element.
+ * @returns {string} - The trimmed value of the input element.
+ */
+function getInputValue(inputValue){
+  let element = document.getElementById(inputValue);
+  return element.value.trim();
+}
+
+/**
+ * Validates the user's credentials and redirects to the summary page if valid.
+ * Alerts the user if the email or password is incorrect.
+ * @param {Object} user - The user object retrieved from the `users` array.
+ * @param {string} inputPassword - The password entered by the user.
+ * @param {string} inputUsermail - The email entered by the user.
+ */
+function validateUser(user, inputPassword, inputUsermail){
   if (user) {
     if (user.password === inputPassword) {
       let contact = contacts.find((contact) => contact.email === inputUsermail);
@@ -264,6 +42,12 @@ function logIn() {
   }
 }
 
+/**
+ * Checks if the "chechDoneButton" is displayed. If yes, clears local storage,
+ * saves the contact to local storage, and saves it to session storage.
+ * If "chechDoneButton" is not displayed, only saves the contact to session storage.
+ * @param {Object} contact - The contact object to be saved.
+ */
 function checkRememberMe(contact) {
   let checkDoneButton = document.getElementById("chechDoneButton");
   if (window.getComputedStyle(checkDoneButton).display !== "none") {
@@ -289,11 +73,19 @@ function guestLogin() {
   window.location.href = "/summary.html";
 }
 
+/**
+ * Saves the provided contact object to local storage.
+ * @param {Object} contact - The contact object to be saved to local storage.
+ */
 function saveContactToLocalStorage(contact) {
   let contactAsText = JSON.stringify(contact);
   localStorage.setItem("contact", contactAsText);
 }
 
+/**
+ * Saves the provided contact object to session storage.
+ * @param {Object} contact - The contact object to be saved to session storage.
+ */
 function saveToSessionStorage(contact) {
   let contactAsText = JSON.stringify(contact);
   sessionStorage.setItem("contact", contactAsText);
@@ -316,14 +108,11 @@ function unCheck2() {
   document.getElementById("chechDoneButton2").classList.add("d-none");
 }
 
-// function renderError(inputId, message="This field is required") {
-//   let input = document.getElementById(inputId);
-//   input.classList.add("errorDesign");
-//   input.parentElement.innerHTML += `
-//   <span class="errorMessage">${message}</span>
-//   `;
-// }
-
+/**
+ * Renders an error message for the specified input field.
+ * @param {string} inputId - The ID of the input field to render the error for.
+ * @param {string} [message="This field is required"] - The error message to display (default: "This field is required").
+ */
 function renderError(inputId, message = "This field is required") {
   let input = document.getElementById(inputId);
   input.classList.add("errorDesign");
@@ -333,33 +122,16 @@ function renderError(inputId, message = "This field is required") {
   input.parentElement.appendChild(errorSpan);
 }
 
-// function removeErrors() {
-//   removeErrorColors();
-//   removeErrorMessages();
-// }
-
-// function removeErrorColors() {
-//   let inputs = document.getElementsByClassName("errorDesign");
-//   for (let i = inputs.length - 1; i >= 0; i--) {
-//     inputs[i].classList.remove("errorDesign");
-//   }
-// }
-
-// function removeErrorMessages() {
-//   let messages = document.getElementsByClassName("errorMessage");
-//   for (let i = messages.length - 1; i >= 0; i--) {
-//     messages[i].remove();
-//   }
-// }
-
+/**
+ * Removes the error styling and error message for the specified input field.
+ * @param {string} inputId - The ID of the input field to remove the error from.
+ */
 function removeErrorForInput(inputId) {
   let input = document.getElementById(inputId);
-  
+
   if (input) {
-    // Entferne die Fehlerfarbe
     input.classList.remove("errorDesign");
-    
-    // Entferne die Fehlermeldung, falls vorhanden
+
     let errorMessage = input.parentElement.querySelector(".errorMessage");
     if (errorMessage) {
       errorMessage.remove();
@@ -367,22 +139,50 @@ function removeErrorForInput(inputId) {
   }
 }
 
+/**
+ * Manages the visibility icons for a password input field based on its value.
+ * @param {string} inputId - The ID of the password input field.
+ */
 function showVisbilityIcons(inputId) {
   let input = document.getElementById(inputId);
   let lockIcon = document.querySelector(`.${inputId} .lockIcon`);
   let visOffIcon = document.querySelector(`.${inputId} .vis-offIcon`);
   let visOnIcon = document.querySelector(`.${inputId} .vis-onIcon`);
   if (input.value != "") {
-    lockIcon.classList.add("d-none");
-    visOffIcon.classList.remove("d-none");
+    showPasswordIcons(lockIcon, visOffIcon);
   } else {
     hidePassword(inputId);
-    lockIcon.classList.remove("d-none");
-    visOffIcon.classList.add("d-none");
-    visOnIcon.classList.add("d-none");
+    resetIcons(lockIcon, visOffIcon, visOnIcon);
   }
 }
 
+/**
+ * Displays the visibility icons for a password input field.
+ * @param {HTMLElement} lockIcon - The lock icon element to hide.
+ * @param {HTMLElement} visOffIcon - The visibility off icon element to show.
+ */
+function showPasswordIcons(lockIcon, visOffIcon){
+  lockIcon.classList.add("d-none");
+  visOffIcon.classList.remove("d-none");
+}
+
+/**
+ * Resets the visibility icons for a password input field to their default state.
+ * @param {HTMLElement} lockIcon - The lock icon element to show.
+ * @param {HTMLElement} visOffIcon - The visibility off icon element to hide.
+ * @param {HTMLElement} visOnIcon - The visibility on icon element to hide.
+ */
+function resetIcons(lockIcon, visOffIcon, visOnIcon){
+  lockIcon.classList.remove("d-none");
+  visOffIcon.classList.add("d-none");
+  visOnIcon.classList.add("d-none");
+
+}
+
+/**
+ * Displays the password in plain text and toggles visibility icons.
+ * @param {string} inputId - The ID of the password input field.
+ */
 function showPassword(inputId) {
   let input = document.getElementById(inputId);
   console.log("showing password in", input);
@@ -390,13 +190,20 @@ function showPassword(inputId) {
   toggleVisibilityIcons(inputId);
 }
 
+/**
+ * Hides the password and toggles visibility icons.
+ * @param {string} inputId - The ID of the password input field.
+ */
 function hidePassword(inputId) {
   let input = document.getElementById(inputId);
-  console.log("hiding password in", input);
   input.type = "password";
   toggleVisibilityIcons(inputId);
 }
 
+/**
+ * Toggles visibility icons for password input fields.
+ * @param {string} inputId - The ID of the password input field.
+ */
 function toggleVisibilityIcons(inputId) {
   let visOffIcon = document.querySelector(`.${inputId} .vis-offIcon`);
   let visOnIcon = document.querySelector(`.${inputId} .vis-onIcon`);
