@@ -50,7 +50,7 @@ function boardPopupHTML() {
   return /*html*/ `
    <div class="popupCategory" id="popupCategory"> 
      <span id="categoryColor">${popupElement.category.name}</span>
-     <img src="../img/close.svg" alt="" onclick="closePopup()">
+     <img src="./img/close.svg" alt="" onclick="closePopup()">
    </div>
    <div class="popupHeadline">${popupElement.title}</div>
    <div class="popupDescription">${popupElement.description}</div>
@@ -69,15 +69,15 @@ function boardPopupHTML() {
      </div>
    <div class="popupDeleteAndEdit">
     <div onmouseover="hoverDelete()" onmouseout="leaveDelete()">
-      <img id="deleteBlack" src="../img/delete_black.svg" alt="">
-      <img id="deleteBlue" src="../img/delete_blue.svg" alt="" class="d-none" onclick="deleteTask(${
+      <img id="deleteBlack" src="./img/delete_black.svg" alt="">
+      <img id="deleteBlue" src="./img/delete_blue.svg" alt="" class="d-none" onclick="deleteTask(${
         popupElement.timestamp
       })">
     </div>
   <div class="line"></div>
     <div onmouseover="hoverEdit()" onmouseout="leaveEdit()">
-      <img id="editBlack" src="../img/edit_black.svg" alt="">
-      <img id="editBlue" src="../img/edit_blue.svg" alt="" class="d-none" onclick="editPopupTask(${
+      <img id="editBlack" src="./img/edit_black.svg" alt="">
+      <img id="editBlue" src="./img/edit_blue.svg" alt="" class="d-none" onclick="editPopupTask(${
         popupElement.timestamp
       })">
     </div>
@@ -101,8 +101,8 @@ function insertAssignedContactsHTML(element, i) {
               <div class="userBadge flex-center" style="background-color: ${element.badgecolor}">${element.initials}</div>
               <span>${element.name}</span>
             </div>
-            <img src="../img/check_button.svg" class="button checkContactButton" id="checkContactButton${i}" alt="check this contact">
-            <img src="../img/checkButtonWhite.svg" class="button checkContactButton d-none" id="checkContactDoneButton${i}" alt="check this contact">
+            <img src="./img/check_button.svg" class="button checkContactButton" id="checkContactButton${i}" alt="check this contact">
+            <img src="./img/checkButtonWhite.svg" class="button checkContactButton d-none" id="checkContactDoneButton${i}" alt="check this contact">
           </div>
         `;
 }
@@ -125,17 +125,17 @@ function insertSubtaskHTML(subtask, i) {
           <div>
               <span>${subtask.name}</span>
               <div class="flex-center d-none" id="editSubtaskContainer${i}">
-                <img src="../img/editIcon.svg" onclick="toggleEditSubtaskDetail(${i})" class="button" alt="edit subtask" title="edit subtask" />
+                <img src="./img/editIcon.svg" onclick="toggleEditSubtaskDetail(${i})" class="button" alt="edit subtask" title="edit subtask" />
                 <div class="separatorSubtasks"></div>
-                <img src="../img/deleteIcon.svg" onclick="removeSubtask(${i})" class="button" title="delete Subtask" alt="delete Subtask" />
+                <img src="./img/deleteIcon.svg" onclick="removeSubtask(${i})" class="button" title="delete Subtask" alt="delete Subtask" />
               </div>
               <div id="editSubtaskDetailContainer${i}" class="d-none">
                       <input type="text" class="editSubtaskInput width100" onchange="confirmSubtaskEdit(${i})" value="${subtask.name}" id="editSubtaskInput${i}" />
                       <div class="flex-center editSubtaskButtonContainer">
-                        <img src="../img/deleteIcon.svg" class="button" onclick="removeSubtask(${i})" title="delete Subtask" alt="delete Subtask" />
+                        <img src="./img/deleteIcon.svg" class="button" onclick="removeSubtask(${i})" title="delete Subtask" alt="delete Subtask" />
                         <div class="separatorSubtasks"></div>
                         <img
-                          src="../img/checkDarkIcon.svg"
+                          src="./img/checkDarkIcon.svg"
                           class="button"
                           onclick="confirmSubtaskEdit(${i})"
                           title="confirm edits for subtask"

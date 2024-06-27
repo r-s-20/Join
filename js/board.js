@@ -2,9 +2,9 @@ let currentTimestamp;
 let popupElement;
 
 const prios = {
-  low: "../img/prioLow.png",
-  medium: "../img/prioMedium.png",
-  high: "../img/prioUrgent.png",
+  low: "./img/prioLow.png",
+  medium: "./img/prioMedium.png",
+  high: "./img/prioUrgent.png",
 };
 
 let globalIndex = 0;
