@@ -1,4 +1,3 @@
-
 button:hover {
   cursor: pointer;
 }
@@ -222,8 +221,6 @@ button:hover {
 
 /*Contact Card*/
 
-
-
 .contentCardHeader {
   display: flex;
   flex-direction: column;
@@ -388,13 +385,12 @@ button:hover {
   transition: all 0.125s ease;
 }
 
-.contactsMainOverlay.showAddContact{
+.contactsMainOverlay.showAddContact {
   right: 50%;
 }
 
-.contactsMainOverlay.hideAddContact{
-  right: -100% ;
-
+.contactsMainOverlay.hideAddContact {
+  right: -100%;
 }
 
 .overlayBackgroundPopup {
@@ -613,6 +609,12 @@ input {
 .editContactInputFieldNameImage img {
   width: 24px;
   height: 24px;
+}
+
+#leftLine {
+  position: fixed;
+  top: 140px;
+  right: 32px;
 }
 
 @media (max-width: 1350px) {
@@ -916,6 +918,15 @@ input {
         font-size: 28px;
       }
     }
+
+    .hide-mobile {
+      display: none;
+    }
+
+    .contactsContent.show {
+      display: flex;
+      height: 80vh;
+    }
   }
 
   @media (max-width: 965px) {
@@ -1052,21 +1063,6 @@ input {
         }
       }
     }
-
-    .contactsContent.show {
-      display: flex;
-      height: 80vh;
-    }
-
-    #leftLine {
-      position: fixed;
-      top: 140px;
-      right: 32px;
-    }
-
-    .hide-mobile {
-      display: none;
-    }
   }
 
   @media (max-width: 800px) {
@@ -1100,20 +1096,19 @@ input {
   }
 }
 
-@media (min-width: 965px) {
+@media (min-width: 1050px) {
   .contactInputFieldClose-mobile {
     display: none;
   }
 }
 
-@media (min-width: 875px) {
+@media (min-width: 1050px) {
   #leftLine {
     display: none;
   }
 }
 
 @media (max-width: 500px) {
-
   .contactsHeader {
     flex-direction: column;
     gap: 16px;
@@ -1123,7 +1118,7 @@ input {
     .seperateLine {
       display: none;
     }
-  } 
+  }
   .contactsMainOverlay {
     width: 95%;
   }
@@ -1204,7 +1199,7 @@ input {
     h1 {
       font-size: 42px;
     }
-  } 
+  }
 }
 
 @media (max-width: 400px) {
