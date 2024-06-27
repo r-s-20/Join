@@ -19,7 +19,8 @@ async function addNewTask(status) {
   removeErrors();
   if (validateTask(newTask)) {
     tasks.push(newTask);
-    saveTasks();
+    saveTasksToAPI();
+    // saveTasks();
     await showConfirmationMessage();
     resetFormInputs();
     resetAddTask();
@@ -71,7 +72,8 @@ function editTask(timestamp) {
     editedTask.timestamp = timestamp;
     let taskIndex = tasks.indexOf(task);
     tasks.splice(taskIndex, 1, editedTask);
-    saveTasks();
+    // saveTasks();
+    saveTasksToAPI();
     boardPopup(timestamp);
     updateHTML();
   }

@@ -247,11 +247,12 @@ input:focus {
   width: 126px;
   padding: 15px 24px 15px 24px;
   gap: 10px;
-  color: white;
+  color: white !important;
   font-size: 20px;
+  cursor: pointer;
 }
 
-.singUpButtonContainer button:hover {
+.singUpButtonContainer button:enabled:hover {
   background-color: #29abe2 !important;
   cursor: pointer;
   color: white !important;
