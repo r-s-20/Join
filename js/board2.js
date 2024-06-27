@@ -238,6 +238,8 @@ function generateSubtaskHTML(subtask, index, timestamp) {
    * @param {number} timestamp The timestamp of the task to delete.
    */
   function deleteTask(timestamp) {
+    let body = document.querySelector('body');
+    body.classList.remove('popup-open');
     document.getElementById("backgroundPopup").classList.add("d-none");
     const index = tasks.findIndex((task) => task.timestamp === timestamp);
     if (index !== -1) {

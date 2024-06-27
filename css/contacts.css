@@ -1114,7 +1114,7 @@ input {
 
 @media (max-width: 500px) {
 
-  /* .contactsHeader {
+  .contactsHeader {
     flex-direction: column;
     gap: 16px;
     margin-top: 0;
@@ -1123,7 +1123,7 @@ input {
     .seperateLine {
       display: none;
     }
-  } */
+  } 
   .contactsMainOverlay {
     width: 95%;
   }
