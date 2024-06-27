@@ -1,8 +1,8 @@
 
-
 loadContactsFromAPI();
 loadUsersFromAPI();
 let contact;
+
 
 function logIn() {
   let inputUsermail = getInputValue("inputUsermail");
@@ -131,7 +131,8 @@ function removeErrorForInput(inputId) {
 
   if (input) {
     input.classList.remove("errorDesign");
-
+    
+    // Entferne die Fehlermeldung, falls vorhanden
     let errorMessage = input.parentElement.querySelector(".errorMessage");
     if (errorMessage) {
       errorMessage.remove();

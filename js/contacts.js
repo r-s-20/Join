@@ -145,13 +145,13 @@ function unselectAllContacts() {
 }
 
 function addContactPopUp() {
-  document.getElementById("overlayBackground").style.display = "block";
   document.getElementById("showAddContactPopUp").classList.remove("d-none");
+  document.querySelector(".popupCurtain").classList.remove("d-none");
 }
 
 function closeAddContactPopUp() {
-  document.getElementById("overlayBackground").style.display = "none";
   document.getElementById("showAddContactPopUp").classList.add("d-none");
+  document.querySelector(".popupCurtain").classList.add("d-none");
 }
 
 function editContactPopUp(index) {
