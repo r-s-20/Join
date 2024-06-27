@@ -371,6 +371,9 @@ button:hover {
 }
 
 .contactsMainOverlay {
+  position: fixed;
+  top: 50%;
+  right: -100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -378,10 +381,20 @@ button:hover {
   max-width: 1300px;
   height: 80%;
   max-height: 710px;
-  /* min-height: 700px; */
   border-radius: 30px;
   border: 1px solid;
   background-color: rgba(255, 255, 255, 1);
+  transform: translate(50%, -50%);
+  transition: all 0.125s ease;
+}
+
+.contactsMainOverlay.showAddContact{
+  right: 50%;
+}
+
+.contactsMainOverlay.hideAddContact{
+  right: -100% ;
+
 }
 
 .overlayBackgroundPopup {
@@ -1111,7 +1124,7 @@ input {
       display: none;
     }
   } */
-  /* .contactsMainOverlay {
+  .contactsMainOverlay {
     width: 95%;
   }
 
@@ -1191,7 +1204,7 @@ input {
     h1 {
       font-size: 42px;
     }
-  } */
+  } 
 }
 
 @media (max-width: 400px) {

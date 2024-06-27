@@ -35,14 +35,12 @@ function validateUser(user, inputPassword, inputUsermail){
       checkRememberMe(contact);
       window.location.href = "/summary.html";
     } else {
-      // alert("E-Mail or Password incorrect");
       renderError("inputPassword", "E-Mail or Password incorrect");
       renderError("inputUsermail", "");
     }
   } else {
     renderError("inputPassword", "E-Mail or Password incorrect");
     renderError("inputUsermail", "");
-    // alert("E-Mail or Password incorrect");
   }
 }
 

@@ -23,6 +23,8 @@ let currentContactIndex = null;
 async function init() {
   await includeHTML();
   renderUserlogo();
+  // loadContacts();
+  await loadTasksFromAPI();
 }
 
 function render() {
@@ -147,13 +149,30 @@ function unselectAllContacts() {
 }
 
 function addContactPopUp() {
-  document.getElementById("showAddContactPopUp").classList.remove("d-none");
+  let showAddContactPopUp = document.getElementById("showAddContactPopUp");
+  showAddContactPopUp.classList.remove("d-none");
+  showPopupWithAnimation(showAddContactPopUp);
   document.querySelector(".popupCurtain").classList.remove("d-none");
 }
 
+function showPopupWithAnimation(popID) {
+  popID.classList.remove("hideAddContact");
+  setTimeout(() => {
+    popID.classList.add("showAddContact");
+  }, 10);
+}
+
+
 function closeAddContactPopUp() {
-  document.getElementById("showAddContactPopUp").classList.add("d-none");
-  document.querySelector(".popupCurtain").classList.add("d-none");
+  let showAddContactPopUp = document.getElementById("showAddContactPopUp");
+
+  showAddContactPopUp.classList.remove("showAddContact");
+  showAddContactPopUp.classList.add("hideAddContact");
+  setTimeout(() => {
+    document.querySelector(".popupCurtain").classList.add("d-none");
+    document.getElementById("showAddContactPopUp").classList.add("d-none");
+
+  }, 125);
 }
 
 function editContactPopUp(index) {
@@ -177,7 +196,9 @@ function editContactPopUp(index) {
       saveContact(index);
     };
     document.querySelector(".popupCurtain").classList.remove("d-none");
-    document.getElementById("showEditContactPopUp").classList.remove("d-none");
+    let showEditContactPopUp = document.getElementById("showEditContactPopUp");
+    showEditContactPopUp.classList.remove("d-none");
+    showPopupWithAnimation(showEditContactPopUp);
   }
 }
 
@@ -198,7 +219,7 @@ function getInitials(name) {
   return initials;
 }
 
-function saveContact(index) {
+async function saveContact(index) {
   let name = document.getElementById("editName").value;
   let email = document.getElementById("editEmail").value;
   let phone = document.getElementById("editPhone").value;
@@ -219,13 +240,14 @@ function saveContact(index) {
   contacts[index].phone = phone;
   contacts[index].initials = initials;
 
-  saveContactsToLocalStorage();
+  // saveContactsToLocalStorage();
+ await  saveContactsToAPI();
   render();
   showContactDetails(index);
   closeEditContactPopUp();
 }
 
-function addContact() {
+async function addContact() {
   let name = document.getElementById("addName").value;
   let email = document.getElementById("addEmail").value;
   let phone = document.getElementById("addPhone").value;
@@ -251,17 +273,21 @@ function addContact() {
   };
 
   contacts.push(newContact);
-  saveContactsToLocalStorage();
+  // saveContactsToLocalStorage();
+  await saveContactsToAPI();
   render();
   closeAddContactPopUp();
 }
 
-function deleteContact(index) {
+async function deleteContact(index) {
   contact = contacts[index];
   removeContactFromTasks(index);
+  await saveTasksToAPI();
   contacts.splice(index, 1);
-  saveContactsToLocalStorage();
+  // saveContactsToLocalStorage();
+  await saveContactsToAPI();
   render();
+
   document.getElementById("contactCardMain").classList.add("d-none");
   closeEditContactPopUp();
 }
@@ -276,9 +302,9 @@ function removeContactFromTasks(contactIndex) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  loadContacts();
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//   loadContacts();
+// });
 
 function toggleCancelIcons() {
   let button = document.querySelector(".cancel img");
