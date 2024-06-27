@@ -17,6 +17,14 @@ async function includeHTML() {
 let users = [
   { name: "Anton Mayer", email: "anton@gmail.com", password: "123456" },
   { name: "Eva Fischer", email: "fischer@gmail.com", password: "7890" },
+  { name: "Anja Schulz", email: "schulz@gmail.com", password: "7890" },
+  { name: "David Eisenberg", email: "eisenberg@gmail.com", password: "7890" },
+  { name: "Benedikt Ziegler", email: "ziegler@gmail.com", password: "7890" },
+  { name: "Lisa Becker", email: "becker@gmail.com", password: "7890" },
+  { name: "Julia Wolf", email: "wolf@gmail.com", password: "7890" },
+  { name: "Christian Gross", email: "gross@gmail.com", password: "7890" },
+  { name: "Anna Weber", email: "weber@gmail.com", password: "7890" },
+  { name: "Stefan Hoffmann", email: "hoffmann@gmail.com", password: "7890" },
 ];
 
 let colors = [
@@ -72,6 +80,41 @@ let contacts = [
     badgecolor: colors[4],
     phone: 4914441111111,
   },
+  {
+    name: "Lisa Becker",
+    email: "becker@gmail.com",
+    initials: "LB",
+    badgecolor: colors[5],
+    phone: 491766789012,
+  },
+  {
+    name: "Julia Wolf",
+    email: "wolf@gmail.com",
+    initials: "JW",
+    badgecolor: colors[6],
+    phone: 491777890123,
+  },
+  {
+    name: "Christian Gross",
+    email: "gross@gmail.com",
+    initials: "CG",
+    badgecolor: colors[7],
+    phone: 491788901234,
+  },
+  {
+    name: "Anna Weber",
+    email: "weber@gmail.com",
+    initials: "AW",
+    badgecolor: colors[8],
+    phone: 491799012345,
+  },
+  {
+    name: "Stefan Hoffmann",
+    email: "hoffmann@gmail.com",
+    initials: "SH",
+    badgecolor: colors[9],
+    phone: 491700123456,
+  },
 ];
 
 let categories = [
@@ -80,12 +123,16 @@ let categories = [
     color: colors[0],
   },
   {
-    name: "Coffebreak",
+    name: "Requirements Analysis",
     color: colors[1],
   },
   {
     name: "Technical task",
     color: colors[2],
+  },
+  { 
+    name: "Budget Planning and Monitoring", 
+    color: colors[3], 
   },
   { name: "Userstory", color: colors[3] },
 ];
