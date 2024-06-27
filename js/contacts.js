@@ -128,9 +128,9 @@ function showContactDetails(index) {
                 </div>
                 <div class="contactCardDetails">
                     <div class="cardDetailEmailName">
-                    <p><h2>Email</h2> <a>${contact.email}</a></p>
+                    <p><h3>Email</h3> <a>${contact.email}</a></p>
                     </div>
-            <div class="CardDetailPhoneNumber"><h2>Phone</h2> ${contact.phone}</div>
+            <div class="CardDetailPhoneNumber"><h3>Phone</h3> ${contact.phone}</div>
       </div></div>
   `;
 
