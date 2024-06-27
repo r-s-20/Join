@@ -107,6 +107,12 @@ function insertAssignedContactsHTML(element, i) {
         `;
 }
 
+function insertAssignedBadgeHTML(contact) {
+  return `
+        <div class="userBadge flex-center" style="background-color:${contact.badgecolor};">${contact.initials}</div>
+      `;
+}
+
 function insertCategoryHTML(element) {
   return `
         <div class="dropdownCategoryElement dropdownElement" onclick="setCategory('${element.name}')">${element.name}</div>
@@ -140,4 +146,10 @@ function insertSubtaskHTML(subtask, i) {
           </div>
         </li>
       `;
+}
+
+function insertErrorMessageHTML() {
+  return `
+    <span class="errorMessage">This field is required</span>
+  `;
 }

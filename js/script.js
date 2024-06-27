@@ -227,15 +227,6 @@ function loadTasks() {
   }
 }
 
-// async function deleteData(path = "") {
-//   let response = await fetch(BASE_URL + path + ".json", {
-//     method: "DELETE",
-//   });
-//   console.log("post", response);
-//   let responseJson = await response.json();
-//   console.log(responseJson);
-// }
-
 async function putData(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "PUT",
@@ -250,32 +241,31 @@ async function putData(path = "", data = {}) {
 async function loadData(path = "") {
   let response = await fetch(BASE_URL + path + ".json");
   let responseJson = await response.json();
-  // console.log(responseJson);
   return responseJson;
 }
 
 async function saveTasksToAPI() {
   let tasksAsText = JSON.stringify(tasks);
   uploadStatus = await putData("/joinTasks", (data = { "tasks": tasksAsText }));
-  if (uploadStatus.ok) {
-    console.log("task was saved to firebase");
-  }
+  // if (uploadStatus.ok) {
+  //   console.log("task was saved to firebase");
+  // }
 }
 
 async function saveUsersToAPI() {
   let usersAsText = JSON.stringify(users);
   uploadStatus = await putData("/joinUsers", (data = { "users": usersAsText }));
-  if (uploadStatus.ok) {
-    console.log("user array saved to firebase");
-  }
+  // if (uploadStatus.ok) {
+  //   console.log("user array saved to firebase");
+  // }
 }
 
 async function saveContactsToAPI() {
   let contactsAsText = JSON.stringify(contacts);
   uploadStatus = await putData("/joinContacts", (data = { "contacts": contactsAsText }));
-  if (uploadStatus.ok) {
-    console.log("contacts array saved to firebase");
-  }
+  // if (uploadStatus.ok) {
+  //   console.log("contacts array saved to firebase");
+  // }
 }
 
 async function loadTasksFromAPI() {
@@ -284,7 +274,6 @@ async function loadTasksFromAPI() {
   if (tasksAsString) {
     tasks = JSON.parse(tasksAsString);
   }
-  // console.log("downloaded tasks", tasks);
 }
 
 async function loadUsersFromAPI() {
@@ -293,7 +282,6 @@ async function loadUsersFromAPI() {
   if (arrayAsString) {
     users = JSON.parse(arrayAsString);
   }
-  // console.log("downloaded users", users);
 }
 
 async function loadContactsFromAPI() {
@@ -302,7 +290,6 @@ async function loadContactsFromAPI() {
   if (arrayAsString) {
     contacts = JSON.parse(arrayAsString);
   }
-  // console.log("downloaded contacts", contacts);
 }
 
 function loadContacts() {
@@ -316,6 +303,8 @@ function saveContactsToLocalStorage() {
   localStorage.setItem("contacts", JSON.stringify(contacts));
 }
 
+/** Toggles menu in header 
+ */
 function toggleUserMenu() {
   popup = document.getElementById("header-popup-curtain");
   popup.classList.toggle("d-none");
@@ -326,6 +315,7 @@ function logoutUser() {
   sessionStorage.clear();
 }
 
+/** reders userlogo in header based on initials */
 function renderUserlogo() {
   let userLogo = document.getElementById("userLogoHeader");
   let currentUser = sessionStorage.getItem("contact");

@@ -95,17 +95,13 @@ function renderErrorMessages(task) {
 function renderError(inputId) {
   input = document.getElementById(inputId);
   input.classList.add("errorDesign");
-  input.parentElement.innerHTML += `
-    <span class="errorMessage">This field is required</span>
-  `;
+  input.parentElement.innerHTML += insertErrorMessageHTML();
 }
 
 function renderCategoryError() {
   input = document.getElementById("inputCategory");
   input.classList.add("errorDesign");
-  input.parentElement.parentElement.innerHTML += `
-    <span class="errorMessage">This field is required</span>
-  `;
+  input.parentElement.parentElement.innerHTML += insertErrorMessageHTML();
 }
 
 function removeErrors() {
@@ -127,7 +123,9 @@ function removeErrorMessages() {
   }
 }
 
-/**reads selected category from form input field and stores  */
+/**reads selected category from form input field and stores according
+ * category json from categories
+ */
 function getCategory() {
   let selection = getValueFromInput("inputCategory");
   let categoryElement = categories.filter((e) => e.name == selection)[0];
@@ -155,8 +153,6 @@ function setPrio(btnId) {
 
 /**Checks which priority button is currently checked
  * and returns the priority (high, medium or low) as a string.
- *
- * Is based on ID of the buttons, so don't mess with those IDs.
  */
 function getPrio() {
   let prioButtons = document.querySelectorAll(".prioContainer .prioButton");
@@ -188,6 +184,9 @@ function toggleDropdownMenu(menuId) {
   toggleArrowIcons(menuId);
 }
 
+/**toggles between arrow up and arrow down for dropdown-Element
+ * @param {string} menuId - ID of the input field that opens the dropdown menu
+ */
 function toggleArrowIcons(menuId) {
   let arrowIcons = document.querySelectorAll(`#${menuId} .dropdownIcon`);
   for (arrow of arrowIcons) {
@@ -195,6 +194,9 @@ function toggleArrowIcons(menuId) {
   }
 }
 
+/**toggles a background for popups that allows to darken background
+ * and to close popup with onclick-method.
+ */
 function toggleCurtain(menuId) {
   let curtain = document.getElementById("addTaskPopupContainer");
   curtain.classList.toggle("d-none");
@@ -330,9 +332,7 @@ function renderAssignedBadges() {
   container.innerHTML = "";
   if (currentAssignedList.length > 0) {
     for (contact of currentAssignedList) {
-      container.innerHTML += `
-        <div class="userBadge flex-center" style="background-color:${contact.badgecolor};">${contact.initials}</div>
-      `;
+      container.innerHTML += insertAssignedBadgeHTML(contact);
     }
   }
 }
