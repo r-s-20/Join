@@ -226,6 +226,7 @@ function checkLocalStorageKey() {
     let password = contact.password;
     inputUsermail.value = email;
     inputPassword.value = password;
+    showVisbilityIcons('inputPassword');
 
   } else {
     return;

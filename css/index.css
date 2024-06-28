@@ -126,6 +126,14 @@ input:focus {
   height: 24px;
 }
 
+.vis-offIcon{
+  cursor: pointer;
+}
+
+.vis-onIcon{
+  cursor: pointer;
+}
+
 .inputIcon {
   position: absolute;
   right: 1rem;
@@ -158,6 +166,7 @@ input:focus {
   color: #29abe2;
   cursor: pointer;
 }
+ 
 
 @keyframes move-scale {
   0% {
