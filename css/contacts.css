@@ -1,4 +1,3 @@
-
 button:hover {
   cursor: pointer;
 }
@@ -222,8 +221,6 @@ button:hover {
 
 /*Contact Card*/
 
-
-
 .contentCardHeader {
   display: flex;
   flex-direction: column;
@@ -330,6 +327,10 @@ button:hover {
   font-weight: 400;
   color: #007cee;
 
+  h3{
+    color: black;
+  }
+
   h2 {
     font-size: 16px;
     font-weight: 700;
@@ -388,13 +389,12 @@ button:hover {
   transition: all 0.125s ease;
 }
 
-.contactsMainOverlay.showAddContact{
+.contactsMainOverlay.showAddContact {
   right: 50%;
 }
 
-.contactsMainOverlay.hideAddContact{
-  right: -100% ;
-
+.contactsMainOverlay.hideAddContact {
+  right: -100%;
 }
 
 .overlayBackgroundPopup {
@@ -613,6 +613,12 @@ input {
 .editContactInputFieldNameImage img {
   width: 24px;
   height: 24px;
+}
+
+#leftLine {
+  position: fixed;
+  top: 140px;
+  right: 32px;
 }
 
 @media (max-width: 1350px) {
@@ -916,6 +922,15 @@ input {
         font-size: 28px;
       }
     }
+
+    .hide-mobile {
+      display: none;
+    }
+
+    .contactsContent.show {
+      display: flex;
+      height: 80vh;
+    }
   }
 
   @media (max-width: 965px) {
@@ -1010,6 +1025,22 @@ input {
       }
     }
 
+    .contactsHeader {
+      h1 {
+        font-size: 57px;
+      }
+
+      h4 {
+        font-size: 24px;
+      }
+    }
+
+    .cardHeaderNameDetails {
+      h1 {
+          font-size: 42px;
+      }
+    }
+
     .contactLists {
       margin-top: 30px;
       width: 90%;
@@ -1052,21 +1083,6 @@ input {
         }
       }
     }
-
-    .contactsContent.show {
-      display: flex;
-      height: 80vh;
-    }
-
-    #leftLine {
-      position: fixed;
-      top: 140px;
-      right: 32px;
-    }
-
-    .hide-mobile {
-      display: none;
-    }
   }
 
   @media (max-width: 800px) {
@@ -1079,6 +1095,16 @@ input {
       width: 100%;
       box-shadow: -2px 1px 4px 0.5px #aaaaaa;
       display: none;
+    }
+
+    .contactsHeader {
+      h1 {
+        font-size: 47px;
+      }
+
+      h4 {
+        font-size: 20px;
+      }
     }
   }
 
@@ -1100,30 +1126,29 @@ input {
   }
 }
 
-@media (min-width: 965px) {
+@media (min-width: 1050px) {
   .contactInputFieldClose-mobile {
     display: none;
   }
 }
 
-@media (min-width: 875px) {
+@media (min-width: 1050px) {
   #leftLine {
     display: none;
   }
 }
 
 @media (max-width: 500px) {
-
   .contactsHeader {
     flex-direction: column;
     gap: 16px;
     margin-top: 0;
     margin-bottom: 32px;
 
-    .seperateLine {
+    /* .seperateLine {
       display: none;
-    }
-  } 
+    } */
+  }
   .contactsMainOverlay {
     width: 95%;
   }
@@ -1172,11 +1197,13 @@ input {
     display: none;
   }
 
+  .cardHeaderNameDetails {
+    width: 250px;
+  }
   .contactsHeader {
     flex-direction: column;
     align-items: flex-start;
     margin-top: 40px;
-    margin-left: 40px;
     gap: 8px;
     margin-bottom: 25px;
   }
@@ -1204,7 +1231,7 @@ input {
     h1 {
       font-size: 42px;
     }
-  } 
+  }
 }
 
 @media (max-width: 400px) {
@@ -1219,6 +1246,21 @@ input {
     height: auto;
   }
 
+  .cardHeaderLogo {
+    width: 75px;
+    height: 75px;
+
+    h1 {
+      font-size: 27px;
+  }
+}
+
+  .cardHeaderNameDetails {
+    width: 70%;
+    h1 {
+      font-size: 32px;
+  }
+  }
   .contactLists {
     margin-top: 12px;
     margin-bottom: 0;
@@ -1265,7 +1307,7 @@ input {
 
 @media (max-width: 320px) {
   .contactListsNameHead {
-    padding-left: 55px;
+    padding-left: 2rem;
   }
 
   .contactLists {

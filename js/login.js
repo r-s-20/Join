@@ -51,7 +51,7 @@ function validateUser(user, inputPassword, inputUsermail){
  * @param {Object} contact - The contact object to be saved.
  */
 function checkRememberMe(contact) {
-  let checkDoneButton = document.getElementById("chechDoneButton");
+  let checkDoneButton = document.getElementById("chechDoneButton2");
   if (window.getComputedStyle(checkDoneButton).display !== "none") {
     localStorage.clear();
     saveContactToLocalStorage(contact);
@@ -188,7 +188,6 @@ function resetIcons(lockIcon, visOffIcon, visOnIcon){
  */
 function showPassword(inputId) {
   let input = document.getElementById(inputId);
-  console.log("showing password in", input);
   input.type = "text";
   toggleVisibilityIcons(inputId);
 }

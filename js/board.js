@@ -2,9 +2,9 @@ let currentTimestamp;
 let popupElement;
 
 const prios = {
-  low: "../img/prioLow.png",
-  medium: "../img/prioMedium.png",
-  high: "../img/prioUrgent.png",
+  low: "./img/prioLow.png",
+  medium: "./img/prioMedium.png",
+  high: "./img/prioUrgent.png",
 };
 
 let globalIndex = 0;
@@ -23,7 +23,6 @@ let searchTask = tasks;
  */
 async function loadDataForBoard() {
   await loadTasksFromAPI();
-  console.log(tasks);
   updateHTML();
 }
 
@@ -172,10 +171,10 @@ function startDragging(timestamp, index) {
  * @param {string} status - The new status to move the task to.
  * @function
  */
-function moveTo(status) {
+async function moveTo(status) {
   const task = tasks.find((task) => task.timestamp === currentTimestamp);
   task.status = status;
-
+  await saveTasksToAPI();
   updateHTML();
 }
 
@@ -297,8 +296,8 @@ function contactNames(element, index) {
  * @function
  */
 function boardPopup(timestamp) {
-  let body = document.querySelector('body');
-  body.classList.add('popup-open');
+  let body = document.querySelector("body");
+  body.classList.add("popup-open");
   findPopupElement(timestamp);
   showPopupElements();
   initializePopup();
@@ -390,4 +389,3 @@ function renderAllSubtasks(container, timestamp) {
     container.innerHTML += generateSubtaskHTML(subtask, i, timestamp);
   }
 }
-
