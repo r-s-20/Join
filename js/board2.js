@@ -65,8 +65,8 @@ async function subtaskOpen(i, timestamp) {
 }
 
 function closePopup() {
-  let body = document.querySelector("body");
-  body.classList.remove("popup-open");
+  let outerContent = document.querySelector(".outerContent");
+  outerContent.classList.remove("popup-open");
   handleEditPopup();
   hideCloseCross();
   resetAddTask();
@@ -240,8 +240,8 @@ function subtaskProgress(timestamp, index) {
  * @param {number} timestamp The timestamp of the task to delete.
  */
 async function deleteTask(timestamp) {
-  let body = document.querySelector("body");
-  body.classList.remove("popup-open");
+  let outerContent = document.querySelector(".outerContent");
+  outerContent.classList.remove("popup-open");
   document.getElementById("backgroundPopup").classList.add("d-none");
   const index = tasks.findIndex((task) => task.timestamp === timestamp);
   if (index !== -1) {
@@ -279,8 +279,8 @@ async function editPopupTask(timestamp) {
  * @param {string} [status="toDos"] The status of the task to be added.
  */
 function openAddTask(status = "toDos") {
-  let body = document.querySelector("body");
-  body.classList.add("popup-open");
+  let outerContent = document.querySelector(".outerContent");
+  outerContent.classList.add("popup-open");
 
   configureAddTaskButton();
   showBackgroundPopup();
