@@ -109,7 +109,13 @@ function insertAssignedContactsHTML(element, i) {
 
 function insertAssignedBadgeHTML(contact) {
   return `
-        <div class="userBadge flex-center" style="background-color:${contact.badgecolor};">${contact.initials}</div>
+        <div class="userBadge flex-center" title="${contact.name}" style="background-color:${contact.badgecolor};">${contact.initials}</div>
+      `;
+}
+
+function insertCountBadgeHTML(diff, namesList) {
+  return `
+        <div class="userBadge flex-center" title="${namesList}" style="background-color:grey;">+${diff}</div>
       `;
 }
 

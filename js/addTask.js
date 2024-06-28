@@ -312,7 +312,6 @@ function toggleCheckDesign(i) {
   dropdownField.classList.toggle("mainDarkBlue");
 }
 
-
 function checkButtonDone(i) {
   let checkButton = document.getElementById(`checkContactButton${i}`);
   let checkDoneButton = document.getElementById(`checkContactDoneButton${i}`);
@@ -357,10 +356,30 @@ function renderAssignedBadges() {
   let container = document.getElementById("assignedBadgesContainer");
   container.innerHTML = "";
   if (currentAssignedList.length > 0) {
-    for (contact of currentAssignedList) {
-      container.innerHTML += insertAssignedBadgeHTML(contact);
+    if (currentAssignedList.length <= 6) {
+      for (contact of currentAssignedList) {
+        container.innerHTML += insertAssignedBadgeHTML(contact);
+      }
+    } else {
+      for (let i = 0; i < 5; i++) {
+        const contact = currentAssignedList[i];
+        container.innerHTML += insertAssignedBadgeHTML(contact);
+      }
+      renderCountBadge(container);
     }
   }
+}
+
+function renderCountBadge(container) {
+  let namesList = "";
+  let diff = currentAssignedList.length - 5;
+  for (let i = 5; i < currentAssignedList.length - 1; i++) {
+    const contact = currentAssignedList[i];
+    namesList += contact.name + ", ";
+  }
+  namesList += currentAssignedList[currentAssignedList.length - 1].name;
+  console.log(namesList);
+  container.innerHTML += insertCountBadgeHTML(diff, namesList);
 }
 
 /**Replaces the add-icon in subtask input field with x- and check-icons */
