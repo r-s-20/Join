@@ -32,7 +32,7 @@ function validateUser(user, inputPassword, inputUsermail){
   if (user) {
     if (user.password === inputPassword) {
       let contact = contacts.find((contact) => contact.email === inputUsermail);
-      checkRememberMe(user);
+      checkRememberMe(user, contact);
       window.location.href = "./summary.html";
     } else {
       renderError("inputPassword", "E-Mail or Password incorrect");
@@ -50,7 +50,7 @@ function validateUser(user, inputPassword, inputUsermail){
  * If "chechDoneButton" is not displayed, only saves the contact to session storage.
  * @param {Object} contact - The contact object to be saved.
  */
-function checkRememberMe(user) {
+function checkRememberMe(user, contact) {
   let checkDoneButton = document.getElementById("chechDoneButton2");
   if (window.getComputedStyle(checkDoneButton).display !== "none") {
     localStorage.clear();
@@ -231,24 +231,5 @@ function checkLocalStorageKey() {
     return;
   }
 }
-
-
-
-
-
-//   if (localStorage.getItem("contact") !== null) {
-//     loadContacts();
-//     localStorageToInput();
-//   } else {
-//     return;
-//   }
-
-
-// function localStorageToInput() {
-//   let inputUsermail = document.getElementById("inputUsermail");
-//   let inputPassword = document.getElementById("inputPassword");
-//   inputUsermail.value = contact.email;
-//   inputPassword.value = contact.password;
-// }
 
 
