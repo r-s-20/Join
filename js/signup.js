@@ -136,6 +136,7 @@ function createUser(){
     name: signUpName.value,
     email: signUpEmail.value,
     password: signUpPassword.value,
+    initials: createInitials(),
   };
 }
 

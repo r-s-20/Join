@@ -15,16 +15,16 @@ async function includeHTML() {
 }
 
 let users = [
-  { name: "Anton Mayer", email: "anton@gmail.com", password: "123456" },
-  { name: "Eva Fischer", email: "fischer@gmail.com", password: "7890" },
-  { name: "Anja Schulz", email: "schulz@gmail.com", password: "7890" },
-  { name: "David Eisenberg", email: "eisenberg@gmail.com", password: "7890" },
-  { name: "Benedikt Ziegler", email: "ziegler@gmail.com", password: "7890" },
-  { name: "Lisa Becker", email: "becker@gmail.com", password: "7890" },
-  { name: "Julia Wolf", email: "wolf@gmail.com", password: "7890" },
-  { name: "Christian Gross", email: "gross@gmail.com", password: "7890" },
-  { name: "Anna Weber", email: "weber@gmail.com", password: "7890" },
-  { name: "Stefan Hoffmann", email: "hoffmann@gmail.com", password: "7890" },
+  { name: "Anton Mayer", email: "anton@gmail.com", password: "123456", initials: "AM" },
+  { name: "Eva Fischer", email: "fischer@gmail.com", password: "7890", initials: "EF" },
+  { name: "Anja Schulz", email: "schulz@gmail.com", password: "7890", initials: "AS" },
+  { name: "David Eisenberg", email: "eisenberg@gmail.com", password: "7890", initials: "DE" },
+  { name: "Benedikt Ziegler", email: "ziegler@gmail.com", password: "7890", initials: "BZ" },
+  { name: "Lisa Becker", email: "becker@gmail.com", password: "7890", initials: "LB" },
+  { name: "Julia Wolf", email: "wolf@gmail.com", password: "7890", initials: "JW" },
+  { name: "Christian Gross", email: "gross@gmail.com", password: "7890", initials: "CG" },
+  { name: "Anna Weber", email: "weber@gmail.com", password: "7890", initials: "AW" },
+  { name: "Stefan Hoffmann", email: "hoffmann@gmail.com", password: "7890", initials: "SH" },
 ];
 
 let colors = [
