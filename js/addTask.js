@@ -395,8 +395,8 @@ function removeSubtask(i) {
   renderSubtasks();
 }
 
-/**Resets all input fields to default entries and empties arrays for assigned contacts
- * and subtasks
+/**Resets all input fields of the Add Task-form to default entries 
+ * and empties arrays for assigned contacts and subtasks
  */
 function resetFormInputs() {
   let inputFields = document.getElementsByClassName("formInput");
@@ -412,6 +412,7 @@ function resetFormInputs() {
   renderSubtasks();
 }
 
+/** Toggles the icon color for "clear"-Button in Add-Task-Form */
 function toggleIconColor() {
   let icon = document.querySelector("#clearTaskBtn img");
   src = icon.src;
@@ -421,3 +422,11 @@ function toggleIconColor() {
     icon.src = "./img/close_darkblue.svg";
   }
 }
+
+document.addEventListener("keyup", (e) => {
+  if (e.key == "Enter") {
+    if (document.activeElement == document.getElementById("inputSubtasks") && getValueFromInput("inputSubtasks") !== "") {
+      addNewSubtask();
+    }
+  }
+});
