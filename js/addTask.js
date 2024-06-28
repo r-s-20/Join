@@ -14,6 +14,7 @@ async function init() {
 
 async function addNewTask(status) {
   let newTask = createNewTask(status);
+  let body = document.querySelector("body");
   removeErrors();
   if (validateTask(newTask)) {
     tasks.push(newTask);
@@ -22,6 +23,7 @@ async function addNewTask(status) {
     resetFormInputs();
     resetAddTask();
     setTimeout(closeAddingTask, 1500);
+    body.classList.remove("popup-open");
   }
 }
 
@@ -68,6 +70,7 @@ function showConfirmationMessage() {
   setTimeout(() => {
     popupAddTaskMessage.classList.remove("show");
     popupAddTaskMessage.classList.add("hide");
+    popup.classList.add("d-none");
   }, 2000);
 }
 
@@ -144,7 +147,7 @@ function setPrio(btnId) {
   selected = document.getElementById(btnId);
   for (button of prioButtons) {
     button.classList.remove("prioSelected");
-    let imgSrc = `../img/${button.id.replace("btn-", "prio-")}.png`;
+    let imgSrc = `./img/${button.id.replace("btn-", "prio-")}.png`;
     button.lastElementChild.src = imgSrc;
   }
   selected.classList.add("prioSelected");
@@ -394,8 +397,8 @@ function removeSubtask(i) {
   renderSubtasks();
 }
 
-/**Resets all input fields to default entries and empties arrays for assigned contacts
- * and subtasks
+/**Resets all input fields of the Add Task-form to default entries 
+ * and empties arrays for assigned contacts and subtasks
  */
 function resetFormInputs() {
   let inputFields = document.getElementsByClassName("formInput");
@@ -411,6 +414,7 @@ function resetFormInputs() {
   renderSubtasks();
 }
 
+/** Toggles the icon color for "clear"-Button in Add-Task-Form */
 function toggleIconColor() {
   let icon = document.querySelector("#clearTaskBtn img");
   src = icon.src;
@@ -420,3 +424,11 @@ function toggleIconColor() {
     icon.src = "./img/close_darkblue.svg";
   }
 }
+
+document.addEventListener("keyup", (e) => {
+  if (e.key == "Enter") {
+    if (document.activeElement == document.getElementById("inputSubtasks") && getValueFromInput("inputSubtasks") !== "") {
+      addNewSubtask();
+    }
+  }
+});

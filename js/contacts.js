@@ -20,12 +20,23 @@ let currentContactIndex = null;
 //   });
 // }
 
+/**
+ * Initializes the application, loads necessary data, and renders the user interface.
+ * @async
+ * @function
+ */
 async function init() {
   await includeHTML();
   renderUserlogo();
-  // loadContacts();
   await loadTasksFromAPI();
+  await loadContactsFromAPI();
+  render();
 }
+
+/**
+ * Renders the contact list in the contact list container.
+ * @function
+ */
 
 function render() {
   document.getElementById("contactListsContainer").innerHTML = "";
@@ -83,6 +94,12 @@ function render() {
   }
 }
 
+/**
+ * Displays contact details in the main contact card container.
+ * @function
+ * @param {number} index - The index of the contact to display.
+ */
+
 function showContactDetails(index) {
   let contact = contacts[index];
   let contactDetailsHTML = /*html*/ `
@@ -109,9 +126,9 @@ function showContactDetails(index) {
                 </div>
                 <div class="contactCardDetails">
                     <div class="cardDetailEmailName">
-                    <p><h2>Email</h2> <a>${contact.email}</a></p>
+                    <p><h3>Email</h3> <a>${contact.email}</a></p>
                     </div>
-            <div class="CardDetailPhoneNumber"><h2>Phone</h2> ${contact.phone}</div>
+            <div class="CardDetailPhoneNumber"><h3>Phone</h3> ${contact.phone}</div>
       </div></div>
   `;
 
@@ -121,6 +138,12 @@ function showContactDetails(index) {
   document.querySelector(".contactsContent").classList.add("show");
   document.querySelector(".contactListSide").classList.add("hide-mobile");
 }
+
+/**
+ * Selects a contact and displays its details.
+ * @function
+ * @param {number} index - The index of the contact to select.
+ */
 
 function selectContact(index) {
   let contact = document.getElementById(`contactCard${index}`);
@@ -137,6 +160,11 @@ function selectContact(index) {
   }
 }
 
+/**
+ * Unselects contacts.
+ * @function
+ */
+
 function unselectAllContacts() {
   let contactCards = document.getElementsByClassName("contactLists");
   let contactDetailsContainer = document.getElementById("contactCardMain");
@@ -148,12 +176,23 @@ function unselectAllContacts() {
   document.querySelector(".contactListSide").classList.remove("hide-mobile");
 }
 
+/**
+ * Displays the popup to add a new contact.
+ * @function
+ */
+
 function addContactPopUp() {
   let showAddContactPopUp = document.getElementById("showAddContactPopUp");
   showAddContactPopUp.classList.remove("d-none");
   showPopupWithAnimation(showAddContactPopUp);
   document.querySelector(".popupCurtain").classList.remove("d-none");
 }
+
+/**
+ * Displays a popup with animation.
+ * @function
+ * @param {HTMLElement} popID - The popup element to display.
+ */
 
 function showPopupWithAnimation(popID) {
   popID.classList.remove("hideAddContact");
@@ -162,10 +201,13 @@ function showPopupWithAnimation(popID) {
   }, 10);
 }
 
+/**
+ * Closes the popup for adding a new contact.
+ * @function
+ */
 
 function closeAddContactPopUp() {
   let showAddContactPopUp = document.getElementById("showAddContactPopUp");
-
   showAddContactPopUp.classList.remove("showAddContact");
   showAddContactPopUp.classList.add("hideAddContact");
   setTimeout(() => {
@@ -173,7 +215,20 @@ function closeAddContactPopUp() {
     document.getElementById("showAddContactPopUp").classList.add("d-none");
 
   }, 125);
+  clearAddContactInputFields();
 }
+
+function clearAddContactInputFields(){
+  setValueToInput("", "addName");
+  setValueToInput("", "addEmail");
+  setValueToInput("", "addPhone");
+}
+
+/**
+ * Displays the popup to edit an existing contact.
+ * @function
+ * @param {number} index - The index of the contact to edit.
+ */
 
 function editContactPopUp(index) {
   let contact = contacts[index];
@@ -202,10 +257,22 @@ function editContactPopUp(index) {
   }
 }
 
+/**
+ * Closes the popup for editing a contact.
+ * @function
+ */
+
 function closeEditContactPopUp() {
   document.getElementById("showEditContactPopUp").classList.add("d-none");
   document.querySelector(".popupCurtain").classList.add("d-none");
 }
+
+/**
+ * Generates initials from a given name.
+ * @function
+ * @param {string} name - The name to generate initials from.
+ * @returns {string} The generated initials.
+ */
 
 function getInitials(name) {
   let names = name.split(" ");
@@ -218,6 +285,13 @@ function getInitials(name) {
   }
   return initials;
 }
+
+/**
+ * Saves the edited contact information.
+ * @async
+ * @function
+ * @param {number} index - The index of the contact to save.
+ */
 
 async function saveContact(index) {
   let name = document.getElementById("editName").value;
@@ -246,6 +320,12 @@ async function saveContact(index) {
   showContactDetails(index);
   closeEditContactPopUp();
 }
+
+/**
+ * Adds a new contact.
+ * @async
+ * @function
+ */
 
 async function addContact() {
   let name = document.getElementById("addName").value;
@@ -279,6 +359,13 @@ async function addContact() {
   closeAddContactPopUp();
 }
 
+/**
+ * Deletes a contact.
+ * @async
+ * @function
+ * @param {number} index - The index of the contact to delete.
+ */
+
 async function deleteContact(index) {
   contact = contacts[index];
   removeContactFromTasks(index);
@@ -287,10 +374,17 @@ async function deleteContact(index) {
   // saveContactsToLocalStorage();
   await saveContactsToAPI();
   render();
-
+  
   document.getElementById("contactCardMain").classList.add("d-none");
+  closeContactContentMobile();
   closeEditContactPopUp();
 }
+
+/**
+ * Removes a contact from all tasks.
+ * @function
+ * @param {number} contactIndex - The index of the contact to remove from tasks.
+ */
 
 function removeContactFromTasks(contactIndex) {
   let contact = contacts[contactIndex];
@@ -306,6 +400,11 @@ function removeContactFromTasks(contactIndex) {
 //   loadContacts();
 // });
 
+/**
+ * Toggles the visibility of the cancel icons.
+ * @function
+ */
+
 function toggleCancelIcons() {
   let button = document.querySelector(".cancel img");
   if (button.src.endsWith("cancel_icon.png")) {
@@ -314,6 +413,11 @@ function toggleCancelIcons() {
     button.src = "./img/cancel_icon.png";
   }
 }
+
+/**
+ * Closes the contact content view on mobile devices.
+ * @function
+ */
 
 function closeContactContentMobile() {
   content = document.querySelector(".contactsContent");
