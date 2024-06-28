@@ -42,7 +42,9 @@ function closeAddingTask() {
   }
 }
 
-/** Reads values from add task form into a task object and returns that task */
+/**Reads values from add task form into a task object and returns that task
+ * @param {string} taskStatus - options are: "toDos", "inProgress", "awaitFeedback"
+ */
 function createNewTask(taskStatus) {
   let newTask = {
     title: parseTextInput(getValueFromInput("inputTitle")),
@@ -86,6 +88,12 @@ function validateTask(task) {
     renderErrorMessages(task);
     return false;
   }
+}
+
+function checkValidation() {
+  let newTask = createNewTask("toDos");
+  removeErrors();
+  validateTask(newTask);
 }
 
 /** Checks if the input values of category, title and dueDate are valid and renders

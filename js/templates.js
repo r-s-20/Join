@@ -115,7 +115,7 @@ function insertAssignedBadgeHTML(contact) {
 
 function insertCategoryHTML(element) {
   return `
-        <div class="dropdownCategoryElement dropdownElement" onclick="setCategory('${element.name}')">${element.name}</div>
+        <div class="dropdownCategoryElement dropdownElement" onclick="setCategory('${element.name}'), checkValidation()">${element.name}</div>
       `;
 }
 
