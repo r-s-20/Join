@@ -430,8 +430,9 @@ function closeContactContentMobile() {
   unselectAllContacts();
 }
 
-function toggleEditPopup(index) {
-  let i = contacts[index]
+function toggleEditPopup(currentContactIndex) {
+  
+  let k = contacts[currentContactIndex];
   let popupMenu = document.getElementById('editDeletePopup');
 
   if (!popupMenu) {
@@ -442,14 +443,19 @@ function toggleEditPopup(index) {
   }
 
   let openEditMenuHTML = /*html*/ `
-    <div class="mobileEditMenu">
-      <div class="mobileNameEdit button" onclick="editContactPopUp(${i})">
-         <img src="img/edit.png" alt="edit Contact Name"/>Edit
+     <div class="mobileEditMenuContent">
+      <div class="mobileNameEdit button" onclick="editContactPopUp(${k})">
+        <img src="img/edit.png" alt="edit Contact Name"/>Edit
       </div>
-      <div class="mobileNameDelete button" onclick="deleteContact(${i})">
-         <img src="img/delete.png"alt="delete Contact Name"/>Delete
+      <div class="mobileNameDelete button" onclick="deleteContact(${k})">
+        <img src="img/delete.png" alt="delete Contact Name"/>Delete
       </div>
     </div>
   `;
   popupMenu.innerHTML = openEditMenuHTML;
+
+  popupMenu.style.transform = 'translateX(100%)';
+  setTimeout(() => {
+    popupMenu.style.transform = 'translateX(0)';
+  }, 10);
 }

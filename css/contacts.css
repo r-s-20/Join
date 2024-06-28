@@ -1194,6 +1194,18 @@ input {
   }
 
   /* mobile edit menu popup */
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .cardHeaderNameEditDelete {
+    display: none;
+  }
 
   .mobileEditBtn {
     width: 56px;
@@ -1214,6 +1226,12 @@ input {
     background-color: #29abe2;
   }
 
+  .mobileEditMenuContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+  }
 
   .mobileEditMenu {
     position: fixed;
@@ -1223,6 +1241,8 @@ input {
     border-radius: 20px 20px 0px 20px;
     right: 50px;
     top: 550px;
+    transform: translateX(100%);
+    animation: slideInFromRight 0.3s forwards;
   }
   
   .mobileEditMenu .button {
