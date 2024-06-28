@@ -14,6 +14,7 @@ async function init() {
 
 async function addNewTask(status) {
   let newTask = createNewTask(status);
+  let body = document.querySelector("body");
   removeErrors();
   if (validateTask(newTask)) {
     tasks.push(newTask);
@@ -22,6 +23,7 @@ async function addNewTask(status) {
     resetFormInputs();
     resetAddTask();
     setTimeout(closeAddingTask, 1500);
+    body.classList.remove("popup-open");
   }
 }
 
