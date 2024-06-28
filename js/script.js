@@ -143,7 +143,7 @@ let tasks = [
     timestamp: 1717999440032,
     assigned: [contacts[0], contacts[1]],
     description: "This will be a description",
-    dueDate: "2024-06-12",
+    dueDate: "2024-06-30",
     prio: "medium",
     category: categories[0],
     subtasks: {
@@ -157,7 +157,7 @@ let tasks = [
     timestamp: 1717999440023,
     assigned: [contacts[3]],
     description: "Anna did not describe her task",
-    dueDate: "2024-06-13",
+    dueDate: "2024-07-13",
     prio: "high",
     category: categories[1],
     subtasks: {
@@ -174,7 +174,7 @@ let tasks = [
     timestamp: 1717999440040,
     assigned: [contacts[3], contacts[2]],
     description: "No description needed",
-    dueDate: "2024-06-15",
+    dueDate: "2024-07-05",
     prio: "low",
     category: categories[2],
     subtasks: {
@@ -188,7 +188,7 @@ let tasks = [
     timestamp: 1717999440100,
     assigned: [contacts[0]],
     description: "Create a kanban board",
-    dueDate: "2024-06-15",
+    dueDate: "2024-06-29",
     prio: "low",
     category: categories[3],
     subtasks: {
