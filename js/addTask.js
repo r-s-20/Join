@@ -27,6 +27,9 @@ async function addNewTask(status) {
   }
 }
 
+/** If task was created in addTask.html, this will refer to created task on board.html.
+ * If task was created using the popup in board.html, this updates the board before closing.
+ */
 function closeAddingTask() {
   if (window.location.href.endsWith("addTask.html")) {
     window.location.href = "./board.html";
@@ -34,12 +37,6 @@ function closeAddingTask() {
     updateHTML();
     closeAddTaskAboutButton();
   }
-}
-
-function resetAddTask() {
-  currentAssignedList = [];
-  currentSubtasks = [];
-  contactsSelected = [];
 }
 
 function createNewTask(taskStatus) {
