@@ -130,7 +130,7 @@ function showContactDetails(index) {
                     </div>
             <div class="CardDetailPhoneNumber"><h3>Phone</h3> ${contact.phone}</div>
       </div>
-        <div class="mobileEditBtn d-none" id="mobileEditPopup" onclick="toggleEditPopup()">  <!--menü contactedit popup-->
+        <div class="mobileEditBtn d-none" id="mobileEditPopup" onclick="openMobileEditPopup(${index})">  <!--menü contactedit popup-->
           <img src="img/moreVert.png" alt="" />
         </div>
     </div>
@@ -430,10 +430,11 @@ function closeContactContentMobile() {
   unselectAllContacts();
 }
 
-function toggleEditPopup(currentContactIndex) {
+function openMobileEditPopup(index) {
   
-  let k = contacts[currentContactIndex];
   let popupMenu = document.getElementById('editDeletePopup');
+  let curtain = document.getElementById('mobilePopupCurtain');
+  curtain.classList.remove('d-none');
 
   if (!popupMenu) {
     popupMenu = document.createElement('div');
@@ -444,11 +445,11 @@ function toggleEditPopup(currentContactIndex) {
 
   let openEditMenuHTML = /*html*/ `
      <div class="mobileEditMenuContent">
-      <div class="mobileNameEdit button" onclick="editContactPopUp(${k})">
-        <img src="img/edit.png" alt="edit Contact Name"/>Edit
+      <div class="mobileNameEdit button" onclick="editContactPopUp(${index}),closeMobileEditPopup()">
+        <img src="img/edit.png" alt="edit Contact Name"/><span>Edit</span>
       </div>
-      <div class="mobileNameDelete button" onclick="deleteContact(${k})">
-        <img src="img/delete.png" alt="delete Contact Name"/>Delete
+      <div class="mobileNameDelete button" onclick="deleteContact(${index}),closeMobileEditPopup()">
+        <img src="img/delete.png" alt="delete Contact Name"/><span>Delete</span>
       </div>
     </div>
   `;
@@ -458,4 +459,11 @@ function toggleEditPopup(currentContactIndex) {
   setTimeout(() => {
     popupMenu.style.transform = 'translateX(0)';
   }, 10);
+}
+
+function closeMobileEditPopup() {
+  let popUp = document.getElementById('editDeletePopup');
+  let curtain = document.getElementById('mobilePopupCurtain');
+  curtain.classList.add('d-none');
+  popUp.remove();
 }
