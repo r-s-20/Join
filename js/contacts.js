@@ -129,7 +129,11 @@ function showContactDetails(index) {
                     <p><h3>Email</h3> <a>${contact.email}</a></p>
                     </div>
             <div class="CardDetailPhoneNumber"><h3>Phone</h3> ${contact.phone}</div>
-      </div></div>
+      </div>
+        <div class="mobileEditBtn d-none" id="mobileEditPopup" onclick="toggleEditPopup()">  <!--menü contactedit popup-->
+          <img src="img/moreVert.png" alt="" />
+        </div>
+    </div>
   `;
 
   let contactDetailsContainer = document.getElementById("contactCardMain");
@@ -424,4 +428,28 @@ function closeContactContentMobile() {
   content.classList.remove("show");
   document.querySelector(".contactListSide").classList.remove("hide-mobile");
   unselectAllContacts();
+}
+
+function toggleEditPopup(index) {
+  let i = contacts[index]
+  let popupMenu = document.getElementById('editDeletePopup');
+
+  if (!popupMenu) {
+    popupMenu = document.createElement('div');
+    popupMenu.id = 'editDeletePopup';
+    popupMenu.classList.add('mobileEditMenu');
+    document.body.appendChild(popupMenu);
+  }
+
+  let openEditMenuHTML = /*html*/ `
+    <div class="mobileEditMenu">
+      <div class="mobileNameEdit button" onclick="editContactPopUp(${i})">
+         <img src="img/edit.png" alt="edit Contact Name"/>Edit
+      </div>
+      <div class="mobileNameDelete button" onclick="deleteContact(${i})">
+         <img src="img/delete.png"alt="delete Contact Name"/>Delete
+      </div>
+    </div>
+  `;
+  popupMenu.innerHTML = openEditMenuHTML;
 }

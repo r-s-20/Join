@@ -912,7 +912,7 @@ input {
     }
 
     .contentCardBody {
-      gap: 34px;
+      gap: 20px;
     }
 
     .cardHeaderLogo {
@@ -1037,7 +1037,7 @@ input {
 
     .cardHeaderNameDetails {
       h1 {
-          font-size: 42px;
+          font-size: 32px;
       }
     }
 
@@ -1193,6 +1193,47 @@ input {
     color: white;
   }
 
+  /* mobile edit menu popup */
+
+  .mobileEditBtn {
+    width: 56px;
+    height: 56px;
+    border-radius: 46px;
+    display: flex !important;
+    background-color: #2e3a47;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 13%;
+    right: 1.5rem;
+    margin-left: 0;
+    cursor: pointer;
+  }
+
+  .mobileEditBtn:hover {
+    background-color: #29abe2;
+  }
+
+
+  .mobileEditMenu {
+    position: fixed;
+    width: 116px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 20px 20px 0px 20px;
+    right: 50px;
+    top: 550px;
+  }
+  
+  .mobileEditMenu .button {
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .mobileEditMenu .button:hover {
+    background-color: #f0f0f0;
+  }
   .contactListSide button {
     display: none;
   }
@@ -1247,18 +1288,24 @@ input {
   }
 
   .cardHeaderLogo {
-    width: 75px;
-    height: 75px;
+    width: 65px;
+    height: 65px;
 
     h1 {
       font-size: 27px;
   }
 }
 
+.contactCardDetails {
+  h3 {
+    margin-bottom: 1rem;
+  }
+}
+
   .cardHeaderNameDetails {
     width: 70%;
     h1 {
-      font-size: 32px;
+      font-size: 26px;
   }
   }
   .contactLists {
@@ -1272,6 +1319,10 @@ input {
 
   .contentCardBody {
     gap: 15px;
+  }
+
+  .contactsContent {
+    padding-left: 1rem;
   }
 }
 
