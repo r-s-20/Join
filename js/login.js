@@ -55,9 +55,9 @@ function checkRememberMe(user, contact) {
   if (window.getComputedStyle(checkDoneButton).display !== "none") {
     localStorage.clear();
     saveContactToLocalStorage(user);
-    saveToSessionStorage(contact);
+    saveToSessionStorage(user);
   } else {
-    saveToSessionStorage(contact);
+    saveToSessionStorage(user);
   }
 }
 
