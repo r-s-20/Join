@@ -32,7 +32,7 @@ function validateUser(user, inputPassword, inputUsermail){
   if (user) {
     if (user.password === inputPassword) {
       let contact = contacts.find((contact) => contact.email === inputUsermail);
-      checkRememberMe(contact);
+      checkRememberMe(user);
       window.location.href = "./summary.html";
     } else {
       renderError("inputPassword", "E-Mail or Password incorrect");
@@ -50,11 +50,11 @@ function validateUser(user, inputPassword, inputUsermail){
  * If "chechDoneButton" is not displayed, only saves the contact to session storage.
  * @param {Object} contact - The contact object to be saved.
  */
-function checkRememberMe(contact) {
+function checkRememberMe(user) {
   let checkDoneButton = document.getElementById("chechDoneButton2");
   if (window.getComputedStyle(checkDoneButton).display !== "none") {
     localStorage.clear();
-    saveContactToLocalStorage(contact);
+    saveContactToLocalStorage(user);
     saveToSessionStorage(contact);
   } else {
     saveToSessionStorage(contact);
@@ -212,3 +212,43 @@ function toggleVisibilityIcons(inputId) {
   visOffIcon.classList.toggle("d-none");
   visOnIcon.classList.toggle("d-none");
 }
+
+function checkLocalStorageKey() {
+  let contactAsString = localStorage.getItem('contact');
+  if (contactAsString) {
+  
+    let contact = JSON.parse(contactAsString);
+
+    let inputUsermail = document.getElementById("inputUsermail");
+    let inputPassword = document.getElementById("inputPassword");
+
+    let email = contact.email;
+    let password = contact.password;
+    inputUsermail.value = email;
+    inputPassword.value = password;
+
+  } else {
+    return;
+  }
+}
+
+
+
+
+
+//   if (localStorage.getItem("contact") !== null) {
+//     loadContacts();
+//     localStorageToInput();
+//   } else {
+//     return;
+//   }
+
+
+// function localStorageToInput() {
+//   let inputUsermail = document.getElementById("inputUsermail");
+//   let inputPassword = document.getElementById("inputPassword");
+//   inputUsermail.value = contact.email;
+//   inputPassword.value = contact.password;
+// }
+
+

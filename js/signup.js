@@ -267,7 +267,7 @@ function loadUsers() {
 function loadContacts() {
   let contactsAsString = localStorage.getItem("contacts");
   if (contactsAsString) {
-    contacts = JSON.parse(contactsAsString);
+    contact = JSON.parse(contactsAsString);
   }
 }
 
@@ -294,17 +294,3 @@ function unCheck() {
   validateForm();
 }
 
-function checkLocalStorageKey() {
-  if (localStorage.getItem("users") !== null) {
-    localStorageToInput();
-  } else {
-    return;
-  }
-}
-
-function localStorageToInput() {
-  let inputUsermail = document.getElementById("inputUsermail");
-  let inputPassword = document.getElementById("inputPassword");
-  inputUsermail.value = users[0].email;
-  inputPassword.value = users[0].password;
-}
