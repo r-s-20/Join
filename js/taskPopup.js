@@ -69,3 +69,15 @@ function resetAddTask() {
   currentSubtasks = [];
   contactsSelected = [];
 }
+
+/**Sets curtain for popups (grey background with onclick-close-function) to d-none */
+function closeAddTaskPopup() {
+  let curtain = document.getElementById("addTaskPopupContainer");
+  curtain.classList.add("d-none");
+}
+
+/**Resets scroll function for board. Necessary when popups in board are closed. */
+function resetScrollOnBoard() {
+  let body = document.querySelector("body");
+  body.classList.remove("popup-open");
+}

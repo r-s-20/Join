@@ -2,6 +2,8 @@ let currentAssignedList = [];
 let currentSubtasks = [];
 let contactsSelected = [];
 
+/** Initial actions when body is loaded. Redirects user to login-page if nobody is
+ * logged in, otherwise renders the task form and loads tasks and contacts stored on API.*/
 async function init() {
   if (!checkUserLoginStatus()) {
     window.location.href = "./index.html";
@@ -12,9 +14,10 @@ async function init() {
   await loadContactsFromAPI();
 }
 
+/** Adds a new task from task form to the tasks-array
+ * if validation is successful for required input fields */
 async function addNewTask(status) {
   let newTask = createNewTask(status);
-  let body = document.querySelector("body");
   removeErrors();
   if (validateTask(newTask)) {
     tasks.push(newTask);
@@ -23,7 +26,7 @@ async function addNewTask(status) {
     resetFormInputs();
     resetAddTask();
     setTimeout(closeAddingTask, 1500);
-    body.classList.remove("popup-open");
+    resetScrollOnBoard();
   }
 }
 
@@ -39,6 +42,7 @@ function closeAddingTask() {
   }
 }
 
+/** Reads values from add task form into a task object and returns that task */
 function createNewTask(taskStatus) {
   let newTask = {
     title: parseTextInput(getValueFromInput("inputTitle")),
@@ -57,6 +61,7 @@ function createNewTask(taskStatus) {
   return newTask;
 }
 
+/** Shows a confirmation message after a new task is saved. Has a slide-in-effect.*/
 function showConfirmationMessage() {
   let popupAddTaskMessage = document.getElementById("popupAddTaskMessage");
   let popup = document.getElementById("popupAddTaskMessage");
@@ -71,6 +76,9 @@ function showConfirmationMessage() {
   }, 2000);
 }
 
+/** Validates that title, dueDate and category have correct inputs and
+ * renders error messages for input fields with missing or wrong inputs.
+ */
 function validateTask(task) {
   if (getValueFromInput("inputTitle") != "" && getValueFromInput("inputDueDate") && task.category) {
     return true;
@@ -80,6 +88,10 @@ function validateTask(task) {
   }
 }
 
+/** Checks if the input values of category, title and dueDate are valid and renders
+ * an error if validation fails.
+ * @param {json object} task  - task that was created from according input fields
+ * */
 function renderErrorMessages(task) {
   if (!task.category) {
     renderCategoryError();
@@ -92,23 +104,30 @@ function renderErrorMessages(task) {
   }
 }
 
+/** Applies error-css (red border) to an input html element with title.
+ * Also renders an error message below the input html element.*/
 function renderError(inputId) {
   input = document.getElementById(inputId);
   input.classList.add("errorDesign");
   input.parentElement.innerHTML += insertErrorMessageHTML();
 }
 
+/**Applies error-css and renders an error-message below an inputCategory-html-Element.
+ * Special case as category has a dropdown-menu and therefore html structure is different. *
+ */
 function renderCategoryError() {
   input = document.getElementById("inputCategory");
   input.classList.add("errorDesign");
   input.parentElement.parentElement.innerHTML += insertErrorMessageHTML();
 }
 
+/**Removes all error colors and error messages */
 function removeErrors() {
   removeErrorColors();
   removeErrorMessages();
 }
 
+/** Removes error-design (red border) from all elements */
 function removeErrorColors() {
   inputs = document.getElementsByClassName("errorDesign");
   for (let i = inputs.length - 1; i >= 0; i--) {
@@ -116,6 +135,7 @@ function removeErrorColors() {
   }
 }
 
+/**Removes all error-message html-elements */
 function removeErrorMessages() {
   messages = document.getElementsByClassName("errorMessage");
   for (let i = messages.length - 1; i >= 0; i--) {
@@ -203,11 +223,6 @@ function toggleCurtain(menuId) {
   curtain.setAttribute("onclick", `toggleDropdownMenu("${menuId}")`);
 }
 
-function closeAddTaskPopup() {
-  let curtain = document.getElementById("addTaskPopupContainer");
-  curtain.classList.add("d-none");
-}
-
 /**z-Index for the input field belonging to a dropdown menu is increased,
  *
  * z-Index is decreased back to normal when dropdown closes.
@@ -258,6 +273,7 @@ function renderAssignedDropdown(containerId, contactArray = contacts) {
   }
 }
 
+/** Sets the focus to the input field for assigned contacts and opens the dropdown menu */
 function startSearchAssigned() {
   let input = document.getElementById("inputAssigned");
   if (input.value == "Select contacts to assign") {
@@ -267,6 +283,7 @@ function startSearchAssigned() {
   }
 }
 
+/**Searches for contacts that include letters written in the input field for assigned contacts */
 function searchContacts() {
   contactsSelected = [];
   let input = getValueFromInput("inputAssigned");
@@ -286,6 +303,7 @@ function toggleCheckDesign(i) {
   checkDoneButton.classList.toggle("d-none");
   dropdownField.classList.toggle("mainDarkBlue");
 }
+
 
 function checkButtonDone(i) {
   let checkButton = document.getElementById(`checkContactButton${i}`);
@@ -337,6 +355,7 @@ function renderAssignedBadges() {
   }
 }
 
+/**Replaces the add-icon in subtask input field with x- and check-icons */
 function openAddSubtask() {
   let addButton = document.getElementById("addSubtask");
   let editContainer = document.getElementById("editSubtaskButtons");
@@ -346,6 +365,7 @@ function openAddSubtask() {
   input.focus();
 }
 
+/** Replaces x- und check-icons in subtask input field with a plus-icon */
 function closeAddSubtask() {
   let addButton = document.getElementById("addSubtask");
   let editContainer = document.getElementById("editSubtaskButtons");
@@ -354,6 +374,9 @@ function closeAddSubtask() {
   editContainer.classList.add("d-none");
 }
 
+/** Adds a new subtask to currentSubtasks-array, renders updated subtasks
+ * and resets the subtask input field.
+ */
 function addNewSubtask() {
   let newSubtask = getValueFromInput("inputSubtasks");
   currentSubtasks.push({
@@ -364,6 +387,7 @@ function addNewSubtask() {
   closeAddSubtask();
 }
 
+/**Renders all subtasks from global currentSubtasks-array into the 'subtaskList' html-container */
 function renderSubtasks() {
   let container = document.getElementById("subtaskList");
   container.innerHTML = "";
@@ -373,28 +397,33 @@ function renderSubtasks() {
   }
 }
 
+/**Toggles between showing and hiding edit-icons for rendered subtasks in subtask-list */
 function toggleEditSubtask(i) {
   let editContainer = document.getElementById(`editSubtaskContainer${i}`);
   editContainer.classList.toggle("d-none");
 }
 
+/**Toggles between showing a subtask in editable line vs. as non-editable
+ * list element in subtask list */
 function toggleEditSubtaskDetail(i) {
   document.getElementById(`editSubtaskDetailContainer${i}`).classList.toggle("d-none");
   document.getElementById(`editSubtaskInput${i}`).focus();
 }
 
+/**Edits a subtask in currentSubtasks-array and renders the updated currentSubtasks. */
 function confirmSubtaskEdit(i) {
   result = getValueFromInput(`editSubtaskInput${i}`);
   currentSubtasks[i].name = result;
   renderSubtasks();
 }
 
+/** Removes a subtask from currentSubtasks-array */
 function removeSubtask(i) {
   currentSubtasks.splice(i, 1);
   renderSubtasks();
 }
 
-/**Resets all input fields of the Add Task-form to default entries 
+/**Resets all input fields of the Add Task-form to default entries
  * and empties arrays for assigned contacts and subtasks
  */
 function resetFormInputs() {
@@ -422,9 +451,14 @@ function toggleIconColor() {
   }
 }
 
+/**A new subtask is added from inputSubtask-html-field
+ * on pressing enter while that field is active */
 document.addEventListener("keyup", (e) => {
   if (e.key == "Enter") {
-    if (document.activeElement == document.getElementById("inputSubtasks") && getValueFromInput("inputSubtasks") !== "") {
+    if (
+      document.activeElement == document.getElementById("inputSubtasks") &&
+      getValueFromInput("inputSubtasks") !== ""
+    ) {
       addNewSubtask();
     }
   }
