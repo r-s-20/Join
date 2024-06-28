@@ -202,6 +202,19 @@ let tasks = [
   },
 ];
 
+let demoContacts = contacts;
+let demoTasks = tasks;
+let demoUsers = users;
+
+function resetDemoContent() {
+  contacts = demoContacts;
+  saveContactsToAPI();
+  tasks = demoTasks;
+  saveTasksToAPI();
+  users = demoUsers;
+  saveUsersToAPI();
+}
+
 /** Writes a given value into the value of an html-input-element
  * @param {string} value - value to write into the input element
  * @param {string} inputId - ID of the html-input-element/container
