@@ -33,7 +33,7 @@ function clearSubtasks() {
  * @param {number} timestamp - The timestamp of the task.
  * @function
  */
-function subtaskDone(i, timestamp) {
+async function subtaskDone(i, timestamp) {
   findPopupElement(timestamp);
   document.getElementById(`subtaskDone${i}`).classList.remove("d-none");
   document.getElementById(`subtaskOpen${i}`).classList.add("d-none");
@@ -41,7 +41,9 @@ function subtaskDone(i, timestamp) {
   completedSubtask += 1;
   popupElement.subtasks.completed = completedSubtask;
   popupElement.subtasks.subtaskList[i].completed = true;
+  await saveTasksToAPI();
   updateHTML();
+
 }
 
 /**
@@ -50,7 +52,7 @@ function subtaskDone(i, timestamp) {
  * @param {number} timestamp - The timestamp of the task.
  * @function
  */
-function subtaskOpen(i, timestamp) {
+async function subtaskOpen(i, timestamp) {
   findPopupElement(timestamp);
   document.getElementById(`subtaskDone${i}`).classList.add("d-none");
   document.getElementById(`subtaskOpen${i}`).classList.remove("d-none");
@@ -58,6 +60,7 @@ function subtaskOpen(i, timestamp) {
   completedSubtask -= 1;
   popupElement.subtasks.completed = completedSubtask;
   popupElement.subtasks.subtaskList[i].completed = false;
+  await saveTasksToAPI();
   updateHTML();
 }
 
