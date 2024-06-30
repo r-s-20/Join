@@ -374,6 +374,7 @@ button:hover {
 .contactsMainOverlay {
   position: fixed;
   top: 50%;
+  /* right: 50%; */
   right: -100%;
   display: flex;
   justify-content: flex-start;
@@ -389,11 +390,11 @@ button:hover {
   transition: all 0.125s ease;
 }
 
-.contactsMainOverlay.showAddContact {
+.contactsMainOverlay.showContactPopup {
   right: 50%;
 }
 
-.contactsMainOverlay.hideAddContact {
+.contactsMainOverlay.hideContactPopup {
   right: -100%;
 }
 

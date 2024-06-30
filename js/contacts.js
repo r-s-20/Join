@@ -187,9 +187,9 @@ function unselectAllContacts() {
 
 function addContactPopUp() {
   let showAddContactPopUp = document.getElementById("showAddContactPopUp");
-  showAddContactPopUp.classList.remove("d-none");
-  showPopupWithAnimation(showAddContactPopUp);
   document.querySelector(".popupCurtain").classList.remove("d-none");
+  showAddContactPopUp.classList.remove("d-none");
+  showPopupWithAnimation("showAddContactPopUp");
 }
 
 /**
@@ -199,9 +199,10 @@ function addContactPopUp() {
  */
 
 function showPopupWithAnimation(popID) {
-  popID.classList.remove("hideAddContact");
+  popup = document.getElementById(popID);
+  popup.classList.remove("hideContactPopup");
   setTimeout(() => {
-    popID.classList.add("showAddContact");
+    popup.classList.add("showContactPopup");
   }, 10);
 }
 
@@ -212,17 +213,16 @@ function showPopupWithAnimation(popID) {
 
 function closeAddContactPopUp() {
   let showAddContactPopUp = document.getElementById("showAddContactPopUp");
-  showAddContactPopUp.classList.remove("showAddContact");
-  showAddContactPopUp.classList.add("hideAddContact");
+  showAddContactPopUp.classList.remove("showContactPopup");
+  showAddContactPopUp.classList.add("hideContactPopup");
   setTimeout(() => {
     document.querySelector(".popupCurtain").classList.add("d-none");
-    document.getElementById("showAddContactPopUp").classList.add("d-none");
-
+    showAddContactPopUp.classList.add("d-none");
   }, 125);
   clearAddContactInputFields();
 }
 
-function clearAddContactInputFields(){
+function clearAddContactInputFields() {
   setValueToInput("", "addName");
   setValueToInput("", "addEmail");
   setValueToInput("", "addPhone");
@@ -254,11 +254,16 @@ function editContactPopUp(index) {
     saveEditButton.onclick = function () {
       saveContact(index);
     };
-    document.querySelector(".popupCurtain").classList.remove("d-none");
-    let showEditContactPopUp = document.getElementById("showEditContactPopUp");
-    showEditContactPopUp.classList.remove("d-none");
-    showPopupWithAnimation(showEditContactPopUp);
+    showEditPopup();
   }
+}
+
+function showEditPopup() {
+  let popupCurtain = document.querySelector(".popupCurtain");
+  let showEditContactPopUp = document.getElementById("showEditContactPopUp");
+  showEditContactPopUp.classList.remove("d-none");
+  popupCurtain.classList.remove("d-none");
+  showPopupWithAnimation("showEditContactPopUp");
 }
 
 /**
@@ -267,8 +272,14 @@ function editContactPopUp(index) {
  */
 
 function closeEditContactPopUp() {
-  document.getElementById("showEditContactPopUp").classList.add("d-none");
-  document.querySelector(".popupCurtain").classList.add("d-none");
+  let showEditContactPopUp = document.getElementById("showEditContactPopUp");
+  let popupCurtain = document.querySelector(".popupCurtain");
+  showEditContactPopUp.classList.remove("showContactPopup");
+  showEditContactPopUp.classList.add("hideContactPopup");
+  setTimeout(() => {
+    showEditContactPopUp.classList.add("d-none");
+    popupCurtain.classList.add("d-none");
+  }, 125);
 }
 
 /**
@@ -319,7 +330,7 @@ async function saveContact(index) {
   contacts[index].initials = initials;
 
   // saveContactsToLocalStorage();
- await  saveContactsToAPI();
+  await saveContactsToAPI();
   render();
   showContactDetails(index);
   closeEditContactPopUp();
@@ -378,7 +389,7 @@ async function deleteContact(index) {
   // saveContactsToLocalStorage();
   await saveContactsToAPI();
   render();
-  
+
   document.getElementById("contactCardMain").classList.add("d-none");
   closeContactContentMobile();
   closeEditContactPopUp();
@@ -431,15 +442,14 @@ function closeContactContentMobile() {
 }
 
 function openMobileEditPopup(index) {
-  
-  let popupMenu = document.getElementById('editDeletePopup');
-  let curtain = document.getElementById('mobilePopupCurtain');
-  curtain.classList.remove('d-none');
+  let popupMenu = document.getElementById("editDeletePopup");
+  let curtain = document.getElementById("mobilePopupCurtain");
+  curtain.classList.remove("d-none");
 
   if (!popupMenu) {
-    popupMenu = document.createElement('div');
-    popupMenu.id = 'editDeletePopup';
-    popupMenu.classList.add('mobileEditMenu');
+    popupMenu = document.createElement("div");
+    popupMenu.id = "editDeletePopup";
+    popupMenu.classList.add("mobileEditMenu");
     document.body.appendChild(popupMenu);
   }
 
@@ -455,15 +465,15 @@ function openMobileEditPopup(index) {
   `;
   popupMenu.innerHTML = openEditMenuHTML;
 
-  popupMenu.style.transform = 'translateX(100%)';
+  popupMenu.style.transform = "translateX(100%)";
   setTimeout(() => {
-    popupMenu.style.transform = 'translateX(0)';
+    popupMenu.style.transform = "translateX(0)";
   }, 10);
 }
 
 function closeMobileEditPopup() {
-  let popUp = document.getElementById('editDeletePopup');
-  let curtain = document.getElementById('mobilePopupCurtain');
-  curtain.classList.add('d-none');
+  let popUp = document.getElementById("editDeletePopup");
+  let curtain = document.getElementById("mobilePopupCurtain");
+  curtain.classList.add("d-none");
   popUp.remove();
 }
