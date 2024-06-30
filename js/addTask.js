@@ -19,15 +19,8 @@ async function init() {
 function disablePastCalendarDates() {
   let inputDate = document.getElementById("inputDueDate");
   let dtToday = new Date();
-
-  let month = dtToday.getMonth() + 1;
-  let day = dtToday.getDate();
-  let year = dtToday.getFullYear();
-  if (month < 10) month = "0" + month.toString();
-  if (day < 10) day = "0" + day.toString();
-  let maxDate = year + "-" + month + "-" + day;
-  //   $("#inputdate").attr("min", maxDate);
-  inputDate.setAttribute("min", maxDate);
+  let dtTodayISO = dtToday.toISOString().split("T")[0];
+  inputDate.setAttribute("min", dtTodayISO);
 }
 
 /** Adds a new task from task form to the tasks-array
