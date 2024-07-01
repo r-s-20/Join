@@ -219,7 +219,7 @@ function closeAddContactPopUp() {
     document.querySelector(".popupCurtain").classList.add("d-none");
     showAddContactPopUp.classList.add("d-none");
   }, 125);
-  clearAddContactInputFields();
+  // clearAddContactInputFields();
 }
 
 function clearAddContactInputFields() {
@@ -353,26 +353,28 @@ async function addContact() {
   });
 
   if (contactExists) {
-    alert("Ein Kontakt mit diesem Namen oder dieser Email-Adresse existiert bereits.");
+    renderError("addEmailContainer", "Ein Kontakt mit diesem Namen oder dieser Email-Adresse existiert bereits.");
+    renderError("addNameContainer", "Ein Kontakt mit diesem Namen oder dieser Email-Adresse existiert bereits.");
     return;
   }
 
-  let initials = getInitials(name);
-  let badgecolor = colors[contacts.length % colors.length];
+  if (validateContactInputs()) {
+    let initials = getInitials(name);
+    let badgecolor = colors[contacts.length % colors.length];
 
-  let newContact = {
-    name: name,
-    email: email,
-    phone: phone,
-    initials: initials,
-    badgecolor: badgecolor,
-  };
-
-  contacts.push(newContact);
-  // saveContactsToLocalStorage();
-  await saveContactsToAPI();
-  render();
-  closeAddContactPopUp();
+    let newContact = {
+      name: name,
+      email: email,
+      phone: phone,
+      initials: initials,
+      badgecolor: badgecolor,
+    };
+    contacts.push(newContact);
+    // saveContactsToLocalStorage();
+    await saveContactsToAPI();
+    render();
+    closeAddContactPopUp();
+  }
 }
 
 /**
@@ -442,6 +444,7 @@ function closeContactContentMobile() {
   unselectAllContacts();
 }
 
+/** opens a popup with edit and delete-functions for small screenwidths */
 function openMobileEditPopup(index) {
   let popupMenu = document.getElementById("editDeletePopup");
   let curtain = document.getElementById("mobilePopupCurtain");
@@ -472,9 +475,71 @@ function openMobileEditPopup(index) {
   }, 10);
 }
 
+/** closes popup with delete- and edit-function in mobile view */
 function closeMobileEditPopup() {
   let popUp = document.getElementById("editDeletePopup");
   let curtain = document.getElementById("mobilePopupCurtain");
   curtain.classList.add("d-none");
   popUp.remove();
+}
+
+/** validation of input fields when adding a contact */
+function validateContactInputs() {
+  removeErrors();
+  if (getValueFromInput("addName") == "") {
+    console.log("name not okay");
+    renderError("addNameContainer");
+  }
+  if (!validatePhoneInput()) {
+    renderError("addPhoneContainer", "Please enter a valid phone number");
+  }
+  if (!validateEmailInput()) {
+    renderError("addEmailContainer", "Please enter a valid email address");
+  }
+  return validateEmailInput() && validatePhoneInput();
+}
+
+/**Checking the phone input in "add contact" for correct format*/
+function validatePhoneInput() {
+  let phonePattern = /^\+?\d+$/;
+  let phoneInput = getValueFromInput("addPhone").trim().replace(/  +/g, "");
+  let parsedPhoneInput = phoneInput.trim().replace(/\s\s+/g, "s").replace(" ", "");
+  return phonePattern.test(parsedPhoneInput);
+}
+
+/**Validating the email input in "add contact"-popup for correct format */
+function validateEmailInput() {
+  let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  let emailInput = getValueFromInput("addEmail");
+  return emailPattern.test(emailInput);
+}
+
+/** Applies error-css (red border) to an input html element with title.
+ * Also renders an error message below the input html element.*/
+function renderError(inputId, message) {
+  input = document.getElementById(inputId);
+  input.classList.add("errorDesign");
+  input.innerHTML += insertErrorMessageHTML(message);
+}
+
+/**Removes all error colors and error messages */
+function removeErrors() {
+  removeErrorColors();
+  removeErrorMessages();
+}
+
+/** Removes error-design (red border) from all elements */
+function removeErrorColors() {
+  inputs = document.getElementsByClassName("errorDesign");
+  for (let i = inputs.length - 1; i >= 0; i--) {
+    inputs[i].classList.remove("errorDesign");
+  }
+}
+
+/**Removes all error-message html-elements */
+function removeErrorMessages() {
+  messages = document.getElementsByClassName("errorMessage");
+  for (let i = messages.length - 1; i >= 0; i--) {
+    messages[i].remove();
+  }
 }

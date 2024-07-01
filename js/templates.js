@@ -154,8 +154,8 @@ function insertSubtaskHTML(subtask, i) {
       `;
 }
 
-function insertErrorMessageHTML() {
+function insertErrorMessageHTML(message="This field is required") {
   return `
-    <span class="errorMessage">This field is required</span>
+    <span class="errorMessage">${message}</span>
   `;
 }

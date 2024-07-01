@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script defer src="./js/templates.js"></script>
     <script defer src="./js/script.js"></script>
     <script src="./js/contacts.js"></script>
     <link rel="shortcut icon" href="./img/faviconLogo.png" type="image/x-icon" />
@@ -119,22 +120,22 @@
 
                   <!-- InputFields -->
                   <div class="addContactInputField contactInputField">
-                    <div class="addContactInputFieldName contactInputFieldName">
-                      <input type="text" placeholder="Name" id="addName" required />
+                    <div class="addContactInputFieldName contactInputFieldName" id="addNameContainer">
+                      <input type="text" placeholder="Name" id="addName" required onchange="validateContactInputs()"/>
                       <div class="addContactInputFieldNameImage">
                         <img src="img/person.png" alt="" />
                       </div>
                     </div>
 
-                    <div class="addContactInputFieldName contactInputFieldName">
-                      <input type="email" placeholder="Email" id="addEmail" required />
+                    <div class="addContactInputFieldName contactInputFieldName" id="addEmailContainer">
+                      <input type="email" placeholder="Email" id="addEmail" required onchange="validateContactInputs()" />
                       <div class="addContactInputFieldNameImage">
                         <img src="img/mail.png" alt="" />
                       </div>
                     </div>
 
-                    <div class="addContactInputFieldName contactInputFieldName">
-                      <input type="tel" placeholder="Phone" id="addPhone" required />
+                    <div class="addContactInputFieldName contactInputFieldName" id="addPhoneContainer">
+                      <input type="tel" placeholder="Phone" id="addPhone" required onchange="validateContactInputs()"/>
                       <div class="addContactInputFieldNameImage">
                         <img src="img/call.png" alt="" />
                       </div>
