@@ -1,25 +1,5 @@
 let currentContactIndex = null;
 
-// function loadContacts() {
-//   let savedContacts = JSON.parse(localStorage.getItem("contacts"));
-//   if (savedContacts) {
-//     contacts = savedContacts;
-//   }
-//   render();
-// }
-
-// function saveContactsToLocalStorage() {
-//   localStorage.setItem("contacts", JSON.stringify(contacts));
-// }
-
-// function setInitialBadgeColors() {
-//   contacts.forEach((contact, index) => {
-//     if (!contact.badgecolor) {
-//       contact.badgecolor = colors[index % colors.length];
-//     }
-//   });
-// }
-
 /**
  * Initializes the application, loads necessary data, and renders the user interface.
  * @async

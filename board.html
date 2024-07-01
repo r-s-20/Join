@@ -10,13 +10,13 @@
     <script defer src="./js/board.js"></script>
     <script defer src="./js/board2.js"></script>
     <script defer src="./js/addTask.js"></script>
+    <script defer src="./js/addTaskDropDown.js"></script>
     <script defer src="./js/taskPopup.js"></script>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/addTask.css" />
     <link rel="stylesheet" href="./css/board.css" />
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/sidebar.css" />
-
   </head>
   <body onload="init(), loadDataForBoard()" class="flex-col greyBackground">
     <div class="outerContainer flex-start width100">
@@ -29,12 +29,19 @@
         <section class="outerContent width100 greyBackground">
           <div class="boardTop">
             <div class="headlineAndButton">
-            <h1>Board</h1>
-            <a href="addTask.html"><img src="./img/plus_add_task__mobile.svg" alt=""></a>
-          </div>
+              <h1>Board</h1>
+              <a href="addTask.html"><img src="./img/plus_add_task__mobile.svg" alt="" /></a>
+            </div>
             <div class="inputFieldAndButton">
               <form class="boardForm">
-                <input type="text" name="" id="searchInput" placeholder="Find Task" oninput="searchAndDisplay()" required />
+                <input
+                  type="text"
+                  name=""
+                  id="searchInput"
+                  placeholder="Find Task"
+                  oninput="searchAndDisplay()"
+                  required
+                />
                 <div></div>
                 <a href=""> <img src="./img/search.svg" alt="" /></a>
               </form>
@@ -45,14 +52,25 @@
           </div>
 
           <div class="boardProgress" id="boardProgress">
-            
             <div class="totalSingleBoardProgress" id="totalSingleBoardProgress">
               <div class="progressHeadline">
                 <span>To do</span>
                 <img id="plusButtondark1" src="./img/plus_button.svg" alt="" onmouseover="hoverPlusButton('1')" />
-                <img id="plusButtonblue1" onclick="openAddTask()" class="d-none" src="./img/add_blue.svg" alt="" onmouseout="leavePlusButton('1')" />
+                <img
+                  id="plusButtonblue1"
+                  onclick="openAddTask()"
+                  class="d-none"
+                  src="./img/add_blue.svg"
+                  alt=""
+                  onmouseout="leavePlusButton('1')"
+                />
               </div>
-              <div class="singleBoardProgress" id="toDo" ondrop="moveTo('toDos')" ondragover="allowDrop('toDos', event)">
+              <div
+                class="singleBoardProgress"
+                id="toDo"
+                ondrop="moveTo('toDos')"
+                ondragover="allowDrop('toDos', event)"
+              >
                 <div class="noProgess">No task To do</div>
               </div>
             </div>
@@ -61,9 +79,21 @@
               <div class="progressHeadline">
                 <span>In progress</span>
                 <img id="plusButtondark2" src="./img/plus_button.svg" alt="" onmouseover="hoverPlusButton('2')" />
-                <img id="plusButtonblue2" onclick="openAddTask('inProgress')" class="d-none" src="./img/add_blue.svg" alt="" onmouseout="leavePlusButton('2')" />
+                <img
+                  id="plusButtonblue2"
+                  onclick="openAddTask('inProgress')"
+                  class="d-none"
+                  src="./img/add_blue.svg"
+                  alt=""
+                  onmouseout="leavePlusButton('2')"
+                />
               </div>
-              <div class="singleBoardProgress" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop('inProgress', event)">
+              <div
+                class="singleBoardProgress"
+                id="inProgress"
+                ondrop="moveTo('inProgress')"
+                ondragover="allowDrop('inProgress', event)"
+              >
                 <div class="noProgess">No In Progress</div>
               </div>
             </div>
@@ -72,9 +102,21 @@
               <div class="progressHeadline">
                 <span>Await feedback</span>
                 <img id="plusButtondark3" src="./img/plus_button.svg" alt="" onmouseover="hoverPlusButton('3')" />
-                <img id="plusButtonblue3" onclick="openAddTask('awaitFeedback')" class="d-none" src="./img/add_blue.svg" alt="" onmouseout="leavePlusButton('3')" />
+                <img
+                  id="plusButtonblue3"
+                  onclick="openAddTask('awaitFeedback')"
+                  class="d-none"
+                  src="./img/add_blue.svg"
+                  alt=""
+                  onmouseout="leavePlusButton('3')"
+                />
               </div>
-              <div class="singleBoardProgress" id="awaitFeedback" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop('awaitFeedback', event)">
+              <div
+                class="singleBoardProgress"
+                id="awaitFeedback"
+                ondrop="moveTo('awaitFeedback')"
+                ondragover="allowDrop('awaitFeedback', event)"
+              >
                 <div class="noProgess">No Await feedback</div>
               </div>
             </div>
