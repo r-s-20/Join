@@ -772,8 +772,8 @@ h1 {
   }
 
   .totalSingleBoardProgress {
-    height: 292px;
     width: 100%;
+    margin-bottom: 1rem;
   }
 
   .singleBoardProgress {
@@ -855,6 +855,11 @@ h1 {
 }
 
 @media (max-width: 555px) {
+.outerContent {
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
+
   .popup {
     width: 95%;
   }
