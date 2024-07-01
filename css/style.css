@@ -11,7 +11,7 @@
 :root {
   --customBlue: #29abe2;
   --mainDarkColor: #2a3647;
-  --errorColor: #FF8190;
+  --errorColor: #ff8190;
 }
 
 body {
@@ -33,6 +33,8 @@ body {
 
 .greyBackground {
   background-color: #f6f7f8;
+  position: sticky;
+  top: 0;
 }
 
 .flex-col {

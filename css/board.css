@@ -716,7 +716,6 @@ h1 {
 }
 
 @media (max-width: 1410px) {
-
   .dropdownMenu {
     display: inline !important;
   }
@@ -816,7 +815,7 @@ h1 {
   }
 
   .popup {
-    width: 95%;
+    /* width: 95%; */
     max-height: 90%;
     top: 45%;
   }
@@ -855,10 +854,10 @@ h1 {
 }
 
 @media (max-width: 555px) {
-.outerContent {
-  padding-top: 1rem;
-  padding-left: 1rem;
-}
+  .outerContent {
+    padding-top: 1rem;
+    padding-left: 1rem;
+  }
 
   .popup {
     width: 95%;
@@ -986,9 +985,9 @@ h1 {
 }
 
 @media (max-height: 1000px) {
-  .popup {
-    width: 95%;
-  }
+  /* .popup {
+    /* height: 90%; */
+  /* } */
   .popupHeadline {
     max-height: 129px;
     font-size: 36px;
