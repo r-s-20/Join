@@ -327,7 +327,7 @@ button:hover {
   font-weight: 400;
   color: #007cee;
 
-  h3{
+  h3 {
     color: black;
   }
 
@@ -511,7 +511,7 @@ button:hover {
   gap: 32px;
   width: 70%;
   min-width: 400px;
-  height: 594px;
+  /* height: 594px; */
   justify-content: center;
   align-items: flex-start;
 }
@@ -587,11 +587,11 @@ input {
   background-color: rgba(255, 199, 0, 1);
 
   h1 {
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    height: 100%;
 
     border: 3px;
-    border-radius: 70px;
+    border-radius: 100%;
 
     display: flex;
     justify-content: center;
@@ -1048,7 +1048,7 @@ input {
 
     .cardHeaderNameDetails {
       h1 {
-          font-size: 32px;
+        font-size: 32px;
       }
     }
 
@@ -1162,6 +1162,7 @@ input {
   }
   .contactsMainOverlay {
     width: 95%;
+    height: 95%;
   }
 
   .contactListsContainer {
@@ -1257,23 +1258,24 @@ input {
     animation: slideInFromRight 0.3s forwards;
     z-index: 150;
   }
-  
+
   .mobileEditMenu .button {
     padding: 10px;
     cursor: pointer;
     text-align: center;
   }
-  
+
   .mobileEditMenu .button:hover {
     background-color: #f0f0f0;
   }
 
-  .mobileNameEdit,.mobileNameDelete {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      justify-content: flex-start;
-      border-radius: 16px;
+  .mobileNameEdit,
+  .mobileNameDelete {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-start;
+    border-radius: 16px;
   }
   .contactListSide button {
     display: none;
@@ -1334,20 +1336,20 @@ input {
 
     h1 {
       font-size: 27px;
+    }
   }
-}
 
-.contactCardDetails {
-  h3 {
-    margin-bottom: 1rem;
+  .contactCardDetails {
+    h3 {
+      margin-bottom: 1rem;
+    }
   }
-}
 
   .cardHeaderNameDetails {
     width: 70%;
     h1 {
       font-size: 26px;
-  }
+    }
   }
   .contactLists {
     margin-top: 12px;
@@ -1395,6 +1397,11 @@ input {
       padding-left: 30px;
     }
   }
+
+  .overlayRightSide {
+    margin-top: -20px;
+  }
+
 }
 
 @media (max-width: 320px) {
@@ -1416,3 +1423,51 @@ input {
   }
 }
 
+@media (max-height: 700px) {
+/* .contactsMainOverlay {
+  overflow-y: auto;
+} */
+
+
+  .overlayRightSide {
+    margin-top: -45px;
+  }
+
+  .overlayBadge {
+    width: 90px;
+    height: 90px;
+  }
+
+  .overlayBadge h1 {
+    margin: 0;
+    font-size: 28px;
+    min-height: 90px;
+  }
+
+  .overlayBadge img {
+    width: 90px;
+    height: 90px;
+    min-width: 90px;
+    min-height: 90px;
+  }
+}
+
+@media (max-height: 680px) {
+  .overlayRightSide {
+    margin-top: -20px;
+  }  
+}
+
+@media (max-height: 600px) {
+.overlayRightSide {
+  margin-top: 0;
+}
+
+  .overlayBadge {
+    display: none;
+  }
+
+  .contactInputField {
+    gap: 16px;
+  }
+}
