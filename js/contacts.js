@@ -31,6 +31,7 @@ async function init() {
   await loadTasksFromAPI();
   await loadContactsFromAPI();
   clearAddContactInputFields();
+  removeErrors();
   render();
 }
 
@@ -221,6 +222,7 @@ function closeAddContactPopUp() {
     showAddContactPopUp.classList.add("d-none");
   }, 125);
   clearAddContactInputFields();
+  removeErrors();
 }
 
 function clearAddContactInputFields() {
@@ -282,6 +284,7 @@ function closeEditContactPopUp() {
     showEditContactPopUp.classList.add("d-none");
     popupCurtain.classList.add("d-none");
   }, 125);
+  removeErrors();
 }
 
 /**
@@ -354,13 +357,16 @@ async function addContact() {
     return contact.name === name || contact.email === email;
   });
 
-  if (contactExists) {
-    renderError("addEmailContainer", "Ein Kontakt mit diesem Namen oder dieser Email-Adresse existiert bereits.");
-    renderError("addNameContainer", "Ein Kontakt mit diesem Namen oder dieser Email-Adresse existiert bereits.");
-    return;
-  }
-
   if (validateContactInputs()) {
+    if (contactExists) {
+      renderError("addEmailContainer", "A contact with this email already exists.");
+      let errorMessage = document.getElementById("addNameContainer").parentElement.querySelector(".errorMessage");
+      if (!errorMessage) {
+        renderError("addNameContainer", "A contact with this name already exists.");
+      }
+
+      return;
+    }
     let initials = getInitials(name);
     let badgecolor = colors[contacts.length % colors.length];
 
