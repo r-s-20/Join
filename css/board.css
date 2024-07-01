@@ -22,11 +22,13 @@ h1 {
 }
 
 .boardTop {
-  max-width: 1056px;
-  height: 232px;
-  margin-top: 79.5px;
-  margin-left: 64px;
-  margin-right: 64px;
+  /* max-width: 1056px; */
+  max-width: 1440px;
+  width: 90%;
+  /* height: 232px; */
+  /* margin-top: 79.5px; */
+  /* margin-left: 64px; */
+  /* margin-right: 64px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -104,16 +106,17 @@ h1 {
 }
 
 .boardProgress {
-  max-width: 1208px;
+  max-width: 1440px;
+  /* max-width: 1208px; */
   display: flex;
-  margin-left: 64px;
-  margin-right: 64px;
+  /* margin-left: 64px; */
+  /* margin-right: 64px; */
   gap: 24px;
-  max-height: max-content;
+  /* max-height: max-content; */
 }
 
 .singleBoardProgress {
-  width: 246px;
+  /* width: 246px; */
   height: 688px;
   max-height: fit-content;
   border-radius: 24px;
@@ -592,9 +595,10 @@ h1 {
 
 .outerContent {
   /* max-height: 100vh; */
-  padding-left: 0;
+  padding-top: 4rem;
+  padding-left: 4rem;
+  padding-right: 0;
   /* overflow: auto; */
-  padding-top: 0;
 }
 
 .outerContent.popup-open {
@@ -688,7 +692,7 @@ h1 {
   .outerContent {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
   }
 
   .inputFieldAndButton {
@@ -707,11 +711,11 @@ h1 {
   .boardProgress {
     display: flex;
     justify-content: center;
-    margin: 0;
+    /* margin: 0; */
   }
 }
 
-@media (max-width: 1390px) {
+@media (max-width: 1410px) {
 
   .dropdownMenu {
     display: inline !important;
@@ -739,8 +743,8 @@ h1 {
     align-items: baseline;
     justify-content: space-evenly;
     margin-bottom: 30px;
-    margin-top: 300px;
-    margin-left: 16px;
+    /* margin-top: 300px; */
+    /* margin-left: 16px; */
   }
 
   .boardForm {
@@ -758,9 +762,8 @@ h1 {
   .boardProgress {
     display: flex;
     flex-direction: column;
-    margin-left: 16px;
-    margin-right: 16px;
     max-width: 100%;
+    justify-content: space-evenly;
   }
 
   .progressHeadline {
