@@ -188,22 +188,22 @@
 
                   <!-- InputFields -->
                   <div class="editContactInputField contactInputField">
-                    <div class="editContactInputFieldName contactInputFieldName">
-                      <input type="text" placeholder="Name" id="editName" />
+                    <div class="editContactInputFieldName contactInputFieldName" id="editNameContainer">
+                      <input type="text" placeholder="Name" id="editName" onchange="validateEditContact()"/>
                       <div class="editContactInputFieldNameImage">
                         <img src="img/person.png" alt="" />
                       </div>
                     </div>
 
-                    <div class="editContactInputFieldName contactInputFieldName">
-                      <input type="email" placeholder="Email" id="editEmail" required />
+                    <div class="editContactInputFieldName contactInputFieldName" id="editEmailContainer">
+                      <input type="email" placeholder="Email" id="editEmail" required onchange="validateEditContact()" />
                       <div class="editContactInputFieldNameImage">
                         <img src="img/mail.png" alt="" />
                       </div>
                     </div>
 
-                    <div class="editContactInputFieldName contactInputFieldName">
-                      <input type="tel" placeholder="Phone" id="editPhone" required />
+                    <div class="editContactInputFieldName contactInputFieldName" id="editPhoneContainer">
+                      <input type="tel" placeholder="Phone" id="editPhone" required onchange="validateEditContact()" />
                       <div class="editContactInputFieldNameImage">
                         <img src="img/call.png" alt="" />
                       </div>

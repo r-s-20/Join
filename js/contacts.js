@@ -30,6 +30,7 @@ async function init() {
   renderUserlogo();
   await loadTasksFromAPI();
   await loadContactsFromAPI();
+  clearAddContactInputFields();
   render();
 }
 
@@ -219,7 +220,7 @@ function closeAddContactPopUp() {
     document.querySelector(".popupCurtain").classList.add("d-none");
     showAddContactPopUp.classList.add("d-none");
   }, 125);
-  // clearAddContactInputFields();
+  clearAddContactInputFields();
 }
 
 function clearAddContactInputFields() {
@@ -322,19 +323,20 @@ async function saveContact(index) {
     alert("Ein Kontakt mit diesem Namen oder dieser Email-Adresse existiert bereits.");
     return;
   }
+  if (validateEditContact()) {
+    let initials = getInitials(name);
 
-  let initials = getInitials(name);
+    contacts[index].name = name;
+    contacts[index].email = email;
+    contacts[index].phone = phone;
+    contacts[index].initials = initials;
 
-  contacts[index].name = name;
-  contacts[index].email = email;
-  contacts[index].phone = phone;
-  contacts[index].initials = initials;
-
-  // saveContactsToLocalStorage();
-  await saveContactsToAPI();
-  render();
-  showContactDetails(index);
-  closeEditContactPopUp();
+    // saveContactsToLocalStorage();
+    await saveContactsToAPI();
+    render();
+    showContactDetails(index);
+    closeEditContactPopUp();
+  }
 }
 
 /**
@@ -487,31 +489,44 @@ function closeMobileEditPopup() {
 function validateContactInputs() {
   removeErrors();
   if (getValueFromInput("addName") == "") {
-    console.log("name not okay");
     renderError("addNameContainer");
   }
-  if (!validatePhoneInput()) {
+  if (!validatePhoneInput("addPhone") && getValueFromInput("addPhone") != "") {
     renderError("addPhoneContainer", "Please enter a valid phone number");
   }
-  if (!validateEmailInput()) {
+  if (!validateEmailInput("addEmail") && getValueFromInput("addEmail") != "") {
     renderError("addEmailContainer", "Please enter a valid email address");
   }
-  return validateEmailInput() && validatePhoneInput();
+  return validateEmailInput("addEmail") && validatePhoneInput("addPhone");
+}
+
+function validateEditContact() {
+  removeErrors();
+  if (getValueFromInput("editName") == "") {
+    renderError("editNameContainer");
+  }
+  if (!validatePhoneInput("editPhone") && getValueFromInput("editPhone") != "") {
+    renderError("editPhoneContainer", "Please enter a valid phone number");
+  }
+  if (!validateEmailInput("editEmail") && getValueFromInput("editEmail") != "") {
+    renderError("editEmailContainer", "Please enter a valid email address");
+  }
+  return validateEmailInput("editEmail") && validatePhoneInput("editPhone");
 }
 
 /**Checking the phone input in "add contact" for correct format*/
-function validatePhoneInput() {
+function validatePhoneInput(inputId) {
   let phonePattern = /^\+?\d+$/;
-  let phoneInput = getValueFromInput("addPhone").trim().replace(/  +/g, "");
-  let parsedPhoneInput = phoneInput.trim().replace(/\s\s+/g, "s").replace(" ", "");
-  return phonePattern.test(parsedPhoneInput);
+  let phoneInput = getValueFromInput(inputId).trim().replace(/  +/g, "");
+  let parsedPhoneInput = phoneInput.trim().replace(/\s\s+/g, "s").replaceAll(" ", "");
+  return phonePattern.test(parsedPhoneInput) || getValueFromInput(inputId) == "";
 }
 
 /**Validating the email input in "add contact"-popup for correct format */
-function validateEmailInput() {
+function validateEmailInput(inputId) {
   let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  let emailInput = getValueFromInput("addEmail");
-  return emailPattern.test(emailInput);
+  let emailInput = getValueFromInput(inputId);
+  return emailPattern.test(emailInput) || getValueFromInput(inputId) == "";
 }
 
 /** Applies error-css (red border) to an input html element with title.
@@ -519,7 +534,9 @@ function validateEmailInput() {
 function renderError(inputId, message) {
   input = document.getElementById(inputId);
   input.classList.add("errorDesign");
-  input.innerHTML += insertErrorMessageHTML(message);
+  errorElement = document.createElement("span");
+  errorElement.innerHTML = insertErrorMessageHTML(message);
+  input.appendChild(errorElement);
 }
 
 /**Removes all error colors and error messages */
