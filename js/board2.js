@@ -43,7 +43,6 @@ async function subtaskDone(i, timestamp) {
   popupElement.subtasks.subtaskList[i].completed = true;
   await saveTasksToAPI();
   updateHTML();
-
 }
 
 /**
@@ -64,6 +63,7 @@ async function subtaskOpen(i, timestamp) {
   updateHTML();
 }
 
+//Closes the popup, handles related UI changes, and resets the form inputs.
 function closePopup() {
   let outerContent = document.querySelector(".outerContent");
   outerContent.classList.remove("popup-open");
@@ -75,18 +75,21 @@ function closePopup() {
   closeAddTask();
 }
 
+//Resets the edit popup flag if it's set to true.
 function handleEditPopup() {
   if (editPopup) {
     editPopup = false;
   }
 }
 
+//Hides the close cross element.
 function hideCloseCross() {
   let closeCross = document.getElementById("closeCross");
   closeCross.classList.add("d-none");
   closeCross.classList.remove("closeCross");
 }
 
+// Animates the popup closing and hides the background after the animation.
 function animatePopupClose() {
   let popup = document.getElementById("popup");
   popup.classList.remove("show");
@@ -98,17 +101,20 @@ function animatePopupClose() {
   }, 125);
 }
 
+//Closes the "Add Task" popup and styles the "Add Task" button.
 function closeAddTask() {
   styleAddTaskButton();
   hideAddTaskPopup();
 }
 
+//Styles the "Add Task" button by changing its background color and adding a class.
 function styleAddTaskButton() {
   let addTaskButton = document.getElementById("addTaskButton");
   addTaskButton.style.backgroundColor = "rgb(42,54,71)";
   addTaskButton.classList.add("mainDarkBlue");
 }
 
+//Hides the "Add Task" popup with an animation and updates the visibility of related elements.
 function hideAddTaskPopup() {
   let popupAddTask = document.getElementById("popupAddTask");
   popupAddTask.classList.remove("showAddTaskPopup");
@@ -121,6 +127,7 @@ function hideAddTaskPopup() {
   }, 125);
 }
 
+//Closes the "Add Task" popup and hides the close button.
 function closeAddTaskAboutButton() {
   let closeCross = document.getElementById("closeCross");
   closeCross.classList.add("d-none");
@@ -163,12 +170,20 @@ function setPersonBadgeColor(assigned, index) {
   document.getElementById(`initalsCircleColorPopup${index}`).style.backgroundColor = assigned.badgecolor;
 }
 
+/**
+ * Handles the hover event for the delete button.
+ * Clears any existing timeout and changes the delete button icon to blue.
+ */
 function hoverDelete() {
   clearTimeout(deleteHoverTimeout);
   document.getElementById("deleteBlack").classList.add("d-none");
   document.getElementById("deleteBlue").classList.remove("d-none");
 }
 
+/**
+ * Handles the mouse leave event for the delete button.
+ * Sets a timeout to revert the delete button icon to black after a short delay.
+ */
 function leaveDelete() {
   deleteHoverTimeout = setTimeout(() => {
     document.getElementById("deleteBlack").classList.remove("d-none");
@@ -176,12 +191,20 @@ function leaveDelete() {
   }, 50);
 }
 
+/**
+ * Handles the hover event for the edit button.
+ * Clears any existing timeout and changes the edit button icon to blue.
+ */
 function hoverEdit() {
   clearTimeout(editHoverTimeout);
   document.getElementById("editBlack").classList.add("d-none");
   document.getElementById("editBlue").classList.remove("d-none");
 }
 
+/**
+ * Handles the mouse leave event for the edit button.
+ * Sets a timeout to revert the edit button icon to black after a short delay.
+ */
 function leaveEdit() {
   editHoverTimeout = setTimeout(() => {
     document.getElementById("editBlack").classList.remove("d-none");
@@ -288,40 +311,24 @@ function openAddTask(status = "toDos") {
   showAddTaskPopup();
   setPrio("btn-medium");
   setCreateTaskButtonOnClick(status);
-  // insertCloseCross();
   configureCloseCross();
 }
 
-// function insertCloseCross() {
-//   // Erstelle ein neues div-Element für das Schließen-Symbol
-//   let closeDiv = document.createElement('div');
-//   closeDiv.id = 'closeCross';
-
-//   // Erstelle das Bild-Element für das Schließen-Symbol
-//   let img = document.createElement('img');
-//   img.src = './img/close.svg';
-//   img.alt = '';
-//   img.onclick = closePopup; // Füge die Funktion closePopup als Klick-Event hinzu
-
-//   // Füge das Bild-Element zum div hinzu
-//   closeDiv.appendChild(img);
-
-//   // Finde das übergeordnete div mit der Klasse innerContent flex-col width100
-//   let innerContentDiv = document.querySelector('.innerContent.flex-col.width100');
-
-//   // Füge das erstellte div mit dem Schließen-Symbol direkt ein
-//   if (innerContentDiv) {
-//     innerContentDiv.insertBefore(closeDiv, innerContentDiv.firstChild);
-//   }
-//   configureCloseCross()
-// }
-
+/**
+ * Configures the close cross element.
+ * Adds the "closeCross2" class and removes the "d-none" class to make it visible.
+ */
 function configureCloseCross() {
   let closeCross = document.getElementById("closeCross");
   closeCross.classList.add("closeCross2");
   closeCross.classList.remove("d-none");
 }
 
+/**
+ * Configures the add task button.
+ * Changes its background color to a specific blue and text color to white.
+ * Removes the "mainDarkBlue" class.
+ */
 function configureAddTaskButton() {
   let addTaskButton = document.getElementById("addTaskButton");
   addTaskButton.classList.remove("mainDarkBlue");
@@ -329,21 +336,28 @@ function configureAddTaskButton() {
   addTaskButton.style.color = "white";
 }
 
+//Shows the background popup by removing the "d-none" class.
 function showBackgroundPopup() {
   let backgroundPopup = document.getElementById("backgroundPopup");
   backgroundPopup.classList.remove("d-none");
 }
 
+//Hides the main popup by adding the "d-none" class.
 function hideMainPopup() {
   let popup = document.getElementById("popup");
   popup.classList.add("d-none");
 }
 
+/**
+ * Shows the add task popup.
+ * Removes the "d-none" and "hideAddTaskPopup" classes, and then adds the "showAddTaskPopup" class after a short delay.
+ * Stops event propagation when the popup is clicked.
+ * */
 function showAddTaskPopup() {
   let popupAddTask = document.getElementById("popupAddTask");
   popupAddTask.classList.remove("d-none");
   popupAddTask.classList.remove("hideAddTaskPopup");
-  popupAddTask.offsetWidth; // Force reflow to ensure CSS transitions work
+  popupAddTask.offsetWidth;
   setTimeout(() => {
     popupAddTask.classList.add("showAddTaskPopup");
   }, 10);
@@ -354,7 +368,6 @@ function showAddTaskPopup() {
 
 /**
  * Sets a CSS class on the "Add Task" button.
- *
  * @param {string} className The class name to be added to the button.
  */
 function setPrio(className) {
@@ -400,17 +413,16 @@ function truncateText(description, index) {
   }
 }
 
-
-
-
-
+/**
+ * Filters and displays tasks based on the search term input.
+ * If no search term is provided, all tasks are displayed.
+ * If a search term is provided, only tasks whose title or description includes the search term are displayed.
+ * Updates the tasks array and calls updateHTML to reflect the filtered tasks.
+ */
 function searchAndDisplay() {
   tasks = searchTask;
-
   let searchTerm = document.getElementById("searchInput").value.toLowerCase();
   let matchingTasks = [];
-
-  // Filter tasks based on search term
   tasks.forEach((task) => {
     if (!searchTerm) {
       matchingTasks.push(task);
@@ -420,7 +432,6 @@ function searchAndDisplay() {
       }
     }
   });
-
-  tasks = matchingTasks; 
-  updateHTML(); 
+  tasks = matchingTasks;
+  updateHTML();
 }

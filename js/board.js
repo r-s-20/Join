@@ -1,7 +1,6 @@
 let currentTimestamp;
 let popupElement;
 
-
 const prios = {
   low: "./img/prioLow.png",
   medium: "./img/prioMedium.png",
@@ -81,7 +80,6 @@ function updateStatusHTML(status, elementId, emptyMessage) {
   populateContainerWithTasks(container, filteredTasks);
   handleEmptyContainer(container, emptyMessage, status);
   allStati.push(status);
-  // tasks = searchTask;
 }
 
 /**
@@ -111,10 +109,6 @@ function populateContainerWithTasks(container, filteredTasks) {
     globalIndex++;
   }
 }
-
-
-
-
 
 /**
  * Sets the background color of a task card category.
@@ -285,14 +279,13 @@ async function mobileSetStatusTo(timestamp, status, event) {
  * @function
  */
 function contactNames(element, index) {
-
   let lengthAssigned;
-  if(element.assigned.length <= 6){
+  if (element.assigned.length <= 6) {
     lengthAssigned = element.assigned.length;
   } else {
-    lengthAssigned = 5
+    lengthAssigned = 5;
   }
-  
+
   let contactNames = document.getElementById(`contactNames${index}`);
   contactNames.innerHTML = "";
   for (let i = 0; i < lengthAssigned; i++) {
@@ -301,12 +294,11 @@ function contactNames(element, index) {
     contactNames.innerHTML += /*html*/ `<span class="initalsCircle" id="initalsCircleColor${j}">${assigned.initials}</span>`;
     document.getElementById(`initalsCircleColor${j}`).style.backgroundColor = assigned.badgecolor;
   }
-  
+
   j = j + 1;
 
-  if (element.assigned.length >= 6){
-  
-    let assignedMaxLength = element.assigned.length - 6 ;
+  if (element.assigned.length >= 6) {
+    let assignedMaxLength = element.assigned.length - 6;
     contactNames.innerHTML += /*html*/ `<span class="assignedMaxLength">+ ${assignedMaxLength}</span>
   `;
   }

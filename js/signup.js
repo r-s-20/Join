@@ -9,10 +9,15 @@ let signUpEmail = document.getElementById("signUpEmail");
 let signUpPassword = document.getElementById("signUpPassword");
 let signUpConfirmPassword = document.getElementById("signUpConfirmPassword");
 
+
+
+//Attaches a blur event listener to the email input field.
 signUpEmail.addEventListener("blur", function () {
   validateEmail();
 });
 
+
+//Hides the welcome screen after a specified timeout.
 function welcomeScreen() {
     let welcomeBackground = document.querySelector(".welcomeBackground");
     setTimeout(() => {
@@ -20,6 +25,11 @@ function welcomeScreen() {
     }, 900);
   }
 
+  /**
+ * Validates the email format of the sign-up email input.
+ * If invalid, displays an error message.
+ * If valid, removes any existing error messages and validates the form.
+ */
 function validateEmail() {
   let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -33,27 +43,42 @@ function validateEmail() {
   }
 }
 
+
+//Attaches a blur event listener to the password input field.
 signUpPassword.addEventListener("blur", function () {
   validatePassword();
 });
 
+
+//Attaches a blur event listener to the confirm password input field.
 signUpConfirmPassword.addEventListener("blur", function () {
   validatePassword();
 });
 
+/**
+ * Validates the password and confirm password input fields.
+ * If both fields are not empty, compares the passwords.
+ * Also validates the form.
+ */
 function validatePassword() {
   if (signUpPassword.value !== "" && signUpConfirmPassword.value !== "") {
     comparePassword();
   }
-
   validateForm();
-
 }
 
+
+
+//Attaches a blur event listener to the name input field.
 signUpName.addEventListener("blur", function () {
   validateName();
 });
 
+/**
+ * Validates the name input field by checking if the name is already taken.
+ * If taken, displays an error message.
+ * If not taken, removes any existing error messages and validates the form.
+ */
 function validateName() {
   let user = users.find((users) => users.name === signUpName.value);
 
@@ -65,6 +90,11 @@ function validateName() {
   }
 }
 
+/**
+ * Validates the sign-up form by checking if all inputs are valid,
+ * passwords match, and email is confirmed. Enables or disables the
+ * sign-up button based on the validation results.
+ */
 const validateForm = () => {
   let signUpButton = document.getElementById("signUpButton");
   const checkDoneButton = document.getElementById("chechDoneButton");
@@ -112,11 +142,17 @@ function disableButton(signUpButton){
 }
 
 
+//Adds input event listeners to the form fields to trigger form validation on input.
 signUpName.addEventListener("input", validateForm);
 signUpEmail.addEventListener("input", validateForm);
 signUpPassword.addEventListener("input", validateForm);
 signUpConfirmPassword.addEventListener("input", validateForm);
 
+/**
+ * Handles the sign-up process by creating a new user, displaying a success message,
+ * adding the user to the users array, creating a contact, showing and hiding the popup,
+ * and clearing the form.
+ */
 function signUp() {
   let newUser = createUser();
   displaySuccessMessage();
@@ -140,6 +176,8 @@ function createUser(){
   };
 }
 
+
+//Displays a success message on the screen.
 function displaySuccessMessage(){
   document.getElementById("backgroundPopup").innerHTML = /*html*/ `
   <div class="successfullSignedUp" id="successfullSignedUp">
@@ -148,6 +186,8 @@ function displaySuccessMessage(){
   `;
 }
 
+
+//Clears the sign-up form inputs.
 function clearForm(){
   signUpName.value = "";
   signUpEmail.value = "";
@@ -155,6 +195,10 @@ function clearForm(){
   signUpConfirmPassword.value = "";
 }
 
+/**
+ * Creates a new contact object and adds it to the contacts array.
+ * Also saves the updated users and contacts to the API.
+ */
 async function createContact() {
   let newContact = {
     name: signUpName.value,
@@ -163,13 +207,16 @@ async function createContact() {
     badgecolor: colors[contacts.length % colors.length],
     phone: "",
   };
-
   contacts.push(newContact);
-
   await saveUsersToAPI();
   await saveContactsToAPI();
 }
 
+/**
+ * Compares the sign-up password and confirmation password fields.
+ * If the passwords match, sets the confirmPasswords flag to true and removes any error messages.
+ * If the passwords do not match, sets the confirmPasswords flag to false and renders error messages.
+ */
 function comparePassword() {
   if (signUpPassword.value == signUpConfirmPassword.value) {
     confirmPasswords = true;
@@ -202,6 +249,8 @@ function createInitials() {
   return initials;
 }
 
+
+//Shows and hides the success popup with animations.
 function showAndHidePopup() {
   let backgroundPopup = document.getElementById("backgroundPopup");
   let successfullSignedUp = document.getElementById("successfullSignedUp");
@@ -248,16 +297,23 @@ function hidePopup(backgroundPopup, successfullSignedUp){
 }
 
 
+//Saves the 'users' array to localStorage as JSON.
 function saveUsers() {
   let usersAsText = JSON.stringify(users);
   localStorage.setItem("users", usersAsText);
 }
 
+
+//Saves the 'contacts' array to localStorage as JSON.
 function saveContacts() {
   let contactsAsText = JSON.stringify(contacts);
   localStorage.setItem("contacts", contactsAsText);
 }
 
+/**
+ * Loads 'users' array from localStorage and parses it into objects.
+ * If no users are found in localStorage, 'users' remains unchanged.
+ */
 function loadUsers() {
   let usersAsString = localStorage.getItem("users");
   if (usersAsString) {
@@ -265,6 +321,10 @@ function loadUsers() {
   }
 }
 
+/**
+ * Loads 'contacts' array from localStorage and parses it into objects.
+ * If no contacts are found in localStorage, 'contacts' remains unchanged.
+ */
 function loadContacts() {
   let contactsAsString = localStorage.getItem("contacts");
   if (contactsAsString) {
@@ -272,6 +332,10 @@ function loadContacts() {
   }
 }
 
+/**
+ * Switches from the login view to the sign-up view.
+ * Hides the login form and displays the sign-up form.
+ */
 function loginToSignUp() {
   let logIn = document.getElementById("logIn");
   let signUp = document.getElementById("signUp");
@@ -283,12 +347,22 @@ function loginToSignUp() {
   signUpContainerResponsive.classList.add("d-none");
 }
 
+/**
+ * Switches the state of buttons to indicate task completion.
+ * Hides the check button and displays the done button.
+ * Also triggers form validation after button state change.
+ */
 function checkDone() {
   document.getElementById("checkButton").classList.add("d-none");
   document.getElementById("chechDoneButton").classList.remove("d-none");
   validateForm();
 }
 
+/**
+ * Reverses the state of buttons to indicate task uncompletion.
+ * Hides the done button and displays the check button.
+ * Also triggers form validation after button state change.
+ */
 function unCheck() {
   document.getElementById("checkButton").classList.remove("d-none");
   document.getElementById("chechDoneButton").classList.add("d-none");

@@ -3,7 +3,12 @@ loadContactsFromAPI();
 loadUsersFromAPI();
 
 
-
+/**
+ * Logs in a user based on provided email and password inputs.
+ * Retrieves the email and password values from input fields,
+ * searches for a matching user in the 'users' array,
+ * and validates the user's credentials.
+ */
 function logIn() {
   let inputUsermail = getInputValue("inputUsermail");
   let inputPassword = getInputValue("inputPassword");
@@ -61,6 +66,10 @@ function checkRememberMe(user, contact) {
   }
 }
 
+/**
+ * Logs in a guest user by creating a guest user object,
+ * saving it to session storage, and redirecting to the summary page.
+ */
 function guestLogin() {
   let guestUser = {
     name: "Guest",
@@ -93,6 +102,10 @@ function saveToSessionStorage(contact) {
   sessionStorage.setItem("contact", contactAsText);
 }
 
+/**
+ * Loads the 'contact' object from session storage.
+ * If found, updates the global 'contact' variable.
+ */
 function loadFromSessionStorage() {
   let contactAsString = sessionStorage.getItem(contact);
   if (contactAsString) {
@@ -100,11 +113,15 @@ function loadFromSessionStorage() {
   }
 }
 
+
+//Hides the check button and displays the 'Done' button for a specific context ('checkButton2' and 'chechDoneButton2').
 function checkDone2() {
   document.getElementById("checkButton2").classList.add("d-none");
   document.getElementById("chechDoneButton2").classList.remove("d-none");
 }
 
+
+//Shows the check button and hides the 'Done' button for a specific context ('checkButton2' and 'chechDoneButton2').
 function unCheck2() {
   document.getElementById("checkButton2").classList.remove("d-none");
   document.getElementById("chechDoneButton2").classList.add("d-none");
@@ -213,6 +230,11 @@ function toggleVisibilityIcons(inputId) {
   visOnIcon.classList.toggle("d-none");
 }
 
+/**
+ * Checks if there is a 'contact' object in localStorage.
+ * If found, populates the email and password fields with its values
+ * and triggers the visibility icons for the password field.
+ */
 function checkLocalStorageKey() {
   let contactAsString = localStorage.getItem('contact');
   if (contactAsString) {

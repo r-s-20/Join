@@ -1,13 +1,9 @@
-body{
+body {
   overflow: hidden;
 }
 
-
-
 section {
   max-width: 100vw;
-
-
 }
 
 h1 {
@@ -15,17 +11,14 @@ h1 {
   font-weight: 700;
 }
 
-
-.addTask2{
-
-  .innerContent{
+.addTask2 {
+  .innerContent {
     justify-content: inherit;
-   }
+  }
 
-   .lowerContainer{
+  .lowerContainer {
     margin-top: 70px;
-   }
-
+  }
 }
 
 .boardTop {
@@ -122,6 +115,7 @@ h1 {
 .singleBoardProgress {
   width: 246px;
   height: 688px;
+  max-height: fit-content;
   border-radius: 24px;
   border: unset;
 }
@@ -222,12 +216,12 @@ h1 {
   width: 0%;
 }
 
-.contactNames{
+.contactNames {
   display: flex;
   align-items: center;
 }
 
-.assignedMaxLength{
+.assignedMaxLength {
   margin-left: 5px;
 }
 
@@ -400,7 +394,6 @@ h1 {
   width: 445px;
   max-height: 500px;
   gap: 8px;
-
 }
 
 .popupSubtask span {
@@ -602,7 +595,6 @@ h1 {
   padding-left: 0;
   overflow: auto;
   padding-top: 0;
-
 }
 
 .outerContent.popup-open {
@@ -613,34 +605,29 @@ h1 {
   display: none;
 }
 
-.dropdownMenu{
+.dropdownMenu {
   display: none !important;
 }
 
-.categoryAndDropDown{
- 
+.categoryAndDropDown {
   display: flex;
   justify-content: space-between;
 }
 
-.categoryAndDropDown span{
+.categoryAndDropDown span {
   display: flex;
   min-width: 20px;
   min-height: 20px;
   justify-content: center;
   align-items: center;
-
-
 }
 
-.categoryAndDropDown span:hover{
+.categoryAndDropDown span:hover {
   font-size: 18px;
   font-weight: bold;
   background-color: rgb(227, 231, 222);
   border-radius: 50%;
-  
 }
-
 
 .dropdown-container {
   position: relative;
@@ -656,7 +643,7 @@ h1 {
   position: absolute;
   right: 0;
   background-color: rgb(204, 200, 200);
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   border-radius: 8px;
   font-weight: bold;
@@ -675,13 +662,12 @@ h1 {
 }
 
 .dropdown-menu a:first-child:hover {
-
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
-.dropdown-menuToDoHide{
-border-top-left-radius: 8px;
-border-top-right-radius: 8px;
+.dropdown-menuToDoHide {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .dropdown-menu a:last-child:hover {
@@ -689,17 +675,14 @@ border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
-.dropdown-menuDoneHide{
+.dropdown-menuDoneHide {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  }
+}
 
 .dropdown-container.active .dropdown-menu {
   display: block;
 }
-
-
-
 
 @media (max-width: 1455px) {
   .outerContent {
@@ -728,13 +711,12 @@ border-top-right-radius: 8px;
   }
 }
 
-@media (max-width: 1340px) {
-  
-  .boardTop{
-  margin-top: 200px;
+@media (max-width: 1390px) {
+  .boardTop {
+    margin-top: 200px;
   }
 
-  .dropdownMenu{
+  .dropdownMenu {
     display: inline !important;
   }
 
@@ -750,11 +732,8 @@ border-top-right-radius: 8px;
   }
 
   h1 {
- 
     margin-block-end: 0;
   }
-
-
 
   .boardTop {
     max-width: 396px;
@@ -804,7 +783,7 @@ border-top-right-radius: 8px;
     max-width: 100vw;
     display: flex;
     align-items: center;
-    overflow: auto;
+    overflow-x: auto;
   }
 
   .singleBoardProgress div:first-child {
@@ -832,11 +811,9 @@ border-top-right-radius: 8px;
 }
 
 @media (max-width: 800px) {
-
-  .outerContent{
+  .outerContent {
     margin-bottom: 80px;
   }
-  
 
   .popup {
     width: 95%;
@@ -876,7 +853,6 @@ border-top-right-radius: 8px;
     }
   }
 }
-
 
 @media (max-width: 555px) {
   .popup {
@@ -971,7 +947,8 @@ border-top-right-radius: 8px;
     width: 95%;
     padding-left: 0;
 
-    .rightColumn, .leftColumn {
+    .rightColumn,
+    .leftColumn {
       padding: 0;
     }
   }
@@ -1003,25 +980,23 @@ border-top-right-radius: 8px;
   }
 }
 
-@media (max-height: 667px){
-
-  .popup{
+@media (max-height: 667px) {
+  .popup {
     max-height: 85%;
     margin-bottom: 70px;
   }
 
-  .popupPriority{
+  .popupPriority {
     height: 0;
   }
 
-    .popupPerson{
-      max-height: 60px;
-      height: fit-content;
-      justify-content: center;
+  .popupPerson {
+    max-height: 60px;
+    height: fit-content;
+    justify-content: center;
+  }
 
-    }
-
-    .PopupInitialsandContacts{
-      margin-top: 0
-    }
+  .PopupInitialsandContacts {
+    margin-top: 0;
+  }
 }
