@@ -374,7 +374,6 @@ button:hover {
 .contactsMainOverlay {
   position: fixed;
   top: 50%;
-  /* right: 50%; */
   right: -100%;
   display: flex;
   justify-content: flex-start;
@@ -392,10 +391,12 @@ button:hover {
 
 .contactsMainOverlay.showContactPopup {
   right: 50%;
+  top: 50%;
 }
 
 .contactsMainOverlay.hideContactPopup {
   right: -100%;
+  top: 50%;
 }
 
 .overlayBackgroundPopup {

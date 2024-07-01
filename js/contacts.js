@@ -258,6 +258,7 @@ function editContactPopUp(index) {
   }
 }
 
+/** Opens the popup for editing a contact */
 function showEditPopup() {
   let popupCurtain = document.querySelector(".popupCurtain");
   let showEditContactPopUp = document.getElementById("showEditContactPopUp");
