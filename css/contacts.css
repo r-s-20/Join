@@ -892,6 +892,11 @@ input {
     }
 
     .contactListsContainer {
+      margin-bottom: 5rem;
+      height: auto;
+    }
+
+    .contactListsContainer {
       width: 70%;
     }
 
@@ -1122,11 +1127,6 @@ input {
         font-size: 20px;
       }
     }
-  }
-
-  .contactListsContainer {
-    margin-bottom: 5rem;
-    height: auto;
   }
 
   .cancel {
@@ -1406,7 +1406,6 @@ input {
   .overlayRightSide {
     margin-top: -20px;
   }
-
 }
 
 @media (max-width: 320px) {
@@ -1429,10 +1428,9 @@ input {
 }
 
 @media (max-height: 700px) {
-/* .contactsMainOverlay {
+  /* .contactsMainOverlay {
   overflow-y: auto;
 } */
-
 
   .overlayRightSide {
     margin-top: -45px;
@@ -1460,13 +1458,13 @@ input {
 @media (max-height: 680px) {
   .overlayRightSide {
     margin-top: -20px;
-  }  
+  }
 }
 
 @media (max-height: 600px) {
-.overlayRightSide {
-  margin-top: 0;
-}
+  .overlayRightSide {
+    margin-top: 0;
+  }
 
   .overlayBadge {
     display: none;
