@@ -712,9 +712,6 @@ h1 {
 }
 
 @media (max-width: 1390px) {
-  .boardTop {
-    margin-top: 200px;
-  }
 
   .dropdownMenu {
     display: inline !important;
@@ -742,7 +739,7 @@ h1 {
     align-items: baseline;
     justify-content: space-evenly;
     margin-bottom: 30px;
-    margin-top: 0;
+    margin-top: 300px;
     margin-left: 16px;
   }
 
@@ -772,7 +769,7 @@ h1 {
   }
 
   .totalSingleBoardProgress {
-    max-height: 292px;
+    height: 292px;
     width: 100%;
   }
 
