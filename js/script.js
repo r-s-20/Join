@@ -1,3 +1,8 @@
+/**
+ * @constant
+ * @type {string}
+ * @description The base URL for the Firebase database.
+ */
 const BASE_URL = "https://rs-testproject01-default-rtdb.europe-west1.firebasedatabase.app/";
 
 async function includeHTML() {
@@ -14,6 +19,10 @@ async function includeHTML() {
   }
 }
 
+/**
+ * @type {Array<Object>}
+ * @description List of user objects containing name, email, password, and initials.
+ */
 let users = [
   { name: "Anton Mayer", email: "anton@gmail.com", password: "123456", initials: "AM" },
   { name: "Eva Fischer", email: "fischer@gmail.com", password: "7890", initials: "EF" },
@@ -27,6 +36,10 @@ let users = [
   { name: "Stefan Hoffmann", email: "hoffmann@gmail.com", password: "7890", initials: "SH" },
 ];
 
+/**
+ * @type {Array<string>}
+ * @description List of color hex codes.
+ */
 let colors = [
   "#FF7A00",
   "#FF5EB3",
@@ -44,6 +57,10 @@ let colors = [
   "#462f8a",
 ];
 
+/**
+ * @type {Array<Object>}
+ * @description List of contact objects containing name, email, initials, badge color, and phone number.
+ */
 let contacts = [
   {
     name: "Anton Mayer",
@@ -117,6 +134,10 @@ let contacts = [
   },
 ];
 
+/**
+ * @type {Array<Object>}
+ * @description List of category objects containing name and color.
+ */
 let categories = [
   {
     name: "Management",
@@ -137,6 +158,10 @@ let categories = [
   { name: "Userstory", color: colors[3] },
 ];
 
+/**
+ * @type {Array<Object>}
+ * @description List of task objects containing title, timestamp, assigned contacts, description, due date, priority, category, subtasks, and status.
+ */
 let tasks = [
   {
     title: "First test title",
@@ -202,10 +227,17 @@ let tasks = [
   },
 ];
 
+/**
+ * @type {Array<Object>}
+ * @description Demo contacts/ tasks / users for resetting demo content.
+ */
 let demoContacts = contacts;
 let demoTasks = tasks;
 let demoUsers = users;
 
+/**
+ * Resets the demo content to its initial state and saves it to the API.
+ */
 function resetDemoContent() {
   contacts = demoContacts;
   saveContactsToAPI();
@@ -224,15 +256,28 @@ function setValueToInput(value, inputId) {
   container.value = value;
 }
 
+/**
+ * Retrieves the value from an HTML input element.
+ * @param {string} inputId - The ID of the HTML input element/container.
+ * @returns {string} The value of the input element.
+ */
 function getValueFromInput(inputId) {
   let container = document.getElementById(inputId);
   return container.value;
 }
 
+/**
+ * Parses a string by trimming leading and trailing whitespace.
+ * @param {string} string - The string to parse.
+ * @returns {string} The trimmed string.
+ */
 function parseTextInput(string) {
   return string.trim();
 }
 
+/**
+ * Loads tasks from localStorage.
+ */
 function loadTasks() {
   let tasksAsString = localStorage.getItem("tasks");
   if (tasksAsString) {
@@ -240,6 +285,11 @@ function loadTasks() {
   }
 }
 
+/**
+ * Sends a PUT request to the Firebase database with the given data.
+ * @param {string} path - The path for the Firebase database.
+ * @param {Object} data - The data to send.
+ */
 async function putData(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "PUT",
@@ -251,27 +301,36 @@ async function putData(path = "", data = {}) {
   return response;
 }
 
+/**
+ * Loads data from the Firebase database at the given path.
+ * @param {string} path - The path for the Firebase database.
+ * @returns {Promise<Object>} The response data from the fetch request.
+ */
 async function loadData(path = "") {
   let response = await fetch(BASE_URL + path + ".json");
   let responseJson = await response.json();
   return responseJson;
 }
 
+/** Saves the tasks to the Firebase database. */
 async function saveTasksToAPI() {
   let tasksAsText = JSON.stringify(tasks);
   uploadStatus = await putData("/joinTasks", (data = { "tasks": tasksAsText }));
 }
 
+/** Saves the users to the Firebase database. */
 async function saveUsersToAPI() {
   let usersAsText = JSON.stringify(users);
   uploadStatus = await putData("/joinUsers", (data = { "users": usersAsText }));
 }
 
+/** Saves the contacts to the Firebase database. */
 async function saveContactsToAPI() {
   let contactsAsText = JSON.stringify(contacts);
   uploadStatus = await putData("/joinContacts", (data = { "contacts": contactsAsText }));
 }
 
+/** Loads tasks from the Firebase database. */
 async function loadTasksFromAPI() {
   let tasksRaw = await loadData("joinTasks");
   let tasksAsString = tasksRaw.tasks;
@@ -280,6 +339,7 @@ async function loadTasksFromAPI() {
   }
 }
 
+/** Loads users from the Firebase database. */
 async function loadUsersFromAPI() {
   let usersRaw = await loadData("joinUsers");
   let arrayAsString = usersRaw.users;
@@ -288,6 +348,7 @@ async function loadUsersFromAPI() {
   }
 }
 
+/** Loads contacts from the Firebase database.*/
 async function loadContactsFromAPI() {
   let contactsRaw = await loadData("joinContacts");
   let arrayAsString = contactsRaw.contacts;
@@ -296,6 +357,7 @@ async function loadContactsFromAPI() {
   }
 }
 
+/** Loads contacts from localStorage.*/
 function loadContacts() {
   let savedContacts = JSON.parse(localStorage.getItem("contacts"));
   if (savedContacts) {
@@ -303,12 +365,12 @@ function loadContacts() {
   }
 }
 
+/** Saves the contacts to localStorage. */
 function saveContactsToLocalStorage() {
   localStorage.setItem("contacts", JSON.stringify(contacts));
 }
 
-/** Toggles menu in header 
- */
+/** Toggles menu in header */
 function toggleUserMenu() {
   popup = document.getElementById("header-popup-curtain");
   popup.classList.toggle("d-none");
@@ -331,6 +393,9 @@ function renderUserlogo() {
   }
 }
 
+/**
+ * Checks if a user is logged in by verifying the presence of user data in session storage.
+ */
 function checkUserLoginStatus() {
   let userAsText = sessionStorage.getItem("contact");
   if (userAsText) {
