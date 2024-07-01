@@ -78,6 +78,6 @@ function closeAddTaskPopup() {
 
 /**Resets scroll function for board. Necessary when popups in board are closed. */
 function resetScrollOnBoard() {
-  let body = document.querySelector("body");
-  body.classList.remove("popup-open");
+  let outerContent = document.querySelector(".outerContent");
+  outerContent.classList.remove("popup-open");
 }

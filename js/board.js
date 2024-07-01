@@ -1,6 +1,7 @@
 let currentTimestamp;
 let popupElement;
 
+
 const prios = {
   low: "./img/prioLow.png",
   medium: "./img/prioMedium.png",
@@ -80,6 +81,7 @@ function updateStatusHTML(status, elementId, emptyMessage) {
   populateContainerWithTasks(container, filteredTasks);
   handleEmptyContainer(container, emptyMessage, status);
   allStati.push(status);
+  // tasks = searchTask;
 }
 
 /**

@@ -400,7 +400,13 @@ function truncateText(description, index) {
   }
 }
 
+
+
+
+
 function searchAndDisplay() {
+  tasks = searchTask;
+
   let searchTerm = document.getElementById("searchInput").value.toLowerCase();
   let matchingTasks = [];
 
@@ -415,6 +421,6 @@ function searchAndDisplay() {
     }
   });
 
-  tasks = matchingTasks; // Update tasks array with filtered tasks
-  updateHTML(); // Update HTML to reflect filtered tasks
+  tasks = matchingTasks; 
+  updateHTML(); 
 }

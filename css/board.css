@@ -400,7 +400,7 @@ h1 {
   width: 445px;
   max-height: 500px;
   gap: 8px;
-  overflow-y: auto;
+
 }
 
 .popupSubtask span {
@@ -412,11 +412,12 @@ h1 {
   width: 445px;
   max-height: 68px;
   gap: 4px;
+  overflow-y: auto;
 }
 .popupSingleSubtask div {
   display: flex;
   align-items: center;
-  width: 334px;
+  width: fit-content;
   height: 32px;
   gap: 16px;
   margin-left: 20px;
@@ -597,6 +598,7 @@ h1 {
 }
 
 .outerContent {
+  max-height: 100vh;
   padding-left: 0;
   overflow: auto;
   padding-top: 0;
@@ -727,6 +729,10 @@ border-top-right-radius: 8px;
 }
 
 @media (max-width: 1340px) {
+  
+  .boardTop{
+  margin-top: 200px;
+  }
 
   .dropdownMenu{
     display: inline !important;
@@ -748,9 +754,7 @@ border-top-right-radius: 8px;
     margin-block-end: 0;
   }
 
-  .outerContent {
-    padding: 0 !important;
-  }
+
 
   .boardTop {
     max-width: 396px;
@@ -829,6 +833,9 @@ border-top-right-radius: 8px;
 
 @media (max-width: 800px) {
 
+  .outerContent{
+    margin-bottom: 80px;
+  }
   
 
   .popup {
@@ -994,6 +1001,27 @@ border-top-right-radius: 8px;
       margin-bottom: 1rem;
     }
   }
+}
 
-  
+@media (max-height: 667px){
+
+  .popup{
+    max-height: 85%;
+    margin-bottom: 70px;
+  }
+
+  .popupPriority{
+    height: 0;
+  }
+
+    .popupPerson{
+      max-height: 60px;
+      height: fit-content;
+      justify-content: center;
+
+    }
+
+    .PopupInitialsandContacts{
+      margin-top: 0
+    }
 }
