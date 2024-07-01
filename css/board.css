@@ -116,11 +116,10 @@ h1 {
 }
 
 .singleBoardProgress {
-  /* width: 246px; */
-  height: 688px;
-  max-height: fit-content;
+  height: 100vh;
   border-radius: 24px;
   border: unset;
+
 }
 
 .noProgess {

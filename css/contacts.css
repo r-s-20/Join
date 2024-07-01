@@ -606,6 +606,8 @@ input {
 }
 
 .editContactInputFieldNameImage {
+  position: absolute;
+  right: 1rem;
   display: flex;
   height: 50px;
   gap: 10px;
@@ -1149,8 +1151,18 @@ input {
 }
 
 @media (min-width: 1050px) {
+  .rightContainer {
+    overflow: hidden;
+  }
+
   #leftLine {
     display: none;
+  }
+}
+
+@media (max-height: 750px) {
+  .rightContainer {
+    overflow: auto;
   }
 }
 

@@ -359,14 +359,14 @@ async function addContact() {
 
   if (validateContactInputs()) {
     if (contactExists) {
-      renderError("addEmailContainer", "A contact with this email already exists.");
+      renderError("addEmailContainer", "A contact with this email or name already exists.");
       let errorMessage = document.getElementById("addNameContainer").parentElement.querySelector(".errorMessage");
       if (!errorMessage) {
-        renderError("addNameContainer", "A contact with this name already exists.");
+        renderError("addNameContainer", "A contact with this email or name already exists.");
       }
-
       return;
     }
+
     let initials = getInitials(name);
     let badgecolor = colors[contacts.length % colors.length];
 
@@ -541,6 +541,7 @@ function renderError(inputId, message) {
   input = document.getElementById(inputId);
   input.classList.add("errorDesign");
   errorElement = document.createElement("span");
+  errorElement.classList.add("errorMessageParent");
   errorElement.innerHTML = insertErrorMessageHTML(message);
   input.appendChild(errorElement);
 }
@@ -549,6 +550,7 @@ function renderError(inputId, message) {
 function removeErrors() {
   removeErrorColors();
   removeErrorMessages();
+  removeErrorParents();
 }
 
 /** Removes error-design (red border) from all elements */
@@ -562,6 +564,13 @@ function removeErrorColors() {
 /**Removes all error-message html-elements */
 function removeErrorMessages() {
   messages = document.getElementsByClassName("errorMessage");
+  for (let i = messages.length - 1; i >= 0; i--) {
+    messages[i].remove();
+  }
+}
+
+function removeErrorParents() {
+  messages = document.getElementsByClassName("errorMessageParent");
   for (let i = messages.length - 1; i >= 0; i--) {
     messages[i].remove();
   }
