@@ -78,7 +78,6 @@ a {
 
 .rightContainer {
   height: 100vh;
-  overflow: auto;
   flex: 1;
 }
 
@@ -91,6 +90,7 @@ a {
 
 .outerContent {
   flex: 1;
+  overflow: auto;
 }
 
 .errorDesign {
