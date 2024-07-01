@@ -980,9 +980,17 @@ h1 {
   }
 }
 
+@media (max-height: 760px) {
+  .popup {
+    max-height: 100%;
+    margin-bottom: 70px;
+  }
+
+}
+
 @media (max-height: 667px) {
   .popup {
-    max-height: 85%;
+    max-height: 100%;
     margin-bottom: 70px;
   }
 

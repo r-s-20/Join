@@ -52,6 +52,9 @@ button.lightColored:hover {
 }
 
 .closeCross {
+  position: absolute;
+  right: 50px;
+  top: 30px;
   width: 100%;
 
   display: flex;
