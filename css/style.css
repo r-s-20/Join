@@ -17,7 +17,8 @@
 body {
   margin: 0;
   color: black;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   font-size: 16px;
 }
 
@@ -71,11 +72,13 @@ a {
   background-color: var(--mainDarkColor);
   width: 248px;
   min-width: 248px;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: auto;
 }
 
 .rightContainer {
-  min-height: 100vh;
+  height: 100vh;
+  overflow: auto;
   flex: 1;
 }
 
