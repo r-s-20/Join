@@ -41,7 +41,7 @@ function generateTodoHTML(element, index) {
     element.subtasks.subtaskList.length
   }</span>Subtasks
         </div>
-          <div class="cardWorkers"><div id="contactNames${index}" class="contactNames"></div><img src=${prios[element.prio]} alt=""></div>
+          <div class="cardWorkers"><div id="contactNames${index}"  class="contactNames"></div><img src=${prios[element.prio]} alt=""></div>
       </div>
      `;
 }

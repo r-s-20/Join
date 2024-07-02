@@ -291,7 +291,7 @@ function contactNames(element, index) {
   for (let i = 0; i < lengthAssigned; i++) {
     let assigned = element.assigned[i];
     j = j + i;
-    contactNames.innerHTML += /*html*/ `<span class="initalsCircle" id="initalsCircleColor${j}">${assigned.initials}</span>`;
+    contactNames.innerHTML += /*html*/ `<span class="initalsCircle" title="${assigned.name}" id="initalsCircleColor${j}">${assigned.initials}</span>`;
     document.getElementById(`initalsCircleColor${j}`).style.backgroundColor = assigned.badgecolor;
   }
 
@@ -299,7 +299,7 @@ function contactNames(element, index) {
 
   if (element.assigned.length >= 6) {
     let assignedMaxLength = element.assigned.length - 6;
-    contactNames.innerHTML += /*html*/ `<span class="assignedMaxLength">+ ${assignedMaxLength}</span>
+    contactNames.innerHTML += /*html*/ `<span class="assignedMaxLength" >+ ${assignedMaxLength}</span>
   `;
   }
 }

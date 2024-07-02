@@ -419,8 +419,9 @@ function truncateText(description, index) {
  * If a search term is provided, only tasks whose title or description includes the search term are displayed.
  * Updates the tasks array and calls updateHTML to reflect the filtered tasks.
  */
-function searchAndDisplay() {
-  tasks = searchTask;
+async function searchAndDisplay() {
+  await loadTasksFromAPI();
+  searchTask = tasks
   let searchTerm = document.getElementById("searchInput").value.toLowerCase();
   let matchingTasks = [];
   tasks.forEach((task) => {
