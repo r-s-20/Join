@@ -484,16 +484,20 @@ function validateContactInputs() {
  */
 function validateEditContact() {
   removeErrors();
+  let valid = true;
   if (getValueFromInput("editName") == "") {
     renderError("editNameContainer");
+    valid = false;
   }
   if (!validatePhoneInput("editPhone") && getValueFromInput("editPhone") != "") {
     renderError("editPhoneContainer", "Please enter a valid phone number");
+    valid = false;
   }
-  if (!validateEmailInput("editEmail") && getValueFromInput("editEmail") != "") {
+  if (!validateEmailInput("editEmail") && getValueFromInput("editEmail") != "" && !checkEmailExists("editEmail")) {
     renderError("editEmailContainer", "Please enter a valid email address");
+    valid = false;
   }
-  return validateEmailInput("editEmail") && validatePhoneInput("editPhone");
+  return valid;
 }
 
 /** Checking if there is already a contact with this name (double entries not allowed) */
