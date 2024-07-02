@@ -69,7 +69,7 @@ button.lightColored:hover {
 .closeCross2 {
   position: absolute;
   top: 100px;
-  right: 50px;
+  right: 90px;
   display: flex;
   justify-content: flex-end;
   margin-right: 10px;
