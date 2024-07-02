@@ -331,7 +331,7 @@ button.lightColored:hover {
   top: 5rem;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1060px) {
   .outerContent {
     padding: 5%;
   }

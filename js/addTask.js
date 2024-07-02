@@ -245,7 +245,6 @@ function renderCountBadge(container) {
     namesList += contact.name + ", ";
   }
   namesList += currentAssignedList[currentAssignedList.length - 1].name;
-  console.log(namesList);
   container.innerHTML += insertCountBadgeHTML(diff, namesList);
 }
 
