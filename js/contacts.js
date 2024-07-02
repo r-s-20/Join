@@ -466,12 +466,18 @@ function validateContactInputs() {
   } else if (!validateNameInput("addName")) {
     renderError("addNameContainer", "This name already exists");
   }
-  if (!validatePhoneInput("addPhone") && getValueFromInput("addPhone") != "") {
-    renderError("addPhoneContainer", "Please enter a valid phone number");
+  if (!validatePhoneInput("addPhone")) {
+    if (getValueFromInput("addPhone") == "") {
+      renderError("addPhoneContainer");
+    } else {
+      renderError("addPhoneContainer", "Please enter a valid phone number");
+    }
   }
-  if (!validateEmailInput("addEmail") && getValueFromInput("addEmail") != "") {
+  if (!validateEmailInput("addEmail")) {
     if (checkEmailExists("addEmail")) {
       renderError("addEmailContainer", "This email already exists");
+    } else if (getValueFromInput("addEmail") == "") {
+      renderError("addEmailContainer");
     } else {
       renderError("addEmailContainer", "Please enter a valid email address");
     }
@@ -489,13 +495,21 @@ function validateEditContact() {
     renderError("editNameContainer");
     valid = false;
   }
-  if (!validatePhoneInput("editPhone") && getValueFromInput("editPhone") != "") {
-    renderError("editPhoneContainer", "Please enter a valid phone number");
+  if (!validatePhoneInput("editPhone")) {
     valid = false;
+    if (getValueFromInput("editPhone") == "") {
+      renderError("editPhoneContainer");
+    } else {
+      renderError("editPhoneContainer", "Please enter a valid phone number");
+    }
   }
-  if (!validateEmailInput("editEmail") && getValueFromInput("editEmail") != "" && !checkEmailExists("editEmail")) {
-    renderError("editEmailContainer", "Please enter a valid email address");
+  if (!validateEmailInput("editEmail") && !checkEmailExists("editEmail")) {
     valid = false;
+    if (getValueFromInput("editEmail") == "") {
+      renderError("editEmailContainer");
+    } else {
+      renderError("editEmailContainer", "Please enter a valid email address");
+    }
   }
   return valid;
 }
@@ -514,14 +528,14 @@ function validatePhoneInput(inputId) {
   let phonePattern = /^\+?\d+$/;
   let phoneInput = getValueFromInput(inputId).trim().replace(/  +/g, "");
   let parsedPhoneInput = phoneInput.trim().replace(/\s\s+/g, "s").replaceAll(" ", "");
-  return phonePattern.test(parsedPhoneInput) || getValueFromInput(inputId) == "";
+  return phonePattern.test(parsedPhoneInput);
 }
 
 /**Validating the email input in "add contact"-popup for correct format */
 function validateEmailInput(inputId) {
   let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   let emailInput = getValueFromInput(inputId);
-  return (emailPattern.test(emailInput) && !checkEmailExists(inputId)) || getValueFromInput(inputId) == "";
+  return emailPattern.test(emailInput) && !checkEmailExists(inputId);
 }
 
 /** Checks if this email address already exists in contacts */
