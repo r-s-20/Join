@@ -332,24 +332,9 @@ async function addContact() {
   let name = document.getElementById("addName").value;
   let email = document.getElementById("addEmail").value;
   let phone = document.getElementById("addPhone").value;
-
-  let contactExists = contacts.some((contact) => {
-    return contact.name === name || contact.email === email;
-  });
-
   if (validateContactInputs()) {
-    if (contactExists) {
-      renderError("addEmailContainer", "A contact with this email or name already exists.");
-      let errorMessage = document.getElementById("addNameContainer").parentElement.querySelector(".errorMessage");
-      if (!errorMessage) {
-        renderError("addNameContainer", "A contact with this email or name already exists.");
-      }
-      return;
-    }
-
     let initials = getInitials(name);
     let badgecolor = colors[contacts.length % colors.length];
-
     let newContact = {
       name: name,
       email: email,
@@ -358,7 +343,6 @@ async function addContact() {
       badgecolor: badgecolor,
     };
     contacts.push(newContact);
-    // saveContactsToLocalStorage();
     await saveContactsToAPI();
     render();
     closeAddContactPopUp();
@@ -471,21 +455,33 @@ function closeMobileEditPopup() {
   popUp.remove();
 }
 
-/** validation of input fields when adding a contact */
+/** Validates iput fields of add Contact form and renders errors if validation fails.
+ * Validation requires that mail and phone input format correct, name has a value,
+ * and checks if mail and name are already present in contacts (double entries not allowed)
+ * */
 function validateContactInputs() {
   removeErrors();
   if (getValueFromInput("addName") == "") {
     renderError("addNameContainer");
+  } else if (!validateNameInput("addName")) {
+    renderError("addNameContainer", "This name already exists");
   }
   if (!validatePhoneInput("addPhone") && getValueFromInput("addPhone") != "") {
     renderError("addPhoneContainer", "Please enter a valid phone number");
   }
   if (!validateEmailInput("addEmail") && getValueFromInput("addEmail") != "") {
-    renderError("addEmailContainer", "Please enter a valid email address");
+    if (checkEmailExists) {
+      renderError("addEmailContainer", "This email already exists");
+    } else {
+      renderError("addEmailContainer", "Please enter a valid email address");
+    }
   }
-  return validateEmailInput("addEmail") && validatePhoneInput("addPhone");
+  return validateEmailInput("addEmail") && validatePhoneInput("addPhone") && validateNameInput("addName");
 }
 
+/** Validation for input fields of edit contact popup: name is required, mail and phone tested for
+ * correct input format. Renders errors (messages and border-color) if valdation fails.
+ */
 function validateEditContact() {
   removeErrors();
   if (getValueFromInput("editName") == "") {
@@ -500,6 +496,15 @@ function validateEditContact() {
   return validateEmailInput("editEmail") && validatePhoneInput("editPhone");
 }
 
+/** Checking if there is already a contact with this name (double entries not allowed) */
+function validateNameInput(inputId) {
+  let nameInput = getValueFromInput(inputId);
+  let nameExists = contacts.some((contact) => {
+    return contact.name === nameInput;
+  });
+  return !nameExists && nameInput != "";
+}
+
 /**Checking the phone input in "add contact" for correct format*/
 function validatePhoneInput(inputId) {
   let phonePattern = /^\+?\d+$/;
@@ -512,7 +517,16 @@ function validatePhoneInput(inputId) {
 function validateEmailInput(inputId) {
   let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   let emailInput = getValueFromInput(inputId);
-  return emailPattern.test(emailInput) || getValueFromInput(inputId) == "";
+  return (emailPattern.test(emailInput) && !checkEmailExists(inputId)) || getValueFromInput(inputId) == "";
+}
+
+/** Checks if this email address already exists in contacts */
+function checkEmailExists(inputId) {
+  let emailInput = getValueFromInput(inputId);
+  let emailExists = contacts.some((contact) => {
+    return contact.email === emailInput;
+  });
+  return emailExists;
 }
 
 /** Applies error-css (red border) to an input html element with title.
@@ -549,6 +563,7 @@ function removeErrorMessages() {
   }
 }
 
+/** Removes the outer containers of all error messages */
 function removeErrorParents() {
   messages = document.getElementsByClassName("errorMessageParent");
   for (let i = messages.length - 1; i >= 0; i--) {
