@@ -644,6 +644,10 @@ input {
     padding: 0;
   }
 
+  .contactsContent {
+    padding-left: 1.8%;
+  }
+
   /* .contactsHeader {
     h1 {
       font-size: 50px;
@@ -952,7 +956,7 @@ input {
 
     .contactsContent.show {
       display: flex;
-      height: 80vh;
+      height: 100vh;
     }
   }
 
