@@ -238,13 +238,21 @@ let demoUsers = users;
 /**
  * Resets the demo content to its initial state and saves it to the API.
  */
-function resetDemoContent() {
+async function resetDemoContent() {
   contacts = demoContacts;
-  saveContactsToAPI();
+  await saveContactsToAPI();
   tasks = demoTasks;
-  saveTasksToAPI();
+  await saveTasksToAPI();
   users = demoUsers;
-  saveUsersToAPI();
+  await saveUsersToAPI();
+}
+
+async function resetDemo() {
+  if (confirm("This will delete all new contents and reset users, contacts and tasks to demo content.\nAre you sure?")) {
+    await resetDemoContent();
+    logoutUser();
+    window.location.href = "./index.html";
+  }
 }
 
 /** Writes a given value into the value of an html-input-element
