@@ -470,7 +470,7 @@ function validateContactInputs() {
     renderError("addPhoneContainer", "Please enter a valid phone number");
   }
   if (!validateEmailInput("addEmail") && getValueFromInput("addEmail") != "") {
-    if (checkEmailExists) {
+    if (checkEmailExists("addEmail")) {
       renderError("addEmailContainer", "This email already exists");
     } else {
       renderError("addEmailContainer", "Please enter a valid email address");
