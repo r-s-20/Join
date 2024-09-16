@@ -59,7 +59,6 @@ function validateUser(user, inputPassword, inputUsermail){
 function checkRememberMe(user, contact) {
   let checkDoneButton = document.getElementById("chechDoneButton2");
   if (window.getComputedStyle(checkDoneButton).display !== "none") {
-    localStorage.clear();
     saveContactToLocalStorage(user);
     saveToSessionStorage(user);
   } else {
