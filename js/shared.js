@@ -151,9 +151,9 @@ let categories = [
     name: "Technical task",
     color: colors[2],
   },
-  { 
-    name: "Budget", 
-    color: colors[3], 
+  {
+    name: "Budget",
+    color: colors[3],
   },
   { name: "Userstory", color: colors[3] },
 ];
@@ -246,11 +246,14 @@ async function resetDemoContent() {
   // await saveTasksToAPI();
   saveTasksToLocalStorage();
   users = demoUsers;
-  await saveUsersToAPI();
+  // await saveUsersToAPI();
+  saveUsers();
 }
 
 async function resetDemo() {
-  if (confirm("This will delete all new contents and reset users, contacts and tasks to demo content.\nAre you sure?")) {
+  if (
+    confirm("This will delete all new contents and reset users, contacts and tasks to demo content.\nAre you sure?")
+  ) {
     await resetDemoContent();
     logoutUser();
     window.location.href = "./index.html";
@@ -372,6 +375,11 @@ function loadTasks() {
   }
 }
 
+/** Saves the contacts to localStorage. */
+function saveContactsToLocalStorage() {
+  localStorage.setItem("contacts", JSON.stringify(contacts));
+}
+
 /** Loads contacts from localStorage.*/
 function loadContacts() {
   let savedContacts = JSON.parse(localStorage.getItem("contacts"));
@@ -380,9 +388,21 @@ function loadContacts() {
   }
 }
 
-/** Saves the contacts to localStorage. */
-function saveContactsToLocalStorage() {
-  localStorage.setItem("contacts", JSON.stringify(contacts));
+//Saves the 'users' array to localStorage as JSON.
+function saveUsers() {
+  let usersAsText = JSON.stringify(users);
+  localStorage.setItem("users", usersAsText);
+}
+
+/**
+ * Loads 'users' array from localStorage and parses it into objects.
+ * If no users are found in localStorage, 'users' remains unchanged.
+ */
+function loadUsers() {
+  let usersAsString = localStorage.getItem("users");
+  if (usersAsString) {
+    users = JSON.parse(usersAsString);
+  }
 }
 
 /** Toggles menu in header */

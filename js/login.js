@@ -1,6 +1,7 @@
 // loadContactsFromAPI();
 loadContacts();
-loadUsersFromAPI();
+// loadUsersFromAPI();
+loadUsers();
 
 
 /**

@@ -1,6 +1,7 @@
 // loadContactsFromAPI();
 loadContacts();
-loadUsersFromAPI();
+// loadUsersFromAPI();
+loadUsers();
 let contact;
 let confirmPasswords = true;
 let confirmMail = false;
@@ -209,7 +210,8 @@ async function createContact() {
     phone: "",
   };
   contacts.push(newContact);
-  await saveUsersToAPI();
+  // await saveUsersToAPI();
+  saveUsers();
   // await saveContactsToAPI();
   saveContactsToLocalStorage();
 }
@@ -298,24 +300,6 @@ function hidePopup(backgroundPopup, successfullSignedUp){
     }, 125);
 }
 
-
-//Saves the 'users' array to localStorage as JSON.
-function saveUsers() {
-  let usersAsText = JSON.stringify(users);
-  localStorage.setItem("users", usersAsText);
-}
-
-
-/**
- * Loads 'users' array from localStorage and parses it into objects.
- * If no users are found in localStorage, 'users' remains unchanged.
- */
-function loadUsers() {
-  let usersAsString = localStorage.getItem("users");
-  if (usersAsString) {
-    users = JSON.parse(usersAsString);
-  }
-}
 
 /**
  * Switches from the login view to the sign-up view.
