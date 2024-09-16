@@ -11,7 +11,8 @@ function editTask(timestamp) {
     editedTask.timestamp = timestamp;
     let taskIndex = tasks.indexOf(task);
     tasks.splice(taskIndex, 1, editedTask);
-    saveTasksToAPI();
+    // saveTasksToAPI();
+    saveTasksToLocalStorage();
     boardPopup(timestamp);
     updateHTML();
   }

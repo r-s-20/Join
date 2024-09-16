@@ -22,7 +22,8 @@ let searchTask = tasks;
  * @function
  */
 async function loadDataForBoard() {
-  await loadTasksFromAPI();
+  // await loadTasksFromAPI();
+  loadTasks();
   updateHTML();
 }
 
@@ -174,7 +175,8 @@ function startDragging(timestamp, index) {
 async function moveTo(status) {
   const task = tasks.find((task) => task.timestamp === currentTimestamp);
   task.status = status;
-  await saveTasksToAPI();
+  // await saveTasksToAPI();
+  saveTasksToLocalStorage();
   updateHTML();
 }
 
@@ -268,7 +270,8 @@ async function mobileSetStatusTo(timestamp, status, event) {
   task.status = status;
   event.preventDefault();
   event.stopPropagation();
-  await saveTasksToAPI();
+  // await saveTasksToAPI();
+  saveTasksToLocalStorage();
   updateHTML();
 }
 

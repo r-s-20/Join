@@ -41,7 +41,8 @@ async function subtaskDone(i, timestamp) {
   completedSubtask += 1;
   popupElement.subtasks.completed = completedSubtask;
   popupElement.subtasks.subtaskList[i].completed = true;
-  await saveTasksToAPI();
+  // await saveTasksToAPI();
+  saveTasksToLocalStorage();
   updateHTML();
 }
 
@@ -59,7 +60,8 @@ async function subtaskOpen(i, timestamp) {
   completedSubtask -= 1;
   popupElement.subtasks.completed = completedSubtask;
   popupElement.subtasks.subtaskList[i].completed = false;
-  await saveTasksToAPI();
+  // await saveTasksToAPI();
+  saveTasksToLocalStorage();
   updateHTML();
 }
 
@@ -271,7 +273,8 @@ async function deleteTask(timestamp) {
     tasks.splice(index, 1);
   }
   updateHTML();
-  await saveTasksToAPI();
+  // await saveTasksToAPI();
+  saveTasksToLocalStorage();
 }
 
 /**
@@ -420,7 +423,8 @@ function truncateText(description, index) {
  * Updates the tasks array and calls updateHTML to reflect the filtered tasks.
  */
 async function searchAndDisplay() {
-  await loadTasksFromAPI();
+  // await loadTasksFromAPI();
+  loadTasks();
   searchTask = tasks
   let searchTerm = document.getElementById("searchInput").value.toLowerCase();
   let matchingTasks = [];

@@ -8,7 +8,8 @@ async function init() {
   greetingScreen();
   await includeHTML();
   renderUserlogo();
-  await loadTasksFromAPI();
+  // await loadTasksFromAPI();
+  loadTasks();
   renderShortestDeadline();
   insertCounterValues();
 }

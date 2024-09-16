@@ -11,7 +11,8 @@ async function init() {
   await includeHTML();
   renderUserlogo();
   disablePastCalendarDates();
-  await loadTasksFromAPI();
+  // await loadTasksFromAPI();
+  loadTasks();
   await loadContactsFromAPI();
 }
 
@@ -30,7 +31,8 @@ async function addNewTask(status) {
   removeErrors();
   if (validateTask(newTask)) {
     tasks.push(newTask);
-    await saveTasksToAPI();
+    // await saveTasksToAPI();
+    saveTasksToLocalStorage();
     await showConfirmationMessage();
     resetFormInputs();
     resetAddTask();

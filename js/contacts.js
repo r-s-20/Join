@@ -8,7 +8,8 @@ let currentContactIndex = null;
 async function init() {
   await includeHTML();
   renderUserlogo();
-  await loadTasksFromAPI();
+  // await loadTasksFromAPI();
+  loadTasks();
   await loadContactsFromAPI();
   clearAddContactInputFields();
   removeErrors();
@@ -359,7 +360,8 @@ async function addContact() {
 async function deleteContact(index) {
   contact = contacts[index];
   removeContactFromTasks(index);
-  await saveTasksToAPI();
+  // await saveTasksToAPI();
+  saveTasksToLocalStorage();
   contacts.splice(index, 1);
   // saveContactsToLocalStorage();
   await saveContactsToAPI();

@@ -242,7 +242,8 @@ async function resetDemoContent() {
   contacts = demoContacts;
   await saveContactsToAPI();
   tasks = demoTasks;
-  await saveTasksToAPI();
+  // await saveTasksToAPI();
+  saveTasksToLocalStorage();
   users = demoUsers;
   await saveUsersToAPI();
 }
@@ -281,16 +282,6 @@ function getValueFromInput(inputId) {
  */
 function parseTextInput(string) {
   return string.trim();
-}
-
-/**
- * Loads tasks from localStorage.
- */
-function loadTasks() {
-  let tasksAsString = localStorage.getItem("tasks");
-  if (tasksAsString) {
-    tasks = JSON.parse(tasksAsString);
-  }
 }
 
 /**
@@ -362,6 +353,21 @@ async function loadContactsFromAPI() {
   let arrayAsString = contactsRaw.contacts;
   if (arrayAsString) {
     contacts = JSON.parse(arrayAsString);
+  }
+}
+
+/** Saves tasks to localStorage. */
+function saveTasksToLocalStorage() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+/**
+ * Loads tasks from localStorage.
+ */
+function loadTasks() {
+  let tasksAsString = localStorage.getItem("tasks");
+  if (tasksAsString) {
+    tasks = JSON.parse(tasksAsString);
   }
 }
 
