@@ -240,7 +240,8 @@ let demoUsers = users;
  */
 async function resetDemoContent() {
   contacts = demoContacts;
-  await saveContactsToAPI();
+  // await saveContactsToAPI();
+  saveContactsToLocalStorage();
   tasks = demoTasks;
   // await saveTasksToAPI();
   saveTasksToLocalStorage();
@@ -305,11 +306,11 @@ async function putData(path = "", data = {}) {
  * @param {string} path - The path for the Firebase database.
  * @returns {Promise<Object>} The response data from the fetch request.
  */
-async function loadData(path = "") {
-  let response = await fetch(BASE_URL + path + ".json");
-  let responseJson = await response.json();
-  return responseJson;
-}
+// async function loadData(path = "") {
+//   let response = await fetch(BASE_URL + path + ".json");
+//   let responseJson = await response.json();
+//   return responseJson;
+// }
 
 /** Saves the tasks to the Firebase database. */
 async function saveTasksToAPI() {
@@ -330,31 +331,31 @@ async function saveContactsToAPI() {
 }
 
 /** Loads tasks from the Firebase database. */
-async function loadTasksFromAPI() {
-  let tasksRaw = await loadData("joinTasks");
-  let tasksAsString = tasksRaw.tasks;
-  if (tasksAsString) {
-    tasks = JSON.parse(tasksAsString);
-  }
-}
+// async function loadTasksFromAPI() {
+//   let tasksRaw = await loadData("joinTasks");
+//   let tasksAsString = tasksRaw.tasks;
+//   if (tasksAsString) {
+//     tasks = JSON.parse(tasksAsString);
+//   }
+// }
 
 /** Loads users from the Firebase database. */
-async function loadUsersFromAPI() {
-  let usersRaw = await loadData("joinUsers");
-  let arrayAsString = usersRaw.users;
-  if (arrayAsString) {
-    users = JSON.parse(arrayAsString);
-  }
-}
+// async function loadUsersFromAPI() {
+//   let usersRaw = await loadData("joinUsers");
+//   let arrayAsString = usersRaw.users;
+//   if (arrayAsString) {
+//     users = JSON.parse(arrayAsString);
+//   }
+// }
 
 /** Loads contacts from the Firebase database.*/
-async function loadContactsFromAPI() {
-  let contactsRaw = await loadData("joinContacts");
-  let arrayAsString = contactsRaw.contacts;
-  if (arrayAsString) {
-    contacts = JSON.parse(arrayAsString);
-  }
-}
+// async function loadContactsFromAPI() {
+//   let contactsRaw = await loadData("joinContacts");
+//   let arrayAsString = contactsRaw.contacts;
+//   if (arrayAsString) {
+//     contacts = JSON.parse(arrayAsString);
+//   }
+// }
 
 /** Saves tasks to localStorage. */
 function saveTasksToLocalStorage() {

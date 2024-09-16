@@ -13,7 +13,8 @@ async function init() {
   disablePastCalendarDates();
   // await loadTasksFromAPI();
   loadTasks();
-  await loadContactsFromAPI();
+  // await loadContactsFromAPI();
+  loadContacts();
 }
 
 /**Disables all past dates (before today) in calendar input html element */

@@ -10,7 +10,8 @@ async function init() {
   renderUserlogo();
   // await loadTasksFromAPI();
   loadTasks();
-  await loadContactsFromAPI();
+  // await loadContactsFromAPI();
+  loadContacts();
   clearAddContactInputFields();
   removeErrors();
   render();
@@ -315,8 +316,8 @@ async function saveContact(index) {
     contacts[index].phone = phone;
     contacts[index].initials = initials;
 
-    // saveContactsToLocalStorage();
-    await saveContactsToAPI();
+    // await saveContactsToAPI();
+    saveContactsToLocalStorage();
     render();
     showContactDetails(index);
     closeEditContactPopUp();
@@ -344,7 +345,8 @@ async function addContact() {
       badgecolor: badgecolor,
     };
     contacts.push(newContact);
-    await saveContactsToAPI();
+    // await saveContactsToAPI();
+    saveContactsToLocalStorage();
     render();
     closeAddContactPopUp();
   }
@@ -363,8 +365,8 @@ async function deleteContact(index) {
   // await saveTasksToAPI();
   saveTasksToLocalStorage();
   contacts.splice(index, 1);
-  // saveContactsToLocalStorage();
-  await saveContactsToAPI();
+  // await saveContactsToAPI();
+  saveContactsToLocalStorage();
   render();
 
   document.getElementById("contactCardMain").classList.add("d-none");

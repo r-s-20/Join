@@ -1,5 +1,5 @@
-
-loadContactsFromAPI();
+// loadContactsFromAPI();
+loadContacts();
 loadUsersFromAPI();
 
 

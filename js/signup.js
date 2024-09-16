@@ -1,4 +1,5 @@
-loadContactsFromAPI();
+// loadContactsFromAPI();
+loadContacts();
 loadUsersFromAPI();
 let contact;
 let confirmPasswords = true;
@@ -209,7 +210,8 @@ async function createContact() {
   };
   contacts.push(newContact);
   await saveUsersToAPI();
-  await saveContactsToAPI();
+  // await saveContactsToAPI();
+  saveContactsToLocalStorage();
 }
 
 /**
@@ -304,12 +306,6 @@ function saveUsers() {
 }
 
 
-//Saves the 'contacts' array to localStorage as JSON.
-function saveContacts() {
-  let contactsAsText = JSON.stringify(contacts);
-  localStorage.setItem("contacts", contactsAsText);
-}
-
 /**
  * Loads 'users' array from localStorage and parses it into objects.
  * If no users are found in localStorage, 'users' remains unchanged.
@@ -318,17 +314,6 @@ function loadUsers() {
   let usersAsString = localStorage.getItem("users");
   if (usersAsString) {
     users = JSON.parse(usersAsString);
-  }
-}
-
-/**
- * Loads 'contacts' array from localStorage and parses it into objects.
- * If no contacts are found in localStorage, 'contacts' remains unchanged.
- */
-function loadContacts() {
-  let contactsAsString = localStorage.getItem("contacts");
-  if (contactsAsString) {
-    contact = JSON.parse(contactsAsString);
   }
 }
 
