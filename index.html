@@ -7,7 +7,9 @@
     <link rel="shortcut icon" href="./img/faviconLogo.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/index.css" />
-    <script src="./js/shared.js"></script>
+    <script src="./js/shared.js" defer></script>
+    <script src="./js/signup.js" defer></script>
+    <script src="./js/login.js" defer></script>
   </head>
   <body class="flex-start greyBackground" onload="checkLocalStorageKey(), welcomeScreen()">
     <div class="welcomeBackground"></div>
@@ -25,8 +27,7 @@
             <animate attributeName="fill" begin="0s" dur="1s" from="white" to="#2A3647" fill="freeze" />
           </path>
 
-          <path d="M38.2135 30.1318H16.0557V52.3884H38.2135V30.1318Z" fill="#29ABE2">
-          </path>
+          <path d="M38.2135 30.1318H16.0557V52.3884H38.2135V30.1318Z" fill="#29ABE2"></path>
           <path
             d="M83.2795 111.522C83.2795 116.265 80.8762 118.815 77.5184 118.815C74.1607 118.815 71.9619 115.785 71.9619 111.762C71.9619 107.739 74.2288 104.554 77.7059 104.554C81.183 104.554 83.2795 107.687 83.2795 111.522ZM74.5356 111.711C74.5356 114.57 75.6776 116.675 77.6377 116.675C79.5978 116.675 80.7057 114.45 80.7057 111.539C80.7057 108.988 79.6831 106.592 77.6377 106.592C75.5924 106.592 74.5356 108.903 74.5356 111.711Z"
             fill="#2A3647"
@@ -190,6 +191,4 @@
       </div>
     </div>
   </body>
-  <script src="./js/signup.js" refer></script>
-  <script src="./js/login.js" refer></script>
 </html>
